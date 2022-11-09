@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.logo{
+	display: flex;
+	place-items : self-end;
+}
