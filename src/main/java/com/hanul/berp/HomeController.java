@@ -11,7 +11,7 @@ public class HomeController {
 	public String index() {
 		
 		
-		return "side/test";
+		return "layout/index";
 	}
 	
 	

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link href="resources/css/app.css" rel="stylesheet">
-<link href="resources/css/common.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+<link href="css/common.css" rel="stylesheet">
 
 <div class="sidebar-content js-simplebar" data-simplebar="init">
 	<div class="simplebar-wrapper" style="margin: 0px;">
@@ -16,7 +16,7 @@
 					style="height: 100%; overflow: hidden scroll;">
 					<div class="simplebar-content" style="padding: 0px;">
 					<div class="logo">
-						<img class="me-4" alt="logo" src="resources/img/icons/icon-48x48.png">
+						<img class="me-4" alt="logo" src="imgs/icons/icon-48x48.png">
 				  		<p class="align-middle">B ERP</p>
 					</div>
 
@@ -98,17 +98,17 @@
 					</a></li>
 				</ul>
 
-						<div class="sidebar-cta">
-							<div class="sidebar-cta-content">
-								<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-								<div class="mb-3 text-sm">Are you looking for more
-									components? Check out our premium version.</div>
-								<div class="d-grid">
-									<a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade
-										to Pro</a>
-								</div>
-							</div>
-						</div>
+<!-- 						<div class="sidebar-cta"> -->
+<!-- 							<div class="sidebar-cta-content"> -->
+<!-- 								<strong class="d-inline-block mb-2">Upgrade to Pro</strong> -->
+<!-- 								<div class="mb-3 text-sm">Are you looking for more -->
+<!-- 									components? Check out our premium version.</div> -->
+<!-- 								<div class="d-grid"> -->
+<!-- 									<a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade -->
+<!-- 										to Pro</a> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</div>

@@ -11,6 +11,6 @@
 <link rel='stylesheet' type='text/css' href='/css/app.css?<%=new java.util.Date()%>'>
 </head>
 <body>
-<tiles:insertAttribute name='conteiner'/>
+<tiles:insertAttribute name='container'/>
 </body>
 </html>
