@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<footer class="footer">
+
+<style>
+#footer{
+	position: fixed;
+	bottom: 0;
+	margin-bottom: 30px;
+}
+</style>
+<footer id="footer">
 	<div class="container-fluid">
 		<div class="row text-muted">
 			<div class="col-6 text-start">

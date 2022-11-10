@@ -1,6 +1,46 @@
 @charset "UTF-8";
 
+html{
+	display: flex;
+	justify-content: center;
+}
+
+body{
+	width: 800px;	
+}
+
+li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none !important;
+}
+
 .logo{
 	display: flex;
 	place-items : self-end;
 }
+
+.mt-10{
+	margin-top: 10px;
+}
+
+.btn-fill, .btn-empty {
+	display: inline-block;
+	height: 32px;
+	padding: 3px 15px;
+	border: 1px solid #4d8be5;
+	border-radius: 3px;
+	
+}
+.btn-fill {
+	background-color: #4d8be5;
+	color: #fff;
+}
+.btn-empty {
+	background-color: #fff;
+	color: #4d8be5;
+}
+
+

@@ -3,176 +3,96 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
 
 <link href="css/app.css" rel="stylesheet">
+<link href="css/common.css" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/@alphardex/aqua.css/dist/aqua.min.css"
+	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
 	rel="stylesheet">
+	
+<style>
+#nav{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+#nav-top, #nav-sign, #nav-top > li{
+	display: flex;
+}
+#nav-top{
+	align-items: flex-end;
+	font-size: 16px;
+	font-weight: bold;
+}
+#nav-top > li > a:hover{
+	color: #6ca6fa;
+}
+#nav-top > li {
+	margin-left: 20px;
+}
+#nav-sign{
+	align-items: center;
+}
+#nav-sign > button:nth-child(1){
+	margin-left: 40px;
+}
+#nav-sign > button:nth-child(2){
+	margin-left: 10px;
+}
+
+
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  background-color:  var(--bs-body-bg);
+  color: #3b7ddd;
+  text-align: center;
+  min-width: 160px;
+  z-index: 1;
+  margin-left: 10px;
+  position: absolute;
+  left: -2%;
+  top: 100%;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+
+</style>
 
 <header>
-	<nav class="navbar navbar-expand navbar-light navbar-bg">
-		<a class="sidebar-toggle js-sidebar-toggle"> <i
-			class="hamburger align-self-center"></i>
-		</a>
-		<div class="navbar-collapse collapse">
-			<ul class="navbar-nav navbar-align">
-				<li class="nav-item dropdown"><a
-					class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
-					data-bs-toggle="dropdown">
-						<div class="position-relative">
-							<i class="align-middle" data-feather="bell"></i> <span
-								class="indicator">4</span>
-						</div>
-				</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
-						aria-labelledby="alertsDropdown">
-						<div class="dropdown-menu-header">4 New Notifications</div>
-						<div class="list-group">
-							<a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<i class="text-danger" data-feather="alert-circle"></i>
-									</div>
-									<div class="col-10">
-										<div class="text-dark">Update completed</div>
-										<div class="text-muted small mt-1">Restart server 12 to
-											complete the update.</div>
-										<div class="text-muted small mt-1">30m ago</div>
-									</div>
-								</div>
-							</a> <a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<i class="text-warning" data-feather="bell"></i>
-									</div>
-									<div class="col-10">
-										<div class="text-dark">Lorem ipsum</div>
-										<div class="text-muted small mt-1">Aliquam ex eros,
-											imperdiet vulputate hendrerit et.</div>
-										<div class="text-muted small mt-1">2h ago</div>
-									</div>
-								</div>
-							</a> <a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<i class="text-primary" data-feather="home"></i>
-									</div>
-									<div class="col-10">
-										<div class="text-dark">Login from 192.186.1.8</div>
-										<div class="text-muted small mt-1">5h ago</div>
-									</div>
-								</div>
-							</a> <a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<i class="text-success" data-feather="user-plus"></i>
-									</div>
-									<div class="col-10">
-										<div class="text-dark">New connection</div>
-										<div class="text-muted small mt-1">Christina accepted
-											your request.</div>
-										<div class="text-muted small mt-1">14h ago</div>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="dropdown-menu-footer">
-							<a href="#" class="text-muted">Show all notifications</a>
-						</div>
-					</div></li>
-				<li class="nav-item dropdown"><a
-					class="nav-icon dropdown-toggle" href="#" id="messagesDropdown"
-					data-bs-toggle="dropdown">
-						<div class="position-relative">
-							<i class="align-middle" data-feather="message-square"></i>
-						</div>
-				</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
-						aria-labelledby="messagesDropdown">
-						<div class="dropdown-menu-header">
-							<div class="position-relative">4 New Messages</div>
-						</div>
-						<div class="list-group">
-							<a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<img src="imgs/avatars/avatar-5.jpg"
-											class="avatar imgs-fluid rounded-circle" alt="Vanessa Tucker">
-									</div>
-									<div class="col-10 ps-2">
-										<div class="text-dark">Vanessa Tucker</div>
-										<div class="text-muted small mt-1">Nam pretium turpis et
-											arcu. Duis arcu tortor.</div>
-										<div class="text-muted small mt-1">15m ago</div>
-									</div>
-								</div>
-							</a> <a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<img src="imgs/avatars/avatar-2.jpg"
-											class="avatar imgs-fluid rounded-circle" alt="William Harris">
-									</div>
-									<div class="col-10 ps-2">
-										<div class="text-dark">William Harris</div>
-										<div class="text-muted small mt-1">Curabitur ligula
-											sapien euismod vitae.</div>
-										<div class="text-muted small mt-1">2h ago</div>
-									</div>
-								</div>
-							</a> <a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<img src="imgs/avatars/avatar-4.jpg"
-											class="avatar imgs-fluid rounded-circle" alt="Christina Mason">
-									</div>
-									<div class="col-10 ps-2">
-										<div class="text-dark">Christina Mason</div>
-										<div class="text-muted small mt-1">Pellentesque auctor
-											neque nec urna.</div>
-										<div class="text-muted small mt-1">4h ago</div>
-									</div>
-								</div>
-							</a> <a href="#" class="list-group-item">
-								<div class="row g-0 align-items-center">
-									<div class="col-2">
-										<img src="imgs/avatars/avatar-3.jpg"
-											class="avatar imgs-fluid rounded-circle" alt="Sharon Lessman">
-									</div>
-									<div class="col-10 ps-2">
-										<div class="text-dark">Sharon Lessman</div>
-										<div class="text-muted small mt-1">Aenean tellus metus,
-											bibendum sed, posuere ac, mattis non.</div>
-										<div class="text-muted small mt-1">5h ago</div>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="dropdown-menu-footer">
-							<a href="#" class="text-muted">Show all messages</a>
-						</div>
-					</div></li>
-				<li class="nav-item dropdown"><a
-					class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
-					data-bs-toggle="dropdown"> <i class="align-middle"
-						data-feather="settings"></i>
-				</a> <a class="nav-link dropdown-toggle d-none d-sm-inline-block"
-					href="#" data-bs-toggle="dropdown"> <img
-						src="imgs/avatars/avatar.jpg" class="avatar imgs-fluid rounded me-1"
-						alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
-				</a>
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="pages-profile.html"><i
-							class="align-middle me-1" data-feather="user"></i> Profile</a> <a
-							class="dropdown-item" href="#"><i class="align-middle me-1"
-							data-feather="pie-chart"></i> </a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="index.html"><i
-							class="align-middle me-1" data-feather="settings"></i> Settings &
-							Privacy</a> <a class="dropdown-item" href="#"><i
-							class="align-middle me-1" data-feather="help-circle"></i> Help
-							Center</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Log out</a>
-					</div></li>
+	<!-- 		로고 -->
+		<div id="nav">
+			<div class="logo">
+				<a href="index"><img class="me-4" alt="logo"
+					src="imgs/icons/icon-48x48.png" href='<c:url value="/" />'></a>
+			</div>
+			<ul id="nav-top" class='dropdown'>
+				<li><a href="#">공지사항</a></li>
+				<li><a href="#">회사정보</a></li>
+				<li><a href="#">채용안내</a></li>
+				<li><a href="#">고객센터</a></li>
+				<li><a href="#">고객센터</a></li>
 			</ul>
+			<div id='nav-sign'>
+				<button class="btn-fill">로그인</button>
+				<button class="btn-empty">회원가입</button>
+<!-- 				<button class="btn btn-primary btn-ghost btn-through through">로그인</button> -->
+<!-- 				<button class="btn btn-primary btn-ghost btn-through through">회원가입</button> -->
+			</div>
 		</div>
-	</nav>
 </header>

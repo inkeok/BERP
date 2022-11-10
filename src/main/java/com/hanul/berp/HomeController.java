@@ -1,6 +1,5 @@
 package com.hanul.berp;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,6 +11,7 @@ public class HomeController {
 		
 		
 		return "layout/index";
+		//return "default/include/side";
 	}
 	
 	
