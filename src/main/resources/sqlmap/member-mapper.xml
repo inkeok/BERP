@@ -4,10 +4,10 @@
 
 <!-- 가입처리 -->
 <insert id="insert">
-insert into member (email, id, pw, name, gender, phone, address, join_check)
+insert into member (email, id, pw, name, gender, phone, address)
 values (#{email, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR}, #{pw, jdbcType=VARCHAR}, 
 	#{name, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
-	#{address, jdbcType=VARCHAR}, #{join_check, jdbcType=VARCHAR})
+	#{address, jdbcType=VARCHAR})
 </insert>
 
 <!-- 회원가입 아이디 중복체크 -->
