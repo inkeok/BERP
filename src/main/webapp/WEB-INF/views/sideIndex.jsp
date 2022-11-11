@@ -21,7 +21,8 @@ text-align: center;
 <body>
 <h1>sideIndex</h1>
 <div id='div'>
-
+${loginInfo.email}<br>
+${loginInfo.admin}
 </div>
 </body>
 </html>
