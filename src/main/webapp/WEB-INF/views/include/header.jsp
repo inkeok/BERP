@@ -89,8 +89,8 @@
 				<li><a href="#">고객센터</a></li>
 			</ul>
 			<div id='nav-sign'>
-				<button class="btn-fill">로그인</button>
-				<button class="btn-empty">회원가입</button>
+				<button class="btn-fill" href="login">로그인</button>
+				<button class="btn-empty" href="/join">회원가입</button>
 <!-- 				<button class="btn btn-primary btn-ghost btn-through through">로그인</button> -->
 <!-- 				<button class="btn btn-primary btn-ghost btn-through through">회원가입</button> -->
 			</div>

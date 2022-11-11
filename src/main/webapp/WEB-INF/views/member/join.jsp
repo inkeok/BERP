@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='css/member.css?<%=new java.util.Date()%>'>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 table td { text-align: left }
-
 </style>
 </head>
 <body>
@@ -18,31 +20,66 @@ table td { text-align: left }
 1. form태그의 method는 post 로 지정
 2. form태그의 enctype는 multipart/form-data 로 지정
 -->
+
+
 <form method='post' action='join' enctype='multipart/form-data'>
 <table class='w-px600'>
-
-<tr><th>아이디</th>
+<tr><th class='w-px140'>* 성명</th>
+	<td><input type='text' name='name' autofocus></td>
+</tr>
+<tr><th>* 아이디</th>
 	<td><input type='text' name='id' class='chk'>
 		<a class='btn-fill' id='btn-id'>아이디 중복확인</a>
 		<div class='valid'>아이디를 입력하세요(영문소문자,숫자만)</div>
 	</td>
 </tr>
-<tr><th>비밀번호</th>
+<tr><th>* 비밀번호</th>
 	<td><input type='password' name='pw' class='chk'>
 		<div class='valid'>비밀번호를 입력하세요(영문대/소문자,숫자 모두 포함)</div>
 	</td>
 </tr>
-<tr><th>비밀번호 확인</th>
+<tr><th>* 비밀번호 확인</th>
 	<td><input type='password' name='pw_ck' class='chk'>
 		<div class='valid'>비밀번호를 다시 입력하세요</div>
 	</td>
 </tr>
-<tr><th>이메일</th>
+<tr><th>* 이메일</th>
 	<td><input type='text' name='email' class='chk'>
 		<div class='valid'>이메일을 입력하세요</div>
 	</td>
 </tr>
-
+<tr><th>* 성별</th>
+	<td><label><input type='radio' name='gender' value='남'>남</label>
+		<label><input type='radio' name='gender' value='여' checked>여</label>
+	</td>
+</tr>
+<tr><th>프로필이미지</th>
+	<td>
+		<div class='align'>
+		<label>
+			<input type='file' name='file' id='attach-file' accept='image/*'>
+			<a><i class="font-b fa-regular fa-address-card"></i></a>
+		</label>
+		<span id='preview'></span>
+		<a id='delete-file'><i class="font-r fa-solid fa-trash-can"></i></a>
+		</div>
+	</td>
+</tr>
+<tr><th>생년월일</th>
+	<td><input type='text' name='birth' class='date' readonly>
+		<a id='delete'><i class="font-r fa-regular fa-calendar-xmark"></i></a>
+	</td>
+</tr>
+<tr><th>전화번호</th>
+	<td><input type='text' name='phone'></td>
+</tr>
+<tr><th>주소</th>
+	<td><a class='btn-fill' id='post'>우편번호찾기</a>
+		<input type='text' name='post' class='w-px60' readonly>
+		<input type='text' name='address' class='full' readonly>
+		<input type='text' name='address' class='full' >
+	</td>
+</tr>
 </table>
 </form>
 <div class='btnSet'>
@@ -51,12 +88,9 @@ table td { text-align: left }
 </div>
 
 <script src='js/member.js?<%=new java.util.Date()%>'></script>
-<!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js'></script> -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js'></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 $('#join').click(function(){
-	alert( '성명을 입력하세요!' );
 	if( $('[name=name]').val()=='' ){
 		alert( '성명을 입력하세요!' );
 		$('[name=name]').focus();
@@ -176,7 +210,6 @@ $(function(){
 $('.date').change(function(){
 	$(this).next().css('display', 'inline');
 });
-
 $('#delete').click(function(){
 	$(this).siblings('.date').val('');
 	$(this).css('display', 'none');
@@ -185,3 +218,4 @@ $('#delete').click(function(){
 
 </body>
 </html>
+

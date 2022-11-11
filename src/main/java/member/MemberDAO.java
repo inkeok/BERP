@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MemberDAO implements MemberService {
-	@Qualifier("bteam") @Autowired private SqlSession sql;
+	@Autowired @Qualifier("bteam") private SqlSession sql;
 
 	@Override
 	public int member_join(MemberVO vo) {
@@ -43,6 +43,30 @@ public class MemberDAO implements MemberService {
 	@Override
 	public List<MemberVO> member_admin() {
 		return sql.selectList("member.admin");
+	}
+
+	@Override
+	public MemberVO member_myinfo(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int member_update(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int member_delete(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String member_salt(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
