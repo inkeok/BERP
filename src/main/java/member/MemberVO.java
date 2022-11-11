@@ -1,7 +1,16 @@
 package member;
 
 public class MemberVO {
-	private String email, id, pw, name, gender, phone, address, join_check;
+	private String email, id, pw, name, gender, phone, address, join_check, admin;
+
+	
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
 
 	public String getEmail() {
 		return email;

@@ -39,7 +39,7 @@ body{
 }
 
 .dropdown-content a{
-	display: none;  
+  display: none;  
   background-color: #222e3c;
   min-width: 160px;
   z-index: 1;
@@ -49,11 +49,10 @@ body{
 .dropdown-content a {
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
 }
 
 .dropdown-content a:hover {background-color: #ddd;}
-.dropdown:hover .dropdown-content{
+.dropdown:hover .dropdown-content a{
   display: block;
   animation-name:slide_down;
   animation-duration:3s;

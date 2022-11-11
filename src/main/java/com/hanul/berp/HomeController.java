@@ -8,10 +8,12 @@ public class HomeController {
 	
 	@RequestMapping(value = {"/","/index"})
 	public String index() {
-		
-		
-		//return "layout/index";
 		return "layout/index";
+	}
+	
+	@RequestMapping(value = {"/sideIndex"})
+	public String sideIndex() {
+		return "side/sideIndex";
 	}
 	
 	

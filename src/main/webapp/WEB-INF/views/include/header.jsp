@@ -42,10 +42,6 @@
 	margin-left: 10px;
 }
 
-
-
-
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -73,6 +69,10 @@
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 
+#sideIndex{
+	cursor: pointer;
+}
+
 </style>
 
 <header>
@@ -87,18 +87,26 @@
 				<li><a href="#">회사정보</a></li>
 				<li><a href="#">채용안내</a></li>
 				<li><a href="#">고객센터</a></li>
-				<li><a href="#">고객센터</a></li>
+ 				<li><a href="#">고객센터</a></li>
 			</ul>
+				
+				
 			<div id='nav-sign'>
 				<c:if test="${empty loginInfo}">
 				<button class="btn-fill" onclick='location="login.mem"'>로그인</button>
 				<button class="btn-empty" onclick='location="join.mem"'>회원가입</button>
-				
 				</c:if>
+				
 				<c:if test="${not empty loginInfo}">
 				<span>${loginInfo.name} 님</span>
 				<button class="btn-empty" onclick='location="logout.mem"'>로그아웃</button>
 				</c:if>
+				<c:if test='${loginInfo.admin eq "Y"}'>
+				<li><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
+				login
+				</span></li>
+				</c:if>
 			</div>
 		</div>
 </header>
+
