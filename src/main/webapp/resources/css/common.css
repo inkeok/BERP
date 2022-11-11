@@ -9,6 +9,26 @@ body{
 	width: 800px;	
 }
 
+
+table{
+	margin: 0 auto;
+	border-collapse: collapse;
+	height: 25px;
+	table-layout: fixed;
+	text-align: center;
+} 
+
+th {
+	background: #222e3c;
+}
+
+th, td {
+	border: 1px solid #222e3c;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 li{
 	list-style: none;
 }
@@ -30,17 +50,17 @@ a{
 	display: inline-block;
 	height: 32px;
 	padding: 3px 15px;
-	border: 1px solid #4d8be5;
+	border: 1px solid #222e3c;
 	border-radius: 3px;
 	
 }
 .btn-fill {
-	background-color: #4d8be5;
+	background-color: #222e3c;
 	color: #fff;
 }
 .btn-empty {
 	background-color: #fff;
-	color: #4d8be5;
+	color: #222e3c;
 }
 
 
