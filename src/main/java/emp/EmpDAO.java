@@ -13,7 +13,7 @@ public class EmpDAO {
 	
 	public List<EmpVO> employee_list(){
 		
-		return sql.selectList("emp.list");
+		return sql.selectList("emp.empList");
 	}
 
 }

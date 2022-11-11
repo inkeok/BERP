@@ -26,7 +26,7 @@ public class EmpController {
 		
 		
 		
-		return "emp/empList";
+		return "side/emp/empList";
 	}
 	
 	
