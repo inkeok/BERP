@@ -24,6 +24,7 @@
 	align-items: flex-end;
 	font-size: 16px;
 	font-weight: bold;
+	
 }
 #nav-top > li > a:hover{
 	color: #6ca6fa;
@@ -89,10 +90,15 @@
 				<li><a href="#">고객센터</a></li>
 			</ul>
 			<div id='nav-sign'>
-				<button class="btn-fill">로그인</button>
-				<button class="btn-empty">회원가입</button>
-<!-- 				<button class="btn btn-primary btn-ghost btn-through through">로그인</button> -->
-<!-- 				<button class="btn btn-primary btn-ghost btn-through through">회원가입</button> -->
+				<c:if test="${empty loginInfo}">
+				<button class="btn-fill" onclick='location="login.mem"'>로그인</button>
+				<button class="btn-empty" onclick='location="join.mem"'>회원가입</button>
+				
+				</c:if>
+				<c:if test="${not empty loginInfo}">
+				<span>${loginInfo.name} 님</span>
+				<button class="btn-empty" onclick='location="logout.mem"'>로그아웃</button>
+				</c:if>
 			</div>
 		</div>
 </header>

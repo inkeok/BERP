@@ -6,8 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+#indexImg{
+	width: 80%;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+</style>
 </head>
 <body>
-<h1>인덱스</h1>
+<img src='imgs/hanul.png' id='indexImg'>
 </body>
 </html>

@@ -10,8 +10,8 @@ public class HomeController {
 	public String index() {
 		
 		
+		//return "layout/index";
 		return "layout/index";
-		//return "default/include/side";
 	}
 	
 	

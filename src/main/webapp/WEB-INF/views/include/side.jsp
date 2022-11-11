@@ -38,13 +38,11 @@ body{
   display: inline-block;
 }
 
-.dropdown-content {
-  display: none;
+.dropdown-content a{
+	display: none;  
   background-color: #222e3c;
   min-width: 160px;
   z-index: 1;
-/*   color: #e9ecef; */
-/*   font-weight: 400px; */
   margin-left: 10px;
 }
 
@@ -55,9 +53,11 @@ body{
 }
 
 .dropdown-content a:hover {background-color: #ddd;}
-.dropdown:hover .dropdown-content {display: block;}
-
-
+.dropdown:hover .dropdown-content{
+  display: block;
+  animation-name:slide_down;
+  animation-duration:3s;
+}
 
 
 </style>
@@ -81,7 +81,7 @@ body{
 		
 								<ul class="sidebar-nav">
 							<li class="sidebar-header"></li>
-		
+							
 							<li class="sidebar-item active mt-10 dropdown"><a class="sidebar-link"
 								href="index"> <i class="align-middle"
 									data-feather="sliders"></i> <span class="align-middle">회사정보</span>
@@ -112,6 +112,8 @@ body{
 									data-feather="book"></i> <span class="align-middle">급여관리</span>
 							</a></li>
 							
+							
+							
 							<li class="sidebar-item mt-10 dropdown"><a class="sidebar-link">
 							 <i class="align-middle" data-feather="book"></i>
 							  <span class="align-middle">업무관리</span></a>
@@ -129,5 +131,4 @@ body{
 		</div>
 	</div>
 </div>
-
 
