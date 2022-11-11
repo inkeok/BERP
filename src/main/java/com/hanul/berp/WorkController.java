@@ -13,8 +13,9 @@ public class WorkController {
 	@RequestMapping("/work")
 	public String work_list() {
 		
-		dao.work_list();
-		return "";
+		System.out.println(dao.work_list());
+		
+		return "layout/work/work";
 	}
 	
 	
