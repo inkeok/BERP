@@ -9,11 +9,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EmpDAO {
-	@Autowired @Qualifier("bteam") private SqlSession sql;
+	@Autowired private SqlSession sql;
+	
 	
 	public List<EmpVO> employee_list(){
 		
-		return sql.selectList("emp.list");
+		return sql.selectList("emp.empList");
 	}
 
 }
