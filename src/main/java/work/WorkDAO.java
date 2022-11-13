@@ -18,5 +18,10 @@ public List<WorkDAO> work_list(){
 		return sql.selectList("work.list");
 	}
 	
+	public int input(String id) {
+		
+		return sql.insert("work.input", id)	;
+	}
+
 	
 }

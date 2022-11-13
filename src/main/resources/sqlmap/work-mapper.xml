@@ -5,8 +5,26 @@
 <select id="list" resultType="work.WorkVO">
 	SELECT *
 	FROM work
-
 </select>
+
+
+<!-- 로그인한 아이디의 출근정보만 출력 -->
+
+<!-- 관리자일 경우 부서별 선택 출근정보 출력  -->
+
+
+<!--  버튼 눌렀을 경우 sysdate로 출근시간 등록 //이거 update인지 insert 인지 db보면서 확인.. -->
+<insert id ="input">
+
+</insert>
+
+<!--  버튼 눌렀을 경우 퇴근시간 등록 -->
+
+
+<!-- 근무 구분 코드에 휴가로 입력할 경우 출근, 퇴근시간 0 으로 하고 근무상태에 휴가 로 출력 -->
+
+
+
 
 
 </mapper>
