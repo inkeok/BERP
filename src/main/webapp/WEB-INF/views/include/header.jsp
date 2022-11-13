@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
-
-<link href="css/app.css" rel="stylesheet">
-<link href="css/common.css" rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/@alphardex/aqua.css/dist/aqua.min.css"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
-	rel="stylesheet">
 	
 <style>
 #nav{
@@ -41,33 +32,6 @@
 #nav-sign > button:nth-child(2){
 	margin-left: 10px;
 }
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  background-color:  var(--bs-body-bg);
-  color: #3b7ddd;
-  text-align: center;
-  min-width: 160px;
-  z-index: 1;
-  margin-left: 10px;
-  position: absolute;
-  left: -2%;
-  top: 100%;
-}
-
-.dropdown-content a {
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #ddd;}
-.dropdown:hover .dropdown-content {display: block;}
 
 #sideIndex{
 	cursor: pointer;

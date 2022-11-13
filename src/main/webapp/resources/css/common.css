@@ -46,6 +46,14 @@ a{
 	margin-top: 10px;
 }
 
+.mt-15{
+	margin-top: 15px;
+}
+
+.ml-15{
+	margin-left: 15px;
+}
+
 .btn-fill, .btn-empty {
 	display: inline-block;
 	height: 32px;
@@ -63,4 +71,10 @@ a{
 	color: #222e3c;
 }
 
+.centerFrame{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
 
