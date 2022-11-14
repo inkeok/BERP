@@ -1,11 +1,11 @@
-package emp;
+package mypage;
 
 import java.sql.Date;
 
 public class EmpVO {
 	
 	private int employee_id, department_id;
-	private String company_cd, name, email, phone, admin, job_id,position, position_name, employee_pattern;
+	private String company_cd, name, email, phone, admin, job_id, position, employee_pattern;
 	private Date hire_date;
 	public int getEmployee_id() {
 		return employee_id;
@@ -61,12 +61,6 @@ public class EmpVO {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public String getPosition_name() {
-		return position_name;
-	}
-	public void setPosition_name(String position_name) {
-		this.position_name = position_name;
-	}
 	public String getEmployee_pattern() {
 		return employee_pattern;
 	}
@@ -79,7 +73,7 @@ public class EmpVO {
 	public void setHire_date(Date hire_date) {
 		this.hire_date = hire_date;
 	}
-		
+	
 	
 
 }

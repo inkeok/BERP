@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recruit">
+
+<select id="detail" resultType="recruit.RecruitVO">
+
+select * from recruit_board
+where recruit_num = #{recruit_num}
+</select>
+
+
+<select id="list" resultType="recruit.RecruitVO">
+select r.*, c.code_name
+from recruit_board r, common_code c
+where r.employee_pattern = c.code_value
+</select>
+
+<select id="pattern" resultType="recruit.CommonCodeVO">
+select *
+from common_code
+where code_title = 'H'
+</select>
+
+
+<insert id='insert'>
+<!-- <![CDATA[ -->
+insert into recruit_board
+(recruit_num, file_name, file_path, 
+recruit_start, recruit_end, 
+recruit_title, recruit_content, employee_pattern)
+values (
+seq_recruit_num.nextval, #{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=VARCHAR},
+ #{recruit_start}, #{recruit_end},  
+ #{recruit_title, jdbcType=VARCHAR}, #{recruit_content, jdbcType=VARCHAR}
+<choose>
+	<when test='employee_pattern == -1'>,'H101'</when>
+	<otherwise>,'H102'</otherwise>
+</choose>
+)
+
+<!-- ]]> -->
+</insert>
+
+
+</mapper>

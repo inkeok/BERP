@@ -1,12 +1,12 @@
-package emp;
+package mypage;
 
 import java.sql.Date;
 
-public class EmpVO {
-	
+public class EmpMemberVO {
 	private int employee_id, department_id;
-	private String company_cd, name, email, phone, admin, job_id,position, position_name, employee_pattern;
+	private String company_cd, name, email, phone, admin, job_id, position, employee_pattern;
 	private Date hire_date;
+	private String department_name, company_name, position_name, employee_pattern_name;
 	public int getEmployee_id() {
 		return employee_id;
 	}
@@ -61,12 +61,6 @@ public class EmpVO {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public String getPosition_name() {
-		return position_name;
-	}
-	public void setPosition_name(String position_name) {
-		this.position_name = position_name;
-	}
 	public String getEmployee_pattern() {
 		return employee_pattern;
 	}
@@ -79,7 +73,35 @@ public class EmpVO {
 	public void setHire_date(Date hire_date) {
 		this.hire_date = hire_date;
 	}
-		
+	public String getDepartment_name() {
+		return department_name;
+	}
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
+	public String getCompany_name() {
+		return company_name;
+	}
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
+	public String getPosition_name() {
+		return position_name;
+	}
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
+	public String getEmployee_pattern_name() {
+		return employee_pattern_name;
+	}
+	public void setEmployee_pattern_name(String employee_pattern_name) {
+		this.employee_pattern_name = employee_pattern_name;
+	}
+
+	
 	
 
+	
+
+	
 }
