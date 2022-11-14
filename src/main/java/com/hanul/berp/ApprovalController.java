@@ -19,22 +19,27 @@ public class ApprovalController {
 		return "side/approval/submitList";
 	}
 	
+	@RequestMapping("/lockerList.ap")
+	public String lockerList(String email, Model model) {
+		model.addAttribute("lockerList", dao.lockerList(email));
+		return "side/approval/lockerList";
+	}
+	
 	@RequestMapping("/post.ap")
 	public String post() {
 		return "side/approval/post";
 	}
 	
-	
-	@ResponseBody @RequestMapping("/insertPost.ap")
-	public String submitPost(Ing_tableVO vo) {
-		if ( dao.insertPost(vo)==1 ) {
-			StringBuffer msg = new StringBuffer("<script>");
-			msg.append("alert('제출했습니다.');")
-			.append("location='submitList.ap'");
-			msg.append("</script>");
-			return msg.toString();
-		}
-		return null;
+	@RequestMapping("/insertPost.ap")
+	public String insertPost(Ing_tableVO vo, String email) {
+		dao.insertPost(vo);
+		return "redirect:submitList.ap?email="+email;
 	}
-
+	
+	@RequestMapping("/insertLocker.ap")
+	public String insertLocker(Ing_tableVO vo, String email) {
+		
+		dao.insertLocker(vo);
+		return "redirect:lockerList.ap?email="+email;
+	}
 }

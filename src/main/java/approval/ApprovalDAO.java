@@ -15,7 +15,15 @@ public class ApprovalDAO {
 		return sql.selectList("approval.submitList", email);
 	}
 	
+	public List<Ing_tableVO> lockerList(String email) {
+		return sql.selectList("approval.lockerList", email);
+	}
+	
 	public int insertPost(Ing_tableVO vo) {
 		return sql.insert("approval.insertPost", vo);
+	}
+	
+	public int insertLocker(Ing_tableVO vo) {
+		return sql.insert("approval.insertLocker", vo);
 	}
 }

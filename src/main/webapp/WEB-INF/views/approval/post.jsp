@@ -13,11 +13,12 @@
 </head>
 <body>
 <div class='centerFrame'>
-<form id='postForm' method='post' action='insertPost.ap' enctype='multipart/form-data'>
-	<input type='hidden' name='document_submit' value='y'>
+<form id='postForm' method='post' action='insertPost.ap?email=${loginInfo.email}' enctype='multipart/form-data'>
+<!-- 	<input type='hidden' name='document_submit' value='y'> -->
 	<input type='hidden' name='employee_id' value='${loginInfo.employee_id}'>
 	<input type='hidden' name='department_id' value='${loginInfo.department_id}'>
 	<input type='hidden' name='company_cd' value='${loginInfo.company_cd}'>
+<!-- 	<input type='hidden' name='url' id='url' value=''> -->
 	
 	<table id='postTable'>
 		<tr><th>제목</th>
@@ -35,13 +36,17 @@
 </form>
 <div id='postBtn'>
 <input type='button' class='sideBtn-fill' value='submit' id='postSubmit'>
-<input type='button' class='sideBtn-empty' value='cancel' onclick='location="submitList.ap"'>
+<input type='button' class='sideBtn-empty' value='cancel' >
+
+
 </div>
 </div>
 <script>
 document.querySelector('#postSubmit').onclick = function(){
 	document.querySelector('#postForm').submit();	
 }
+
+
 </script>
 </body>
 </html>

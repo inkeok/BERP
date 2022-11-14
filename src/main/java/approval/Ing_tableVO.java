@@ -4,9 +4,27 @@ import java.sql.Date;
 
 public class Ing_tableVO {
 	
-	private int no, employee_id, department_id;
-	private String company_cd, file_name, file_path, document_title, document_content, document_check, document_submit;
+	private int no, ing_no, employee_id, department_id;
+	private String company_cd, file_name, file_path, document_title, 
+					document_content, document_check, document_submit,
+					email;
 	private Date document_date;
+	
+	
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getIng_no() {
+		return ing_no;
+	}
+	public void setIng_no(int ing_no) {
+		this.ing_no = ing_no;
+	}
 	public int getNo() {
 		return no;
 	}
