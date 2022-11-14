@@ -8,8 +8,6 @@ html{
 body{
 	width: 1200px;	
 }
-
-
 table{
 	margin: 0 auto;
 	border-collapse: collapse;
@@ -96,7 +94,9 @@ a{
 	background-color: #fff;
 	color: #222e3c;
 }
-
+.center{
+	text-align: center;
+}
 .centerFrame{
 	position: absolute;
 	left: 50%;
@@ -129,5 +129,4 @@ table.tb-list td{
 .w-px800 { width: 800px }
 .w-px1000 { width: 1000px }
 .w-px1200 { width: 1200px }
-
 

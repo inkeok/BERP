@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approval">
+	<select id='saveList' resultType='approval.ApprovalVO'>
+		select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR}
+		and submit = 'n'
+	</select>
 
-<select id='saveList' resultType='approval.ApprovalVO'>
-select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR} and submit = 'n'
-</select>
+	<select id='submitList' resultType='approval.ApprovalVO'>
+		select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR}
+		and submit = 'y'
+	</select>
 
-<select id='submitList' resultType='approval.ApprovalVO'>
-select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR} and submit = 'y'
-</select>
 
 </mapper>
