@@ -39,7 +39,6 @@
 					<col width="100px" />
 					<col width="130px" />
 					<col width="130px" />
-					<col width="130px" />
 					<col width="170px" />
 				</colgroup>
 
@@ -52,7 +51,7 @@
 					<th>전화번호</th>
 					<th>관리자</th>
 					<th>입사일자</th>
-					<th>업무제목</th>
+<!-- 					<th>업무제목</th> -->
 					<th>직급</th>
 					<th>업무형태</th>
 				</tr>
@@ -66,7 +65,7 @@
 						<td>${vo.phone}</td>
 						<td>${vo.admin}</td>
 						<td>${vo.hire_date}</td>
-						<td>${vo.job_id}</td>
+<%-- 						<td>${vo.job_id}</td> --%>
 						<td>${vo.position}</td>
 						<td>${vo.employee_pattern}</td>
 					</tr>

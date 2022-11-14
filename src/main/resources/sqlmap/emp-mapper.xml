@@ -2,18 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="emp">
 
-
-<!-- 업무목록조회 -->
-<select id="jobs">
-	select job_id
+<!-- 고용형태조회 -->
+<select id="employee_pattern" resultType="emp.EmpVO">
+	select employee_pattern
 	from employees
+	order by employee_pattern
+</select>
+<!-- 직급조회 -->
+<select id="position" resultType="emp.EmpVO">
+	select position
+	from employees
+	order by position
 </select>
 
 <!-- 사원정보저장 -->
 <insert id="insert">
 	insert into employees(department_id, company_cd, name, email, phone, admin, job_id, position, employee_pattern)
 				values(#{department_id}, #{company_cd}, #{name}, #{email}, #{phone}
-				, #{admin}, #{jbo_id}, #{position}, #{employee_pattern})
+				, #{admin}, #{position}, #{employee_pattern})
 </insert>
 
 <!-- 부서목록조회 -->

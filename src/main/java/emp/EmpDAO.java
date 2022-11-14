@@ -11,9 +11,10 @@ import org.springframework.stereotype.Repository;
 public class EmpDAO {
 	
 	@Autowired private SqlSession sql;
+
 	
-	public List<EmpVO> jobs() {
-		return sql.selectList("emp.jobs");
+	public List<EmpVO> position() {
+		return sql.selectList("emp.position");
 	}
 	
 	//회사코드조회
@@ -36,7 +37,8 @@ public class EmpDAO {
 		sql.insert("emp.insert", vo);
 		
 	}
-
+	
+	
 	public void employee_update(EmpVO vo) {
 		// TODO Auto-generated method stub
 		

@@ -65,7 +65,9 @@ a{
 	background-color: #fff;
 	color: #222e3c;
 }
-
+.center{
+	text-align: center;
+}
 .centerFrame{
 	position: absolute;
 	left: 50%;

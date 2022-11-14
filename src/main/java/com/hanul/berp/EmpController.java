@@ -17,8 +17,7 @@ import emp.EmpVO;
 
 @Controller
 public class EmpController {
-	@Autowired
-	EmpDAO dao;
+	@Autowired EmpDAO dao;
 
 	// 신규사원등록저장
 	@RequestMapping("/insert.hr")
@@ -36,12 +35,12 @@ public class EmpController {
 		List<EmpVO> emp = dao.employee_list();
 		List<DepartmentVO> departments = dao.departments();
 		List<CompanyVO> company = dao.company();
-		List<EmpVO> jobs = dao.jobs();
+		List<EmpVO> position = dao.position();
 		
 		model.addAttribute("departments", departments);
 		model.addAttribute("company", company);
 		model.addAttribute("emp", emp);
-		model.addAttribute("jobs", jobs);
+		model.addAttribute("position", position);
 		return "side/emp/new";
 	}
 
