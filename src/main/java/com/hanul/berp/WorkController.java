@@ -33,11 +33,14 @@ public class WorkController {
 	// 퇴근 버튼 눌렀을 때 시간 update
 	@ResponseBody
 	@RequestMapping("/work_end_input")
-	public String work_end_input(Model model, String id) {
+	public String work_end_input(Model model, String id, String end_work) {
 
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
-
+		System.out.println(end_work);
+		
+		dao.work_end_input(end_work);
+		
 		System.out.println("ajax end");
 
 		return "work";
@@ -47,16 +50,20 @@ public class WorkController {
 	//출근버튼 눌렀을 때 시간 update
 	
 	@ResponseBody
-	@RequestMapping("work_start_input")
+	@RequestMapping("/work_start_input")
 	public String work_start_input(String start_work, Model model, String id) {
 		
-	EmpVO vo = dao.empInfo(id);
-	model.addAttribute("vo", vo);
-	System.out.println("ajax start");
+		EmpVO vo = dao.empInfo(id);
+		model.addAttribute("vo", vo);
+		System.out.println(start_work);
+		
+		dao.work_start_input(start_work);
+		
+		System.out.println("ajax end");
+
+		return "work";
 	
 	
-	
-	return "work"; 
 	}
 	
 

@@ -5,7 +5,7 @@
 <select id="workInfo" resultType="work.WorkVO">
 	SELECT *
 	FROM work
-	where employee_id = '20221001'
+	where employee_id = '20221015'
 </select>
 
 <!-- 출근정보 출력 쿼리 -->
@@ -24,14 +24,14 @@
 <update id="end_work">
 	UPDATE work
 	   SET end_work = #{end_work}
-	 WHERE employee_id= '20221001'
+	 WHERE employee_id= '20221015'
 </update>
 
-<update id="start_work">
-	UPDATE work
-	   SET start_work = #{start_work}
-	 WHERE employee_id= '20221001'
-</update>
+ <insert id="start_work">
+	insert into work
+	   (employee_id, department_id, company_cd,start_work, work_code)
+	   values('20221015',10,'1000', #{start_work},'W101')
+</insert>
 
 
 <!-- 로그인한 아이디의 출근정보만 출력 -->
@@ -40,7 +40,7 @@
 select e.*, c.code_name position_name
 from  employees e left join common_code c
 on e.position = c.code_value 
-where e.employee_id = '20221001'
+where e.employee_id = '20221019'
 
 </select>
 
