@@ -2,13 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="work">
 
-<select id="list" resultType="work.WorkVO">
+<select id="workInfo" resultType="work.WorkVO">
 	SELECT *
 	FROM work
+	where employee_id = '20221001'
 </select>
+
+<!-- 출근정보 출력 쿼리 -->
+<!-- <select id="start_work" resultType="work.WorkVO">
+	select to_char(start_work, 'HH:MM:SS')
+       from work
+       where employee_id = '20221001'
+</select> -->
+<!-- 퇴근정보 출력 쿼리 -->
+<!-- <select id="end_work" resultType="work.WorkVO">
+	select to_char(end_work, 'HH:MM:SS')
+       from work
+       where employee_id = '20221001'
+</select> -->
+
+<update id="end_work">
+	UPDATE work
+	   SET end_work = #{end_work}
+	 WHERE employee_id= '20221001'
+</update>
+
+<update id="start_work">
+	UPDATE work
+	   SET start_work = #{start_work}
+	 WHERE employee_id= '20221001'
+</update>
 
 
 <!-- 로그인한 아이디의 출근정보만 출력 -->
+
+<select  id="empInfo" resultType="emp.EmpVO">
+select e.*, c.code_name position_name
+from  employees e left join common_code c
+on e.position = c.code_value 
+where e.employee_id = '20221001'
+
+</select>
 
 <!-- 관리자일 경우 부서별 선택 출근정보 출력  -->
 
