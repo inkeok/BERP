@@ -16,15 +16,29 @@
 <table class='w-px1000'>
 
 <tr><th class='w-px140'>유형</th>
-	<td><input type='text'></td>
+	<td>
+	<select	name='employee_pattern' class='w-px200' > 
+				
+				
+						<option value='-1'>정규직</option>
+						<option value='1'>계약직</option>
+	
+				
+<%-- 				<c:forEach items='${code}' var='c'>
+						<option value='${c.code_value }'>
+	 ${c.code_name }</option>
+	
+				</c:forEach> --%>
+			</select>
+	</td>
 </tr>
 <tr><th>채용시작일</th>
-<td><input type="text" id="from" name="start" readonly>
+<td><input type="text" id="from" name="recruit_start" readonly>
 <a id='delete'><i class="font-r fa-regular fa-calendar-xmark"></i></a>
 </td>
 </tr>
 <tr><th>채용종료일</th>
-<td><input type="text" id="to" name="end" readonly>
+<td><input type="text" id="to" name="recruit_end" readonly>
 <a id='delete'><i class="font-r fa-regular fa-calendar-xmark"></i></a>
 </td>
 </tr>
@@ -32,10 +46,10 @@
 
 
 <tr><th class='w-px140'>제목</th>
-	<td><input type='text' name='title' class='full chk' title='제목'></td>
+	<td><input type='text' name='recruit_title' class='full chk' title='제목'></td>
 </tr>
 <tr><th>내용</th>
-	<td><textarea name='content' class='full chk' title='내용'></textarea></td>
+	<td><textarea name='recruit_content' class='full chk' title='내용'></textarea></td>
 </tr>
 <tr><th>첨부파일</th>
 	<td class='text-left'>
@@ -44,7 +58,7 @@
 			<input type='file' name='file' id='attach-file'>
 			<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
 		</label>
-		<span id='file-name'></span>
+		<span id='file_name'></span>
 		<span id='preview'></span>
 		<a id='delete-file'><i class="font-r fa-solid fa-trash-can"></i></a>
 		</div>
@@ -105,7 +119,7 @@
 	  } );
   
   $('#save').click(function(){
-		if( emptyCheck() ) $('form').submit();
+		$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
 	});
 </script>
 </body>

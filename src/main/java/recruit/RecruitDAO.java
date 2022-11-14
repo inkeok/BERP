@@ -23,6 +23,10 @@ public class RecruitDAO {
 		return sql.insert("recruit.insert", vo);
 	}
 	
+	public List<CommonCodeVO> recruit_pattern(){
+	
+		return sql.selectList("recruit.pattern");
+	}
 	
 
 }

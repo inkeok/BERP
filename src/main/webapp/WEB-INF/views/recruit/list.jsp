@@ -61,7 +61,7 @@ table a:hover, .grid a:hover { font-weight: bold; }
 	<th>전형기간</th>	
 </tr>
 <c:forEach items='${recruitList}' var='vo'>
-<tr><td>${vo.employee_pattern}</td>
+<tr><td>${vo.code_name}</td>
 	
 	
 	<td>${vo.recruit_title }</td>
