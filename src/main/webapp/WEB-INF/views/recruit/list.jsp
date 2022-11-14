@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,8 @@ table.tb-list td{
 	overflow: hidden; text-overflow:ellipsis; white-space: nowrap;}
 
 table a:hover, .grid a:hover { font-weight: bold; }
+a { cursor: pointer; }
+a:link, a:visited { text-decoration: none;  color:inherit; }
 </style>
 </head>
 <body>
@@ -58,18 +61,20 @@ table a:hover, .grid a:hover { font-weight: bold; }
 <tr><th>유형</th>
 	<th>제목</th>
 	<th>접수기간</th>
-	<th>전형기간</th>	
+	
 </tr>
 <c:forEach items='${recruitList}' var='vo'>
 <tr><td>${vo.code_name}</td>
 	
 	
-	<td>${vo.recruit_title }</td>
-	<td>${vo.recruit_start}~${vo.recruit_end }</td>
-	<td>
-		전형기간
-		
+	<td><a href="detail.rec?recruit_num=${vo.recruit_num }">
+	${vo.recruit_title }
+	</a>
 	</td>
+	
+	<td>${vo.recruit_start}~${vo.recruit_end }</td>
+	
+	
 </tr>
 </c:forEach>
 </table>
