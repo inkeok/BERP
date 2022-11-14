@@ -17,7 +17,7 @@ select count(id) from member where id = #{id}
 
 <!-- 로그인할 때 아이디와 비밀번호 맞는지 확인 + 관리자 정보  -->
 <select id='checkLogin' resultType='member.MemberVO'>
-select m.*, e.admin
+select m.*, e.admin, e.employee_id, e.department_id, e.company_cd
 from member m join employees e
 on m.email = e.email
 where id = #{id} and pw = #{pw}

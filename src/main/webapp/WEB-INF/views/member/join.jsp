@@ -43,6 +43,10 @@
 .valid{}
 .invalid{}
 
+input[type=text]{
+	width: 185px;
+}
+
 </style>
 </head>
 <body>

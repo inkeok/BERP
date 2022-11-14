@@ -102,5 +102,15 @@ a{
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	text-align: center;
 }
 
+input[type=text]{
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
+}
+
+textarea{
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
+}

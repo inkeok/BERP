@@ -94,7 +94,7 @@
 				<span>${loginInfo.name} 님</span>
 				<button class="frontBtn-empty" onclick='location="logout.mem"'>로그아웃</button>
 				</c:if>
-				<c:if test='${loginInfo.admin eq "Y"}'>
+				<c:if test='${loginInfo.admin eq "y"}'>
 				<li><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
 				login
 				</span></li>
