@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import recruit.CommonCodeVO;
 import recruit.RecruitDAO;
 import recruit.RecruitVO;
@@ -23,6 +24,19 @@ import recruit.RecruitVO;
 public class RecruitController {
 	@Autowired
 	RecruitDAO dao;
+	
+	// 공지글상세화면 요청
+	@RequestMapping("/detail.rec")
+	public String info(Model model, String recruit_num) {		
+		
+		// 해당 공지글 정보를 DB에서 조회해와
+		//RecruitVO recruit = dao.recruit_info(recruit_num);
+		// 화면에 출력할 수 있도록 Model 에 attribute 로 담는다
+		model.addAttribute("vo", dao.recruit_info(recruit_num));
+		
+		// 응답화면연결
+		return "recruit/info";
+	}
 
 	@RequestMapping("/list.rec")
 	public String recruitList(Model model) {

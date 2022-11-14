@@ -28,5 +28,9 @@ public class RecruitDAO {
 		return sql.selectList("recruit.pattern");
 	}
 	
+	public RecruitVO recruit_info(String recruit_num) {
+		
+		return sql.selectOne("recruit.detail", recruit_num);
+	}
 
 }
