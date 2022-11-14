@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 public class ApprovalDAO {
 @Autowired @Qualifier("bteam") private SqlSession sql;
 
-	public List<ApprovalVO> saveList(String employee_id) {
-		return sql.selectList("approval.saveList", employee_id);
+	public List<Ing_tableVO> submitList(String email) {
+		return sql.selectList("approval.submitList", email);
 	}
-
-	public List<ApprovalVO> submitList(String employee_id) {
-		return sql.selectList("approval.submitList", employee_id);
+	
+	public int insertPost(Ing_tableVO vo) {
+		return sql.insert("approval.insertPost", vo);
 	}
 }

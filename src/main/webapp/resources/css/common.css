@@ -102,7 +102,9 @@ a{
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	text-align: center;
 }
+
 
 table.tb-list { table-layout:fixed; }
 table.tb-list td{ 
@@ -129,4 +131,15 @@ table.tb-list td{
 .w-px800 { width: 800px }
 .w-px1000 { width: 1000px }
 .w-px1200 { width: 1200px }
+
+
+input[type=text]{
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
+}
+
+textarea{
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
+}
 
