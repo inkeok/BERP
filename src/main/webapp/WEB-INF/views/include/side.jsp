@@ -111,7 +111,7 @@
     <div class="dropdownSelect">업무관리
 		<div class='dropdownMenu'>
 			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=${loginInfo.}"'>상신함</div>
+			<div onclick='location="submitList.ap?employee_id=${loginInfo.id}"'>상신함</div>
 			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
