@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EmpDAO {
-	@Autowired private SqlSession sql;
+	@Autowired @Qualifier("bteam") private SqlSession sql;
 	
 	
 	public List<EmpVO> employee_list(){

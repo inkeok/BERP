@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recruit">
+
+<select id="list" resultType="recruit.RecruitVO">
+select r.*, c.code_name
+from recruit_board r, common_code c
+where r.employee_pattern = c.code_value
+
+</select>
+
+<insert id='insert'>
+
+
+insert into recruit_board(recruit_num, file_name, file_path, recruit_start, recruit_end, employee_pattern, recruit_title)
+values (#{recruit_num}, #{file_name}, #{file_path}, #{recruit_start},   #{recruit_end},  #{recruit_pattern},  #{recruit_title})
+</insert>
+
+
+</mapper>
