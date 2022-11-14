@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class='centerFrame'>
-<h1>sideIndex</h1>
-${loginInfo.email}<br>
-${loginInfo.admin}<br>
-${loginInfo.employee_id}<br>
-${loginInfo.department_id}<br>
-${loginInfo.company_cd}
 
-</div>
 </body>
 </html>

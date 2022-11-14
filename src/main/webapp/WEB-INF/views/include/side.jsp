@@ -35,10 +35,10 @@
 }
 
 .dropdownSelect{
-	margin-bottom: 30px;
-	font-size: 22px;
+	margin-bottom: 25px;
+	font-size: 18px;
 	font-weight: lighter;
-	color: #afaed9;
+	color: #64637f;
 	cursor: pointer;
 }
 
@@ -50,23 +50,14 @@
 }
 #sideNav{
 	margin-top: 35px !important;
-	margin-left: 10px !important;
-}
-#sideFix > div{
-	
-}
-#sideFix > div p{
-	margin-left: 15px;
-	font-size: 20px;
-	color: #3b7ddd;
+	margin-left: 20px !important;
 }
 
 </style>
 <div id='sideFix'>
-	<div class="logo mt-15">
-		<img src="imgs/icons/icon-48x48.png">
-  		<p>B-ERP</p>
-	</div>
+	<a class="logo mt-15 ml-7" href='<c:url value="/" />'>
+		<img src="imgs/icons/icon-48x48.png" >
+	</a>
 	
   	<div id='sideNav'>
   		<div class="dropdownSelect">회사정보
@@ -120,7 +111,7 @@
     <div class="dropdownSelect">업무관리
 		<div class='dropdownMenu'>
 			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=1"'>상신함</div>
+			<div onclick='location="submitList.ap?email=${loginInfo.email}"'>상신함</div>
 			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
