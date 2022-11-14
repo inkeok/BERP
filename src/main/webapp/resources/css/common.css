@@ -5,11 +5,6 @@ html{
 	justify-content: center;
 }
 
-body{
-	width: 800px;	
-}
-
-
 table{
 	margin: 0 auto;
 	border-collapse: collapse;
@@ -78,3 +73,18 @@ a{
 	transform: translate(-50%, -50%);
 }
 
+.w-px600 {
+	width: 600px
+}
+
+.w-px800 {
+	width: 800px
+}
+
+.w-px1000 {
+	width: 1000px
+}
+
+.w-px1200 {
+	width: 1200px
+}
