@@ -3,12 +3,23 @@
 <mapper namespace="approval">
 
 <select id='submitList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by document_date asc) no, i.*, e.email
+<!-- select row_number() over(order by document_date asc) no, i.*, e.email, -->
+<!-- (select e.name -->
+<!-- FROM ing_table i join employees e on i.approver_id = e.employee_id) approver -->
+
+<!-- from member m join employees e  -->
+<!-- on m.email = e.email join ing_table i -->
+<!-- on e.employee_id = i.employee_id -->
+
+<!-- where e.email = #{email} and i.document_submit = 'y' -->
+
+select row_number() over(order by document_date asc) no, i.*
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id
 where e.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
 order by no desc
+
 </select>
 
 <select id='lockerList' resultType='approval.Ing_tableVO'>
@@ -21,14 +32,23 @@ order by no desc
 </select>
 
 <insert id='insertPost'>
-insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, document_submit)
-values (#{employee_id}, #{department_id}, #{company_cd}, #{document_title}, #{document_content}, 'y')
+insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, document_submit)
+values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
+#{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
+#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'y')
 </insert>
 
 <insert id='insertLocker'>
 insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, document_submit)
 values (#{employee_id}, #{department_id}, #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, #{document_content, jdbcType=VARCHAR}, 'n')
 </insert>
+
+<select id='departmentEmployee' resultType='emp.EmpVO'>
+select e.*, d.department_name
+from employees e join departments d
+on e.department_id = d.department_id
+where d.department_name = #{department_name}
+</select>
 
 
 </mapper>

@@ -16,7 +16,7 @@
 <div class='centerFrame'>
 <h1>보관함</h1>
 <table id='lockerListTable'>
-<c:forEach items='${lockerList}' var='l'>
+
 
 <colgroup>
 	<col width='50px'>
@@ -29,13 +29,12 @@
 	<th>번호</th>
 	<th>제목</th>
 	<th>날짜</th>
-	<th>상태</th>
 </tr>
+<c:forEach items='${lockerList}' var='l'>
 <tr>
 	<td>${l.no}</td>
 	<td>${l.document_title}</td>
 	<td>${l.document_date}</td>
-	<td>${l.document_check}</td>
 </tr>
 </c:forEach>
 </table>

@@ -4,15 +4,33 @@ import java.sql.Date;
 
 public class Ing_tableVO {
 	
-	private int no, ing_no, employee_id, department_id;
+	private int no, ing_no, employee_id, department_id, approver_id;
 	private String company_cd, file_name, file_path, document_title, 
 					document_content, document_check, document_submit,
-					email;
-	private Date document_date;
+					email, approver;
+	private Date document_date, finish_date;
 	
 	
 	
 	
+	public int getApprover_id() {
+		return approver_id;
+	}
+	public void setApprover_id(int approver_id) {
+		this.approver_id = approver_id;
+	}
+	public String getApprover() {
+		return approver;
+	}
+	public void setApprover(String approver) {
+		this.approver = approver;
+	}
+	public Date getFinish_date() {
+		return finish_date;
+	}
+	public void setFinish_date(Date finish_date) {
+		this.finish_date = finish_date;
+	}
 	public String getEmail() {
 		return email;
 	}

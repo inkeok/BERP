@@ -16,11 +16,12 @@
 <div class='centerFrame'>
 <h1>상신함</h1>
 <table id='submitListTable'>
-<c:forEach items='${submitList}' var='s'>
+
 
 <colgroup>
 	<col width='50px'>
 	<col width='150px'>
+	<col width='100px'>
 	<col width='100px'>
 	<col width='100px'>
 </colgroup>
@@ -28,14 +29,17 @@
 <tr>
 	<th>번호</th>
 	<th>제목</th>
-	<th>날짜</th>
+	<th>제출일</th>
 	<th>상태</th>
+	<th>결재자</th>
 </tr>
+<c:forEach items='${submitList}' var='s'>
 <tr>
 	<td>${s.no}</td>
 	<td>${s.document_title}</td>
 	<td>${s.document_date}</td>
 	<td>${s.document_check}</td>
+	<td>${s.approver}</td>
 </tr>
 </c:forEach>
 </table>
