@@ -6,7 +6,7 @@ public class WorkVO {
 
 	private String company_cd, excess_date, work_code; 
 	private int employee_id, department_id;
-	private Date  start_work, end_work, work_date;
+	private String start_work, end_work, work_date;
 	public String getCompany_cd() {
 		return company_cd;
 	}
@@ -37,26 +37,25 @@ public class WorkVO {
 	public void setDepartment_id(int department_id) {
 		this.department_id = department_id;
 	}
-	public Date getStart_work() {
+	public String getStart_work() {
 		return start_work;
 	}
-	public void setStart_work(Date start_work) {
+	public void setStart_work(String start_work) {
 		this.start_work = start_work;
 	}
-	public Date getEnd_work() {
+	public String getEnd_work() {
 		return end_work;
 	}
-	public void setEnd_work(Date end_work) {
+	public void setEnd_work(String end_work) {
 		this.end_work = end_work;
 	}
-	public Date getWork_date() {
+	public String getWork_date() {
 		return work_date;
 	}
-	public void setWork_date(Date work_date) {
+	public void setWork_date(String work_date) {
 		this.work_date = work_date;
 	}
-		 
-	
+		
 	
 	
 }

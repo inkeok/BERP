@@ -28,15 +28,16 @@ public List<WorkDAO> work_list(){
 	}
 
 	
-	public int work_end_input(WorkVO wVo) {
+	public int work_end_input(String end_work) {
 		
-		return sql.update("work.end_work",wVo);
+		System.out.println(end_work+"dao");
+		return sql.update("work.end_work",end_work);
 	}
 	
 	
-	public int work_start_input(WorkVO wVo) {
+	public int work_start_input(String start_work) {
 		
-		return sql.update("work.start_work", wVo);
+		return sql.insert("work.start_work", start_work);
 	}
 
 	public EmpVO empInfo(String id) {
