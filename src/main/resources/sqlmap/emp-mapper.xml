@@ -5,7 +5,9 @@
 	<update id="update">
 		update emplotyees
 		set department_name = #{department_name}, company_name = #{company_name}, name = #{name}
-		, 
+		, email = #{email}, phone = #{phone}, admin = #{admin}
+		, position = #{position}, employee_pattern = #{employee_pattern}
+		where employee_id = #{employee_id}
 	</update>
 
 	<!-- 사원정보조회 -->
