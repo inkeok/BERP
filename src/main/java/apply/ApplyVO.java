@@ -1,0 +1,6 @@
+package apply;
+
+public class ApplyVO {
+
+	//RECRUIT_NUM, APPLY_EMAIL, APPLY_NUM, APPLY_NAME, FILE_NAME, FILE_PATH, APPLY_CHECK
+}
