@@ -25,17 +25,43 @@ public class RecruitController {
 	@Autowired
 	RecruitDAO dao;
 	
-	// 공지글상세화면 요청
+	@RequestMapping("/delete.rec")
+	public String delete(String recruit_num) {
+		
+		dao.delete(recruit_num);
+		
+		
+		return "redirect:list.rec";
+		
+	}
+	
+	
+	@RequestMapping("/update.rec")
+	public String update(RecruitVO vo,String recruit_num) {
+		dao.recruit_update(vo);
+		
+		return "redirect:detail.rec?recruit_num=" + recruit_num;
+	}
+	
+	
+	
+	@RequestMapping("/modify.rec")
+	public String modify(Model model, String recruit_num) {
+		RecruitVO vo = dao.recruit_info(recruit_num);
+		model.addAttribute("vo", vo);
+		List<CommonCodeVO> code = dao.recruit_pattern();
+		model.addAttribute("code", code);
+		
+		return "recruit/modify";
+	}
+	
 	@RequestMapping("/detail.rec")
 	public String info(Model model, String recruit_num) {		
 		
-		// 해당 공지글 정보를 DB에서 조회해와
-		//RecruitVO recruit = dao.recruit_info(recruit_num);
-		// 화면에 출력할 수 있도록 Model 에 attribute 로 담는다
+		
 		model.addAttribute("vo", dao.recruit_info(recruit_num));
 		
-		// 응답화면연결
-		return "recruit/info";
+		return "recruit/detail";
 	}
 
 	@RequestMapping("/list.rec")

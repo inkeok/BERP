@@ -13,6 +13,14 @@ public class RecruitDAO {
 
 	@Autowired private SqlSession sql;
 	
+	public void delete(String recruit_num) {
+		sql.delete("recruit.delete", recruit_num);
+		
+	}
+	
+	public String currval() {
+		return sql.selectOne("recruit.currval");
+	}
 	
 	public List<RecruitVO> recruit_list(){
 		
@@ -31,6 +39,10 @@ public class RecruitDAO {
 	public RecruitVO recruit_info(String recruit_num) {
 		
 		return sql.selectOne("recruit.detail", recruit_num);
+	}
+	
+	public void recruit_update(RecruitVO vo) {
+		sql.update("recruit.update", vo);
 	}
 
 }
