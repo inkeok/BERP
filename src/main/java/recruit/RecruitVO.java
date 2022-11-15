@@ -1,12 +1,41 @@
 package recruit;
 
 
+
 public class RecruitVO {
 
 	private String recruit_num, file_name, file_path, 
 	employee_pattern, recruit_title,recruit_content,
-	recruit_start, recruit_end, code_value, code_name;
+	 code_value, code_name,recruit_start, recruit_end
+	 ,char_recruit_start, char_recruit_end;
 	
+	
+	
+	
+	public String getChar_recruit_start() {
+		return char_recruit_start;
+	}
+	public void setChar_recruit_start(String char_recruit_start) {
+		this.char_recruit_start = char_recruit_start;
+	}
+	public String getChar_recruit_end() {
+		return char_recruit_end;
+	}
+	public void setChar_recruit_end(String char_recruit_end) {
+		this.char_recruit_end = char_recruit_end;
+	}
+	public String getRecruit_start() {
+		return recruit_start;
+	}
+	public void setRecruit_start(String recruit_start) {
+		this.recruit_start = recruit_start;
+	}
+	public String getRecruit_end() {
+		return recruit_end;
+	}
+	public void setRecruit_end(String recruit_end) {
+		this.recruit_end = recruit_end;
+	}
 	public String getCode_name() {
 		return code_name;
 	}
@@ -37,18 +66,7 @@ public class RecruitVO {
 	public void setRecruit_num(String recruit_num) {
 		this.recruit_num = recruit_num;
 	}
-	public String getRecruit_start() {
-		return recruit_start;
-	}
-	public void setRecruit_start(String recruit_start) {
-		this.recruit_start = recruit_start;
-	}
-	public String getRecruit_end() {
-		return recruit_end;
-	}
-	public void setRecruit_end(String recruit_end) {
-		this.recruit_end = recruit_end;
-	}
+	
 	public String getFile_name() {
 		return file_name;
 	}

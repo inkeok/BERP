@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
+
+ <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src='js/recruit.js?<%=new java.util.Date() %>'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
 table { margin: 0 auto;  border-collapse: collapse; }
 table tr { height: 46px }
@@ -24,20 +31,24 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 </style>
 </head>
 <body>
-<h3>공지사항</h3>
-<form method='post' action='list.no'>
+<h3>채용공고 리스트</h3>
+<form method='post' action='list.rec'>
 <div id='list-top' class='w-px1200'>
 	<ul>
 		<li>
 		
-			<select name='search' class='w-px100'> <!-- name줘야 전달가넝 -->
-				<option value='all' ${page.search eq 'all'? 'selected':'' }>유형</option>				
-			
+			<select name='employee_pattern' class='w-px100' onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
+				<option value='all'>전체 유형</option>
+				<c:forEach items='${code}' var='c'>
+				<option ${code_value eq c.code_value ? 'selected' : '' } 
+				
+				value='${c.code_value}' > ${c.code_name }</option>
+				</c:forEach>
+				
 			</select>
 		
 		</li>
-		<li><input type='text' value='${page.keyword }' name='keyword' class='w-px300'> </li>
-		<li><a class='btn-fill' onclick='$("form").submit()'>검색</a></li>
+		
 	
 	</ul>
 	<ul><!-- 관리자인 경우만 글쓰기 가능 -->
@@ -46,7 +57,6 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 		<%-- </c:if> --%>
 	</ul>
 </div>
-<input type='hidden' name='curPage' value='1'>
 </form>
 
 <!-- 테이블시작 -->
@@ -54,9 +64,8 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 <colgroup>
 	<col width='100px'>
 	<col>
-	<col width='140px'>
-	<col width='140px'>
-	<col width='100px'>
+	<col width='200px'>
+	
 </colgroup>
 <tr><th>유형</th>
 	<th>제목</th>
@@ -67,12 +76,19 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 <tr><td>${vo.code_name}</td>
 	
 	
-	<td><a href="detail.rec?recruit_num=${vo.recruit_num }">
+	<td style="text-align:left"><a href="detail.rec?recruit_num=${vo.recruit_num }">
 	${vo.recruit_title }
 	</a>
 	</td>
+	<%-- 
+	<td>
+	 <fmt:formatDate value="${vo.recruit_start}" pattern="yyyy-MM-dd"/>
+	~
+	 <fmt:formatDate value="${vo.recruit_end}" pattern="yyyy-MM-dd"/>
 	
-	<td>${vo.recruit_start}~${vo.recruit_end }</td>
+	</td>
+	 --%>
+ 	<td>${vo.char_recruit_start}~${vo.char_recruit_end }</td>
 	
 	
 </tr>

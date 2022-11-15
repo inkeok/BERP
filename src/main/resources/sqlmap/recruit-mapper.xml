@@ -15,7 +15,7 @@ select seq_recruit_num.currval from dual
 <update id="update">
 update recruit_board set recruit_num=#{recruit_num}, recruit_start=#{recruit_start}, employee_pattern=#{employee_pattern}
 ,recruit_end=#{recruit_end}, recruit_title=#{recruit_title}, recruit_content=#{recruit_content}
-<!-- ,파일변경  -->
+,file_name=#{file_name, jdbcType=VARCHAR}, file_path=#{file_path, jdbcType=VARCHAR}
 where recruit_num = #{recruit_num}
 
 </update>
@@ -23,7 +23,10 @@ where recruit_num = #{recruit_num}
 
 <select id="detail" resultType="recruit.RecruitVO">
 
-select r.*, c.code_name code_name
+select  r.*, code_name
+
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+
 from recruit_board r, common_code c
 where r.employee_pattern = c.code_value
 and recruit_num = #{recruit_num}
@@ -32,9 +35,19 @@ and recruit_num = #{recruit_num}
 
 <select id="list" resultType="recruit.RecruitVO">
 select r.*, c.code_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
 from recruit_board r, common_code c
 where r.employee_pattern = c.code_value
-order by recruit_start
+order by r.recruit_start
+</select>
+
+<select id="list_code" resultType="recruit.RecruitVO">
+select r.*, c.code_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+from recruit_board r, common_code c
+where r.employee_pattern = c.code_value
+and employee_pattern = #{employee_pattern}
+order by r.recruit_start
 </select>
 
 
