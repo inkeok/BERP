@@ -15,6 +15,8 @@
 </style>
 </head>
 <body>
+
 <img src='imgs/hanul.png' id='indexImg'>
+
 </body>
 </html>

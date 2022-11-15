@@ -85,6 +85,7 @@
 				
 				
 			<div id='nav-sign'>
+
 				<c:if test="${empty loginInfo}">
 				<button class="frontBtn-fill" onclick='location="login.mem"'>로그인</button>
 				<button class="frontBtn-empty" onclick='location="join.mem"'>회원가입</button>
@@ -99,6 +100,7 @@
 				login
 				</span></li>
 				</c:if>
+
 			</div>
 		</div>
 </header>
