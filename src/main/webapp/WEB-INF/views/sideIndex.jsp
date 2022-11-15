@@ -10,7 +10,12 @@
 <div class='centerFrame'>
 <h1>sideIndex</h1>
 ${loginInfo.email}<br>
-${loginInfo.admin}
+${loginInfo.admin}<br>
+${loginInfo.employee_id}<br>
+${loginInfo.department_id}<br>
+${loginInfo.company_cd}<br>
+${loginInfo.join_check}
+
 </div>
 </body>
 </html>

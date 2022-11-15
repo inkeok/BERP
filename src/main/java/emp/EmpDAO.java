@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EmpDAO {
-	
+
 	@Autowired private SqlSession sql;
 	
 	//정보화면창

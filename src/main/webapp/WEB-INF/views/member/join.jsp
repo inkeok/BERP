@@ -1,16 +1,18 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
 #submitAndCancel {
 	margin-top: 5px;
-	margin-right: 65px;
 	display: flex;
 	justify-content: center;
 }
@@ -28,6 +30,8 @@
 #memberTable th {
 	text-align: center;
 	width: 120px;
+	color: white;
+	font-weight: lighter;
 }
 .memberBtn{
 	display: inline-block;
@@ -42,12 +46,16 @@
 .valid{}
 .invalid{}
 
+input[type=text]{
+	width: 185px;
+}
+
 </style>
 </head>
 <body>
 <!-- 	<h1 style='text-align: center'>Join</h1> -->
 	
-	<form id='memberForm' method='post' action='insert.mem'>
+	<form id='memberForm' class='centerFrame' method='post' action='insert.mem'>
 		<table id='memberTable'>
 			<tr><th>Name *</th>
 				<td><input type='text' id='name' name='name' required></td>
@@ -94,11 +102,12 @@
 				</td>
 			</tr>
 		</table>
+		<div id='submitAndCancel'>
+			<a class='sideBtn-fill' id='join'>Join</a>
+			<a class='sideBtn-empty' onclick="location='<c:url value='/' />'">Cancel</a>
+		</div>
 	</form>
-	<div id='submitAndCancel'>
-		<a class='btn-fill' id='join'>Join</a>
-		<a class='btn-empty' onclick="location='<c:url value='/' />'">Cancel</a>
-	</div>
+	
 	<script src='js/join.js?<%=new java.util.Date()%>'></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -196,3 +205,4 @@ document.querySelector('#join').onclick = function(){
 </script>
 </body>
 </html>
+
