@@ -19,7 +19,7 @@
 
 <tr><th class='w-px140'>유형</th>
 	<td>
-		${vo.employee_pattern }
+		${vo.code_name }
 	</td>
 </tr>
 <tr><th>채용시작일</th>
@@ -41,19 +41,16 @@ ${vo.recruit_end }
 	
 	</td>
 </tr>
-<tr><th>내용</th>
+<%-- <tr><th>내용</th>
 	<td>
 	${vo.recruit_content }
-
-
-
 </td>
-</tr>
-<tr><th>첨부파일</th>
+</tr> --%>
+<tr><th>내용</th>
 	<td>
 	
 <div>
-<span id='file_name'>${vo.file_name }</span>
+<input type="hidden" id='file_name' value="${vo.file_name }">
 <c:if test="${not empty vo.file_name }">
 <a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
 </c:if>
@@ -68,6 +65,8 @@ ${vo.recruit_end }
 <%-- <c:if test='${loginInfo.admin eq "Y" }'> --%>
 <a class='btn-fill' href='modify.rec?recruit_num=${vo.recruit_num }'>정보수정 </a>
 <a class='btn-fill' id='remove'>정보삭제</a>
+
+
 <%-- </c:if> --%>
 </div>
 

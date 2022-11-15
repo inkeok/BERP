@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approval">
 
+
 <select id='submitList' resultType='approval.Ing_tableVO'>
 select row_number() over(order by document_date asc) no, i.*, e.email
 from member m join employees e 
