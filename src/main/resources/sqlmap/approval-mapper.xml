@@ -2,33 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approval">
 
+<!-- 상신함 뷰 -->
 <select id='submitList' resultType='approval.Ing_tableVO'>
-<!-- select row_number() over(order by document_date asc) no, i.*, e.email, -->
-<!-- (select e.name -->
-<!-- FROM ing_table i join employees e on i.approver_id = e.employee_id) approver -->
+select row_number() over(order by document_date asc) no, i.*,
+(select emp.name
+from ing_table ing join employees emp 
+on ing.approver_id = emp.employee_id) approver
 
+from member m join employees e 
+on m.email = e.email join ing_table i
+on e.employee_id = i.employee_id
+
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+
+<!-- select row_number() over(order by document_date asc) no, i.* -->
 <!-- from member m join employees e  -->
 <!-- on m.email = e.email join ing_table i -->
 <!-- on e.employee_id = i.employee_id -->
+<!-- where e.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y' -->
+<!-- order by no desc -->
+</select>
 
-<!-- where e.email = #{email} and i.document_submit = 'y' -->
-
+<!-- 보관함 뷰 -->
+<select id='lockerList' resultType='approval.Ing_tableVO'>
 select row_number() over(order by document_date asc) no, i.*
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id
-where e.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'n'
 order by no desc
-
 </select>
 
-<select id='lockerList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by document_date asc) no, i.*, e.email
-from member m join employees e 
-on m.email = e.email join ing_table i
-on e.employee_id = i.employee_id
-where e.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'n'
-order by no desc
+<!-- 결재함 뷰 -->
+<select id='approvalList' resultType='approval.Ing_tableVO'>
+<!-- select row_number() over(order by document_date asc) no, i.*, -->
+<!-- (select emp.name  -->
+<!-- from ing_table ing join employees emp -->
+<!-- on ing.employee_id = emp.employee_id) drafter -->
+
+<!-- from member m join employees e  -->
+<!-- on m.email = e.email join ing_table i -->
+<!-- on e.employee_id = i.employee_id -->
+<!-- where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y' and e.employee_id = i.approver_id  -->
+<!-- order by no desc -->
 </select>
 
 <insert id='insertPost'>
@@ -39,8 +55,10 @@ values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR},
 </insert>
 
 <insert id='insertLocker'>
-insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, document_submit)
-values (#{employee_id}, #{department_id}, #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, #{document_content, jdbcType=VARCHAR}, 'n')
+insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, document_submit)
+values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
+#{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
+#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'n')
 </insert>
 
 <select id='departmentEmployee' resultType='emp.EmpVO'>

@@ -7,12 +7,18 @@ public class Ing_tableVO {
 	private int no, ing_no, employee_id, department_id, approver_id;
 	private String company_cd, file_name, file_path, document_title, 
 					document_content, document_check, document_submit,
-					email, approver;
+					email, approver, drafter;
 	private Date document_date, finish_date;
 	
 	
 	
 	
+	public String getDrafter() {
+		return drafter;
+	}
+	public void setDrafter(String drafter) {
+		this.drafter = drafter;
+	}
 	public int getApprover_id() {
 		return approver_id;
 	}
