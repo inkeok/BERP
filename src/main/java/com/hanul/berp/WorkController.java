@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import emp.EmpVO;
 import work.WorkDAO;
+import work.WorkResultVO;
 import work.WorkVO;
 
 @Controller
@@ -23,6 +24,13 @@ public class WorkController {
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
 
+		WorkVO wVo = dao.workInfo(id);
+		model.addAttribute("wVo", wVo);
+		
+		List<WorkResultVO> workList = dao.rList();
+		
+		model.addAttribute("workList",workList); 
+		
 		/*
 		 * WorkVO wVo = dao.workInfo(id); model.addAttribute("wVo",wVo);
 		 */
@@ -38,6 +46,7 @@ public class WorkController {
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
 		System.out.println(end_work);
+		
 		
 		dao.work_end_input(end_work);
 		
@@ -58,6 +67,7 @@ public class WorkController {
 		System.out.println(start_work);
 		
 		dao.work_start_input(start_work);
+		
 		
 		System.out.println("ajax end");
 
