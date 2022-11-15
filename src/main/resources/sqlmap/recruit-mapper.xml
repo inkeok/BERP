@@ -13,6 +13,7 @@ where recruit_num = #{recruit_num}
 select r.*, c.code_name
 from recruit_board r, common_code c
 where r.employee_pattern = c.code_value
+and order by 1
 </select>
 
 <select id="pattern" resultType="recruit.CommonCodeVO">
