@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class='centerFrame'>
-<form id='postForm' method='post' action='insertPost.ap?email=${loginInfo.email}' enctype='multipart/form-data'>
+<form id='postForm' method='post' action='insertPost.ap?email=${loginInfo.email}&url=submitList.ap' enctype='multipart/form-data'>
 <!-- 	<input type='hidden' name='document_submit' value='y'> -->
 	<input type='hidden' name='employee_id' value='${loginInfo.employee_id}'>
 	<input type='hidden' name='department_id' value='${loginInfo.department_id}'>
@@ -35,16 +35,24 @@
 	</table>
 </form>
 <div id='postBtn'>
-<input type='button' class='sideBtn-fill' value='submit' id='postSubmit'>
-<input type='button' class='sideBtn-empty' value='cancel' >
-
-
+<a class='sideBtn-fill' id='postSubmit'>Submit</a>
+<a class='sideBtn-empty' id='postCancel'>Cancel</a>
 </div>
 </div>
 <script>
 document.querySelector('#postSubmit').onclick = function(){
 	document.querySelector('#postForm').submit();	
 }
+
+$('#postCancel').click(function(){
+	if(confirm('임시보관함에 저장할까요?')){
+		$('#postForm').attr('action', 'insertLocker.ap?email=${loginInfo.email}');
+		$('#postForm').submit();
+	}else{
+		location = 'submitList.ap?email=${loginInfo.email}'
+	}
+})
+
 
 
 </script>

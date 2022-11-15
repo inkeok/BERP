@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approval">
-	<select id='saveList' resultType='approval.ApprovalVO'>
-		select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR}
-		and submit = 'n'
-	</select>
-
 
 <select id='submitList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by ing_no asc) no, i.*, e.email
+select row_number() over(order by document_date asc) no, i.*, e.email
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id
@@ -17,7 +12,7 @@ order by no desc
 </select>
 
 <select id='lockerList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by ing_no asc) no, i.*, e.email
+select row_number() over(order by document_date asc) no, i.*, e.email
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id
