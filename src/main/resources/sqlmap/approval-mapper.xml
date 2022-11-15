@@ -32,4 +32,5 @@ values (#{employee_id}, #{department_id}, #{company_cd, jdbcType=VARCHAR}, #{doc
 </insert>
 
 
+
 </mapper>
