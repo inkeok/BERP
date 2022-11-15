@@ -19,12 +19,10 @@ public class MyPageController {
 	
 	@RequestMapping("/list.mem")
 	public String list_member(Model model) {
-		
 		List<MemberVO> memberList = dao.member_list();
 		
 		model.addAttribute("list", memberList);
-		
-		
+
 		return "side/myPage/list";
 	}
 
