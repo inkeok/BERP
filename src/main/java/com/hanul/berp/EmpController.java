@@ -18,7 +18,43 @@ import emp.EmpVO;
 @Controller
 public class EmpController {
 	@Autowired EmpDAO dao;
-
+	
+	//사원정보변경 저장
+	@RequestMapping("/update.hr")
+	public String update(EmpVO vo) {
+		dao.employee_update(vo);
+		return "redirect:info.hr?id=" + vo.getEmployee_id();
+	}
+	
+	
+	//사원정보 수정화면 
+	@RequestMapping("/modify.hr")
+	public String modify(int id, Model model) {
+		
+		List<EmpVO> emp = dao.employee_list();
+		List<DepartmentVO> departments = dao.departments();
+		List<CompanyVO> company = dao.company();
+		List<EmpVO> position = dao.position();
+		
+		EmpVO vo = dao.emp_info(id);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("emp", emp);		
+		model.addAttribute("departments", departments);
+		model.addAttribute("company", company);
+		model.addAttribute("position", position);
+		return "side/emp/modify";
+	}
+	
+	//사원정보화면
+	@RequestMapping("/info.hr")
+	public String info(int id, Model model) {
+		EmpVO vo = dao.emp_info(id);
+		model.addAttribute("vo", vo);
+		
+		return "side/emp/info";
+	}
+	
 	// 신규사원등록저장
 	@RequestMapping("/insert.hr")
 	public String insert(EmpVO vo) {
