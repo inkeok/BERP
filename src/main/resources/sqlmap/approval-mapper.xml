@@ -14,7 +14,7 @@ on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id
 
 where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
-
+order by no desc
 <!-- select row_number() over(order by document_date asc) no, i.* -->
 <!-- from member m join employees e  -->
 <!-- on m.email = e.email join ing_table i -->
@@ -61,6 +61,7 @@ values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR},
 #{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'n')
 </insert>
 
+<!-- 특정 부서에 소속된 직원 리스트를 찾는다 -->
 <select id='departmentEmployee' resultType='emp.EmpVO'>
 select e.*, d.department_name
 from employees e join departments d
