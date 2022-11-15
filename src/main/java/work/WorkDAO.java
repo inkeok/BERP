@@ -17,10 +17,11 @@ import emp.EmpVO;
 public class WorkDAO {
 	@Autowired @Qualifier("bteam") private SqlSession sql;
 	
-public List<WorkDAO> work_list(){
-		
-		return sql.selectList("work.list");
-	}
+	/*
+	 * public List<WorkDAO> work_list(){
+	 * 
+	 * return sql.selectList("work.list"); }
+	 */
 	
 	public WorkVO workInfo(String id) {
 		
@@ -45,6 +46,10 @@ public List<WorkDAO> work_list(){
 		return sql.selectOne("work.empInfo", id);
 	}
 	
+	public List<WorkResultVO> rList() {
+		
+		return sql.selectList("work.list");
+	}
 
 	
 }
