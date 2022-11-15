@@ -2,36 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="work">
 
+
+<!-- 개인  출근 정보 출력  -->
 <select id="workInfo" resultType="work.WorkVO">
 	SELECT *
 	FROM work
-	where employee_id = '20221001'
+	where employee_id = '20221015'
 </select>
 
-<!-- 출근정보 출력 쿼리 -->
-<!-- <select id="start_work" resultType="work.WorkVO">
-	select to_char(start_work, 'HH:MM:SS')
-       from work
-       where employee_id = '20221001'
-</select> -->
-<!-- 퇴근정보 출력 쿼리 -->
-<!-- <select id="end_work" resultType="work.WorkVO">
-	select to_char(end_work, 'HH:MM:SS')
-       from work
-       where employee_id = '20221001'
-</select> -->
 
+<!-- result table 에 있는 출근 정보 등록  -->
+<select id="list" resultType="work.WorkResultVO">
+	select w.*, c.code_name work_status 
+	from work_result w left join common_code c 
+	on w.work_code = c.code_value
+	where w.employee_id = '20221015'
+</select>
+
+<!-- null값인 퇴근시간에 update 처리  -->
 <update id="end_work">
 	UPDATE work
 	   SET end_work = #{end_work}
-	 WHERE employee_id= '20221001'
+	 WHERE employee_id= '20221015'
 </update>
 
-<update id="start_work">
-	UPDATE work
-	   SET start_work = #{start_work}
-	 WHERE employee_id= '20221001'
-</update>
+<!-- 출근 시간 등록 -->
+ <insert id="start_work">
+	insert into work
+	   (employee_id, department_id, company_cd,start_work, work_code)
+	   values('20221015',10,'1000', #{start_work},'W101')
+</insert>
 
 
 <!-- 로그인한 아이디의 출근정보만 출력 -->
@@ -40,19 +40,11 @@
 select e.*, c.code_name position_name
 from  employees e left join common_code c
 on e.position = c.code_value 
-where e.employee_id = '20221001'
+where e.employee_id = '20221019'
 
 </select>
 
 <!-- 관리자일 경우 부서별 선택 출근정보 출력  -->
-
-
-<!--  버튼 눌렀을 경우 sysdate로 출근시간 등록 //이거 update인지 insert 인지 db보면서 확인.. -->
-<insert id ="input">
-
-</insert>
-
-<!--  버튼 눌렀을 경우 퇴근시간 등록 -->
 
 
 <!-- 근무 구분 코드에 휴가로 입력할 경우 출근, 퇴근시간 0 으로 하고 근무상태에 휴가 로 출력 -->

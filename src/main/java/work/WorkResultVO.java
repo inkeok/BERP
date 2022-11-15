@@ -2,11 +2,11 @@ package work;
 
 import java.util.Date;
 
-public class WorkVO {
-
-	private String company_cd, excess_date, work_code; 
+public class WorkResultVO {
+	private String company_cd, excess_date, work_code ,work_status; 
 	private int employee_id, department_id;
-	private String start_work, end_work, work_date;
+	private String start_work, end_work;
+	private Date work_date;
 	public String getCompany_cd() {
 		return company_cd;
 	}
@@ -24,6 +24,12 @@ public class WorkVO {
 	}
 	public void setWork_code(String work_code) {
 		this.work_code = work_code;
+	}
+	public String getWork_status() {
+		return work_status;
+	}
+	public void setWork_status(String work_status) {
+		this.work_status = work_status;
 	}
 	public int getEmployee_id() {
 		return employee_id;
@@ -49,13 +55,13 @@ public class WorkVO {
 	public void setEnd_work(String end_work) {
 		this.end_work = end_work;
 	}
-	public String getWork_date() {
+	public Date getWork_date() {
 		return work_date;
 	}
-	public void setWork_date(String work_date) {
+	public void setWork_date(Date work_date) {
 		this.work_date = work_date;
 	}
-		
 	
 	
-}
+	
+	}

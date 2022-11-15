@@ -2,10 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="recruit">
 
+<delete id="delete">
+delete from recruit_board where recruit_num = #{recruit_num}
+</delete>
+
+
+<select id="currval" resultType="String">
+select seq_recruit_num.currval from dual
+</select>
+
+
+<update id="update">
+update recruit_board set recruit_num=#{recruit_num}, recruit_start=#{recruit_start}, employee_pattern=#{employee_pattern}
+,recruit_end=#{recruit_end}, recruit_title=#{recruit_title}, recruit_content=#{recruit_content}
+<!-- ,파일변경  -->
+where recruit_num = #{recruit_num}
+
+</update>
+
+
 <select id="detail" resultType="recruit.RecruitVO">
 
-select * from recruit_board
-where recruit_num = #{recruit_num}
+select r.*, c.code_name code_name
+from recruit_board r, common_code c
+where r.employee_pattern = c.code_value
+and recruit_num = #{recruit_num}
 </select>
 
 
@@ -13,7 +34,9 @@ where recruit_num = #{recruit_num}
 select r.*, c.code_name
 from recruit_board r, common_code c
 where r.employee_pattern = c.code_value
+order by recruit_start
 </select>
+
 
 <select id="pattern" resultType="recruit.CommonCodeVO">
 select *

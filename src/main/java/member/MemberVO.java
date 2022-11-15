@@ -1,6 +1,7 @@
 package member;
 
 public class MemberVO {
+
 	
 	int employee_id, department_id;
 	private String company_cd, email, id, pw, name, gender, phone, address, join_check, admin;
@@ -15,6 +16,7 @@ public class MemberVO {
 	}
 	public void setDepartment_id(int department_id) {
 		this.department_id = department_id;
+
 	}
 	public String getCompany_cd() {
 		return company_cd;
@@ -22,12 +24,14 @@ public class MemberVO {
 	public void setCompany_cd(String company_cd) {
 		this.company_cd = company_cd;
 	}
+
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -40,6 +44,7 @@ public class MemberVO {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -64,12 +69,14 @@ public class MemberVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getJoin_check() {
 		return join_check;
 	}
 	public void setJoin_check(String join_check) {
 		this.join_check = join_check;
 	}
+
 	public String getAdmin() {
 		return admin;
 	}
@@ -81,5 +88,4 @@ public class MemberVO {
 
 	
 
-	
 }

@@ -11,7 +11,8 @@
 	<import resource="classpath:dbconn/common.xml"/>
 	
 
-	<context:component-scan	base-package="approval,emp, work,recruit, member,mypage" />
+	<context:component-scan	base-package="approval,emp, work,recruit, member,mypage,apply" />
+
 
 
 </beans>

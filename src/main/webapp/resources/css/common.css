@@ -111,11 +111,6 @@ a{
 }
 
 
-table.tb-list { table-layout:fixed; }
-table.tb-list td{ 
-		overflow: hidden;  text-overflow: ellipsis; 
-		white-space: nowrap; 
-}
 
 .w-px40 { width: 40px }
 .w-px60 { width: 60px }
@@ -136,6 +131,7 @@ table.tb-list td{
 .w-px800 { width: 800px }
 .w-px1000 { width: 1000px }
 .w-px1200 { width: 1200px }
+
 
 
 input[type=text]{

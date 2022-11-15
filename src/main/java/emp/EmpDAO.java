@@ -11,8 +11,13 @@ import org.springframework.stereotype.Repository;
 public class EmpDAO {
 
 	@Autowired private SqlSession sql;
-
 	
+	//정보화면창
+	public EmpVO emp_info(int employee_id) {
+		return sql.selectOne("emp.info", employee_id);
+	}
+	
+	//직급조회
 	public List<EmpVO> position() {
 		return sql.selectList("emp.position");
 	}
@@ -40,8 +45,7 @@ public class EmpDAO {
 	
 	
 	public void employee_update(EmpVO vo) {
-		// TODO Auto-generated method stub
-		
+		sql.update("emp,update", vo);
 	}
 
 	public void employee_delete(int employee_id) {
