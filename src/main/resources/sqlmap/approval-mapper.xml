@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="approval">
+	<select id='saveList' resultType='approval.ApprovalVO'>
+		select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR}
+		and submit = 'n'
+	</select>
 
-<select id='saveList' resultType='approval.ApprovalVO'>
-select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR} and submit = 'n'
+
+<select id='submitList' resultType='approval.Ing_tableVO'>
+select row_number() over(order by ing_no asc) no, i.*, e.email
+from member m join employees e 
+on m.email = e.email join ing_table i
+on e.employee_id = i.employee_id
+where e.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+order by no desc
 </select>
 
-<select id='submitList' resultType='approval.ApprovalVO'>
-select * from ing_table where employee_id = #{employee_id, jdbcType=VARCHAR} and submit = 'y'
+<select id='lockerList' resultType='approval.Ing_tableVO'>
+select row_number() over(order by ing_no asc) no, i.*, e.email
+from member m join employees e 
+on m.email = e.email join ing_table i
+on e.employee_id = i.employee_id
+where e.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'n'
+order by no desc
 </select>
+
+<insert id='insertPost'>
+insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, document_submit)
+values (#{employee_id}, #{department_id}, #{company_cd}, #{document_title}, #{document_content}, 'y')
+</insert>
+
+<insert id='insertLocker'>
+insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, document_submit)
+values (#{employee_id}, #{department_id}, #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, #{document_content, jdbcType=VARCHAR}, 'n')
+</insert>
+
 
 </mapper>

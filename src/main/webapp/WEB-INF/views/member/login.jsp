@@ -71,12 +71,12 @@
 </head>
 <body>
 <div id='l-center'>
-<a href="<c:url value='/'/>"><img src="imgs/logo-modified.png" id='l-img'></a>
+<a href="<c:url value='/'/>"><img src="imgs/icons/icon-48x48.png" id='l-img'></a>
 	<div id='l-box'>
 		<ul style='margin: 0; padding: 40px'>
 			<li><input type='text' id='id' name='id' placeholder='ID'></li>
 			<li><input type='password' id='pw' name='pw' placeholder='password'></li>
-			<li><input type='button' onclick='login()' id='login' value='login' class='btn-fill'></li>
+			<li><input type='button' onclick='login()' id='login' value='login' class='frontBtn-fill'></li>
 			<hr>
 			<li><input type='button' id='naver'></li>
 			<li><input type='button' id='kakao'></li>

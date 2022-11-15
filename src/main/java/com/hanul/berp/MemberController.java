@@ -64,4 +64,9 @@ public class MemberController {
 		session.removeAttribute("loginInfo");
 		return "redirect:/";
 	}
+	
+	
+	
+	
+	
 }
