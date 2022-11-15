@@ -113,7 +113,7 @@ body {
 				<li><span id='sideIndex' class="material-symbols-outlined"
 					onclick='location="sideIndex"'> login </span></li>
 			</c:if>
-
+			
 		</div>
 	</div>
 </header>
