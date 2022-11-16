@@ -62,11 +62,11 @@ th {
 			</tr>
 		</table>
 	</div>
-	<div class='btnSet center'>
-		<a class='btn-fill' href='modify.hr?id=${vo.employee_id}'>정보수정</a> <a
-			class='btn-fill'
-			onclick="if( confirm('사번[${vo.employee_id}] 삭제?') ) href='delete.hr?id=${vo.employee_id}' ">정보삭제</a>
-		<a class='btn-fill' href='list.hr'>사원목록</a>
-	</div>
+	<div class='center'>
+	<a class='btn btn-primary' href='modify.hr?id=${vo.employee_id}'>정보수정</a>
+	<a class='btn btn-primary' 
+	onclick="if( confirm('사번[${vo.employee_id}] 삭제?') ) href='delete.hr?id=${vo.employee_id}' " >정보삭제</a>
+	<a class='btn btn-primary' href='list.hr'>사원목록</a>
+</div>
 </body>
 </html>

@@ -34,7 +34,7 @@
 					<col width="120px" />
 					<col width="120px" />
 					<col width="170px" />
-					<col width="200px" />
+					<col width="280px" />
 					<col width="200px" />
 					<col width="100px" />
 					<col width="130px" />
