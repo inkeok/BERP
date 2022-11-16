@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
 
 <style>
+
 #nav {
 	display: flex;
 	justify-content: center;
@@ -99,9 +100,10 @@ body {
 		</div>
 
 		<div id='nav-sign'>
-
+			
 			<c:if test="${empty loginInfo}">
-				<button class="btn btn-light" onclick='location="login.mem"'>로그인</button>
+			<button class="btn btn-primary btn-ghost btn-through" onclick='location="login.mem"'>Through</button>
+<!-- 				<button class="btn btn-light" onclick='location="login.mem"'>로그인</button> -->
 				<button class="btn btn-light" onclick='location="join.mem"'>회원가입</button>
 			</c:if>
 

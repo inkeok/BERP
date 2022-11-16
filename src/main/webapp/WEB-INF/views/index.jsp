@@ -39,13 +39,13 @@ h1, h2, h3, h4, h5, h6, span, p {
 	position: absolute;
 	top: 34%;
 	left: 20%;
-	animation: text2 2.5s;
+	animation: text2 3s;
 }
 
 .ask {
 	position: absolute;
 	top: 58%;
-	left: 27%;
+	left: 20%;
 	color: #ffffff;
 	animation: ask 3s;
 }
@@ -77,7 +77,7 @@ img.sec-image {
 
 .sec-image {
 	position: absolute;
-	top: 27%;
+	top: 30%;
 	left: 60%;
 	animation: img 3s;
 }
@@ -107,13 +107,13 @@ img.sec-image {
 	left: 0%;
 }
 100%{
-	left : 27%;
+	left : 20%;
 }
 }
 
 @keyframes img { 	
 0%{
-	left: 80%;
+	left: 70%;
 }
 100%{
 	left : 60%;
@@ -156,7 +156,7 @@ img.sec-image {
 		});
 
 		$(document).ready(function() {
-			$('button.fi').fadeIn(5000);
+			$('button.fi').fadeIn(3000);
 		});
 
 		$(document).ready(function() {
