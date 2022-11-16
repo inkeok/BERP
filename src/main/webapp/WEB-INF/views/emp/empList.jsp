@@ -66,7 +66,7 @@
 						<td>${vo.admin}</td>
 						<td>${vo.hire_date}</td>
 <%-- 						<td>${vo.job_id}</td> --%>
-						<td>${vo.position}</td>
+						<td>${vo.position_name}</td>
 						<td>${vo.employee_pattern}</td>
 					</tr>
 				</c:forEach>

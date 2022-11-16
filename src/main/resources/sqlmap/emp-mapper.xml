@@ -4,17 +4,22 @@
 
 	<update id="update">
 		update emplotyees
-		set department_name = #{department_name}, company_name = #{company_name}, name = #{name}
-		, email = #{email}, phone = #{phone}, admin = #{admin}
-		, position = #{position}, employee_pattern = #{employee_pattern}
-		where employee_id = #{employee_id}
+		set department_name =
+		#{department_name}, company_name = #{company_name}, name = #{name}
+		,
+		email = #{email}, phone = #{phone}, admin = #{admin}
+		, position =
+		#{position}, employee_pattern = #{employee_pattern}
+		where employee_id =
+		#{employee_id}
 	</update>
 
 	<!-- 사원정보조회 -->
 	<select id="info" resultType="emp.EmpVO">
 		select *
 		from employees
-		where employee_id = #{employee_id}
+		where
+		employee_id = #{employee_id}
 	</select>
 
 	<!-- 고용형태조회 -->
@@ -25,9 +30,9 @@
 	</select>
 	<!-- 직급조회 -->
 	<select id="position" resultType="emp.EmpVO">
-		select position
-		from employees
-		order by position
+		select e.*, c.code_name position_name
+		from employees e left join common_code c
+		on e.position = c.code_name
 	</select>
 
 	<!-- 사원정보저장 -->
