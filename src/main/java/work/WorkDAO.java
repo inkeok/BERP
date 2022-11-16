@@ -50,6 +50,10 @@ public class WorkDAO {
 		
 		return sql.selectList("work.list");
 	}
+	public List<WorkResultVO> holiday_list() {
+		
+		return sql.selectList("work.holiday_list");
+	}
 
 	
 }
