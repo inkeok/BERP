@@ -90,5 +90,9 @@ public class EmpController {
 
 		return "side/emp/empList";
 	}
+	
+	
+	
+	
 
 }

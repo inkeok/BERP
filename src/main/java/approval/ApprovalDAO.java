@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import emp.EmpVO;
+
 @Repository
 public class ApprovalDAO {
 @Autowired @Qualifier("bteam") private SqlSession sql;
@@ -19,11 +21,19 @@ public class ApprovalDAO {
 		return sql.selectList("approval.lockerList", email);
 	}
 	
+	public List<Ing_tableVO> approvalList(String email) {
+		return sql.selectList("approval.approvalList", email);
+	}
+	
 	public int insertPost(Ing_tableVO vo) {
 		return sql.insert("approval.insertPost", vo);
 	}
 	
 	public int insertLocker(Ing_tableVO vo) {
 		return sql.insert("approval.insertLocker", vo);
+	}
+	
+	public List<EmpVO> departmentEmployee(String department_name){
+		return sql.selectList("approval.departmentEmployee", department_name);
 	}
 }

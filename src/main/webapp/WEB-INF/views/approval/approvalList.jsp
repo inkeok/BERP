@@ -7,15 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#submitListTable{
+#approvalListTable{
 	margin: 10px 0;
 }
 </style>
 </head>
 <body>
 <div class='centerFrame'>
-<h1>상신함</h1>
-<table id='submitListTable'>
+<h1>결재함</h1>
+<table id='approvalListTable'>
 
 
 <colgroup>
@@ -31,19 +31,18 @@
 	<th>제목</th>
 	<th>제출일</th>
 	<th>상태</th>
-	<th>결재자</th>
+	<th>기안자</th>
 </tr>
-<c:forEach items='${submitList}' var='s'>
+<c:forEach items='${approvalList}' var='a'>
 <tr>
-	<td>${s.no}</td>
-	<td>${s.document_title}</td>
-	<td>${s.document_date}</td>
-	<td>${s.document_check}</td>
-	<td>${s.approver}</td>
+	<td>${a.no}</td>
+	<td>${a.document_title}</td>
+	<td>${a.document_date}</td>
+	<td>${a.document_check}</td>
+	<td>${a.drafter}</td>
 </tr>
 </c:forEach>
 </table>
-<a class='sideBtn-fill' onclick='location="post.ap"'>작성하기</a>
 </div>
 </body>
 </html>

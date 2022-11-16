@@ -19,13 +19,17 @@ table {
 
 th {
 	background: #222e3c;
+	color: white;
+	font-weight: normal;
 }
 
 th, td {
-	border: 1px solid #222e3c;
+	border: 1px solid black;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	color: black;
+	font-weight: normal;
 }
 
 li {
@@ -34,6 +38,7 @@ li {
 
 a {
 	text-decoration: none !important;
+	cursor: pointer;
 }
 
 .logo {

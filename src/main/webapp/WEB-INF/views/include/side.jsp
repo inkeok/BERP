@@ -2,19 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link href="css/app.css" rel="stylesheet">
 <link href="css/common.css?<%=new java.util.Date()%>" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 
 #sideFix{
-	background-color: #222e3c;
+    background: linear-gradient(#7cb3f4, #fff);
 	width: 200px;
 	height: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
+	font-weight: bold;
+	font-style: italic;
+	color: #717ca2;
 }
 .material-symbols-outlined {
   font-variation-settings:
@@ -27,7 +29,7 @@
 	position: fixed;
 	bottom: 3%;
 	left: 2%;
-	color: #fff;
+	color: #717ca2;
 }
 
 .dropdownMenu > div{
@@ -37,8 +39,6 @@
 .dropdownSelect{
 	margin-bottom: 25px;
 	font-size: 18px;
-	font-weight: lighter;
-	color: #64637f;
 	cursor: pointer;
 }
 
@@ -46,7 +46,7 @@
 	cursor: pointer;
 	margin-left: 10px;
 	font-size: 16px;
-	color: #d9d9e5;
+	color: #e8e7e3;
 }
 #sideNav{
 	margin-top: 35px !important;
@@ -112,7 +112,7 @@
 		<div class='dropdownMenu'>
 			<div onclick='location="lockerList.ap?email=${loginInfo.email}"'>보관함</div>
 			<div onclick='location="submitList.ap?email=${loginInfo.email}"'>상신함</div>
-			<div onclick='location="approvalList.ap"'>결재함</div>
+			<div onclick='location="approvalList.ap?email=${loginInfo.email}"'>결재함</div>
 		</div>
     </div>
   	</div>
