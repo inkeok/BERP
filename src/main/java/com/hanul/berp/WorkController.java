@@ -74,6 +74,24 @@ public class WorkController {
 	
 	
 	}
+	@RequestMapping("/holiday")
+	public String holiday(String id, Model model) {
+		EmpVO vo = dao.empInfo(id);
+		model.addAttribute("vo", vo);
+
+		WorkVO wVo = dao.workInfo(id);
+		model.addAttribute("wVo", wVo);
+		
+		List<WorkResultVO> holiday_list = dao.holiday_list();
+		
+		model.addAttribute("holiday_list",holiday_list); 
+		
+		
+		return "side/work/holiday";
+	}
+	
+	
+	
 	
 
 }

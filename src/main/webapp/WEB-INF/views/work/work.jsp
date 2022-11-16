@@ -12,13 +12,16 @@
 input {
 	display: none;
 }
+body{
+	width: 1200px;
+}
 </style>
 </head>
 <body>
 	<a action="work_end_input" method="post" id="input" />
 	<div class="row">
 		<div class="col-12">
-			<div
+			<div style="margin : 35px"
 				class="page-title-box d-sm-flex align-items-center justify-content-between">
 
 				<h1 class="mb-sm-0 font-size-20" id="timesm">
@@ -27,8 +30,8 @@ input {
 
 				<div class="page-title-right">
 					<ol class="breadcrumb m-0">
-						<li class="breadcrumb-item">근태 /</li>
-						<li class="breadcrumb-item active"><a href="holiday">
+						<li class="breadcrumb-item"><a href="work">근태 </a></li>
+						<li class="breadcrumb-item"><a href="holiday">
 								휴무관리</a></li>
 					</ol>
 				</div>
@@ -79,7 +82,7 @@ input {
 	</div>
 	<!-- end row -->
 
-	<div class="row mb-2">
+	<div class="row mb-4">
 		<div class="">
 			<div class="row">
 				<div class="">
@@ -148,7 +151,7 @@ input {
 											<th scope="col">일자</th>
 											<th scope="col">출근 시간</th>
 											<th scope="col">퇴근 시간</th>
-											<th scope="col">근무 시간</th>
+									
 											<th scope="col">근무 형태</th>
 										</tr>
 									</thead>
@@ -166,8 +169,7 @@ input {
 											<c:if test="${empty woR.end_work }">
 											<td>-</td>
 											</c:if>
-									
-											<td>${woR.end_work} - ${woR.start_work}</td>
+				
 											<td>${woR.work_status}</td>
 										</tr>
 										</c:forEach>
@@ -246,8 +248,13 @@ input {
 			},
 			success : function(response) {
 				console.log(start_work);
-				if (response)
+				if (response){
 					alert('출근 되었습니다');
+				/* 	if($('#start_work').val() != null ){
+						alert('이미 출근 되었습니다');
+						
+					}	 */				
+				}
 			},
 			error : function(req, text) {
 					alert('이미 출근 되었습니다');
@@ -256,4 +263,4 @@ input {
 		});
 	}
 </script>
-</html>
+</html>	
