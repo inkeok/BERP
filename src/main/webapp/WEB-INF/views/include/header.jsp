@@ -5,7 +5,7 @@
 <style>
 #nav {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	margin-top: 30px;
 }
 
@@ -75,7 +75,7 @@ body {
 	<!-- 		로고 -->
 	<div id="nav">
 		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
-			alt="logo" src="imgs/logo4.png"></a>
+			alt="logo" src="imgs/logo.png"></a>
 		<div class="mt-3">
 			<label id='nav-mouse'>
 				<ul id="nav-top">
