@@ -34,7 +34,7 @@
 					<col width="120px" />
 					<col width="120px" />
 					<col width="170px" />
-					<col width="200px" />
+					<col width="280px" />
 					<col width="200px" />
 					<col width="100px" />
 					<col width="130px" />
@@ -58,16 +58,16 @@
 				<c:forEach items="${list}" var="vo">
 					<tr>
 						<td>${vo.employee_id}</td>
-						<td>${vo.department_id}</td>
-						<td>${vo.company_cd}</td>
+						<td>${vo.department_name}</td>
+						<td>${vo.company_name}</td>
 						<td><a href="info.hr?id=${vo.employee_id}">${vo.name}</a></td>
 						<td>${vo.email}</td>
 						<td>${vo.phone}</td>
 						<td>${vo.admin}</td>
 						<td>${vo.hire_date}</td>
 <%-- 						<td>${vo.job_id}</td> --%>
-						<td>${vo.position}</td>
-						<td>${vo.employee_pattern}</td>
+						<td>${vo.position_name}</td>
+						<td>${vo.employee_pattern_name}</td>
 					</tr>
 				</c:forEach>
 			</table>

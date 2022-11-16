@@ -88,7 +88,6 @@ th {
 			<td>${emp.employee_pattern_name }</td>
 		</tr>
 
-
 	</table>
 
 	<div class='btnSet'>

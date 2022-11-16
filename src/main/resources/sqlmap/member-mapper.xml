@@ -3,14 +3,6 @@
 <mapper namespace="member">
 
 
-<!-- 가입처리 -->
-<insert id="insert">
-insert into member (email, id, pw, name, gender, phone, address)
-values (#{email, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR}, #{pw, jdbcType=VARCHAR}, 
-	#{name, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
-	#{address, jdbcType=VARCHAR})
-</insert>
-
 <!-- 회원가입 아이디 중복체크 -->
 <select id='checkId' resultType='integer'>
 select count(id) from member where id = #{id}
@@ -23,6 +15,43 @@ from member m join employees e
 on m.email = e.email
 where id = #{id} and pw = #{pw}
 </select>
+
+
+
+<!-- 안드로이드 /////////////////////////////////////////////////////////////////////////////// -->
+
+<select id='andCheckLogin' resultType="member.MemberVO">
+select id, pw
+from member
+
+</select>
+
+
+
+<select id='andLogin' resultType="member.AndLoginMemberVO">
+select  m.*, e.EMPLOYEE_ID, e.DEPARTMENT_ID, e.COMPANY_CD,  e.ADMIN, e.HIRE_DATE, e.POSITION, e.EMPLOYEE_PATTERN, d.department_name, c.company_name, cd.code_name position_name,  ccd.code_name employee_pattern_name
+from employees e left outer join member m
+on e.email = m.email 
+left outer join departments d
+on e.department_id = d.department_id
+left outer join company c
+on e.company_cd = c.company_cd
+left outer join common_code cd 
+on e.position = cd.code_value
+left outer join common_code ccd
+on e.employee_pattern = cd.code_value
+where m.id = #{id}
+
+</select>
+
+
+<!-- 가입처리 -->
+<insert id="insert">
+insert into member (email, id, pw, name, gender, phone, address)
+values (#{dto.email, jdbcType=VARCHAR}, #{dto.id, jdbcType=VARCHAR}, #{dto.pw, jdbcType=VARCHAR}, 
+	#{dto.name, jdbcType=VARCHAR}, #{dto.gender, jdbcType=VARCHAR}, #{dto.phone, jdbcType=VARCHAR}, 
+	#{dto.address, jdbcType=VARCHAR})
+</insert>
 
 
 </mapper>
