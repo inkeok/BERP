@@ -74,6 +74,15 @@ public class WorkController {
 	
 	
 	}
+	@RequestMapping("/holiday")
+	public String holiday() {
+		
+		
+		
+		return "side/work/holiday";
+	}
+	
+	
 	
 
 }
