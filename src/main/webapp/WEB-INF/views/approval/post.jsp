@@ -31,7 +31,7 @@
 	<select id='approver_id' name='approver_id'>
 	<option value='-1'>결재자</option>
 	<c:forEach items='${departmentEmployee}' var='de'>
-	<option value='${de.employee_id}'>${de.position} ${de.name}</option>
+	<option value='${de.employee_id}'>${de.c_position} ${de.name}</option>
 	</c:forEach>
 	</select>
 	

@@ -22,11 +22,11 @@
 		</tr>
 
 		<tr><th>결재자</th>
-			<td>${submitListDetail.approver}</td>	
+			<td>${submitListDetail.c_position} ${submitListDetail.approver}</td>	
 		<tr><th>제출일자</th>
 			<td>${submitListDetail.document_date}</td>	
 		<tr><th>처리</th>
-			<td>${submitListDetail.document_status}</td>	
+			<td>${submitListDetail.c_status}</td>	
 		</tr>
 
 		<tr><th>내용</th>
