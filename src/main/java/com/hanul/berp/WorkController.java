@@ -56,25 +56,33 @@ public class WorkController {
 	}
 
 	
-	//출근버튼 눌렀을 때 시간 update
+	//출근버튼 눌렀을 때 시간 insert
 	
 	@ResponseBody
 	@RequestMapping("/work_start_input")
-	public String work_start_input(String start_work, Model model, String id) {
+	public String work_start_input(String start_work, Model model, String id, WorkVO wVo)  {
 		
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
 		System.out.println(start_work);
 		
-		dao.work_start_input(start_work);
-		
-		
+		dao.work_start_input(start_work);			
+
 		System.out.println("ajax end");
 
 		return "work";
 	
 	
 	}
+	@RequestMapping("/holiday")
+	public String holiday() {
+		
+		
+		
+		return "side/work/holiday";
+	}
+	
+	
 	
 
 }

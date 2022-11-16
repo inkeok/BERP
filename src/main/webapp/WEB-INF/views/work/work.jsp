@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <title>Insert title here</title>
 <style>
 input {
@@ -37,7 +38,7 @@ input {
 	</div>
 	<!-- end page title -->
 
-	<div class="row">
+	<div class="row mb-4">
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
@@ -78,8 +79,7 @@ input {
 	</div>
 	<!-- end row -->
 
-	<div class="row">
-
+	<div class="row mb-2">
 		<div class="">
 			<div class="row">
 				<div class="">
@@ -95,11 +95,11 @@ input {
 								<h5 class="font-size-16 mb-0">이번달 근무시간</h5>
 							</div>
 							<h5 class="font-size-15">
-								<span class="float-end">61%</span>
+								<span class="float-end">31%</span>
 							</h5>
 							<div class="progress animated-progess progress-md">
-								<div class="progress-bar" role="progressbar" style="width: 61%"
-									aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="progress-bar" role="progressbar" style="width: 31%"
+									aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<div class="">
 								<div class="mt-3">
@@ -145,9 +145,10 @@ input {
 							<table class="table table-sm">
 									<thead>
 										<tr>
-											<th scope="col">출근 일자</th>
-											<th scope="col">출근시간</th>
-											<th scope="col">퇴근시간</th>
+											<th scope="col">일자</th>
+											<th scope="col">출근 시간</th>
+											<th scope="col">퇴근 시간</th>
+									
 											<th scope="col">근무 형태</th>
 										</tr>
 									</thead>
@@ -165,7 +166,7 @@ input {
 											<c:if test="${empty woR.end_work }">
 											<td>-</td>
 											</c:if>
-											
+				
 											<td>${woR.work_status}</td>
 										</tr>
 										</c:forEach>
@@ -178,16 +179,30 @@ input {
 		</div>
 	</div>
 </body>
+<!-- <script type="text/javascript">
+	$(document).ready(function() {
+		test(end_work, start_work);
+	})
+	
+	function test(String end, String start ) {
+		var test1 = "2022-11-15 "+ end;
+		var test2 = "2022-11-15 "+ start;
 
+		test1 = new Date(test1);
+		test2 = new Date(test2);
+
+		var test3 = (test2 - test1) / (60 * 60 * 1000);
+
+		console.log(test3);
+	}
+</script> -->
 <script>
-	/* document.querySelector('#start_work');
-	document.querySelector('#end_work'); */
+
 
 	const a = document.querySelector('#start_btn');
 	const b = document.querySelector('#end_btn');
 
 	b.onclick = function() {
-		/* document.querySelector('#end_work').innerText = '퇴근시간 : '+ timeString; */
 		$('#end_work').val(
 				new Date().getHours() + ':' + new Date().getMinutes() + ':'
 						+ new Date().getSeconds());
@@ -200,9 +215,12 @@ input {
 				new Date().getHours() + ':' + new Date().getMinutes() + ':'
 						+ new Date().getSeconds());
 		$('#input').submit();
-		work_start_input();
-		/* document.querySelector('#end_work').innerText = '퇴근시간 : '+ timeString; */
-		/* work_start_input(); */
+			work_start_input();						
+		
+/* 		if($('#start_work').val()){			
+		}else {
+			alert('이미 출근되었습니다 ');
+		} */
 	}
 
 	function work_end_input() {
@@ -227,12 +245,17 @@ input {
 			},
 			success : function(response) {
 				console.log(start_work);
-				if (response)
+				if (response){
 					alert('출근 되었습니다');
-
+				/* 	if($('#start_work').val() != null ){
+						alert('이미 출근 되었습니다');
+						
+					}	 */				
+				}
 			},
 			error : function(req, text) {
-				alert('이미 출근되었습니다');
+					alert('이미 출근 되었습니다');
+				
 			}
 		});
 	}
