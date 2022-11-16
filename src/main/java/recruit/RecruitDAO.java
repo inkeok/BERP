@@ -26,6 +26,10 @@ public class RecruitDAO {
 		
 		return sql.selectList("recruit.list");
 	}
+	public List<RecruitVO> recruit_list(String employee_pattern){
+		
+		return sql.selectList("recruit.list_code", employee_pattern);
+	}
 	
 	public int recruit_insert(RecruitVO vo) {
 		return sql.insert("recruit.insert", vo);

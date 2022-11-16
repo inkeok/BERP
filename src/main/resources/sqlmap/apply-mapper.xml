@@ -3,5 +3,46 @@
 
 <mapper namespace="apply">
 
+<insert id="insert">
+insert into apply_board (
+recruit_num, apply_email, apply_num, 
+apply_name, file_name, file_path, apply_phone
+)
+values (
+#{recruit_num} ,#{apply_email, jdbcType=VARCHAR} , seq_apply_num.nextval 
+,#{apply_name} ,#{file_name, jdbcType=VARCHAR} ,#{file_path, jdbcType=VARCHAR} ,#{apply_phone}
+)
+
+<!-- apply_check -->
+</insert>
+
+
+<select id="currval" resultType="Integer">
+select seq_apply_num.currval from dual
+</select>
+
+
+<select id="recruit_pattern" resultType="apply.CommonCodeVO">
+select *
+from common_code
+where code_title = 'H'
+</select>
+
+<select id="recruit_list" resultType="apply.RecruitVO">
+select r.*, c.code_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+from recruit_board r, common_code c
+where r.employee_pattern = c.code_value
+order by r.recruit_start
+</select>
+
+<select id="recruit_list_code" resultType="apply.RecruitVO">
+select r.*, c.code_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+from recruit_board r, common_code c
+where r.employee_pattern = c.code_value
+and employee_pattern = #{employee_pattern}
+order by r.recruit_start
+</select>
 
 </mapper>

@@ -11,7 +11,7 @@ $(function(){
 		console.log( this.files[0] );
 		var attached = this.files[0];
 		if( attached ){ //선택한 파일이 있는 경우
-			$('#file-name').text( attached.name ); //선택한 파일명 보이게
+			$('#file_name').text( attached.name ); //선택한 파일명 보이게
 			$('#delete-file').css('display', 'inline'); //삭제버튼 보이게
 			
 			//미리보기 태그가 있으면 
@@ -28,13 +28,13 @@ $(function(){
 					$('#preview').html('');
 			}	
 		}else{
-			$('#file-name').text('');		//선택한 파일명 안보이게
+			$('#file_name').text('');		//선택한 파일명 안보이게
 			$('#delete-file').css('display', 'none');	//파일삭제 이미지도 안보이게
 		}
 	});
 	
 	$('#delete-file').click(function(){
-		$('#file-name').text('');		//선택한 파일명 안보이게
+		$('#file_name').text('');		//선택한 파일명 안보이게
 		$('#attach-file').val('');		//선택한 file태그를 초기화
 		$(this).css('display', 'none');	//파일삭제 이미지도 안보이게
 		$('#preview').html('');//첨부된 이미지 미리보기 없애기
