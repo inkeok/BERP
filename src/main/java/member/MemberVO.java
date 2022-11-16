@@ -5,6 +5,7 @@ public class MemberVO {
 	
 	int employee_id, department_id;
 	private String company_cd, email, id, pw, name, gender, phone, address, join_check, admin;
+	
 	public int getEmployee_id() {
 		return employee_id;
 	}

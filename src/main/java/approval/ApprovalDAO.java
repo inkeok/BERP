@@ -50,7 +50,8 @@ public class ApprovalDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("email", email);
 		map.put("no", no+"");
-		return sql.selectOne("approval.lockerListDetail", map);
+		Ing_tableVO vo = sql.selectOne("approval.lockerListDetail", map);		
+		return vo;
 	}
 	
 	//ing_table 목록 중 하나 삭제
