@@ -6,13 +6,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<link rel='icon' type='image/x-icon' href='img/hanul.ico'>
+<link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
+
+ <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src='js/recruit.js?<%=new java.util.Date() %>'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
  
 
 </head>
 <body>
 <h3>수정화면!!!!!!!!!!!!!!!!</h3>
-<form method='post' action='update.rec'>
+<form method='post' action='update.rec' enctype='multipart/form-data'>
 <input type='hidden' name='recruit_num' value='${vo.recruit_num }'>
 <table class='w-px1000'>
 
@@ -31,12 +36,12 @@
 	</td>
 </tr>
 <tr><th>채용시작일</th>
-<td><input type="text" id="from" name="recruit_start" value="${vo.recruit_start }" readonly>
+<td><input type="text" id="from" name="recruit_start" value="${vo.char_recruit_start }" readonly>
 
 </td>
 </tr>
 <tr><th>채용종료일</th>
-<td><input type="text" id="to" name="recruit_end" value="${vo.recruit_end }" readonly>
+<td><input type="text" id="to" name="recruit_end" value="${vo.char_recruit_end }" readonly>
 <a id='delete'><i class="font-r fa-regular fa-calendar-xmark"></i></a>
 </td>
 </tr>
@@ -63,6 +68,7 @@
 	</td>
 </tr>
 </table>
+<input type='hidden' name='file_name'>
 <%-- <input type='hidden' name='writer' value='${loginInfo.id}'> --%>
 </form>
 <div class='btnSet'>
@@ -119,6 +125,10 @@
   $('#save').click(function(){
 		$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
 	});
+  if(isImage("${vo.file_name}")) {
+		$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
+		
+	}
 </script>
 </body>
 </html>

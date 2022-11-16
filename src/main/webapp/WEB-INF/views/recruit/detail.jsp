@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 </head>
 <body>
 <h3>채용공고 디테일</h3>
@@ -24,12 +25,12 @@
 </tr>
 <tr><th>채용시작일</th>
 <td>
-${vo.recruit_start }
+${vo.char_recruit_start }
 </td>
 </tr>
 <tr><th>채용종료일</th>
 <td>
-${vo.recruit_end }
+${vo.char_recruit_end }
 </td>
 </tr>
 

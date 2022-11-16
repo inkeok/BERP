@@ -87,8 +87,8 @@ table{
 	</form>
 	
 	<div class='btnSet center'>
-		<a class='btn-fill' onclick='$("form").submit()'>저장</a>
-		 <a class='btn-empty' href='list.hr'>취소</a>
+		<a class='btn btn-primary' onclick='$("form").submit()'>저장</a>
+		 <a class='btn btn-primary' href='list.hr'>취소</a>
 	</div>
 	<script>
 	</script>

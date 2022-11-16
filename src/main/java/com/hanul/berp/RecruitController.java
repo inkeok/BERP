@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -37,7 +38,37 @@ public class RecruitController {
 	
 	
 	@RequestMapping("/update.rec")
-	public String update(RecruitVO vo,String recruit_num) {
+	public String update(RecruitVO vo,String recruit_num
+			,String file_name, MultipartFile file, HttpServletRequest request) throws Exception{
+		
+		RecruitVO recruit = dao.recruit_info(vo.getRecruit_num());
+
+		
+		if( file.isEmpty() ) {
+			//첨부파일이 없는 경우
+			if( file_name.isEmpty() ) {							
+				attachedFile_delete(recruit.getFile_path(), request);
+				
+			}else {
+				//파일명이 있는 경우
+				//원래 첨부파일이 있었고, 그 파일을 그대로 사용하는 경우
+				vo.setFile_name(recruit.getFile_name());
+				vo.setFile_path(recruit.getFile_path());
+				
+			}
+			
+		}else {
+			//첨부파일이 있는 경우
+			vo.setFile_name( file.getOriginalFilename() );
+			vo.setFile_path( fileUpload("recruit", file, request) );	
+			
+			//원래 첨부파일이 있었다면 물리적파일을 삭제
+			attachedFile_delete( recruit.getFile_path(), request );
+		}
+		
+		
+		
+		
 		dao.recruit_update(vo);
 		
 		return "redirect:detail.rec?recruit_num=" + recruit_num;
@@ -65,9 +96,24 @@ public class RecruitController {
 	}
 
 	@RequestMapping("/list.rec")
-	public String recruitList(Model model) {
-		List<RecruitVO> recruit = dao.recruit_list();
+	public String recruitList(Model model, @RequestParam(defaultValue="all") String employee_pattern) {
+		//사원조회
+		List<RecruitVO> recruit ;
+		
+		//코드 목록 조회
+		List<CommonCodeVO> code = dao.recruit_pattern();
+
+		if(employee_pattern.equalsIgnoreCase("all")) {
+			recruit = dao.recruit_list();
+		}else {
+			recruit = dao.recruit_list(employee_pattern);
+		}
+		
+		
 		model.addAttribute("recruitList", recruit);
+		model.addAttribute("code", code);
+		model.addAttribute("code_value", employee_pattern);
+		
 		
 		return "recruit/list";
 	}
@@ -99,42 +145,47 @@ public class RecruitController {
 
 	// 파일업로드
 	public String fileUpload(String category, MultipartFile file, HttpServletRequest request) {
-		// upload/profile/2022/10/20/abc.txt
-		// upload/notice/2022/10/20/abc.png
-		// 업로드 위치: D:\Study_Spring\Workspace\.meta....pps\smart\resources
+		
 		String path
-//			= request.getSession().getServletContext().getRealPath("resources");
+
 				= "d://app" + request.getContextPath();
 
-		// /upload/profile/2022/10/20
+		
 		String upload = "/upload/" + category + new SimpleDateFormat("/yyyy/MM/dd").format(new Date());
 
-		// D:\Study_Spring\Wor...pps\smart\resources/upload/profile/2022/10/20
+		
 		path += upload;
 
-		// 폴더가 있는지 확인해서 없으면 폴더를 생성한다
+		
 		File folder = new File(path);
 		if (!folder.exists())
 			folder.mkdirs();
 
 		// 업로드하는 파일명을 고유한 아이디를 붙여 저장한다: ajlh2348-ahflhq_abc.txt
-		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		String file_name = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 
 		try {
-			file.transferTo(new File(path, filename));
+			file.transferTo(new File(path, file_name));
 		} catch (Exception e) {
 		}
 
-		// /upload/profile/2022/10/20/ajlh2348-ahflhq_abc.txt
-		// -> http://localhost/smart/upload/profile/2022/10/20/ajlh2348-ahflhq_abc.txt
-		return appURL(request) + upload + "/" + filename;
+		
+		return appURL(request) + upload + "/" + file_name;
 	}
 
 	public String appURL(HttpServletRequest request) {
-		// http://localhost/smart/join : URL
-		// /join : servletPath
-		// -> http://localhost/smart
+		
 		return request.getRequestURL().toString().replace(request.getServletPath(), "");
+	}
+	//첨부되어진 물리적 파일 삭제
+	public void attachedFile_delete(String file_path, HttpServletRequest request) {
+		if (file_path != null) {
+			
+			file_path = file_path.replace(appURL(request), "d://app/" + request.getContextPath());
+			File file = new File(file_path);
+			if (file.exists())
+				file.delete();
+		}
 	}
 	
 }

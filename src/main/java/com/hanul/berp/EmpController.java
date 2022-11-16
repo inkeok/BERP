@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import emp.CompanyVO;
 import emp.DepartmentVO;
@@ -85,7 +86,7 @@ public class EmpController {
 	public String list(Model model, HttpSession session) {
 
 		List<EmpVO> empList = dao.employee_list();
-
+			
 		model.addAttribute("list", empList);
 
 		return "side/emp/empList";
@@ -95,4 +96,9 @@ public class EmpController {
 	
 	
 
+	
+	
+	
+	
+	
 }

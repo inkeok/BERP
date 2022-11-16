@@ -32,7 +32,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 </head>
 <body>
 <h3>채용공고 리스트</h3>
-<form method='post' action='list.rec'>
+<form method='post' action='fillout.apply'>
 <div id='list-top' class='w-px1200'>
 	<ul>
 		<li>
@@ -76,7 +76,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 <tr><td>${vo.code_name}</td>
 	
 	
-	<td style="text-align:left"><a href="detail.rec?recruit_num=${vo.recruit_num }">
+	<td style="text-align:left"><a href="fillout.apply?recruit_num=${vo.recruit_num }">
 	${vo.recruit_title }
 	</a>
 	</td>

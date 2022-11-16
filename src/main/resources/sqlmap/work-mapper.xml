@@ -8,6 +8,7 @@
 	SELECT *
 	FROM work
 	where employee_id = '20221015'
+	
 </select>
 
 
@@ -17,6 +18,7 @@
 	from work_result w left join common_code c 
 	on w.work_code = c.code_value
 	where w.employee_id = '20221015'
+	order by work_date desc
 </select>
 
 <!-- null값인 퇴근시간에 update 처리  -->
@@ -33,6 +35,15 @@
 	   values('20221015',10,'1000', #{start_work},'W101')
 </insert>
 
+<!-- 연차사용 내역 -->
+
+<select id="holiday_list" resultType="work.WorkResultVO">
+	select w.*, c.code_name work_status 
+	from work_result w left join common_code c 
+	on w.work_code = c.code_value
+	where employee_id = '20221015' and work_code ='W102' or work_code ='W103'
+
+</select>
 
 <!-- 로그인한 아이디의 출근정보만 출력 -->
 
@@ -40,7 +51,7 @@
 select e.*, c.code_name position_name
 from  employees e left join common_code c
 on e.position = c.code_value 
-where e.employee_id = '20221019'
+where e.employee_id = '20221015'
 
 </select>
 
