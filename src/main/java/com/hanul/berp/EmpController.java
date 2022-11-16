@@ -1,5 +1,6 @@
 package com.hanul.berp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import emp.CompanyVO;
 import emp.DepartmentVO;
@@ -93,7 +96,15 @@ public class EmpController {
 	}
 	
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	@ResponseBody @RequestMapping(value="/andEmpList.hr", produces="text/html; charset=utf-8")
+	public String andEmpList() {
+		
+		List<EmpVO> list = dao.andEmp_list();
+		
+		return new Gson().toJson(list);
+	}
 	
 
 	
