@@ -10,8 +10,8 @@
 }
 
 #nav img {
-	width: 90px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 }
 
 #nav-top, #nav-sign, #nav-top>li {
@@ -75,7 +75,7 @@ body {
 	<!-- 		로고 -->
 	<div id="nav">
 		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
-			alt="logo" src="imgs/logo3.png"></a>
+			alt="logo" src="imgs/logo4.png"></a>
 		<div class="mt-3">
 			<label id='nav-mouse'>
 				<ul id="nav-top">
