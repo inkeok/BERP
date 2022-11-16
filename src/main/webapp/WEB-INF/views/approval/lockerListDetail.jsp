@@ -32,7 +32,7 @@
 	<option value='-1'>결재자</option>
 	<c:forEach items='${departmentEmployee}' var='de'>
 	<option value='${de.employee_id}'>${de.position} ${de.name}</option>
-	</c:forEach>
+	</c:forEach> 
 	</select>
 	
 	

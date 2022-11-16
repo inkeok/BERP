@@ -1,5 +1,6 @@
 package emp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,12 +46,19 @@ public class EmpDAO {
 	
 	
 	public void employee_update(EmpVO vo) {
-		sql.update("emp,update", vo);
+		sql.update("emp.update", vo);
 	}
 
 	public void employee_delete(int employee_id) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////
+
+	public List<EmpVO> andEmp_list() {
+		
+		return sql.selectList("emp.empList");
 	}
 
 }

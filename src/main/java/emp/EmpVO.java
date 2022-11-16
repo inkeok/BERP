@@ -5,8 +5,29 @@ import java.sql.Date;
 public class EmpVO {
 	
 	private int employee_id, department_id;
-	private String company_cd, name, email, phone, admin, job_id,position, position_name, employee_pattern;
+	private String company_cd, name, email, phone, admin, job_id,position
+	, position_name, employee_pattern, employee_pattern_name, department_name, company_name;
 	private Date hire_date;
+	
+	
+	public String getEmployee_pattern_name() {
+		return employee_pattern_name;
+	}
+	public void setEmployee_pattern_name(String employee_pattern_name) {
+		this.employee_pattern_name = employee_pattern_name;
+	}
+	public String getDepartment_name() {
+		return department_name;
+	}
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
+	public String getCompany_name() {
+		return company_name;
+	}
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
+	}
 	public int getEmployee_id() {
 		return employee_id;
 	}

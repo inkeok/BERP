@@ -47,4 +47,5 @@ public class MemberDAO {
 			return sql.insert("member.andInsert", dto_temp);
 	}
 
+
 }//class

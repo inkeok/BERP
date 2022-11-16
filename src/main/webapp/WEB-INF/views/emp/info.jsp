@@ -26,11 +26,11 @@ th {
 			</tr>
 			<tr>
 				<th class="">부서명</th>
-				<td>${vo.department_id}</td>
+				<td>${vo.department_name}</td>
 			</tr>
 			<tr>
 				<th class="">회사코드</th>
-				<td>${vo.company_cd}</td>
+				<td>${vo.company_name}</td>
 			</tr>
 			<tr>
 				<th class="">사원명</th>
@@ -54,11 +54,11 @@ th {
 			</tr>
 			<tr>
 				<th class="">직급</th>
-				<td>${vo.position}</td>
+				<td>${vo.position_name}</td>
 			</tr>
 			<tr>
 				<th class="">업무형태</th>
-				<td>${vo.employee_pattern}</td>
+				<td>${vo.employee_pattern_name}</td>
 			</tr>
 		</table>
 	</div>

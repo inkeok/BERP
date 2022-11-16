@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.google.gson.Gson;
+
+
 import member.AndLoginMemberVO;
 import member.JoinDTO;
 import member.MemberDAO;
@@ -107,6 +109,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody @RequestMapping("/andJoin.mem")
+
 	public String AndJoin(String dto) {
 		
 		System.out.println(dto);
@@ -116,6 +119,7 @@ public class MemberController {
 		int i = dao.andInsert(dto_temp);
 		
 		return i+"";
+
 	}
 
 }

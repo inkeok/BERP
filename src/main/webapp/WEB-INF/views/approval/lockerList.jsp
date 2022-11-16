@@ -29,11 +29,12 @@
 	<th>번호</th>
 	<th>제목</th>
 	<th>날짜</th>
+	<th></th>
 </tr>
 <c:forEach items='${lockerList}' var='l'>
 <tr>
 	<td>${l.no}</td>
-	<td>${l.document_title}</td>
+	<td><a onclick='location="lockerListDetail.ap?no=${l.no}&email=${email}&ing_no=${l.ing_no}"'>${l.document_title}</a></td>
 	<td>${l.document_date}</td>
 </tr>
 </c:forEach>
