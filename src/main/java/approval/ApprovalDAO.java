@@ -1,5 +1,6 @@
 package approval;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,4 +37,12 @@ public class ApprovalDAO {
 	public List<EmpVO> departmentEmployee(String department_name){
 		return sql.selectList("approval.departmentEmployee", department_name);
 	}
+	
+	public Ing_tableVO submitListDetail(int no, String email) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("no", no+"");
+		return sql.selectOne("approval.submitListDetail", map);
+	}
+	
 }

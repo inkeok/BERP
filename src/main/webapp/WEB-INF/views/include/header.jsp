@@ -69,7 +69,7 @@
 				<li><a href="#">채용안내</a></li>
 				<li><a href="#">고객센터</a></li>
  				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">고객센터</a></li>
+ 				<li><a href="#">${loginInfo.join_check }</a></li>
 			</ul>
 			
 			<ul id='nav-menu'>
@@ -95,8 +95,8 @@
 				<span>${loginInfo.name} 님</span>
 				<button class="frontBtn-empty" onclick='location="logout.mem"'>로그아웃</button>
 				</c:if>
-				<c:if test='${loginInfo.join_check eq "y"}'>
-				<li><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
+				<c:if test='${loginInfo.join_check eq "Y"}'>
+				<li><div></div><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
 				login
 				</span></li>
 				</c:if>

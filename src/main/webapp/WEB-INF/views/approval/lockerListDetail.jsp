@@ -28,7 +28,7 @@
 	</c:forEach>	
 	</select>
 	
-	<select id='approver_id' name='approver_id'>
+	<select name='approver_id'>
 	<option value='-1'>결재자</option>
 	<c:forEach items='${departmentEmployee}' var='de'>
 	<option value='${de.employee_id}'>${de.position} ${de.name}</option>
@@ -38,10 +38,10 @@
 	
 	<table id='postTable'>
 		<tr><th>제목</th>
-			<td><input type='text' id='document_title' name='document_title' value='${document_title}'></td>
+			<td><input type='text' id='document_title' name='document_title'></td>
 		</tr>
 		<tr><th>내용</th>
-			<td><textarea id='textarea' name='document_content'>${document_content}</textarea></td>
+			<td><textarea id='textarea' name='document_content'></textarea></td>
 		</tr>
 		<tr><th height='30px'>첨부파일</th>
 			<td>
@@ -57,16 +57,6 @@
 </div>
 <script>
 document.querySelector('#postSubmit').onclick = function(){
-	if( document.querySelector('#document_title').value.toString()<1 ){
-		alert('제목을 입력하세요')
-		return;
-	}else if( document.querySelector('#department_name').value=='부서' ){
-		alert('결재자를 선택하세요')
-		return;
-	}else if( document.querySelector('#approver_id').value=='-1'){
-		alert('결재자를 선택하세요')
-		return;
-	}
 	document.querySelector('#postForm').submit();	
 }
 

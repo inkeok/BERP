@@ -62,6 +62,27 @@ on e.department_id = d.department_id
 where d.department_name = #{department_name}
 </select>
 
+<select id='submitListDetail' resultType='approval.Ing_tableVO'>
+select *
+from (
+select row_number() over(order by document_date asc) no, i.*, e2.name approver
+
+from member m join employees e 
+on m.email = e.email join ing_table i
+on e.employee_id = i.employee_id join employees e2
+on i.approver_id = e2.employee_id
+
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+order by no desc
+)
+where no = #{no}
+<!-- select * -->
+<!-- from ( select row_number() over(order by document_date asc) no, i.* -->
+<!-- from ing_table i -->
+<!-- order by no desc ) -->
+<!-- where no = 1 -->
+</select>
+
 
 
 </mapper>
