@@ -31,6 +31,7 @@ h1, h2, h3, h4, h5, h6, span, p {
 	position: absolute;
 	top: 28%;
 	left: 20%;
+	animation: text1 1.5s;
 }
 
 .sec-text2 {
@@ -38,6 +39,7 @@ h1, h2, h3, h4, h5, h6, span, p {
 	position: absolute;
 	top: 34%;
 	left: 20%;
+	animation: text2 2.5s;
 }
 
 .ask {
@@ -45,6 +47,7 @@ h1, h2, h3, h4, h5, h6, span, p {
 	top: 58%;
 	left: 27%;
 	color: #ffffff;
+	animation: ask 3s;
 }
 
 .service {
@@ -69,18 +72,51 @@ img.sec-image {
 	display: none;
 }
 
+
+
+
 .sec-image {
 	position: absolute;
 	top: 27%;
 	left: 60%;
-	animation: img 2s;
+	animation: img 3s;
 }
-@keyframes img { 
+
+/* index keyframes */
+
+@keyframes text1 { 	
 0%{
-	top: 0%;
+	left: 0%;
 }
 100%{
-	top : 27%;
+	left : 20%;
+}
+}
+
+@keyframes text2 { 	
+0%{
+	left: 0%;
+}
+100%{
+	left : 20%;
+}
+}
+
+@keyframes ask { 	
+0%{
+	left: 0%;
+}
+100%{
+	left : 27%;
+}
+}
+
+@keyframes img { 	
+0%{
+	left: 80%;
+}
+100%{
+	left : 60%;
 }
 }
 </style>
@@ -112,19 +148,19 @@ img.sec-image {
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('span.fi').fadeIn(1000);
+			$('span.fi').fadeIn(3000);
 		});
 
 		$(document).ready(function() {
-			$('span.fi2').fadeIn(4000);
+			$('span.fi2').fadeIn(3000);
 		});
 
 		$(document).ready(function() {
-			$('button.fi').fadeIn(6000);
+			$('button.fi').fadeIn(5000);
 		});
 
 		$(document).ready(function() {
-			$('img.sec-image').fadeIn(4000);
+			$('img.sec-image').fadeIn(3000);
 		});
 	</script>
 </body>
