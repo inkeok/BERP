@@ -33,7 +33,7 @@
 	<th>상태</th>
 	<th>기안자</th>
 </tr>
-<c:forEach items='${approvaltList}' var='a'>
+<c:forEach items='${approvalList}' var='a'>
 <tr>
 	<td>${a.no}</td>
 	<td>${a.document_title}</td>

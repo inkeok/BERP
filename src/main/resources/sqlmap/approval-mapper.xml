@@ -4,23 +4,15 @@
 
 <!-- 상신함 뷰 -->
 <select id='submitList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by document_date asc) no, i.*,
-(select emp.name
-from ing_table ing join employees emp 
-on ing.approver_id = emp.employee_id) approver
+select row_number() over(order by document_date asc) no, i.*, e2.name approver
 
 from member m join employees e 
 on m.email = e.email join ing_table i
-on e.employee_id = i.employee_id
+on e.employee_id = i.employee_id join employees e2
+on i.approver_id = e2.employee_id
 
 where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
 order by no desc
-<!-- select row_number() over(order by document_date asc) no, i.* -->
-<!-- from member m join employees e  -->
-<!-- on m.email = e.email join ing_table i -->
-<!-- on e.employee_id = i.employee_id -->
-<!-- where e.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y' -->
-<!-- order by no desc -->
 </select>
 
 <!-- 보관함 뷰 -->
@@ -35,18 +27,18 @@ order by no desc
 
 <!-- 결재함 뷰 -->
 <select id='approvalList' resultType='approval.Ing_tableVO'>
-<!-- select row_number() over(order by document_date asc) no, i.*, -->
-<!-- (select emp.name  -->
-<!-- from ing_table ing join employees emp -->
-<!-- on ing.employee_id = emp.employee_id) drafter -->
+select row_number() over(order by document_date asc) no, i.*, e2.name drafter
 
-<!-- from member m join employees e  -->
-<!-- on m.email = e.email join ing_table i -->
-<!-- on e.employee_id = i.employee_id -->
-<!-- where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y' and e.employee_id = i.approver_id  -->
-<!-- order by no desc -->
+from member m join employees e
+on m.email = e.email join ing_table i
+on e.employee_id = i.approver_id join employees e2
+on i.employee_id = e2.employee_id
+
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+order by no desc
 </select>
 
+<!-- 기안 제출 저장 처리 -->
 <insert id='insertPost'>
 insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, document_submit)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
@@ -54,6 +46,7 @@ values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR},
 #{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'y')
 </insert>
 
+<!-- 기안 임시보관함 저장 처리 -->
 <insert id='insertLocker'>
 insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, document_submit)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 

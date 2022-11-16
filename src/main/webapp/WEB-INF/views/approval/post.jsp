@@ -62,7 +62,7 @@ document.querySelector('#postSubmit').onclick = function(){
 
 //취소 버튼 선택 시 
 $('#postCancel').click(function(){
-	if(confirm('임시보관함에 저장할까요?')){
+	if(confirm('임시보관함에 저장할까요?'))
 		$('#postForm').attr('action', 'insertLocker.ap?email=${loginInfo.email}');
 		$('#postForm').submit();
 	}else{

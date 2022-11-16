@@ -34,7 +34,7 @@ public class ApprovalController {
 	@RequestMapping("/approvalList.ap")
 	public String approvalList(String email, Model model) {
 		model.addAttribute("approvalList", dao.approvalList(email));
-		return "side/approval/lockerList";
+		return "side/approval/approvalList";
 	}
 	
 	@RequestMapping("/post.ap")
