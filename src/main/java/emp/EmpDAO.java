@@ -60,5 +60,15 @@ public class EmpDAO {
 		
 		return sql.selectList("emp.empList");
 	}
+	public List<EmpVO> andEmp_department_list(){
+		return sql.selectList("emp.andDepartments");
+	}
+	
+	public List<EmpVO> andEmp_company_list(){
+		return sql.selectList("emp.andCompany");
+	}
+	public List<EmpVO> andEmp_position_list(){
+		return sql.selectList("emp.andPosition");
+	}
 
 }
