@@ -3,9 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
 
 <style>
+
 #nav {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	margin-top: 30px;
 }
 
@@ -75,7 +76,7 @@ body {
 	<!-- 		로고 -->
 	<div id="nav">
 		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
-			alt="logo" src="imgs/logo4.png"></a>
+			alt="logo" src="imgs/logo.png"></a>
 		<div class="mt-3">
 			<label id='nav-mouse'>
 
@@ -122,9 +123,10 @@ body {
 		</div>
 
 		<div id='nav-sign'>
-
+			
 			<c:if test="${empty loginInfo}">
-				<button class="btn btn-light" onclick='location="login.mem"'>로그인</button>
+			<button class="btn btn-primary btn-ghost btn-through" onclick='location="login.mem"'>Through</button>
+<!-- 				<button class="btn btn-light" onclick='location="login.mem"'>로그인</button> -->
 				<button class="btn btn-light" onclick='location="join.mem"'>회원가입</button>
 			</c:if>
 
