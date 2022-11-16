@@ -44,8 +44,8 @@ public class MemberDAO {
 	}
 	
 	
-	public int andInsert(ArrayList<JoinDTO> list) {
-		return sql.insert("member.insert", list);
+	public int andInsert(JoinDTO dto) {
+		return sql.insert("member.insert", dto);
 	}
 	
 
