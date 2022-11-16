@@ -94,7 +94,7 @@ select row_number() over(order by document_date asc) no, i.*
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id
-where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'n'
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'N'
 order by no desc
 )
 where no = #{no}
