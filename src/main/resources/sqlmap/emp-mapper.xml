@@ -16,10 +16,17 @@
 
 	<!-- 사원정보조회 -->
 	<select id="info" resultType="emp.EmpVO">
-		select *
-		from employees
-		where
-		employee_id = #{employee_id}
+		select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = cd.code_value
+		where employee_id = #{employee_id}
 	</select>
 
 	<!-- 고용형태조회 -->
@@ -28,11 +35,12 @@
 		from employees
 		order by employee_pattern
 	</select>
+
 	<!-- 직급조회 -->
 	<select id="position" resultType="emp.EmpVO">
-		select e.*, c.code_name position_name
-		from employees e left join common_code c
-		on e.position = c.code_name
+		select position
+		from employees
+		order by position
 	</select>
 
 	<!-- 사원정보저장 -->
@@ -55,8 +63,16 @@
 
 	<!-- 사원목록조회 -->
 	<select id="empList" resultType="emp.EmpVO">
-		SELECT *
-		FROM employees
+		select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = cd.code_value
 	</select>
 
 	<!-- 회사코드목록 -->
