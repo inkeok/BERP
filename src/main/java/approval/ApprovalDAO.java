@@ -42,7 +42,27 @@ public class ApprovalDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("email", email);
 		map.put("no", no+"");
+		//Ing_tableVO vo = sql.selectOne("approval.submitListDetail", map);
 		return sql.selectOne("approval.submitListDetail", map);
+	}
+	
+	public Ing_tableVO lockerListDetail(int no, String email) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("no", no+"");
+		return sql.selectOne("approval.lockerListDetail", map);
+	}
+	
+	//ing_table 목록 중 하나 삭제
+	public int deleteLockerOne(int ing_no) {
+		return sql.delete("approval.deleteLockerOne", ing_no);
+	}
+	
+	public Ing_tableVO approvalListDetail(int no, String email) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("no", no+"");
+		return sql.selectOne("approval.approvalListDetail", map);
 	}
 	
 }

@@ -29,6 +29,7 @@ public class ApprovalController {
 	@RequestMapping("/lockerList.ap")
 	public String lockerList(String email, Model model) {
 		model.addAttribute("lockerList", dao.lockerList(email));
+		model.addAttribute("email", email);
 		return "side/approval/lockerList";
 	}
 	
@@ -36,6 +37,7 @@ public class ApprovalController {
 	@RequestMapping("/approvalList.ap")
 	public String approvalList(String email, Model model) {
 		model.addAttribute("approvalList", dao.approvalList(email));
+		model.addAttribute("email", email);
 		return "side/approval/approvalList";
 	}
 	
@@ -75,11 +77,31 @@ public class ApprovalController {
 		return "redirect:lockerList.ap?email="+email;
 	}
 	
-	//제목 클릭시 상세화면
+	//상신함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/submitListDetail.ap")
-	public String detail(int no, String email, Model model) {
+	public String submitListDetail(int no, String email, Model model) {
 		model.addAttribute("submitListDetail", dao.submitListDetail(no, email));
 		model.addAttribute("email", email);
 		return "side/approval/submitListDetail";
+	}
+	
+	//보관함 목록 중 제목 클릭시 상세화면
+	@RequestMapping("/lockerListDetail.ap")
+	public String lockerListDetail(Model model, String email, int no, int ing_no) {
+		Ing_tableVO vo = dao.lockerListDetail(no, email);
+		model.addAttribute("document_content", vo.getDocument_content());
+		model.addAttribute("document_title", vo.getDocument_title());
+		model.addAttribute("email", email);
+		model.addAttribute("departments", emp_dao.departments());
+		dao.deleteLockerOne(ing_no);
+		return "default/approval/lockerListDetail";
+	}
+	
+	//결재함 목록 중 제목 클릭시 상세화면
+	@RequestMapping("/approvalListDetail.ap")
+	public String approvalListDetail(int no, String email, Model model) {
+		model.addAttribute("approvalListDetail", dao.approvalListDetail(no, email));
+		model.addAttribute("email", email);
+		return "side/approval/approvalListDetail";
 	}
 }

@@ -4,14 +4,15 @@
 
 <!-- 상신함 뷰 -->
 <select id='submitList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by document_date asc) no, i.*, e2.name approver
+select row_number() over(order by document_date asc) no, i.*, e2.name approver, a.document_status
 
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id join employees e2
-on i.approver_id = e2.employee_id
+on i.approver_id = e2.employee_id join document_approval a
+on i.document_check = a.document_check
 
-where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
 order by no desc
 </select>
 
@@ -21,20 +22,21 @@ select row_number() over(order by document_date asc) no, i.*
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id
-where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'n'
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'N'
 order by no desc
 </select>
 
 <!-- 결재함 뷰 -->
 <select id='approvalList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by document_date asc) no, i.*, e2.name drafter
+select row_number() over(order by document_date asc) no, i.*, e2.name drafter, a.document_status
 
 from member m join employees e
 on m.email = e.email join ing_table i
 on e.employee_id = i.approver_id join employees e2
-on i.employee_id = e2.employee_id
+on i.employee_id = e2.employee_id join document_approval a
+on i.document_check = a.document_check
 
-where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
 order by no desc
 </select>
 
@@ -43,7 +45,7 @@ order by no desc
 insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, document_submit)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
 #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
-#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'y')
+#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'Y')
 </insert>
 
 <!-- 기안 임시보관함 저장 처리 -->
@@ -51,7 +53,7 @@ values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR},
 insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, document_submit)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
 #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
-#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'n')
+#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'N')
 </insert>
 
 <!-- 특정 부서에 소속된 직원 리스트를 찾는다 -->
@@ -65,22 +67,60 @@ where d.department_name = #{department_name}
 <select id='submitListDetail' resultType='approval.Ing_tableVO'>
 select *
 from (
-select row_number() over(order by document_date asc) no, i.*, e2.name approver
+select row_number() over(order by document_date asc) no, i.*, e2.name approver, a.document_status
 
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id join employees e2
-on i.approver_id = e2.employee_id
+on i.approver_id = e2.employee_id join document_approval a
+on i.document_check = a.document_check
 
-where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'y'
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
 order by no desc
 )
 where no = #{no}
+
 <!-- select * -->
 <!-- from ( select row_number() over(order by document_date asc) no, i.* -->
 <!-- from ing_table i -->
 <!-- order by no desc ) -->
 <!-- where no = 1 -->
+</select>
+
+<select id='lockerListDetail' resultType='approval.Ing_tableVO'>
+select *
+from (
+select row_number() over(order by document_date asc) no, i.*
+from member m join employees e 
+on m.email = e.email join ing_table i
+on e.employee_id = i.employee_id
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'n'
+order by no desc
+)
+where no = #{no}
+</select>
+
+<delete id='deleteLockerOne'>
+delete ing_table 
+where ing_no = #{ing_no}
+</delete>
+
+<select id='approvalListDetail' resultType='approval.Ing_tableVO'>
+select *
+from
+(
+select row_number() over(order by document_date asc) no, i.*, e2.name drafter, a.document_status
+
+from member m join employees e
+on m.email = e.email join ing_table i
+on e.employee_id = i.approver_id join employees e2
+on i.employee_id = e2.employee_id join document_approval a
+on i.document_check = a.document_check
+
+where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
+order by no desc
+)
+where no = #{no}
 </select>
 
 

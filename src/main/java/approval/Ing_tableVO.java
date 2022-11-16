@@ -6,13 +6,19 @@ public class Ing_tableVO {
 	
 	private int no, ing_no, employee_id, department_id, approver_id;
 	private String company_cd, file_name, file_path, document_title, 
-					document_content, document_check, document_submit,
+					document_content, document_check, document_status, document_submit,
 					email, approver, drafter;
 	private Date document_date, finish_date;
 	
 	
 	
 	
+	public String getDocument_status() {
+		return document_status;
+	}
+	public void setDocument_status(String document_status) {
+		this.document_status = document_status;
+	}
 	public String getDrafter() {
 		return drafter;
 	}
