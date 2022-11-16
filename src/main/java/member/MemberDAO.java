@@ -1,12 +1,12 @@
 package member;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Repository;
 
 
@@ -16,8 +16,8 @@ public class MemberDAO {
 	@Autowired private SqlSession sql;
 
 	public int insert(MemberVO vo) {
-		return sql.insert("member.insert", vo);
-	}
+	      return sql.insert("member.insert", vo);
+	   }
 	
 	//회원가입 때 아이디 중복체크
 	public int checkId(String id) {
@@ -33,7 +33,7 @@ public class MemberDAO {
 	}
 	
 	
-	
+
 	///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
 	public List<MemberVO> andCheckLogin() {
 		return sql.selectList("member.andCheckLogin");
@@ -44,4 +44,9 @@ public class MemberDAO {
 	}
 	
 	
+	public int andInsert(ArrayList<JoinDTO> list) {
+		return sql.insert("member.insert", list);
+	}
+	
+
 }//class

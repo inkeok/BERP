@@ -1,7 +1,10 @@
 package com.hanul.berp;
 
 
+
 import java.util.List;
+import java.util.ArrayList;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,11 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.google.gson.Gson;
-
 import member.AndLoginMemberVO;
+import member.JoinDTO;
 import member.MemberDAO;
-
 import member.MemberVO;
 
 @Controller
@@ -73,6 +76,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+
 	///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
 	
 	@ResponseBody @RequestMapping(value="/andLogin.mem", produces="text/html; charset=utf-8")
@@ -101,5 +105,14 @@ public class MemberController {
 		
 				
 	}
+	
+	@ResponseBody @RequestMapping("/andJoin.mem")
+	public int andJoin(ArrayList<JoinDTO> list) {
+		
+		return dao.andInsert(list);
+	}
+	
+	
+
 
 }
