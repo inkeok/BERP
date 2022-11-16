@@ -1,9 +1,12 @@
 package member;
 
+
 import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Repository;
 
 
@@ -27,6 +30,17 @@ public class MemberDAO {
 		map.put("id", id);
 		map.put("pw", pw);
 		return sql.selectOne("member.checkLogin", map);
+	}
+	
+	
+	
+	///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
+	public List<MemberVO> andCheckLogin() {
+		return sql.selectList("member.andCheckLogin");
+	}
+	
+	public List<AndLoginMemberVO> andLogin(String id) {
+		return sql.selectList("member.andLogin", id);
 	}
 	
 	

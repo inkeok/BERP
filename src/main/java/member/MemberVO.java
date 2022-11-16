@@ -3,27 +3,9 @@ package member;
 public class MemberVO {
 
 	
-	int employee_id, department_id;
-	private String company_cd, email, id, pw, name, gender, phone, address, join_check, admin;
-	public int getEmployee_id() {
-		return employee_id;
-	}
-	public void setEmployee_id(int employee_id) {
-		this.employee_id = employee_id;
-	}
-	public int getDepartment_id() {
-		return department_id;
-	}
-	public void setDepartment_id(int department_id) {
-		this.department_id = department_id;
-
-	}
-	public String getCompany_cd() {
-		return company_cd;
-	}
-	public void setCompany_cd(String company_cd) {
-		this.company_cd = company_cd;
-	}
+	
+	private String  email, id, pw, name, gender, phone, address, join_check, admin;
+	
 
 	public String getEmail() {
 		return email;

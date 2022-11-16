@@ -1,6 +1,8 @@
 package com.hanul.berp;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
+import member.AndLoginMemberVO;
 import member.MemberDAO;
 
 import member.MemberVO;
@@ -68,5 +73,33 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
+	
+	@ResponseBody @RequestMapping(value="/andLogin.mem", produces="text/html; charset=utf-8")
+	public String AndLoginCheck(String id, String pw) {
+		Boolean info = false;
+		List<MemberVO> memList = dao.andCheckLogin();
+		System.out.println(memList.get(0).getId());
+		for (int i = 0; i < memList.size(); i++) {
+			if(memList.get(i).getId().equals(id) && memList.get(i).getPw().equals(pw)) {
+				info = true;
+				break;
+			}else {
+				continue;
+			}
+		}
+		
+		if(!info) {
+			return "zzz";
+		}else{
+			List<AndLoginMemberVO> loginList = dao.andLogin(id);
+			
+			return new Gson().toJson(loginList);
+		}
+		
+		
+		
+				
+	}
 
 }
