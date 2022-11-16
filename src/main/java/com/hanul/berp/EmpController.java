@@ -105,7 +105,30 @@ public class EmpController {
 		
 		return new Gson().toJson(list);
 	}
-	
+	@ResponseBody @RequestMapping(value="/andEmpListDepartment.hr", produces="text/html; charset=utf-8")
+	public String andEmpDepartmentList() {
+		
+		List<EmpVO> list = dao.andEmp_department_list();
+		
+		return new Gson().toJson(list);
+
+	}
+	@ResponseBody @RequestMapping(value="/andEmpListCompany.hr", produces="text/html; charset=utf-8")
+	public String andEmpCompanyList() {
+		
+		List<EmpVO> list = dao.andEmp_company_list();
+		
+		return new Gson().toJson(list);
+
+	}
+	@ResponseBody @RequestMapping(value="/andEmpListPosition.hr", produces="text/html; charset=utf-8")
+	public String andEmpPositionList() {
+		
+		List<EmpVO> list = dao.andEmp_position_list();
+		
+		return new Gson().toJson(list);
+
+	}
 
 	
 	

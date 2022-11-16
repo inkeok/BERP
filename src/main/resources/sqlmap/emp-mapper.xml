@@ -17,29 +17,41 @@
 	<!-- 사원정보조회 -->
 	<select id="info" resultType="emp.EmpVO">
 		select e.*, d.department_name,
-		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		c.company_name, cd.code_name position_name, ccd.code_name
+		employee_pattern_name
 		from employees e left outer join departments d
-		on e.department_id = d.department_id
+		on
+		e.department_id = d.department_id
 		left outer join company c
-		on e.company_cd = c.company_cd
+		on
+		e.company_cd = c.company_cd
 		left outer join common_code cd
-		on e.position = cd.code_value
+		on e.position
+		= cd.code_value
 		left outer join common_code ccd
-		on e.employee_pattern = cd.code_value
+		on e.employee_pattern =
+		cd.code_value
 		where employee_id = #{employee_id}
 	</select>
 
 	<!-- 고용형태조회 -->
 	<select id="employee_pattern" resultType="emp.EmpVO">
-		select employee_pattern
-		from employees
-		order by employee_pattern
+		select
+		e.employee_pattern, c.code_name employee_pattern_name
+		from employees e
+		left outer join common_code c
+		on e.pattern = c.code_value
+		order by
+		employee_pattern
 	</select>
 
 	<!-- 직급조회 -->
 	<select id="position" resultType="emp.EmpVO">
-		select position
-		from employees
+		select e.position, c.code_name
+		position_name
+		from employees e left outer join common_code c
+		on
+		e.pattern = c.code_value
 		order by position
 	</select>
 
@@ -55,8 +67,7 @@
 
 	<!-- 부서목록조회 -->
 	<select id="departments" resultType="emp.DepartmentVO">
-		SELECT department_id,
-		department_name
+		SELECT department_id, department_name
 		FROM departments
 		order by department_id
 	</select>
@@ -64,22 +75,47 @@
 	<!-- 사원목록조회 -->
 	<select id="empList" resultType="emp.EmpVO">
 		select e.*, d.department_name,
-		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		c.company_name, cd.code_name position_name, ccd.code_name
+		employee_pattern_name
 		from employees e left outer join departments d
-		on e.department_id = d.department_id
+		on
+		e.department_id = d.department_id
 		left outer join company c
-		on e.company_cd = c.company_cd
+		on
+		e.company_cd = c.company_cd
 		left outer join common_code cd
-		on e.position = cd.code_value
+		on e.position
+		= cd.code_value
 		left outer join common_code ccd
-		on e.employee_pattern = cd.code_value
+		on e.employee_pattern =
+		cd.code_value
 	</select>
 
 	<!-- 회사코드목록 -->
 	<select id="company" resultType="emp.CompanyVO">
-		SELECT company_cd, company_name,
-		comany_tel, comany_addr
+
+		SELECT company_cd, company_name
 		FROM company
+	</select>
+	<!-- //////////////////////////////////////////////////////////////////////////////////// -->
+
+	<select id="andDepartments" resultType="emp.DepartmentVO">
+		SELECT department_name
+		FROM departments
+		order by department_id
+	</select>
+
+	<select id="andPosition" resultType="emp.EmpVO">
+		select code_name
+		position_name
+		from common_code
+		where code_title = 'E'
+		order by code_value
+	</select>
+	<select id="andCompany" resultType="emp.CompanyVO">
+		SELECT company_name
+		FROM
+		company
 	</select>
 
 </mapper>
