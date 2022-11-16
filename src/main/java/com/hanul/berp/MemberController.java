@@ -1,6 +1,8 @@
 package com.hanul.berp;
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import member.JoinDTO;
 import member.MemberDAO;
 
 import member.MemberVO;
@@ -67,6 +70,17 @@ public class MemberController {
 		session.removeAttribute("loginInfo");
 		return "redirect:/";
 	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	///asktask, gson, param으로 id랑 데이터 값 전달-메소드()<-여기랑 연결됨.
+	
+	@ResponseBody @RequestMapping("/andJoin.mem")
+	public int andJoin(ArrayList<JoinDTO> list) {
+		
+		return dao.andInsert(list);
+	}
+	
+	
 	
 
 }
