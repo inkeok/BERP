@@ -78,24 +78,47 @@ body {
 			alt="logo" src="imgs/logo4.png"></a>
 		<div class="mt-3">
 			<label id='nav-mouse'>
-				<ul id="nav-top">
-					<li><a href="#">회사소개</a></li>
-					<li><a href="#">회사정보</a></li>
-					<li><a href="#">프로세서</a></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
-<!-- 				<ul id='nav-menu'> -->
-<!-- 					<li><a href="#">공지사항</a></li> -->
-<!-- 					<li><a href="#">회사정보</a></li> -->
-<!-- 					<li><a href="#">채용안내</a></li> -->
-<!-- 				</ul> -->
+
+			<ul id="nav-top">
+				<li><a href="#">공지사항</a></li>
+				<li><a href="#">회사정보</a></li>
+				<li><a href="#">채용안내</a></li>
+				<li><a href="#">고객센터</a></li>
+ 				<li><a href="#">고객센터</a></li>
+ 				<li><a href="#">${loginInfo.join_check }</a></li>
+			</ul>
+			
+			<ul id='nav-menu'>
+				<li><a href="#">공지사항</a></li>
+				<li><a href="#">회사정보</a></li>
+				<li><a href="#">채용안내</a></li>
+				<li><a href="#">고객센터</a></li>
+ 				<li><a href="#">고객센터</a></li>
+ 				<li><a href="#">고객센터</a></li>
+			</ul>
 			</label>
+			
+				
+				
+			<div id='nav-sign'>
+
+				<c:if test="${empty loginInfo}">
+				<button class="frontBtn-fill" onclick='location="login.mem"'>로그인</button>
+				<button class="frontBtn-empty" onclick='location="join.mem"'>회원가입</button>
+				</c:if>
+				
+				<c:if test="${not empty loginInfo}">
+				<span>${loginInfo.name} 님</span>
+				<button class="frontBtn-empty" onclick='location="logout.mem"'>로그아웃</button>
+				</c:if>
+				<c:if test='${loginInfo.join_check eq "Y"}'>
+				<li><div></div><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
+				login
+				</span></li>
+				</c:if>
+
+			</div>
+
 		</div>
 
 		<div id='nav-sign'>
