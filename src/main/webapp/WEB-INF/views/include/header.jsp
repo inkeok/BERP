@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
 
 <style>
+
 #nav {
 	display: flex;
 	justify-content: center;

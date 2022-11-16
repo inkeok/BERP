@@ -44,9 +44,9 @@ public class MemberDAO {
 	}
 	
 	
-	public int andInsert(JoinDTO dto) {
-		return sql.insert("member.insert", dto);
-	}
-	
+	/*
+	 * public int andInsert(JoinDTO dto) { return sql.insert("member.insert", dto);
+	 * }
+	 */
 
 }//class

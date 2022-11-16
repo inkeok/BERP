@@ -24,28 +24,53 @@ import recruit.RecruitVO;
 public class ApplyController {
 
 	@Autowired ApplyDAO dao;
+
+	
+	  
+	 @RequestMapping("/detail.apply") 
+	 public String detail (Model model, int apply_num) {
+	 
+		 ApplyVO vo = dao.apply_info(apply_num);
+		 
+		 model.addAttribute("vo",vo);
+		  
+		  
+	  return "apply/detail"; 
+	  
+	 }
+	 
 	
 	@RequestMapping("/insert.apply")
 	
-	public String insert(ApplyVO vo, MultipartFile file, HttpServletRequest request) {
+	public String insert( String recruit_num,RecruitVO recruit 
+			,Model model ,ApplyVO vo, MultipartFile file, HttpServletRequest request) {
 		
 		// 첨부파일이 있는 경우
 		if (!file.isEmpty()) {
 			vo.setFile_name(file.getOriginalFilename());
-			vo.setFile_path(fileUpload("recruit", file, request));
+			vo.setFile_path(fileUpload("apply", file, request));
 		}
 		//★★★recruit_num <받아서 보내줘야됨
+		//dao.apply_info(recruit_num);
+		//vo.setRecruit_num(recruit.getRecruit_num());
+		//model.addAttribute("vo",dao.apply_insert(vo));
 		dao.apply_insert(vo);
-		//int apply_num = dao.currval();
-		
-		//return "redirect:detail.apply?apply_num=" + apply_num;
-		return "redirect:applyList.apply";
+		int apply_num = dao.currval();		
+		return "redirect:detail.apply?apply_num=" + apply_num;
+		//return "redirect:applyList.apply";
 	}
 	
 	
 	@RequestMapping("/fillout.apply")
-	public String fillout(String recruit_num, Model model) {
-		//List<ApplyVO> vo = dao.
+	public String fillout(String recruit_num, 
+			ApplyVO vo, RecruitVO recruit, Model model) {
+		
+		
+		//vo.setRecruit_num(recruit.get)
+		
+		model.addAttribute("recruit",recruit);
+		
+		//model.addAttribute("vo", dao.apply_info(recruit_num));
 		
 		return "apply/fillout";
 	}
