@@ -28,13 +28,19 @@ public class ApplyDAO {
 		return sql.selectList("apply.recruit_pattern");
 	}
 	
-	public void apply_insert(ApplyVO vo) {
-		sql.selectOne("apply.insert");
+	public int apply_insert(ApplyVO vo) {
+		return sql.insert("apply.insert", vo);
 	}
 	
 	public int currval() {
 		return sql.selectOne("apply.currval");
 		
 	}
+	
+	public ApplyVO apply_info(int apply_num) {
+		return sql.selectOne("apply.apply_info", apply_num);
+	}
+	
+	
 	
 }
