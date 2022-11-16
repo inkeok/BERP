@@ -109,13 +109,16 @@ public class MemberController {
 	}
 	
 	@ResponseBody @RequestMapping("/andJoin.mem")
-	public int andJoin(String list) {
-		JoinDTO dto = new Gson().fromJson(list, JoinDTO.class);
+	public String andJoin(String dto) {
 		
-		return dao.andInsert(dto);
-	}
-	
-	
+		System.out.println(dto);
+		//JoinDTO dto = new JoinDTO(email, id, password, name, gender, phone, addr);
+		
+		JoinDTO dto_temp = new Gson().fromJson(dto, JoinDTO.class);
+		int i = dao.andInsert(dto_temp);
+		
+		return i+"";
 
+	}
 
 }
