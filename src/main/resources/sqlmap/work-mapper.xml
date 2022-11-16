@@ -40,7 +40,7 @@
 select e.*, c.code_name position_name
 from  employees e left join common_code c
 on e.position = c.code_value 
-where e.employee_id = '20221019'
+where e.employee_id = '20221015'
 
 </select>
 
