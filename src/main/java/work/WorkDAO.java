@@ -59,5 +59,11 @@ public class WorkDAO {
 		
 		return sql.selectList("work.codeList");
 	}
+	public int holiday_submit(HolidayVO vo){
+		
+		return sql.insert("holiday_submit", vo);
+	}
+	
+	
 	
 }

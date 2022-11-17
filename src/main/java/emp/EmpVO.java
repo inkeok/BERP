@@ -5,7 +5,7 @@ import java.sql.Date;
 public class EmpVO {
 	
 	private int employee_id, department_id;
-	private String company_cd, name, email, phone, admin, job_id,position
+	private String company_cd, name, email, phone, admin, job_id,position, hire_year
 	, position_name, employee_pattern, employee_pattern_name, department_name, company_name;
 	private Date hire_date;
 	
@@ -24,6 +24,12 @@ public class EmpVO {
 	}
 	public String getCompany_name() {
 		return company_name;
+	}
+	public String getHire_year() {
+		return hire_year;
+	}
+	public void setHire_year(String hire_year) {
+		this.hire_year = hire_year;
 	}
 	public void setCompany_name(String company_name) {
 		this.company_name = company_name;
