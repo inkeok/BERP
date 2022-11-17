@@ -43,7 +43,6 @@ public class MemberDAO {
 		return sql.selectList("member.andLogin", id);
 	}
 
-
 	public int andInsert(JoinDTO dto_temp) {
 			return sql.insert("member.andInsert", dto_temp);
 	}

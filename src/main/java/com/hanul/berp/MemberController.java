@@ -109,8 +109,9 @@ public class MemberController {
 	}
 	
 	@ResponseBody @RequestMapping("/andJoin.mem")
+
 	public String andJoin(String dto) {
-		
+	
 		System.out.println(dto);
 		//JoinDTO dto = new JoinDTO(email, id, password, name, gender, phone, addr);
 		
