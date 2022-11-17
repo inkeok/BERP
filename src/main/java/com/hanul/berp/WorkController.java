@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import emp.EmpVO;
+import work.CommonCodeVO;
 import work.WorkDAO;
 import work.WorkResultVO;
 import work.WorkVO;
@@ -75,7 +76,7 @@ public class WorkController {
 	
 	}
 	@RequestMapping("/holiday")
-	public String holiday(String id, Model model) {
+	public String holiday(String id, Model model ) {
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
 
@@ -86,11 +87,26 @@ public class WorkController {
 		
 		model.addAttribute("holiday_list",holiday_list); 
 		
+		List<CommonCodeVO> codeList = dao.codeList();
+		
+		model.addAttribute("codeList", codeList);
+		
 		
 		return "side/work/holiday";
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("/holiday_submit")
+	public String holiday_submit(String holiday_start_work, String holiday_end_work) {
+		
+		
+		System.out.println(holiday_start_work);
+		System.out.println(holiday_end_work);
+		
+		System.out.println("ajax submit");
+		
+		return "side/work/holiday";
+	}
 	
 	
 
