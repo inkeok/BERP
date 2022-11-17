@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import emp.EmpVO;
 import work.CommonCodeVO;
+import work.HolidayResultVO;
 import work.HolidayVO;
 import work.WorkDAO;
 import work.WorkResultVO;
@@ -92,21 +93,27 @@ public class WorkController {
 		
 		model.addAttribute("codeList", codeList);
 		
+		List<HolidayResultVO> holiday_submit_list = dao.holiday_submit_list();
+		
+		model.addAttribute("holiday_submit_list",holiday_submit_list);
+		
 		
 		return "side/work/holiday";
 	}
 	
-	@ResponseBody
+	
 	@RequestMapping("/holiday_submit")
-	public String holiday_submit(HolidayVO vo) {
+	public String holiday_submit(HolidayVO vo, String start_holiday, String end_holiday, String work_code) {
 		
+		/* dao.holiday_submit(vo); */
 		
-		
-		dao.holiday_submit(vo);
-		
+		System.out.println(start_holiday);
+		System.out.println(end_holiday);
+		System.out.println(work_code);
 		
 		System.out.println("ajax submit");
 		
+		dao.holiday_submit(vo);
 		return "side/work/holiday";
 	}
 	

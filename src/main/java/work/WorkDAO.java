@@ -64,6 +64,9 @@ public class WorkDAO {
 		return sql.insert("holiday_submit", vo);
 	}
 	
-	
+	public List<HolidayResultVO> holiday_submit_list(){
+		
+		return sql.selectList("work.holiday_submit_list");
+	}
 	
 }

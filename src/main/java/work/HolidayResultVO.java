@@ -4,12 +4,10 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class HolidayVO {
-
-	private String employee_id, department_id, company_cd, work_code;
+public class HolidayResultVO {
+	private String employee_id, department_id, company_cd, work_code, work_status;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")private Date  holiday_date,
 	work_date;
-	private String  end_holiday, start_holiday;
 	public String getEmployee_id() {
 		return employee_id;
 	}
@@ -34,6 +32,12 @@ public class HolidayVO {
 	public void setWork_code(String work_code) {
 		this.work_code = work_code;
 	}
+	public String getWork_status() {
+		return work_status;
+	}
+	public void setWork_status(String work_status) {
+		this.work_status = work_status;
+	}
 	public Date getHoliday_date() {
 		return holiday_date;
 	}
@@ -46,17 +50,6 @@ public class HolidayVO {
 	public void setWork_date(Date work_date) {
 		this.work_date = work_date;
 	}
-	public String getEnd_holiday() {
-		return end_holiday;
-	}
-	public void setEnd_holiday(String end_holiday) {
-		this.end_holiday = end_holiday;
-	}
-	public String getStart_holiday() {
-		return start_holiday;
-	}
-	public void setStart_holiday(String start_holiday) {
-		this.start_holiday = start_holiday;
-	}
+	
 	
 }
