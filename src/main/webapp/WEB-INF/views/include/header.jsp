@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
 <style>
 
 #nav {
@@ -70,6 +71,15 @@ body {
 	max-width: 100%;
 	height: 800px;
 }
+
+.btn-fill {
+  transition: 0.3s;
+}
+
+.btn-fill:hover {
+  background: transparent;
+  box-shadow: inset 0 0 0 36px var(--btn-bg);
+}
 </style>
 
 <header>
@@ -102,7 +112,8 @@ body {
 		<div id='nav-sign'>
 			
 			<c:if test="${empty loginInfo}">
-			<button class="btn btn-primary btn-ghost btn-through" onclick='location="login.mem"'>Through</button>
+			<button class="btn btn-primary btn-ghost btn-fill" onclick='location="login.mem"'>로그인</button>
+<!-- 			<button class="btn btn-primary btn-ghost btn-through" onclick='location="login.mem"'>Through</button> -->
 <!-- 				<button class="btn btn-light" onclick='location="login.mem"'>로그인</button> -->
 				<button class="btn btn-light" onclick='location="join.mem"'>회원가입</button>
 			</c:if>
