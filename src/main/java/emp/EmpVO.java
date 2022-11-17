@@ -6,10 +6,18 @@ public class EmpVO {
 	
 	private int employee_id, department_id;
 	private String company_cd, name, email, phone, admin, job_id,position
-	, position_name, employee_pattern, employee_pattern_name, department_name, company_name;
+	, position_name, employee_pattern, employee_pattern_name, department_name, company_name,
+	c_position;
 	private Date hire_date;
 	
 	
+	
+	public String getC_position() {
+		return c_position;
+	}
+	public void setC_position(String c_position) {
+		this.c_position = c_position;
+	}
 	public String getEmployee_pattern_name() {
 		return employee_pattern_name;
 	}

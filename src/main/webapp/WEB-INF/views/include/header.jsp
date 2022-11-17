@@ -123,7 +123,7 @@ body {
 				<span>${loginInfo.name} 님</span>
 				<button class="btn btn-light" onclick='location="logout.mem"'>로그아웃</button>
 			</c:if>
-			<c:if test='${loginInfo.join_check eq "y"}'>
+			<c:if test='${loginInfo.join_check eq "Y"}'>
 				<li><span id='sideIndex' class="material-symbols-outlined"
 					onclick='location="sideIndex"'> login </span></li>
 			</c:if>
