@@ -1,5 +1,7 @@
 package com.hanul.berp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +112,6 @@ public class WorkController {
 		System.out.println(start_holiday);
 		System.out.println(end_holiday);
 		System.out.println(work_code);
-		
 		System.out.println("ajax submit");
 		
 		dao.holiday_submit(vo);
