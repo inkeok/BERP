@@ -18,7 +18,7 @@
 <body>
 <h3>지원서 확인</h3>
 <form method='post' action='insert.apply'  enctype='multipart/form-data'>
-<h3>${vo.recruit_num}</h3>
+<h3>${vo.recruit_title}</h3>
 <input type='hidden' name='recruit_num' value='${vo.recruit_num}'>
 <table class='w-px1000'>
 
@@ -69,7 +69,7 @@ $('#save').click(function(){
 $('#remove').click(function() {
 	if(confirm('정말 삭제?')) {
 		
-		location='delete.rec?apply_num=${vo.apply_num}';
+		location='delete.apply?apply_num=${vo.apply_num}';
 	}
 });
 if(isImage("${vo.file_name}")) {

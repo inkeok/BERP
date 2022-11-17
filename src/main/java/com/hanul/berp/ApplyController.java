@@ -7,16 +7,19 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import apply.ApplyDAO;
 import apply.ApplyVO;
+import member.MemberVO;
 import recruit.CommonCodeVO;
 import recruit.RecruitVO;
 
@@ -25,57 +28,98 @@ public class ApplyController {
 
 	@Autowired ApplyDAO dao;
 
+	@ResponseBody @RequestMapping("/phone_check")
+	public boolean id_check(String apply_phone) {
+		//아이디가 db에 존재하는지 확인한 후 : 
+		//1이면 사용불가(중복/false),0사용가넝(true)
+			
+		//true/false로 반환 
+		
+		return dao.apply_phone_check(apply_phone)==1 ? false:true;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/application_detail") // ★ResponseBody<login.jsp
+	public boolean login(String apply_phone, String apply_pw, HttpSession session) {
+				
+		ApplyVO vo = dao.apply_info(apply_phone, apply_pw);
+				
+		return vo == null ? false : true;
+
+	}
+		
+	//화면요청
+	@RequestMapping("/application.apply")
+	public String application( Model model) {
+				
+		return "side/apply/application_check";
+	}
+	
+	
+	@RequestMapping("/delete.apply")
+	public String delete(int apply_num) {
+		dao.delete(apply_num);
+		
+		return "redirect:applyList.apply";
+	}
 	
 	  
-	 @RequestMapping("/detail.apply") 
-	 public String detail (Model model, int apply_num) {
+	@RequestMapping("/detail.apply") 
+	public String detail (String apply_phone, String apply_pw,Model model) {
 	 
-		 ApplyVO vo = dao.apply_info(apply_num);
+		
+		ApplyVO vo = dao.apply_info(apply_phone, apply_pw);
 		 
 		 model.addAttribute("vo",vo);
 		  
-		  
-	  return "apply/detail"; 
+	 return "apply/detail"; 
 	  
-	 }
+	}
 	 
-	
-	@RequestMapping("/insert.apply")
-	
+	/*
+	@RequestMapping(value="/insert.apply", produces="text/html; charset=utf-8")	
 	public String insert( String recruit_num,RecruitVO recruit 
 			,Model model ,ApplyVO vo, MultipartFile file, HttpServletRequest request) {
 		
-		// 첨부파일이 있는 경우
 		if (!file.isEmpty()) {
 			vo.setFile_name(file.getOriginalFilename());
 			vo.setFile_path(fileUpload("apply", file, request));
 		}
-		//★★★recruit_num <받아서 보내줘야됨
-		//dao.apply_info(recruit_num);
-		//vo.setRecruit_num(recruit.getRecruit_num());
-		//model.addAttribute("vo",dao.apply_insert(vo));
+		
+		StringBuffer msg = new StringBuffer();
 		dao.apply_insert(vo);
-		int apply_num = dao.currval();		
-		return "redirect:detail.apply?apply_num=" + apply_num;
+		if(dao.apply_insert(vo)==1) {
+			msg.append("alert('회원가입을 축하합니다^^'); location='")
+			 .append( request.getContextPath() ).append("'");			
+		}else {
+			msg.append("alert('회원가입에 실패했습니다ㅠㅠ'); history.go(-1);");
+
+		}
+			
+		msg.append("</script>");
+		
+		
+		
+		return msg.toString();
 		//return "redirect:applyList.apply";
 	}
 	
 	
 	@RequestMapping("/fillout.apply")
-	public String fillout(String recruit_num, 
-			ApplyVO vo, RecruitVO recruit, Model model) {
+	public String fillout(String recruit_num,String recruit_title, 
+			 Model model) {
 		
 		
 		//vo.setRecruit_num(recruit.get)
-		
+		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
+		//model.addAttribute("recruit",recruit);
 		model.addAttribute("recruit",recruit);
-		
-		//model.addAttribute("vo", dao.apply_info(recruit_num));
 		
 		return "apply/fillout";
 	}
 	
-	
+	*/
 	@RequestMapping("/applyList.apply")
 	public String recruitList(Model model, @RequestParam(defaultValue="all") String employee_pattern) {
 		//사원조회
@@ -143,4 +187,48 @@ public class ApplyController {
 					file.delete();
 			}
 		}
+		
+		
+		
+	
+		 
+		  @RequestMapping("/insert.apply")	
+	public String insert( String recruit_num,RecruitVO recruit 
+			,Model model ,ApplyVO vo, MultipartFile file, HttpServletRequest request) {
+		
+		// 첨부파일이 있는 경우
+		if (!file.isEmpty()) {
+			vo.setFile_name(file.getOriginalFilename());
+			vo.setFile_path(fileUpload("apply", file, request));
+		}
+		//★★★recruit_num <받아서 보내줘야됨
+		//dao.apply_info(recruit_num);
+		//vo.setRecruit_num(recruit.getRecruit_num());
+		//model.addAttribute("vo",dao.apply_insert(vo));
+		
+		dao.apply_insert(vo);
+		//int apply_num = dao.currval();		
+		String apply_phone = vo.getApply_phone();
+		String apply_pw = vo.getApply_pw();
+		
+		return "redirect:detail.apply?apply_phone=" + apply_phone+"&apply_pw="+apply_pw;
+		//return "redirect:applyList.apply";
+	}
+	
+	
+	@RequestMapping("/fillout.apply")
+	public String fillout(String recruit_num,String recruit_title, 
+			 Model model) {
+		
+		
+		//vo.setRecruit_num(recruit.get)
+		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
+		//model.addAttribute("recruit",recruit);
+		model.addAttribute("recruit",recruit);
+		
+		return "apply/fillout";
+	}
+	
+		  
+		 
 }

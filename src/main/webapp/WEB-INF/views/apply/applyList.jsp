@@ -97,7 +97,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 </table>
 </form>
 <div class='btnSet'>
-
+	<a class='btn-fill' href='application.apply'>나의지원서보기</a>
 </div>
 <script>
 function page(no) {
