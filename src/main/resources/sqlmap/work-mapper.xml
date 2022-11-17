@@ -7,7 +7,7 @@
 	<select id="workInfo" resultType="work.WorkVO">
 		SELECT *
 		FROM work
-		where employee_id = '20221015'
+		where employee_id = '20221019'
 
 	</select>
 
@@ -25,14 +25,14 @@
 	<update id="end_work">
 		UPDATE work
 		SET end_work = #{end_work}
-		WHERE employee_id= '20221015'
+		WHERE employee_id= '20221019'
 	</update>
 
 	<!-- 출근 시간 등록 -->
 	<insert id="start_work">
 		insert into work
 		(employee_id, department_id, company_cd,start_work, work_code)
-		values('20221015',10,'1000', #{start_work},'W101')
+		values('20221019',40,'1000', #{start_work},'W101')
 	</insert>
 
 	<!-- 연차사용 내역 -->
@@ -87,8 +87,15 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 	select h.*, c.code_name work_status
 		from holiday_result h left join common_code c
 		on h.work_code = c.code_value
+
 		
 </select>
+<select id="holidayList" resultType="work.HolidayVO">
+select h.* , c.code_name work_status
+ from holiday h left join common_code c
+ on h.work_code = c.code_value
+ where employee_id = '20221015'
 
+</select>
 
 </mapper>

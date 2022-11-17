@@ -106,14 +106,14 @@ body {
 										<i class="bx bx-time-five"></i>
 									</span>
 								</div>
-								<h5 class="font-size-16 mb-0">남은연차</h5>
+								<h5 class="font-size-16 mb-0">연차</h5>
 
 							</div>
 
 							<p class="mb-0" style="margin-left: 10px">${vo.hire_year }년차
 
 							</p>
-							<p class="mb-0" style="margin-left: 10px">연차 갯수 &nbsp;21 / 23</p>
+							<p class="mb-0" style="margin-left: 10px">남은 연차 &nbsp; 21/ 23</p>
 							<h5 class="font-size-15">
 								<span class="float-end">9%</span>
 							</h5>
@@ -253,7 +253,7 @@ body {
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${holiday_submit_list}" var="holE">
+									<c:forEach items="${hoList}" var="holE">
 										<tr>
 											<td><fmt:formatDate value="${holE.holiday_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
