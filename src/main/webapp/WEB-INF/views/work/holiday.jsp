@@ -136,11 +136,18 @@ body{
 									</span>
 								</div>
 								<div class="mt-3">
-									<input id ="holiday_btn" type="date"
+									<input id ="holiday_start_btn" type="date"
 										class="btn btn-light waves-effect" value="휴가 시작일"/><!-- </input> --> 
-									<input id ="holiday_btn" type="date"
+									<input id ="holiday_end_btn" type="date"
 										class="btn btn-light waves-effect" value="휴가 종료일"/><!-- </input> --> 
-									<input id ="holiday_btn" type="button"
+										<c:forEach items= "${code_list}" var ="code">
+											<option ${code_value eq code.code_value ? 'selected' : ''} value="${code.code_value }">
+												${code.name }
+											</option>
+											<%-- <option ${department_id eq d.department_id ? 'selected' : ''} 
+			value='${d.department_id}'>${d.department_name}</option> --%>
+										</c:forEach>
+									<input id ="holiday_submit_btn" type="button"
 										class="btn btn-light waves-effect" value="휴가신청"/><!-- </input> --> 	
 									<!-- 버튼 클릭시 달력뜨게 만들기 -->
 								</div>
@@ -217,10 +224,12 @@ body{
 <script>
 
 
-	const a = document.querySelector('#holiday_btn');
+	const a = document.querySelector('#holiday_start_btn');
+	const b = document.querySelector('#holiday_end_btn');
+	const c = document.querySelector('#holiday_submit_btn');
 
 	a.onclick = function() {
-		$('#holiday_btn').datepicker({
+		$('#holiday_start_btn').datepicker({
 			lang:'ko',
 			dateFormat: 'yy-mm-dd',
 			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
@@ -229,6 +238,37 @@ body{
 	        dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
 		});
 
+	}
+	b.onclick = function() {
+		$('#holiday_end_btn').datepicker({
+			lang:'ko',
+			dateFormat: 'yy-mm-dd',
+			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
+	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
+	        dayNamesMin: ['일','월','화','수','목','금','토'], 
+	        dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
+		});
+
+	}
+	
+	if($('#holiday_start_btn').val() != null && $('#holiday_end_btn').val() != null){
+		
+	c.onclick = function() {
+		$.ajax({
+			url: 'holiday_submit',
+			data :{
+				holiday_start_work : $('#holiday_start_btn').val(),
+				holiday_end_work : $('#holiday_end_btn').val()
+			}, success : function(response){
+				console.log(response)	
+				alert('휴가 신청되었습니다')
+			}
+			
+		});
+
+		}
+	}else {
+		alert('휴가 시작일을 지정해주세요')
 	}
 
 </script>

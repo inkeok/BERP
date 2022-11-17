@@ -55,10 +55,18 @@ where e.employee_id = '20221015'
 
 </select>
 
+
+<select id="codeList" resultType="work.CommonCodeVO">
+	select code_name 
+	from common_code
+	where code_title = 'W'
+
+</select> 
+
 <!-- 관리자일 경우 부서별 선택 출근정보 출력  -->
 
 
-<!-- 근무 구분 코드에 휴가로 입력할 경우 출근, 퇴근시간 0 으로 하고 근무상태에 휴가 로 출력 -->
+
 
 
 
