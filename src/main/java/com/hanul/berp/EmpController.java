@@ -129,6 +129,15 @@ public class EmpController {
 		return new Gson().toJson(list);
 
 	}
+	
+	@ResponseBody @RequestMapping(value="/andDepartmentList.hr", produces="text/html; charset=utf-8")
+	public String andDepartmentList() {
+		
+		List<DepartmentVO> list = dao.andEmp_depatment_list();
+		
+		return new Gson().toJson(list);
+
+	}
 
 	
 	
