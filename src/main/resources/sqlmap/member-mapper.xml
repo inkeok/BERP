@@ -22,7 +22,7 @@ where id = #{id} and pw = #{pw}
 
 <select id='andCheckLogin' resultType="member.MemberVO">
 select id, pw
-from member
+from member 
 
 </select>
 
