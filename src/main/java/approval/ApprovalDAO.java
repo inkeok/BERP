@@ -23,7 +23,8 @@ public class ApprovalDAO {
 	}
 	
 	public List<Ing_tableVO> approvalList(String email) {
-		return sql.selectList("approval.approvalList", email);
+		List<Ing_tableVO> list = sql.selectList("approval.approvalList", email);
+		return list;
 	}
 	
 	public int insertPost(Ing_tableVO vo) {

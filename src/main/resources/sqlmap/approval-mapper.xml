@@ -4,13 +4,15 @@
 
 <!-- 상신함 뷰 -->
 <select id='submitList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by document_date asc) no, i.*, e2.name approver, a.document_status
+select row_number() over(order by document_date asc) no, i.*, 
+e2.name approver, c.code_name c_status, c2.code_name c_position 
 
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id join employees e2
-on i.approver_id = e2.employee_id join document_approval a
-on i.document_check = a.document_check
+on i.approver_id = e2.employee_id join common_code c
+on i.document_check = c.code_value join common_code c2
+on e2.position = c2.code_value
 
 where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
 order by no desc
@@ -28,13 +30,15 @@ order by no desc
 
 <!-- 결재함 뷰 -->
 <select id='approvalList' resultType='approval.Ing_tableVO'>
-select row_number() over(order by document_date asc) no, i.*, e2.name drafter, a.document_status
+select row_number() over(order by document_date asc) no, i.*, 
+e2.name drafter, c.code_name c_status, c2.code_name c_position
 
 from member m join employees e
 on m.email = e.email join ing_table i
 on e.employee_id = i.approver_id join employees e2
-on i.employee_id = e2.employee_id join document_approval a
-on i.document_check = a.document_check
+on i.employee_id = e2.employee_id join common_code c
+on i.document_check = c.code_value join common_code c2
+on e.position = c2.code_value
 
 where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
 order by no desc
@@ -58,22 +62,25 @@ values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR},
 
 <!-- 특정 부서에 소속된 직원 리스트를 찾는다 -->
 <select id='departmentEmployee' resultType='emp.EmpVO'>
-select e.*, d.department_name
+select e.*, d.department_name, c.code_name c_position
 from employees e join departments d
-on e.department_id = d.department_id
+on e.department_id = d.department_id join common_code c
+on e.position = c.code_value
 where d.department_name = #{department_name}
 </select>
 
 <select id='submitListDetail' resultType='approval.Ing_tableVO'>
 select *
 from (
-select row_number() over(order by document_date asc) no, i.*, e2.name approver, a.document_status
+select row_number() over(order by document_date asc) no, i.*, e2.name approver, 
+c.code_name c_status, c2.code_name c_position
 
 from member m join employees e 
 on m.email = e.email join ing_table i
 on e.employee_id = i.employee_id join employees e2
-on i.approver_id = e2.employee_id join document_approval a
-on i.document_check = a.document_check
+on i.approver_id = e2.employee_id join common_code c
+on i.document_check = c.code_value join common_code c2
+on e2.position = c2.code_value
 
 where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
 order by no desc
@@ -109,13 +116,15 @@ where ing_no = #{ing_no}
 select *
 from
 (
-select row_number() over(order by document_date asc) no, i.*, e2.name drafter, a.document_status
+select row_number() over(order by document_date asc) no, i.*, 
+e2.name drafter, c.code_name c_status, c2.code_name c_position
 
 from member m join employees e
 on m.email = e.email join ing_table i
 on e.employee_id = i.approver_id join employees e2
-on i.employee_id = e2.employee_id join document_approval a
-on i.document_check = a.document_check
+on i.employee_id = e2.employee_id join common_code c
+on i.document_check = c.code_value join common_code c2
+on e.position = c2.code_value
 
 where m.email = #{email, jdbcType=VARCHAR} and i.document_submit = 'Y'
 order by no desc

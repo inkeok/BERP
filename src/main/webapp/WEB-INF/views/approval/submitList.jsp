@@ -38,8 +38,8 @@
 	<td>${s.no}</td>
 	<td><a onclick='location="submitListDetail.ap?no=${s.no}&email=${email}"'>${s.document_title}</a></td>
 	<td>${s.document_date}</td>
-	<td>${s.document_status}</td>
-	<td>${s.approver}</td>
+	<td>${s.c_status}</td>
+	<td>${s.c_position} ${s.approver}</td>
 </tr>
 </c:forEach>
 </table>
