@@ -60,18 +60,30 @@ public class EmpDAO {
 		
 		return sql.selectList("emp.empList");
 	}
-	public List<EmpVO> andEmp_department_list(){
+	public List<DepartmentVO> andEmp_department_list(){
 		return sql.selectList("emp.andDepartments");
 	}
 	
-	public List<EmpVO> andEmp_company_list(){
+	public List<CompanyVO> andEmp_company_list(){
 		return sql.selectList("emp.andCompany");
 	}
-	public List<EmpVO> andEmp_position_list(){
+	public List<PositionVO> andEmp_position_list(){
 		return sql.selectList("emp.andPosition");
 	}
 
-	public List<DepartmentVO> andEmp_depatment_list(){
-		return sql.selectList("emp.departments");
+	public List<PatternVO> andEmp_pattern_list(){
+		return sql.selectList("emp.andEmployee_pattern");
+	}
+	public List<EmpVO> andEmp_department_select(int department_id){
+		return sql.selectList("emp.anddepartment_select", department_id);
+	}
+	public List<EmpVO> andEmp_company_select(String company){
+		return sql.selectList("emp.andcompany_select", company);
+	}
+	public List<EmpVO> andEmp_position_select(String position){
+		return sql.selectList("emp.andposition_select", position);
+	}
+	public List<EmpVO> andEmp_pattern_select(String pattern){
+		return sql.selectList("emp.andEmp_pattern_select", pattern);
 	}
 }
