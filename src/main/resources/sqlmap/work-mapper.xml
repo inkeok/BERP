@@ -41,33 +41,42 @@
 	select w.*, c.code_name work_status 
 	from work_result w left join common_code c 
 	on w.work_code = c.code_value
-	where employee_id = '20221015' and work_code ='W102' or work_code ='W103'
+	where employee_id = '20221015' and work_code ='HO101' or work_code ='HO102'
 
 </select>
 
 <!-- 로그인한 아이디의 출근정보만 출력 -->
 
 <select  id="empInfo" resultType="emp.EmpVO">
-select e.*, c.code_name position_name
+<!-- select e.*, c.code_name position_name
 from  employees e left join common_code c
 on e.position = c.code_value 
+where e.employee_id = '20221015' -->
+
+SELECT  e.*, c.code_name position_name, 
+                    TRUNC(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) hire_year
+FROM    employees e left join common_code c
+on e.position = c.code_value 
 where e.employee_id = '20221015'
+
 
 </select>
 
 
 <select id="codeList" resultType="work.CommonCodeVO">
-	select code_name 
+	select * 
 	from common_code
-	where code_title = 'W'
+	where code_title = 'HO'
 
 </select> 
 
-<!-- 관리자일 경우 부서별 선택 출근정보 출력  -->
+<!-- 휴가신청  -->
 
-
-
-
+<insert id="holiday_submit">
+	insert into holiday
+	   (employee_id, department_id, company_cd,work_code,holiday_date, work_date)
+	   values('20221015',10,'1000', #{work_code}, #{holiday_date},${work_date})
+</insert>
 
 
 

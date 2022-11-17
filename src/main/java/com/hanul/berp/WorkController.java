@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import emp.EmpVO;
 import work.CommonCodeVO;
+import work.HolidayVO;
 import work.WorkDAO;
 import work.WorkResultVO;
 import work.WorkVO;
@@ -97,11 +98,12 @@ public class WorkController {
 	
 	@ResponseBody
 	@RequestMapping("/holiday_submit")
-	public String holiday_submit(String holiday_start_work, String holiday_end_work) {
+	public String holiday_submit(HolidayVO vo) {
 		
 		
-		System.out.println(holiday_start_work);
-		System.out.println(holiday_end_work);
+		
+		dao.holiday_submit(vo);
+		
 		
 		System.out.println("ajax submit");
 		
