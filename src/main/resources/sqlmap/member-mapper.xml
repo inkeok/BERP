@@ -45,13 +45,18 @@ where m.id = #{id}
 </select>
 
 
-<!-- 가입처리 -->
-<insert id="insert">
+<!--  회원가입처리 -->
+<insert id="andInsert" >
 insert into member (email, id, pw, name, gender, phone, address)
-values (#{dto.email, jdbcType=VARCHAR}, #{dto.id, jdbcType=VARCHAR}, #{dto.pw, jdbcType=VARCHAR}, 
-	#{dto.name, jdbcType=VARCHAR}, #{dto.gender, jdbcType=VARCHAR}, #{dto.phone, jdbcType=VARCHAR}, 
-	#{dto.address, jdbcType=VARCHAR})
+values (#{email , jdbcType=VARCHAR}, 
+		#{id, jdbcType=VARCHAR}, 
+		#{pw, jdbcType=VARCHAR}, 
+		#{name, jdbcType=VARCHAR}, 
+		#{gender, jdbcType=VARCHAR}, 
+		#{phone, jdbcType=VARCHAR}, 
+		#{address, jdbcType=VARCHAR})
 </insert>
+
 
 
 </mapper>

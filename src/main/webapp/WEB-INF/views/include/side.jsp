@@ -52,8 +52,12 @@
 	margin-top: 35px !important;
 	margin-left: 20px !important;
 }
-
+.nav-img img{
+	width : 40px;
+	height : 40px;
+}
 </style>
+<<<<<<< HEAD
 <div id='sideFix'>
 	<a class="logo mt-15 ml-7" href='<c:url value="/" />'>
 		<img src="imgs/icons/icon-48x48.png" >
@@ -110,3 +114,86 @@
 
 
 </script>
+=======
+<body id="body-pd">
+    <div class="l-navbar" id="navbar">
+        <nav class="nav">
+           	 <div>
+                <div class="nav__brand">
+                <ion-icon name="reorder-three-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                </div>
+                <div class="sidebar-logo">
+                 	<div class="nav-img"><img src="imgs/icons/icon.png" alt="logo" /></div>
+                    <div><a href="/berp" class="nav__logo">YM NetWork</a></div>
+                </div>
+                <div class="nav__list">
+                    <a href="#" class="nav__link active">
+                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">회사정보</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">채용관리</span>
+                    </a>
+
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">인사관리</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+                    <a href="#" class="nav__link">
+                      <ion-icon name="person-circle-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">인사관리</span>
+                    </a>
+                    <div href="#" class="nav__link collapse">
+                       <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">코드관리</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                       <ion-icon name="alarm-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">근태관리</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">코드관리</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="server-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">급여관리</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">업무관리</span>
+                    </a>
+                </div>
+                <a href="/berp" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- IONICONS -->
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+>>>>>>> cdafbb6c238a9c754cb1b159a9f0c948ed948d6e

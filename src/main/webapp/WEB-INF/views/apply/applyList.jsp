@@ -32,7 +32,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 </head>
 <body>
 <h3>채용공고 리스트</h3>
-<form method='post' action='fillout.apply'>
+<form method='post' action='applyList.apply'>
 <div id='list-top' class='w-px1200'>
 	<ul>
 		<li>
@@ -58,7 +58,8 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	</ul>
 </div>
 </form>
-
+<form method='post' action='fillout.apply'>
+<input type='hidden' name='recruit_num' value='${recruit_num}'>
 <!-- 테이블시작 -->
 <table class='w-px1200 tb-list'>
 <colgroup>
@@ -94,8 +95,9 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 </tr>
 </c:forEach>
 </table>
+</form>
 <div class='btnSet'>
-
+	<a class='btn-fill' href='application.apply'>나의지원서보기</a>
 </div>
 <script>
 function page(no) {
