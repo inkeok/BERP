@@ -22,8 +22,12 @@ public class ApprovalDAO {
 		return sql.selectList("approval.lockerList", email);
 	}
 	
-	public List<Ing_tableVO> approvalList(String email) {
-		List<Ing_tableVO> list = sql.selectList("approval.approvalList", email);
+	public List<Ing_tableVO> receiveList(String email) {
+		List<Ing_tableVO> list = sql.selectList("approval.receiveList", email);
+		return list;
+	}
+	public List<Result_tableVO> approvalList(String email) {
+		List<Result_tableVO> list = sql.selectList("approval.approvalList", email);
 		return list;
 	}
 	
@@ -31,6 +35,10 @@ public class ApprovalDAO {
 		return sql.insert("approval.insertPost", vo);
 	}
 	
+	public int insertResult(Ing_tableVO vo) {
+		return sql.insert("approval.insertResult", vo);
+	}
+			
 	public int insertLocker(Ing_tableVO vo) {
 		return sql.insert("approval.insertLocker", vo);
 	}
@@ -56,15 +64,32 @@ public class ApprovalDAO {
 	}
 	
 	//ing_table 목록 중 하나 삭제
-	public int deleteLockerOne(int ing_no) {
-		return sql.delete("approval.deleteLockerOne", ing_no);
+	public int deleteIng(int ing_no) {
+		return sql.delete("approval.deleteIng", ing_no);
 	}
 	
-	public Ing_tableVO approvalListDetail(int no, String email) {
+	public Ing_tableVO receiveListDetail(int no, String email) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("email", email);
 		map.put("no", no+"");
-		return sql.selectOne("approval.approvalListDetail", map);
+		return sql.selectOne("approval.receiveListDetail", map);
 	}
+	
+	//처리 상태 select tag에 쓰일 리스트 read
+	public List<Object> document_checks() {
+		return sql.selectList("approval.document_checks");
+	}
+	
+	public int insertResultEnd(Ing_tableVO vo) {
+		return sql.insert("approval.insertResultEnd", vo);
+	}
+	
+//	public int insertResult(Ing_tableVO vo) {
+//		return sql.insert("approval.insertResult", vo);
+//	}
+	
+//	public int updateIng(Ing_tableVO vo) {
+//		return sql.insert("approval.updateIng", vo);
+//	}
 	
 }

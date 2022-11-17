@@ -1,6 +1,8 @@
 package com.hanul.berp;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +35,13 @@ public class ApprovalController {
 		return "side/approval/lockerList";
 	}
 	
+	//수신함 뷰
+	@RequestMapping("/receiveList.ap")
+	public String receiveList(String email, Model model) {
+		model.addAttribute("receiveList", dao.receiveList(email));
+		model.addAttribute("email", email);
+		return "side/approval/receiveList";
+	}
 	//결재함 뷰
 	@RequestMapping("/approvalList.ap")
 	public String approvalList(String email, Model model) {
@@ -60,7 +69,7 @@ public class ApprovalController {
 	@ResponseBody
 	@RequestMapping(value="/insertPost.ap", produces="text/html; charset=utf8")
 	public String insertPost(Ing_tableVO vo, String email, String url) {
-		if(dao.insertPost(vo)==1) {
+		if(dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('제출했습니다.'); location='")
 				.append(url).append("?email=").append(email).append("'");
@@ -93,15 +102,31 @@ public class ApprovalController {
 		model.addAttribute("document_title", vo.getDocument_title());
 		model.addAttribute("email", email);
 		model.addAttribute("departments", emp_dao.departments());
-		dao.deleteLockerOne(ing_no);
+		dao.deleteIng(ing_no);
 		return "default/approval/lockerListDetail";
 	}
 	
 	//결재함 목록 중 제목 클릭시 상세화면
-	@RequestMapping("/approvalListDetail.ap")
-	public String approvalListDetail(int no, String email, Model model) {
-		model.addAttribute("approvalListDetail", dao.approvalListDetail(no, email));
+	@RequestMapping("/receiveListDetail.ap")
+	public String approvalListDetail(int no, String email, Model model, String document_check) {
+		model.addAttribute("receiveListDetail", dao.receiveListDetail(no, email));
 		model.addAttribute("email", email);
-		return "side/approval/approvalListDetail";
+		model.addAttribute("document_checks", dao.document_checks());
+		model.addAttribute("document_check", document_check);
+		return "side/approval/receiveListDetail";
+	}
+	
+	//수신함에서 처리하면 result_table에 저장
+	@ResponseBody
+	@RequestMapping(value="/insertResultEnd.ap", produces="text/html; charset=utf8")
+	public String insertResultEnd(Ing_tableVO vo, String email, String url, int ing_no){
+		if(dao.insertResultEnd(vo) == 1 && dao.deleteIng(ing_no)==1) {
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('처리 완료.'); location='")
+				.append(url).append("?email=").append(email).append("'");
+			msg.append("</script>");
+			return msg.toString();
+		}
+		return null;
 	}
 }

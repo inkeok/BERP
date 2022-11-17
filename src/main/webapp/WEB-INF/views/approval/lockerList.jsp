@@ -19,7 +19,6 @@
 
 
 <colgroup>
-	<col width='50px'>
 	<col width='150px'>
 	<col width='100px'>
 	<col width='100px'>
@@ -29,7 +28,6 @@
 	<th>번호</th>
 	<th>제목</th>
 	<th>날짜</th>
-	<th></th>
 </tr>
 <c:forEach items='${lockerList}' var='l'>
 <tr>
@@ -39,7 +37,7 @@
 </tr>
 </c:forEach>
 </table>
-
+<a class='sideBtn-empty' onclick='location="post.ap"'>삭제</a>
 </div>
 </body>
 </html>

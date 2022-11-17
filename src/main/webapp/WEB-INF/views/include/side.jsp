@@ -62,68 +62,51 @@
   	<div id='sideNav'>
   		<div class="dropdownSelect">회사정보
 		<div class='dropdownMenu'>
-			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=1"'>상신함</div>
-			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
 
     <div class="dropdownSelect">채용관리
 		<div class='dropdownMenu'>
-			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=1"'>상신함</div>
-			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
 
     <div class="dropdownSelect">인사관리
 		<div class='dropdownMenu'>
-			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=1"'>상신함</div>
-			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
 
     <div class="dropdownSelect">근태관리
 		<div class='dropdownMenu'>
-			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=1"'>상신함</div>
-			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
 
     <div class="dropdownSelect">코드관리
 		<div class='dropdownMenu'>
-			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=1"'>상신함</div>
-			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
 
     <div class="dropdownSelect">급여관리
 		<div class='dropdownMenu'>
-			<div onclick='location="saveList.ap"'>보관함</div>
-			<div onclick='location="submitList.ap?employee_id=1"'>상신함</div>
-			<div onclick='location="approvalList.ap"'>결재함</div>
 		</div>
     </div>
 
     <div class="dropdownSelect">업무관리
-		<div class='dropdownMenu'>
+		
 			<div onclick='location="lockerList.ap?email=${loginInfo.email}"'>보관함</div>
 			<div onclick='location="submitList.ap?email=${loginInfo.email}"'>상신함</div>
+			<div onclick='location="receiveList.ap?email=${loginInfo.email}"'>수신함</div>
 			<div onclick='location="approvalList.ap?email=${loginInfo.email}"'>결재함</div>
+		
+    </div>
+    
+    <div class="dropdownSelect">마이페이지
+		<div class='dropdownMenu'>
 		</div>
     </div>
   	</div>
 	<a id='backFromSide' class="material-symbols-outlined" href='<c:url value="/" />'>undo</a>
 </div>
 <script>
-$( '.dropdownSelect' ).hover(function () {
-	$(this).find('div').slideDown( "slow" );
-});
-$( '.dropdownSelect' ).mouseleave(function () {
-	$(this).find('div').slideUp( "fast" );
-});
+
 
 </script>

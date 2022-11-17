@@ -7,13 +7,19 @@ public class Ing_tableVO {
 	private int no, ing_no, employee_id, department_id, approver_id;
 	private String company_cd, file_name, file_path, document_title, 
 					document_content, document_check, document_status, document_submit,
-					email, approver, drafter, c_status, c_position;
+					email, approver, drafter, c_status, c_position, document_comment;
 	private Date document_date, finish_date;
 	
 	
 	
 	
 	
+	public String getDocument_comment() {
+		return document_comment;
+	}
+	public void setDocument_comment(String document_comment) {
+		this.document_comment = document_comment;
+	}
 	public String getC_status() {
 		return c_status;
 	}
