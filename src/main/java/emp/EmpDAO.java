@@ -71,4 +71,7 @@ public class EmpDAO {
 		return sql.selectList("emp.andPosition");
 	}
 
+	public List<DepartmentVO> andEmp_depatment_list(){
+		return sql.selectList("emp.departments");
+	}
 }
