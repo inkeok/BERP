@@ -4,12 +4,24 @@ public class ApplyVO {
 
 	//RECRUIT_NUM, APPLY_EMAIL, APPLY_NUM, APPLY_NAME, FILE_NAME, FILE_PATH, APPLY_CHECK
 	private String recruit_num, apply_email, apply_name, 
-	file_name, file_path, apply_check, apply_phone;
+	file_name, file_path, apply_check, apply_phone, apply_pw,recruit_title;
 	private int apply_num;
 	
 	
 	
 	
+	public String getRecruit_title() {
+		return recruit_title;
+	}
+	public void setRecruit_title(String recruit_title) {
+		this.recruit_title = recruit_title;
+	}
+	public String getApply_pw() {
+		return apply_pw;
+	}
+	public void setApply_pw(String apply_pw) {
+		this.apply_pw = apply_pw;
+	}
 	public String getApply_phone() {
 		return apply_phone;
 	}
