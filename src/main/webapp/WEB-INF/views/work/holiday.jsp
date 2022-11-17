@@ -149,7 +149,12 @@ body {
 										class="btn btn-light waves-effect" value="휴가 종료일" />
 									<!-- </input> -->
 				
-									<ul>
+									
+									<input id="holiday_submit_btn" type="button"
+										class="btn btn-light waves-effect" value="휴가신청" />
+								</div>
+										<div>
+										<ul>
 										<li><select name='holiday_category' id="category">
 												<c:forEach items="${codeList}" var="code">
 													<option ${code_value eq code.code_value ? 'selected' : ''}
@@ -157,9 +162,7 @@ body {
 												</c:forEach>
 										</select></li>
 									</ul>
-									<input id="holiday_submit_btn" type="button"
-										class="btn btn-light waves-effect" value="휴가신청" />
-								</div>
+									</div>
 							</div>
 						</div>
 					</div>
