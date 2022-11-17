@@ -40,13 +40,13 @@
 		e.employee_pattern, c.code_name employee_pattern_name
 		from employees e
 		left outer join common_code c
-		on e.pattern = c.code_value
+		on e.employee_pattern = c.code_value
 		order by
 		employee_pattern
 	</select>
 
 	<!-- 직급조회 -->
-	<select id="position" resultType="emp.EmpVO">
+	<select id="position" resultType="emp.PositionVO">
 		select e.position, c.code_name
 		position_name
 		from employees e left outer join common_code c
@@ -95,22 +95,64 @@
 	<!-- //////////////////////////////////////////////////////////////////////////////////// -->
 
 	<select id="andDepartments" resultType="emp.DepartmentVO">
-		SELECT department_name
+		SELECT department_id, department_name
 		FROM departments
 		order by department_id
 	</select>
 
-	<select id="andPosition" resultType="emp.EmpVO">
-		select code_name
-		position_name
+	<select id="andPosition" resultType="emp.PositionVO">
+		select code_name position_name, code_value position
 		from common_code
 		where code_title = 'E'
 		order by code_value
 	</select>
 	<select id="andCompany" resultType="emp.CompanyVO">
-		SELECT company_name
-		FROM
-		company
+		SELECT company_cd, company_name
+		FROM company
+	</select>
+	<select id="andEmployee_pattern" resultType="emp.PatternVO">
+		select DISTINCT
+		e.employee_pattern, c.code_name employee_pattern_name
+		from employees e
+		left outer join common_code c
+		on e.employee_pattern = c.code_value
+		order by employee_pattern
+	</select>
+	<select id="anddepartment_select" resultType="emp.EmpVO">
+	select *
+	from employees
+	where department_id = #{department_id}
+	</select>
+	<select id="andcompany_select" resultType="emp.EmpVO">
+	select *
+	from employees
+	where company_cd = #{company}
+	</select>
+	<select id="andposition_select" resultType="emp.EmpVO">
+	select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = cd.code_value
+	where e.position = #{position}
+	</select>
+	<select id="andEmp_pattern_select" resultType="emp.EmpVO">
+	select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = cd.code_value
+	where EMPLOYEE_PATTERN = #{pattern}
 	</select>
 
 </mapper>
