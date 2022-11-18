@@ -106,14 +106,14 @@ body {
 										<i class="bx bx-time-five"></i>
 									</span>
 								</div>
-								<h5 class="font-size-16 mb-0">남은연차</h5>
+								<h5 class="font-size-16 mb-0">연차</h5>
 
 							</div>
 
 							<p class="mb-0" style="margin-left: 10px">${vo.hire_year }년차
 
 							</p>
-							<p class="mb-0" style="margin-left: 10px">연차 갯수 &nbsp;21 / 23</p>
+							<p class="mb-0" style="margin-left: 10px">남은 연차 &nbsp; 21/ 23</p>
 							<h5 class="font-size-15">
 								<span class="float-end">9%</span>
 							</h5>
@@ -149,7 +149,12 @@ body {
 										class="btn btn-light waves-effect" value="휴가 종료일" />
 									<!-- </input> -->
 				
-									<ul>
+									
+									<input id="holiday_submit_btn" type="button"
+										class="btn btn-light waves-effect" value="휴가신청" />
+								</div>
+										<div>
+										<ul>
 										<li><select name='holiday_category' id="category">
 												<c:forEach items="${codeList}" var="code">
 													<option ${code_value eq code.code_value ? 'selected' : ''}
@@ -157,9 +162,7 @@ body {
 												</c:forEach>
 										</select></li>
 									</ul>
-									<input id="holiday_submit_btn" type="button"
-										class="btn btn-light waves-effect" value="휴가신청" />
-								</div>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -190,16 +193,16 @@ body {
 							<table class="table table-sm">
 								<thead>
 									<tr>
-										<th scope="col">일자</th>
+										<th scope="col">휴가일자</th>
 										<th scope="col">출근 시간</th>
 										<th scope="col">퇴근 시간</th>
 										<th scope="col">연차 종류</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${holiday_list}" var="hol">
+									<c:forEach items="${holiday_submit_list}" var="hol">
 										<tr>
-											<td><fmt:formatDate value="${hol.work_date}"
+											<td><fmt:formatDate value="${hol.holiday_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
 											<c:if test="${not empty hol.start_work }">
 												<td>${hol.start_work}</td>
@@ -250,7 +253,7 @@ body {
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${holiday_submit_list}" var="holE">
+									<c:forEach items="${hoList}" var="holE">
 										<tr>
 											<td><fmt:formatDate value="${holE.holiday_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>

@@ -99,6 +99,10 @@ public class WorkController {
 		
 		model.addAttribute("holiday_submit_list",holiday_submit_list);
 		
+		List<HolidayVO> hoList = dao.holidayList();
+		
+		model.addAttribute("hoList", hoList);
+		
 		
 		return "side/work/holiday";
 	}
@@ -114,7 +118,10 @@ public class WorkController {
 		System.out.println(work_code);
 		System.out.println("ajax submit");
 		
+		
 		dao.holiday_submit(vo);
+		
+		
 		return "side/work/holiday";
 	}
 	

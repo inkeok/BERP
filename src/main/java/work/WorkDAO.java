@@ -68,5 +68,8 @@ public class WorkDAO {
 		
 		return sql.selectList("work.holiday_submit_list");
 	}
-	
+	public List<HolidayVO> holidayList(){
+		
+		return sql.selectList("work.holidayList");
+	}
 }

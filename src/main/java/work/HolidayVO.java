@@ -6,8 +6,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class HolidayVO {
 
-	private String employee_id, department_id, company_cd, work_code;
-	 @DateTimeFormat(pattern = "yyyy-MM-dd")private Date  holiday_date,
+	private String employee_id, department_id, company_cd, work_code, work_status;
+	 public String getWork_status() {
+		return work_status;
+	}
+	public void setWork_status(String work_status) {
+		this.work_status = work_status;
+	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd")private Date  holiday_date,
 	work_date;
 	private String  end_holiday, start_holiday;
 	public String getEmployee_id() {
