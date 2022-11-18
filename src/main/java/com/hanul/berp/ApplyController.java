@@ -3,6 +3,7 @@ package com.hanul.berp;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +28,104 @@ import recruit.RecruitVO;
 public class ApplyController {
 
 	@Autowired ApplyDAO dao;
+	
+	@RequestMapping("/pass_check.apply")
+	public String pass_checkList(Model model, @RequestParam(defaultValue="all") String recruit_num) {
+		
+		//지원자 조회
+		List<ApplyVO> applicants;
+		
+		//채용공고 번호 조회
+		List<apply.RecruitVO> recruit_list = dao.recruit_num(recruit_num);
+		
+		
+		if(recruit_num.equalsIgnoreCase("all")) {
+			//전체 지원자 리스트 조회recruits = 
+			applicants = dao.pass_list();
+		}else {
+			//s선택
+			applicants = dao.pass_list(recruit_num);
+		}
+		
+		model.addAttribute("applicants", applicants);
+		model.addAttribute("recruit_list", recruit_list);
+		model.addAttribute("recruit_num", recruit_num);
+		
+		
+		return "apply/pass_check";
+	}
+	
+	@RequestMapping("/applicantList.apply")
+	public String applicantList(Model model, @RequestParam(defaultValue="all") String recruit_num) {
+		
+		//지원자 조회
+		List<ApplyVO> applicants;
+		
+		//채용공고 번호 조회
+		List<apply.RecruitVO> recruit_list = dao.recruit_num(recruit_num);
+		
+		
+		if(recruit_num.equalsIgnoreCase("all")) {
+			//전체 지원자 리스트 조회recruits = 
+			applicants = dao.applicant_list();
+		}else {
+			//s선택
+			applicants = dao.applicant_list(recruit_num);
+		}
+		
+		model.addAttribute("applicants", applicants);
+		model.addAttribute("recruit_list", recruit_list);
+		model.addAttribute("recruit_num", recruit_num);
+		
+		
+		return "apply/applicantList";
+	}
+	
+	
+	@RequestMapping("/update.apply")
+	public String update (ApplyVO vo ,String file_name, MultipartFile file, 
+			HttpServletRequest request, int apply_num) throws Exception {
+		
+		ApplyVO apply = dao.apply_info(vo.getApply_num());
+		
+		if( file.isEmpty() ) {
+			//첨부파일이 없는 경우
+			if( file_name.isEmpty() ) {							
+				attachedFile_delete(apply.getFile_path(), request);
+				
+			}else {
+				//파일명이 있는 경우
+				//원래 첨부파일이 있었고, 그 파일을 그대로 사용하는 경우
+				vo.setFile_name(apply.getFile_name());
+				vo.setFile_path(apply.getFile_path());
+				
+			}
+			
+		}else {
+			//첨부파일이 있는 경우
+			vo.setFile_name( file.getOriginalFilename() );
+			vo.setFile_path( fileUpload("apply", file, request) );	
+			
+			//원래 첨부파일이 있었다면 물리적파일을 삭제
+			attachedFile_delete( apply.getFile_path(), request );
+		}
+		
+		
+		dao.apply_update(vo);
+		
+		
+		return "redirect:detail.apply?apply_num=" +apply_num;
+		
+	}
+	
+	@RequestMapping("/modify.apply")
+	public String modify_apply(int apply_num, Model model) {
+		ApplyVO vo = dao.apply_info(apply_num);
+		model.addAttribute("vo",vo);
+		
+		
+		return "apply/modify";
+	}
 
 	@ResponseBody @RequestMapping("/phone_check")
 	public boolean id_check(String apply_phone) {
@@ -41,11 +140,14 @@ public class ApplyController {
 	
 	@ResponseBody
 	@RequestMapping("/application_detail") // ★ResponseBody<login.jsp
-	public boolean login(String apply_phone, String apply_pw, HttpSession session) {
+	public Object login(String apply_phone, String apply_pw, HttpSession session) {
 				
 		ApplyVO vo = dao.apply_info(apply_phone, apply_pw);
 				
-		return vo == null ? false : true;
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("apply_num", vo.getApply_num());
+				map.put("exist", vo == null ? false : true);
+		return map;
 
 	}
 		
@@ -66,10 +168,10 @@ public class ApplyController {
 	
 	  
 	@RequestMapping("/detail.apply") 
-	public String detail (String apply_phone, String apply_pw,Model model) {
+	public String detail (int apply_num,Model model) {
 	 
 		
-		ApplyVO vo = dao.apply_info(apply_phone, apply_pw);
+		ApplyVO vo = dao.apply_info(apply_num);
 		 
 		 model.addAttribute("vo",vo);
 		  
