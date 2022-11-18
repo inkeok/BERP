@@ -150,10 +150,10 @@ li:before {
 						</a>
 						<div class="side-content">
 							<ul class="hidden list2">
-							<div onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</div>
-				<div onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</div>
-				<div onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</div>
-				<div onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</div>
+								<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</li>
+								<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
+								<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
+								<li onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
 							</ul>
 						</div>
 					</div>

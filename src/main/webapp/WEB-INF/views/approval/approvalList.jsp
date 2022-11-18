@@ -6,26 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
-#approvalListTable{
-	margin: 10px 0;
-}
+
 </style>
 </head>
 <body>
-<div class='centerFrame'>
-<h1>결재함</h1>
-<table id='approvalListTable'>
-
+<h2>결재함</h2>
+<table id='width90' class="table table-striped table-hover w-px1600">
 
 <colgroup>
-	<col width='50px'>
-	<col width='50px'>
+	<col width='80px'>
+	<col width='300px'>
+	<col width='150px'>
 	<col width='150px'>
 	<col width='100px'>
-	<col width='100px'>
-	<col width='100px'>
-	<col width='100px'>
+	<col width='150px'>
+	<col width='150px'>
+	<col>
 </colgroup>
 
 <tr>
@@ -36,8 +34,7 @@
 	<th>상태</th>
 	<th>결재자</th>
 	<th>결재일</th>
-	<th>코멘트</th>
-	
+	<th>비고</th>
 </tr>
 <c:forEach items='${approvalList}' var='a'>
 <tr>
@@ -52,6 +49,5 @@
 </tr>
 </c:forEach>
 </table>
-</div>
 </body>
 </html>

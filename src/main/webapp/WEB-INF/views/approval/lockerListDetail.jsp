@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
-#postForm{
-	margin: 10px 0;
-}
 </style>
 </head>
 <body>
@@ -36,24 +34,28 @@
 	</select>
 	
 	
-	<table id='postTable'>
+	<table class='table' style='margin-top: 10px'>
+	<colgroup>
+	<col width='100px'>
+	<col>
+	</colgroup>
 		<tr><th>제목</th>
 			<td><input type='text' id='document_title' name='document_title' value='${document_title}'></td>
 		</tr>
 		<tr><th>내용</th>
 			<td><textarea id='textarea' name='document_content'>${document_content}</textarea></td>
 		</tr>
-		<tr><th height='30px'>첨부파일</th>
-			<td>
+		<tr><th>첨부파일</th>
+			<td style='text-align: left'>
 				<input type="file" id='file' name='file'>
 			</td>
 		</tr>
 	</table>
 </form>
-<div id='postBtn'>
-<a class='sideBtn-fill' id='postSubmit'>Submit</a>
-<a class='sideBtn-empty' id='postCancel'>Cancel</a>
 </div>
+<div id='btnFix'>
+<a class='btn-empty' id='postSubmit'>Submit</a>
+<a class='btn-empty' id='postCancel'>Cancel</a>
 </div>
 <script>
 document.querySelector('#postSubmit').onclick = function(){

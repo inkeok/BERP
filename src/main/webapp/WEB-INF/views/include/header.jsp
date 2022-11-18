@@ -87,30 +87,10 @@ body {
 				<c:if test="${not empty loginInfo}">
 				<span>${loginInfo.name} 님</span>
 				<button class="frontBtn-empty" onclick='location="logout.mem"'>로그아웃</button>
-				
-				<div onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</div>
-				<div onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</div>
-				<div onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</div>
-				<div onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</div>
 				</c:if>
-				<c:if test='${loginInfo.join_check eq "Y"}'>
 				<li><div></div><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
 				login
 				</span></li>
-				</c:if>
 			</div>
-		</div>
-
-		<div id='nav-sign'>
-		
-			<c:if test="${not empty loginInfo}">
-				<span>${loginInfo.name} 님</span>
-				<button class="btn btn-light" onclick='location="logout.mem"'>로그아웃</button>
-			</c:if>
-			<c:if test='${loginInfo.join_check eq "Y"}'>
-				<li><span id='sideIndex' class="material-symbols-outlined"
-					onclick='location="sideIndex"'> login </span></li>
-			</c:if>
-			
 		</div>
 </header>

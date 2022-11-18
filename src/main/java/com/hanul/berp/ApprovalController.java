@@ -61,7 +61,7 @@ public class ApprovalController {
 		
 		model.addAttribute("departments", emp_dao.departments());
 		model.addAttribute("department_name", department_name);
-		return "default/approval/post";
+		return "side/approval/post";
 	}
 	
 	//상신함 저장
@@ -102,7 +102,7 @@ public class ApprovalController {
 		model.addAttribute("employee_id", employee_id);
 		model.addAttribute("departments", emp_dao.departments());
 		dao.deleteIng(ing_no);
-		return "default/approval/lockerListDetail";
+		return "side/approval/lockerListDetail";
 	}
 	
 	//수신함 목록 중 제목 클릭시 상세화면
