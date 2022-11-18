@@ -118,7 +118,10 @@ public class WorkController {
 		System.out.println(work_code);
 		System.out.println("ajax submit");
 		
+		
 		dao.holiday_submit(vo);
+		
+		
 		return "side/work/holiday";
 	}
 	

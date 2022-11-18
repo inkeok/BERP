@@ -193,16 +193,16 @@ body {
 							<table class="table table-sm">
 								<thead>
 									<tr>
-										<th scope="col">일자</th>
+										<th scope="col">휴가일자</th>
 										<th scope="col">출근 시간</th>
 										<th scope="col">퇴근 시간</th>
 										<th scope="col">연차 종류</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${holiday_list}" var="hol">
+									<c:forEach items="${holiday_submit_list}" var="hol">
 										<tr>
-											<td><fmt:formatDate value="${hol.work_date}"
+											<td><fmt:formatDate value="${hol.holiday_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
 											<c:if test="${not empty hol.start_work }">
 												<td>${hol.start_work}</td>
