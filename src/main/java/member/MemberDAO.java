@@ -40,7 +40,7 @@ public class MemberDAO {
 	}
 	
 	public List<AndLoginMemberVO> andLogin(String id) {
-		return sql.selectList("member.andLogin", id);
+		return sql.selectList("member.andLogin", Integer.parseInt(id));
 	}
 
 	public int andInsert(JoinDTO dto_temp) {
