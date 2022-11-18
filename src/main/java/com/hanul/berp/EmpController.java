@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+
 import emp.CompanyVO;
 import emp.DepartmentVO;
+import emp.EmpAndInsertDTO;
 import emp.EmpDAO;
 import emp.EmpVO;
 import emp.PatternVO;
@@ -174,7 +176,14 @@ public class EmpController {
 		return new Gson().toJson(list);
 
 	}
-	
+	@ResponseBody @RequestMapping(value="/andModifyEmployee.hr", produces="text/html; charset=utf-8")
+	public String andModifyEmployee(String dto) {
+		EmpAndInsertDTO vo = new Gson().fromJson(dto, EmpAndInsertDTO.class);
+		
+		
+		return dao.andEmp_modify(vo)+"";
+
+	}
 	
 	
 	

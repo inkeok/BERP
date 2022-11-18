@@ -86,4 +86,7 @@ public class EmpDAO {
 	public List<EmpVO> andEmp_pattern_select(String pattern){
 		return sql.selectList("emp.andEmp_pattern_select", pattern);
 	}
+	public int andEmp_modify(EmpAndInsertDTO dto) {
+		return sql.update("emp.andModify", dto);
+	}
 }

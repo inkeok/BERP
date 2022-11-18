@@ -154,5 +154,10 @@
 		on e.employee_pattern = cd.code_value
 	where EMPLOYEE_PATTERN = #{pattern}
 	</select>
+	<update id="andModify">
+		update employees set  company_cd = #{company_cd , jdbcType=VARCHAR},
+		position = #{position , jdbcType=VARCHAR}, admin = #{admin , jdbcType=VARCHAR},  employee_pattern = #{employee_pattern , jdbcType=VARCHAR}
+		Where employee_id = #{employee_id}
+	</update>
 
 </mapper>
