@@ -89,4 +89,8 @@ public class EmpDAO {
 	public int andEmp_modify(EmpAndInsertDTO dto) {
 		return sql.update("emp.andModify", dto);
 	}
+	
+	public int and_emp_insert(EmpAndInsertDTO dto) {
+		return sql.insert("emp.andEmpInsert",dto);
+	}
 }

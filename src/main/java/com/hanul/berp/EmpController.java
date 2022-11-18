@@ -185,6 +185,14 @@ public class EmpController {
 
 	}
 	
+	@ResponseBody @RequestMapping(value="/andInsertEmployee.hr", produces="text/html; charset=utf-8")
+	public String andInsertEmployee(String dto) {
+		EmpAndInsertDTO vo = new Gson().fromJson(dto, EmpAndInsertDTO.class);
+		
+		
+		return dao.and_emp_insert(vo)+"";
+
+	}
 	
 	
 	

@@ -155,9 +155,14 @@
 	where EMPLOYEE_PATTERN = #{pattern}
 	</select>
 	<update id="andModify">
-		update employees set  company_cd = #{company_cd , jdbcType=VARCHAR},
+		update employees set department_id = #{department_id}, company_cd = #{company_cd , jdbcType=VARCHAR},
 		position = #{position , jdbcType=VARCHAR}, admin = #{admin , jdbcType=VARCHAR},  employee_pattern = #{employee_pattern , jdbcType=VARCHAR}
 		Where employee_id = #{employee_id}
 	</update>
+	<insert id="andEmpInsert">
+	  insert into employees (department_id, company_cd, name, email, phone, admin, position, employee_pattern)
+        VALUES (#{department_id},#{company_cd , jdbcType=VARCHAR},#{name , jdbcType=VARCHAR},#{email , jdbcType=VARCHAR},#{phone , jdbcType=VARCHAR},#{admin , jdbcType=VARCHAR},#{position , jdbcType=VARCHAR},#{employee_pattern , jdbcType=VARCHAR})
+	</insert>
+	
 
 </mapper>
