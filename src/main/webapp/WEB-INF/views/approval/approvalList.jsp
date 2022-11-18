@@ -42,7 +42,7 @@
 <c:forEach items='${approvalList}' var='a'>
 <tr>
 	<td>${a.no}</td>
-	<td><a onclick='location="approvalListDetail.ap?no=${a.no}&email=${email}"'>${a.document_title}</a></td>
+	<td><a onclick='location="approvalListDetail.ap?no=${a.no}&employee_id=${employee_id}"'>${a.document_title}</a></td>
 	<td>${a.drafter_position} ${a.drafter}</td>
 	<td>${a.document_date}</td>
 	<td>${a.c_status}</td>

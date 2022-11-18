@@ -3,8 +3,6 @@ package com.hanul.berp;
 
 
 import java.util.List;
-import java.util.ArrayList;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,10 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import com.google.gson.Gson;
 
-
+import emp.EmpVO;
 import member.AndLoginMemberVO;
 import member.JoinDTO;
 import member.MemberDAO;
@@ -25,7 +22,6 @@ import member.MemberVO;
 
 @Controller
 public class MemberController {
-
 	@Autowired private MemberDAO dao;
 	
 	@RequestMapping("/join.mem")
@@ -66,8 +62,8 @@ public class MemberController {
 	//check id and pw for login
 	@ResponseBody
 	@RequestMapping("/checkLogin.mem")
-	public boolean checkLogin(String id, String pw, HttpSession session) {
-		MemberVO vo = dao.checkLogin(id, pw);
+	public boolean checkLogin(int employee_id, String pw, HttpSession session) {
+		EmpVO vo = dao.checkLogin(employee_id, pw);
 		session.setAttribute("loginInfo", vo);
 		return vo == null ? false : true;
 	}

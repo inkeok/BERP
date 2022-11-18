@@ -12,7 +12,7 @@
 <%-- <form id='resultForm' action='insertResult.ap?email=${loginInfo.email}&url=receiveList.ap'> --%>
 <form id='resultForm' action='insertResultEnd.ap'>
 
-<input type='hidden' name='email' value='${loginInfo.email}'>
+<%-- <input type='hidden' name='employee_id' value='${loginInfo.employee_id}'> --%>
 <input type='hidden' name='url' value='receiveList.ap'>
 
 <input type='hidden' name='ing_no' value='${receiveListDetail.ing_no}'>
@@ -63,7 +63,7 @@
 	</table>
 </form>
 	<a class='sideBtn-empty' id='resultInsert'>저장</a>
-	<a href='receiveList.ap?email=${loginInfo.email}'>뒤로가기</a>
+	<a href='receiveList.ap?employee_id=${loginInfo.employee_id}'>뒤로가기</a>
 	
 </div>
 <script>

@@ -39,7 +39,7 @@
 <c:forEach items='${receiveList}' var='a'>
 <tr>
 	<td>${a.no}</td>
-	<td><a onclick='location="receiveListDetail.ap?no=${a.no}&email=${email}"'>${a.document_title}</a></td>
+	<td><a onclick='location="receiveListDetail.ap?no=${a.no}&employee_id=${employee_id}"'>${a.document_title}</a></td>
 	<td>${a.document_date}</td>
 	<td>${a.c_status}</td>
 	<td>${a.c_position} ${a.drafter}</td>

@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class='centerFrame'>
-<form id='postForm' method='post' action='insertPost.ap?email=${loginInfo.email}&url=submitList.ap' enctype='multipart/form-data'>
+<form id='postForm' method='post' action='insertPost.ap?employee_id=${loginInfo.employee_id}&url=submitList.ap' enctype='multipart/form-data'>
 	<input type='hidden' name='employee_id' value='${loginInfo.employee_id}'>
 	<input type='hidden' name='department_id' value='${loginInfo.department_id}'>
 	<input type='hidden' name='company_cd' value='${loginInfo.company_cd}'>
@@ -73,10 +73,10 @@ document.querySelector('#postSubmit').onclick = function(){
 //취소 버튼 선택 시 
 $('#postCancel').click(function(){
 	if(confirm('임시보관함에 저장할까요?')){
-		$('#postForm').attr('action', 'insertLocker.ap?email=${loginInfo.email}');
+		$('#postForm').attr('action', 'insertLocker.ap?email=${loginInfo.employee_id}');
 		$('#postForm').submit();
 	}else{
-		location = 'submitList.ap?email=${loginInfo.email}'
+		location = 'lockerList.ap?employee_id=${loginInfo.employee_id}'
 	}
 })
 

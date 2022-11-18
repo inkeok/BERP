@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-<style>
 
+<style>
 #nav {
 	display: flex;
 	justify-content: center;
@@ -60,48 +58,20 @@ body {
 	max-width: 100%;
 	height: 800px;
 }
-
-.btn-fill {
-  transition: 0.3s;
-}
-
-.btn-fill:hover {
-  background: transparent;
-  box-shadow: inset 0 0 0 36px var(--btn-bg);
-}
+#fix{
+	background-color: black;
+	width: 20%;
+	height: 20%;;
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	}
 </style>
 
 <header>
 	<!-- 		로고 -->
-	<div id="nav">
-		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
-			alt="logo" src="imgs/logo.png"></a>
-		<div class="mt-3">
-			<label id='nav-mouse'>
-
-			<ul id="nav-top">
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">회사정보</a></li>
-				<li><a href="#">채용안내</a></li>
-				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">${loginInfo.join_check }</a></li>
-			</ul>
-			
-			<ul id='nav-menu'>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">회사정보</a></li>
-				<li><a href="#">채용안내</a></li>
-				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">고객센터</a></li>
-			</ul>
-			</label>
-			
-				
-				
-			<div id='nav-sign'>
-
+	
+		
 				<c:if test="${empty loginInfo}">
 				<button class="frontBtn-fill" onclick='location="login.mem"'>로그인</button>
 				<button class="frontBtn-empty" onclick='location="join.mem"'>회원가입</button>
@@ -110,43 +80,11 @@ body {
 				<c:if test="${not empty loginInfo}">
 				<span>${loginInfo.name} 님</span>
 				<button class="frontBtn-empty" onclick='location="logout.mem"'>로그아웃</button>
+				
+				<div onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</div>
+				<div onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</div>
+				<div onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</div>
+				<div onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</div>
 				</c:if>
-				<c:if test='${loginInfo.join_check eq "Y"}'>
-				<li><div></div><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
-				login
-				</span></li>
-				</c:if>
-
-			</div>
-
-		</div>
-
-		<div id='nav-sign'>
-			
-			<c:if test="${empty loginInfo}">
-			<button class="btn btn-primary btn-ghost btn-fill" onclick='location="login.mem"'>로그인</button>
-<!-- 			<button class="btn btn-primary btn-ghost btn-through" onclick='location="login.mem"'>Through</button> -->
-<!-- 				<button class="btn btn-light" onclick='location="login.mem"'>로그인</button> -->
-				<button class="btn btn-light" onclick='location="join.mem"'>회원가입</button>
-			</c:if>
-
-			<c:if test="${not empty loginInfo}">
-				<span>${loginInfo.name} 님</span>
-				<button class="btn btn-light" onclick='location="logout.mem"'>로그아웃</button>
-			</c:if>
-			<c:if test='${loginInfo.join_check eq "Y"}'>
-				<li><span id='sideIndex' class="material-symbols-outlined"
-					onclick='location="sideIndex"'> login </span></li>
-			</c:if>
-			
-		</div>
-	</div>
+<div id='fix'><a href='<c:url value="/" />'><img src='imgs/hanul.logo.png'></a></div>
 </header>
-<script>
-	// 	$('#nav-mouse').hover(function() {
-	// 		$('#nav-menu').show();
-	// 	});
-	// 	$('#nav-mouse').mouseleave(function() {
-	// 		$('#nav-menu').hide();
-	// 	});
-</script>

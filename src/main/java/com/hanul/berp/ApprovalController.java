@@ -1,7 +1,6 @@
 package com.hanul.berp;
 
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,41 +20,41 @@ public class ApprovalController {
 	
 	//상신함 뷰
 	@RequestMapping("/submitList.ap")
-	public String submitList(String email, Model model) {
-		model.addAttribute("submitList", dao.submitList(email));
-		model.addAttribute("email", email);
+	public String submitList(int employee_id, Model model) {
+		model.addAttribute("submitList", dao.submitList(employee_id));
+		model.addAttribute("employee_id", employee_id);
 		return "side/approval/submitList";
 	}
 	
 	//보관함 뷰
 	@RequestMapping("/lockerList.ap")
-	public String lockerList(String email, Model model) {
-		model.addAttribute("lockerList", dao.lockerList(email));
-		model.addAttribute("email", email);
+	public String lockerList(int employee_id, Model model) {
+		model.addAttribute("lockerList", dao.lockerList(employee_id));
+		model.addAttribute("employee_id", employee_id);
 		return "side/approval/lockerList";
 	}
 	
 	//수신함 뷰
 	@RequestMapping("/receiveList.ap")
-	public String receiveList(String email, Model model) {
-		model.addAttribute("receiveList", dao.receiveList(email));
-		model.addAttribute("email", email);
+	public String receiveList(int employee_id, Model model) {
+		model.addAttribute("receiveList", dao.receiveList(employee_id));
+		model.addAttribute("employee_id", employee_id);
 		return "side/approval/receiveList";
 	}
 	//결재함 뷰
 	@RequestMapping("/approvalList.ap")
-	public String approvalList(String email, Model model) {
-		model.addAttribute("approvalList", dao.approvalList(email));
-		model.addAttribute("email", email);
+	public String approvalList(int employee_id, Model model) {
+		model.addAttribute("approvalList", dao.approvalList(employee_id));
+		model.addAttribute("employee_id", employee_id);
 		return "side/approval/approvalList";
 	}
 	
 	@RequestMapping("/post.ap")
-	public String post(Model model, Ing_tableVO vo, String email,
+	public String post(Model model, Ing_tableVO vo, int employee_id,
 			@RequestParam(defaultValue = "부서") String department_name) {
 
 		if(department_name != "부서") 
-			model.addAttribute("departmentEmployee", dao.departmentEmployee(department_name));
+			model.addAttribute("departmentEmployee", dao.departmentEmployee(department_name, employee_id));
 		
 		model.addAttribute("document_title", vo.getDocument_title());
 		model.addAttribute("document_content", vo.getDocument_content());
@@ -68,11 +67,11 @@ public class ApprovalController {
 	//상신함 저장
 	@ResponseBody
 	@RequestMapping(value="/insertPost.ap", produces="text/html; charset=utf8")
-	public String insertPost(Ing_tableVO vo, String email, String url) {
+	public String insertPost(Ing_tableVO vo, int employee_id, String url) {
 		if(dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('제출했습니다.'); location='")
-				.append(url).append("?email=").append(email).append("'");
+				.append(url).append("?employee_id=").append(employee_id).append("'");
 			msg.append("</script>");
 			return msg.toString();
 		}
@@ -81,36 +80,36 @@ public class ApprovalController {
 	
 	//임시보관함 저장
 	@RequestMapping("/insertLocker.ap")
-	public String insertLocker(Ing_tableVO vo, String email) {
+	public String insertLocker(Ing_tableVO vo, int employee_id) {
 		dao.insertLocker(vo);
-		return "redirect:lockerList.ap?email="+email;
+		return "redirect:lockerList.ap?employee_id="+employee_id;
 	}
 	
 	//상신함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/submitListDetail.ap")
-	public String submitListDetail(int no, String email, Model model) {
-		model.addAttribute("submitListDetail", dao.submitListDetail(no, email));
-		model.addAttribute("email", email);
+	public String submitListDetail(int no, int employee_id, Model model) {
+		model.addAttribute("submitListDetail", dao.submitListDetail(no, employee_id));
+		model.addAttribute("employee_id", employee_id);
 		return "side/approval/submitListDetail";
 	}
 	
 	//보관함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/lockerListDetail.ap")
-	public String lockerListDetail(Model model, String email, int no, int ing_no) {
-		Ing_tableVO vo = dao.lockerListDetail(no, email);
+	public String lockerListDetail(Model model, int employee_id, int no, int ing_no) {
+		Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
 		model.addAttribute("document_content", vo.getDocument_content());
 		model.addAttribute("document_title", vo.getDocument_title());
-		model.addAttribute("email", email);
+		model.addAttribute("employee_id", employee_id);
 		model.addAttribute("departments", emp_dao.departments());
 		dao.deleteIng(ing_no);
 		return "default/approval/lockerListDetail";
 	}
 	
-	//결재함 목록 중 제목 클릭시 상세화면
+	//수신함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/receiveListDetail.ap")
-	public String approvalListDetail(int no, String email, Model model, String document_check) {
-		model.addAttribute("receiveListDetail", dao.receiveListDetail(no, email));
-		model.addAttribute("email", email);
+	public String approvalListDetail(int no, int employee_id, Model model, String document_check) {
+		model.addAttribute("receiveListDetail", dao.receiveListDetail(no, employee_id));
+		model.addAttribute("employee_id", employee_id);
 		model.addAttribute("document_checks", dao.document_checks());
 		model.addAttribute("document_check", document_check);
 		return "side/approval/receiveListDetail";
@@ -119,14 +118,37 @@ public class ApprovalController {
 	//수신함에서 처리하면 result_table에 저장
 	@ResponseBody
 	@RequestMapping(value="/insertResultEnd.ap", produces="text/html; charset=utf8")
-	public String insertResultEnd(Ing_tableVO vo, String email, String url, int ing_no){
+	public String insertResultEnd(Ing_tableVO vo, String url, int ing_no){
 		if(dao.insertResultEnd(vo) == 1 && dao.deleteIng(ing_no)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('처리 완료.'); location='")
-				.append(url).append("?email=").append(email).append("'");
+				.append(url).append("?employee_id=").append(vo.getApprover_id()).append("'");
 			msg.append("</script>");
 			return msg.toString();
 		}
 		return null;
 	}
+	
+	//결재함 목록 중 제목 클릭시 상세화면
+	@RequestMapping("/approvalListDetail.ap")
+	public String approvalListDetail(int no, int employee_id, Model model) {
+		model.addAttribute("approvalListDetail", dao.approvalListDetail(no, employee_id));
+		model.addAttribute("employee_id", employee_id);
+		return "side/approval/approvalListDetail";
+	}
+	
+	//보관함 리스트에서 체크박스로 다수 게시글 한꺼번에 삭제
+	@ResponseBody
+	@RequestMapping(value="/deleteLocker.ap", produces="text/html; charset=utf8")
+	public String deleteLocker(String[] deleteCheck, String url, int employee_id) {
+		if(dao.deleteLocker(deleteCheck) == deleteCheck.length) {		//보낸 int[]를 편하게 String[]으로 받는다
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('삭제 완료.'); location='")
+				.append(url).append("?employee_id=").append(employee_id).append("'");
+			msg.append("</script>");
+ 			return msg.toString();
+		}
+		return null;		
+	}
+	
 }

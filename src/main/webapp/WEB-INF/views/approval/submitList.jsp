@@ -41,7 +41,7 @@
 <c:forEach items='${submitList}' var='s'>
 <tr>
 	<td>${s.no}</td>
-	<td><a onclick='location="submitListDetail.ap?no=${s.no}&email=${email}"'>${s.document_title}</a></td>
+	<td><a onclick='location="submitListDetail.ap?no=${s.no}&employee_id=${employee_id}"'>${s.document_title}</a></td>
 	<td>${s.document_date}</td>
 	<td>${s.c_status}</td>
 	<td>${s.c_position} ${s.approver}</td>
@@ -50,7 +50,7 @@
 </tr>
 </c:forEach>
 </table>
-<a class='sideBtn-fill' onclick='location="post.ap"'>작성</a>
+<a class='sideBtn-fill' onclick='location="post.ap?employee_id=${employee_id}"'>작성</a>
 </div>
 </body>
 </html>
