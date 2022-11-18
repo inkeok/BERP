@@ -6,13 +6,38 @@ public class Ing_tableVO {
 	
 	private int no, ing_no, employee_id, department_id, approver_id;
 	private String company_cd, file_name, file_path, document_title, 
-					document_content, document_check, document_submit,
-					email, approver, drafter;
+					document_content, document_check, document_status, document_submit,
+					email, approver, drafter, c_status, c_position, document_comment;
 	private Date document_date, finish_date;
 	
 	
 	
 	
+	
+	public String getDocument_comment() {
+		return document_comment;
+	}
+	public void setDocument_comment(String document_comment) {
+		this.document_comment = document_comment;
+	}
+	public String getC_status() {
+		return c_status;
+	}
+	public void setC_status(String c_status) {
+		this.c_status = c_status;
+	}
+	public String getC_position() {
+		return c_position;
+	}
+	public void setC_position(String c_position) {
+		this.c_position = c_position;
+	}
+	public String getDocument_status() {
+		return document_status;
+	}
+	public void setDocument_status(String document_status) {
+		this.document_status = document_status;
+	}
 	public String getDrafter() {
 		return drafter;
 	}

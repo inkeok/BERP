@@ -1,5 +1,6 @@
 package emp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,12 +46,51 @@ public class EmpDAO {
 	
 	
 	public void employee_update(EmpVO vo) {
-		sql.update("emp,update", vo);
+		sql.update("emp.update", vo);
 	}
 
 	public void employee_delete(int employee_id) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////
 
+	public List<EmpVO> andEmp_list() {
+		
+		return sql.selectList("emp.empList");
+	}
+	public List<DepartmentVO> andEmp_department_list(){
+		return sql.selectList("emp.andDepartments");
+	}
+	
+	public List<CompanyVO> andEmp_company_list(){
+		return sql.selectList("emp.andCompany");
+	}
+	public List<PositionVO> andEmp_position_list(){
+		return sql.selectList("emp.andPosition");
+	}
+
+	public List<PatternVO> andEmp_pattern_list(){
+		return sql.selectList("emp.andEmployee_pattern");
+	}
+	public List<EmpVO> andEmp_department_select(int department_id){
+		return sql.selectList("emp.anddepartment_select", department_id);
+	}
+	public List<EmpVO> andEmp_company_select(String company){
+		return sql.selectList("emp.andcompany_select", company);
+	}
+	public List<EmpVO> andEmp_position_select(String position){
+		return sql.selectList("emp.andposition_select", position);
+	}
+	public List<EmpVO> andEmp_pattern_select(String pattern){
+		return sql.selectList("emp.andEmp_pattern_select", pattern);
+	}
+	public int andEmp_modify(EmpAndInsertDTO dto) {
+		return sql.update("emp.andModify", dto);
+	}
+	
+	public int and_emp_insert(EmpAndInsertDTO dto) {
+		return sql.insert("emp.andEmpInsert",dto);
+	}
 }

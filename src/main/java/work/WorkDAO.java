@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hanul.berp.EmpController;
 
+import emp.DepartmentVO;
 import emp.EmpVO;
 
 
@@ -50,6 +51,39 @@ public class WorkDAO {
 		
 		return sql.selectList("work.list");
 	}
+	public List<WorkResultVO> holiday_list() {
+		
+		return sql.selectList("work.holiday_list");
+	}
 
+	public List<CommonCodeVO> codeList(){
+		
+		return sql.selectList("work.codeList");
+	}
+	public int holiday_submit(HolidayVO vo){
+		
+		return sql.insert("holiday_submit", vo);
+	}
 	
+	public List<HolidayResultVO> holiday_submit_list(){
+		
+		return sql.selectList("work.holiday_submit_list");
+	}
+	public List<HolidayVO> holidayList(){
+		
+		return sql.selectList("work.holidayList");
+	}
+	
+	public List<DepartmentVO> departments(){
+		
+		return sql.selectList("work.departments");
+	}
+	
+	public List<WorkResultVO> department_work(int department_id) {
+		return sql.selectList("work.department_work", department_id);
+	}
+	
+	public List<WorkResultVO> department_work() {
+		return sql.selectList("work.department_work");
+	}
 }

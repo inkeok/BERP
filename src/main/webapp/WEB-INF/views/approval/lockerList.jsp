@@ -19,7 +19,6 @@
 
 
 <colgroup>
-	<col width='50px'>
 	<col width='150px'>
 	<col width='100px'>
 	<col width='100px'>
@@ -33,12 +32,12 @@
 <c:forEach items='${lockerList}' var='l'>
 <tr>
 	<td>${l.no}</td>
-	<td>${l.document_title}</td>
+	<td><a onclick='location="lockerListDetail.ap?no=${l.no}&email=${email}&ing_no=${l.ing_no}"'>${l.document_title}</a></td>
 	<td>${l.document_date}</td>
 </tr>
 </c:forEach>
 </table>
-
+<a class='sideBtn-empty' onclick='location="post.ap"'>삭제</a>
 </div>
 </body>
 </html>

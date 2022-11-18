@@ -1,5 +1,6 @@
 package com.hanul.berp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,10 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
+
 import emp.CompanyVO;
 import emp.DepartmentVO;
+import emp.EmpAndInsertDTO;
 import emp.EmpDAO;
 import emp.EmpVO;
+import emp.PatternVO;
+import emp.PositionVO;
 
 @Controller
 public class EmpController {
@@ -93,10 +100,99 @@ public class EmpController {
 	}
 	
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	
+	@ResponseBody @RequestMapping(value="/andEmpList.hr", produces="text/html; charset=utf-8")
+	public String andEmpList() {
+		
+		List<EmpVO> list = dao.andEmp_list();
+		
+		return new Gson().toJson(list);
+	}
+	@ResponseBody @RequestMapping(value="/andEmpListDepartment.hr", produces="text/html; charset=utf-8")
+	public String andEmpDepartmentList() {
+		
+		List<DepartmentVO> list = dao.andEmp_department_list();
+		
+		return new Gson().toJson(list);
 
+	}
+	@ResponseBody @RequestMapping(value="/andEmpListCompany.hr", produces="text/html; charset=utf-8")
+	public String andEmpCompanyList() {
+		
+		List<CompanyVO> list = dao.andEmp_company_list();
+		
+		return new Gson().toJson(list);
+
+	}
+	@ResponseBody @RequestMapping(value="/andEmpListPosition.hr", produces="text/html; charset=utf-8")
+	public String andEmpPositionList() {
+		
+		List<PositionVO> list = dao.andEmp_position_list();
+		
+		return new Gson().toJson(list);
+
+	}
+
+
+	@ResponseBody @RequestMapping(value="/andEmpListPattern.hr", produces="text/html; charset=utf-8")
+	public String andEmpPatternList() {
+		
+		List<PatternVO> list = dao.andEmp_pattern_list();
+		
+		return new Gson().toJson(list);
+
+	}
 	
+	@ResponseBody @RequestMapping(value="/andEmpDepartmentSelect.hr", produces="text/html; charset=utf-8")
+	public String andEmpDepartmentSelect(int department_id) {
+		
+		List<EmpVO> list = dao.andEmp_department_select(department_id);
+		
+		return new Gson().toJson(list);
+
+	}
+	@ResponseBody @RequestMapping(value="/andEmpCompanySelect.hr", produces="text/html; charset=utf-8")
+	public String andEmpCompanySelect(String company) {
+		
+		List<EmpVO> list = dao.andEmp_company_select(company);
+		
+		return new Gson().toJson(list);
+
+	}
+	@ResponseBody @RequestMapping(value="/andEmpPositionSelect.hr", produces="text/html; charset=utf-8")
+	public String andEmpPositionSelect(String position) {
+		
+		List<EmpVO> list = dao.andEmp_position_select(position);
+		
+		return new Gson().toJson(list);
+
+	}
+	@ResponseBody @RequestMapping(value="/andEmpPatternSelect.hr", produces="text/html; charset=utf-8")
+	public String andEmpPatternSelect(String pattern) {
+		
+		List<EmpVO> list = dao.andEmp_pattern_select(pattern);
+		
+		return new Gson().toJson(list);
+
+	}
+	@ResponseBody @RequestMapping(value="/andModifyEmployee.hr", produces="text/html; charset=utf-8")
+	public String andModifyEmployee(String dto) {
+		EmpAndInsertDTO vo = new Gson().fromJson(dto, EmpAndInsertDTO.class);
+		
+		
+		return dao.andEmp_modify(vo)+"";
+
+	}
+	
+	@ResponseBody @RequestMapping(value="/andInsertEmployee.hr", produces="text/html; charset=utf-8")
+	public String andInsertEmployee(String dto) {
+		EmpAndInsertDTO vo = new Gson().fromJson(dto, EmpAndInsertDTO.class);
+		
+		
+		return dao.and_emp_insert(vo)+"";
+
+	}
 	
 	
 	

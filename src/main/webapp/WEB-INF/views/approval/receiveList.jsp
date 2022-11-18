@@ -7,22 +7,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#submitListTable{
+#receiveListTable{
 	margin: 10px 0;
 }
 </style>
 </head>
 <body>
 <div class='centerFrame'>
-<h1>상신함</h1>
-<table id='submitListTable'>
+<h1>수신함</h1>
+<table id='receiveListTable'>
 
 
 <colgroup>
 	<col width='50px'>
 	<col width='50px'>
 	<col width='150px'>
-	<col width='100px'>
 	<col width='100px'>
 	<col width='100px'>
 	<col width='100px'>
@@ -34,23 +33,20 @@
 	<th>제목</th>
 	<th>제출일</th>
 	<th>상태</th>
-	<th>결재자</th>
-	<th>결재일</th>
+	<th>기안자</th>
 	<th>비고</th>
 </tr>
-<c:forEach items='${submitList}' var='s'>
+<c:forEach items='${receiveList}' var='a'>
 <tr>
-	<td>${s.no}</td>
-	<td><a onclick='location="submitListDetail.ap?no=${s.no}&email=${email}"'>${s.document_title}</a></td>
-	<td>${s.document_date}</td>
-	<td>${s.c_status}</td>
-	<td>${s.c_position} ${s.approver}</td>
-	<td>${s.finish_date}</td>
-	<td>${s.document_comment}</td>
+	<td>${a.no}</td>
+	<td><a onclick='location="receiveListDetail.ap?no=${a.no}&email=${email}"'>${a.document_title}</a></td>
+	<td>${a.document_date}</td>
+	<td>${a.c_status}</td>
+	<td>${a.c_position} ${a.drafter}</td>
+	<td>${a.document_comment}</td>
 </tr>
 </c:forEach>
 </table>
-<a class='sideBtn-fill' onclick='location="post.ap"'>작성</a>
 </div>
 </body>
 </html>

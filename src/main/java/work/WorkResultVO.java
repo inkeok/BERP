@@ -3,7 +3,13 @@ package work;
 import java.util.Date;
 
 public class WorkResultVO {
-	private String company_cd, excess_date, work_code ,work_status; 
+	private String company_cd, excess_date, work_code ,work_status, department_name; 
+	public String getDepartment_name() {
+		return department_name;
+	}
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
 	private int employee_id, department_id;
 	private String start_work, end_work;
 	private Date work_date;

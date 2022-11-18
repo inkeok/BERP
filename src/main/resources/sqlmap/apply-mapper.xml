@@ -3,14 +3,55 @@
 
 <mapper namespace="apply">
 
+<select id="phone_check" resultType="Integer">
+	select count(apply_phone) from apply_board where apply_phone = #{apply_phone}
+</select>
+
+
+<select id="apply_check" resultType="apply.ApplyVO">
+select * from apply_board
+where apply_phone=#{apply_phone} and apply_pw=#{apply_pw}
+</select>
+
+
+<delete id="delete">
+delete from apply_board where apply_num = #{apply_num}
+</delete>
+
+
+<select id="apply_info" resultType="apply.ApplyVO">
+<!-- select *
+from apply_board 
+where apply_num= #{apply_num} -->
+
+select a.*, r.recruit_title
+from apply_board a, recruit_board r
+where a.recruit_num = r.recruit_num
+and apply_num = #{apply_num}
+
+</select>
+<select id="recruit_info" resultType="apply.RecruitVO">
+<!-- select *
+from apply_board 
+where apply_num= #{apply_num} -->
+
+select *
+from recruit_board
+where recruit_num = #{recruit_num}
+
+</select>
+
+
 <insert id="insert">
 insert into apply_board (
 recruit_num, apply_email, apply_num, 
-apply_name, file_name, file_path, apply_phone
+apply_name, file_name, file_path, apply_phone,apply_pw
 )
 values (
 #{recruit_num} ,#{apply_email, jdbcType=VARCHAR} , seq_apply_num.nextval 
-,#{apply_name} ,#{file_name, jdbcType=VARCHAR} ,#{file_path, jdbcType=VARCHAR} ,#{apply_phone}
+,#{apply_name} ,#{file_name, jdbcType=VARCHAR} ,#{file_path, jdbcType=VARCHAR} 
+,#{apply_phone}, #{apply_pw}
+
 )
 
 <!-- apply_check -->
