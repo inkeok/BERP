@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import emp.EmpVO;
@@ -125,6 +126,28 @@ public class WorkController {
 		return "side/work/holiday";
 	}
 	
+	@RequestMapping("/workList")
+	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id) {
+		
+		List<WorkResultVO> workList = null;// dao.rList();
+//		
+//		model.addAttribute("workList",workList);
+		
+		List<emp.DepartmentVO> departments = dao.departments();
+		
+		model.addAttribute("departments",departments);
+		
+		
+		if( department_id == -1 ) {
+			workList = dao.department_work();
+		}else {			
+			workList = dao.department_work(department_id);
+		}
+		model.addAttribute("department_id", department_id);
+		model.addAttribute("workList",workList);
+		
+		return "side/work/workList";
+	}
 	
 
 }

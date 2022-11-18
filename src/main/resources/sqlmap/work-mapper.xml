@@ -10,9 +10,24 @@
 		where employee_id = '20221015'
 
 	</select>
+	
+	<select id="departments" resultType="emp.DepartmentVO">
+	select * from departments order by department_name
+
+</select>
+<select id="department_work" resultType="work.WorkResultVO">
+select w.*, d.department_name, c.code_name work_status
+ from work_result  w left outer join departments d 
+ on w.department_id = d.department_id left outer join 
+ common_code c 
+ on w.work_code = c.code_value
+ 
+where nvl(w.department_id, 0) = #{department_id}	 
+order by employee_id
+
+</select>
 
 
-	<!-- result table 에 있는 출근 정보 등록 -->
 	<select id="list" resultType="work.WorkResultVO">
 		select w.*, c.code_name work_status
 		from work_result w left join common_code c
