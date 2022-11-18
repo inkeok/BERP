@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hanul.berp.EmpController;
 
+import emp.DepartmentVO;
 import emp.EmpVO;
 
 
@@ -71,5 +72,18 @@ public class WorkDAO {
 	public List<HolidayVO> holidayList(){
 		
 		return sql.selectList("work.holidayList");
+	}
+	
+	public List<DepartmentVO> departments(){
+		
+		return sql.selectList("work.departments");
+	}
+	
+	public List<WorkResultVO> department_work(int department_id) {
+		return sql.selectList("work.department_work", department_id);
+	}
+	
+	public List<WorkResultVO> department_work() {
+		return sql.selectList("work.department_work");
 	}
 }
