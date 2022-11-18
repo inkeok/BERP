@@ -3,9 +3,18 @@ package common;
 import java.sql.Date;
 
 public class CommonVO {
-	private String code_title, code_value, code_used, code_name, code_maker;
+	private String code_title, code_value, code_used, code_name, code_maker, code_maker_name;
 	private Date code_birth;
 
+
+	
+	public String getCode_maker_name() {
+		return code_maker_name;
+	}
+
+	public void setCode_maker_name(String code_maker_name) {
+		this.code_maker_name = code_maker_name;
+	}
 
 	public String getCode_title() {
 		return code_title;

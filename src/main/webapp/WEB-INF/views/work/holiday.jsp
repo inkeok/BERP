@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -114,10 +115,10 @@ body {
 							</p>
 							<p class="mb-0" style="margin-left: 10px">연차 갯수 &nbsp;21 / 23</p>
 							<h5 class="font-size-15">
-								<span class="float-end">11%</span>
+								<span class="float-end">9%</span>
 							</h5>
 							<div class="progress animated-progess progress-md">
-								<div class="progress-bar" role="progressbar" style="width: 11%"
+								<div class="progress-bar" role="progressbar" style="width: 9%"
 									aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 						</div>
@@ -141,10 +142,10 @@ body {
 									</span>
 								</div>
 								<div class="mt-3">
-									<input style="width: 130px" id="holiday_start_btn" type="date" min="<%=new Date()%>"
+									<input style="width: 130px" id="holiday_start_btn" type="date" min="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %>"
 										class="btn btn-light waves-effect" value="휴가 시작일" />
 										 <input
-										style="width: 130px" id="holiday_end_btn" type="date"
+										style="width: 130px" id="holiday_end_btn" type="date" min="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %>"
 										class="btn btn-light waves-effect" value="휴가 종료일" />
 									<!-- </input> -->
 				
@@ -156,12 +157,8 @@ body {
 												</c:forEach>
 										</select></li>
 									</ul>
-						
 									<input id="holiday_submit_btn" type="button"
 										class="btn btn-light waves-effect" value="휴가신청" />
-
-									<!-- </input> -->
-									<!-- 버튼 클릭시 달력뜨게 만들기 -->
 								</div>
 							</div>
 						</div>
@@ -248,8 +245,8 @@ body {
 								<thead>
 									<tr>
 										<th scope="col">휴가 일자</th>
-										<th scope="col">신청 일자</th>
 										<th scope="col">휴가 구분</th>
+										<th scope="col">신청 일자</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -257,9 +254,9 @@ body {
 										<tr>
 											<td><fmt:formatDate value="${holE.holiday_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
+											<td>${holE.work_status}</td>
 											<td><fmt:formatDate value="${holE.work_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
-											<td>${holE.work_status}</td>
 										</tr>
 									</c:forEach>
 								</tbody>

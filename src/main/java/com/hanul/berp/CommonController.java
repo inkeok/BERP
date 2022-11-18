@@ -19,10 +19,10 @@ public class CommonController {
 	@RequestMapping("/common.cd")
 	public String list(Model model, HttpSession session) {
 		
-//		List<CommonVO> list = dao.Common_list();
-//		
-//		model.addAttribute("list", list);
-//		
+		List<CommonVO> commonlist = dao.Common_list();
+		
+		model.addAttribute("list", commonlist);
+		
 		return "side/common/common";
 	}
 	

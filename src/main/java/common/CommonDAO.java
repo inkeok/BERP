@@ -11,6 +11,6 @@ public class CommonDAO {
 	@Autowired private SqlSession sql;
 	
 	public List<CommonVO> Common_list() {
-		return sql.selectList("com.comList");
+		return sql.selectList("com.codelist");
 	}
 }
