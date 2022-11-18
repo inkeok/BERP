@@ -54,7 +54,7 @@
 	margin-left: 65px;
 }
 body {
-	background: url(imgs/0066ff01.jpg) repeat-x;
+	background: url(imgs/2e6ad3.jpg) repeat-x;
 	max-width: 100%;
 	height: 800px;
 }
@@ -70,8 +70,15 @@ body {
 
 <header>
 	<!-- 		로고 -->
-	
-		
+	<div id="nav">
+		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
+			alt="logo" src="imgs/logo.png"></a>
+				<ul>
+					<li><a href="#">프로세스</a></li>
+					<li><a href="#">서비스영역</a></li>
+					<li><a href="#">회사소개</a></li>
+				</ul>
+			<div id='nav-sign'>
 				<c:if test="${empty loginInfo}">
 				<button class="frontBtn-fill" onclick='location="login.mem"'>로그인</button>
 				<button class="frontBtn-empty" onclick='location="join.mem"'>회원가입</button>
@@ -86,5 +93,24 @@ body {
 				<div onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</div>
 				<div onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</div>
 				</c:if>
-<div id='fix'><a href='<c:url value="/" />'><img src='imgs/hanul.logo.png'></a></div>
+				<c:if test='${loginInfo.join_check eq "Y"}'>
+				<li><div></div><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
+				login
+				</span></li>
+				</c:if>
+			</div>
+		</div>
+
+		<div id='nav-sign'>
+		
+			<c:if test="${not empty loginInfo}">
+				<span>${loginInfo.name} 님</span>
+				<button class="btn btn-light" onclick='location="logout.mem"'>로그아웃</button>
+			</c:if>
+			<c:if test='${loginInfo.join_check eq "Y"}'>
+				<li><span id='sideIndex' class="material-symbols-outlined"
+					onclick='location="sideIndex"'> login </span></li>
+			</c:if>
+			
+		</div>
 </header>

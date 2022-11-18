@@ -19,18 +19,17 @@ where employee_id = #{employee_id} and pw = #{pw}
 
 <!-- 안드로이드 /////////////////////////////////////////////////////////////////////////////// -->
 
-<select id='andCheckLogin' resultType="member.MemberVO">
-select id, pw
-from member 
+<select id='andCheckLogin' resultType="member.AndLoginMemberVO">
+select employee_id, pw
+from employees 
 
 </select>
 
 
 
 <select id='andLogin' resultType="member.AndLoginMemberVO">
-select  m.*, e.EMPLOYEE_ID, e.DEPARTMENT_ID, e.COMPANY_CD,  e.ADMIN, e.HIRE_DATE, e.POSITION, e.EMPLOYEE_PATTERN, d.department_name, c.company_name, cd.code_name position_name,  ccd.code_name employee_pattern_name
-from employees e left outer join member m
-on e.email = m.email 
+select  e.*, d.department_name, c.company_name, cd.code_name position_name,  ccd.code_name employee_pattern_name
+from employees e 
 left outer join departments d
 on e.department_id = d.department_id
 left outer join company c
@@ -39,22 +38,12 @@ left outer join common_code cd
 on e.position = cd.code_value
 left outer join common_code ccd
 on e.employee_pattern = cd.code_value
-where m.id = #{id}
+where e.employee_id = #{id}
 
 </select>
 
 
-<!--  회원가입처리 -->
-<insert id="andInsert" >
-insert into member (email, id, pw, name, gender, phone, address)
-values (#{email , jdbcType=VARCHAR}, 
-		#{id, jdbcType=VARCHAR}, 
-		#{pw, jdbcType=VARCHAR}, 
-		#{name, jdbcType=VARCHAR}, 
-		#{gender, jdbcType=VARCHAR}, 
-		#{phone, jdbcType=VARCHAR}, 
-		#{address, jdbcType=VARCHAR})
-</insert>
+
 
 
 

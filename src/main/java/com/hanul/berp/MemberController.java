@@ -80,10 +80,10 @@ public class MemberController {
 	@ResponseBody @RequestMapping(value="/andLogin.mem", produces="text/html; charset=utf-8")
 	public String AndLoginCheck(String id, String pw) {
 		Boolean info = false;
-		List<MemberVO> memList = dao.andCheckLogin();
-		System.out.println(memList.get(0).getId());
+		List<AndLoginMemberVO> memList = dao.andCheckLogin();
+		System.out.println(memList.get(0).getEmployee_id());
 		for (int i = 0; i < memList.size(); i++) {
-			if(memList.get(i).getId().equals(id) && memList.get(i).getPw().equals(pw)) {
+			if(memList.get(i).getEmployee_id() == Integer.parseInt(id) && memList.get(i).getPw().equals(pw)) {
 				info = true;
 				break;
 			}else {
@@ -104,18 +104,6 @@ public class MemberController {
 				
 	}
 	
-	@ResponseBody @RequestMapping("/andJoin.mem")
-
-	public String andJoin(String dto) {
 	
-		System.out.println(dto);
-		//JoinDTO dto = new JoinDTO(email, id, password, name, gender, phone, addr);
-		
-		JoinDTO dto_temp = new Gson().fromJson(dto, JoinDTO.class);
-		int i = dao.andInsert(dto_temp);
-		
-		return i+"";
-
-	}
 
 }

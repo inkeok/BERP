@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import emp.EmpVO;
@@ -99,6 +100,10 @@ public class WorkController {
 		
 		model.addAttribute("holiday_submit_list",holiday_submit_list);
 		
+		List<HolidayVO> hoList = dao.holidayList();
+		
+		model.addAttribute("hoList", hoList);
+		
 		
 		return "side/work/holiday";
 	}
@@ -114,10 +119,45 @@ public class WorkController {
 		System.out.println(work_code);
 		System.out.println("ajax submit");
 		
+		
 		dao.holiday_submit(vo);
+		
+		
 		return "side/work/holiday";
 	}
 	
+	@RequestMapping("listWork")
+	public String listWork() {
+		
+		dao.rList();
+		
+		return "side/work/workList";
+	}
+	
+	@RequestMapping("/workList")
+	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id) {
+		
+		List<WorkResultVO> workList = null;// dao.rList();
+//		
+//		model.addAttribute("workList",workList);
+		
+		List<emp.DepartmentVO> departments = dao.departments();
+		
+		
+		
+		dao.rList();
+		
+		if( department_id == -1 ) {
+			workList = dao.department_work();
+		}else {			
+			workList = dao.department_work(department_id);
+		}
+		model.addAttribute("departments",departments);
+		model.addAttribute("department_id", department_id);
+		model.addAttribute("workList",workList);
+		
+		return "side/work/workList";
+	}
 	
 
 }

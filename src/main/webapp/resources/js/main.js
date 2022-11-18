@@ -36,3 +36,11 @@ for (i = 0; i < linkCollapse.length; i++) {
 		rotate.classList.toggle('rotate')
 	});
 }
+
+$('.side-menu').on('click', function (){
+  $('.list').toggleClass('hidden');
+});
+
+$('.side-menu2').on('click', function (){
+  $('.list2').toggleClass('hidden');
+});

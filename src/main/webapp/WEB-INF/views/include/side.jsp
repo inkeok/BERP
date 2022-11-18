@@ -3,58 +3,104 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="css/common.css?<%=new java.util.Date()%>" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <style>
+li a{
+	color : #ffffff;
+	font-size: 14px;
+}
+body {
+    position: relative;
+    margin: 0;
+    padding: 2rem 0 0 3.75rem;
+/*     font-family: var(--body-font); */
+/*     font-size: var(--normal-font-size); */
+    transition: .5s;
+}
 
-#sideFix{
-    background: linear-gradient(#7cb3f4, #fff);
-	width: 200px;
-	height: 100%;
-	position: fixed;
-	top: 0;
+li:before, .side-menu:before {
+	font-family: "Material Icons" !important;
+	font-feature-settings: "liga";
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+*, :before, :after {
+	box-sizing: border-box;
+	transition: 0.3s;
+}
+
+ul {
+	background: #12192c;
+	padding: 1.5em;
+	margin: 0;
+	margin-top: 1em;
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+	position: absolute;
+	top: 100%;
 	left: 0;
-	font-weight: bold;
-	font-style: italic;
-	color: #717ca2;
-}
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
-}
-#backFromSide{
-	position: fixed;
-	bottom: 3%;
-	left: 2%;
-	color: #717ca2;
+	font: 400 18px Roboto;
+	white-space: nowrap;
+	cursor: default;
+	animation-name: side-right;
+    animation-duration: 500ms;
+    animation-direction: normal;
+	z-index: 101;
+	
 }
 
-.dropdownMenu > div{
+@keyframes side-right {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+ul.hidden {
+	margin-top: 0.7em;
 	display: none;
+	opacity: 0;
 }
 
-.dropdownSelect{
-	margin-bottom: 25px;
-	font-size: 18px;
+ul:before {
+	content: "";
+	width: 0.75em;
+	height: 0.75em;
+	background: inherit;
+	position: absolute;
+	left: -0.375em;
+	left: calc(56px/ 2 - .375em);
+	transform: rotate(45deg);
+}
+
+li {
+	list-style: none;
+	padding: 0.5em;
+	margin: 0;
+	position: relative;
 	cursor: pointer;
 }
 
-.dropdownMenu > div{
-	cursor: pointer;
-	margin-left: 10px;
-	font-size: 16px;
-	color: #e8e7e3;
+li:before {
+	position: absolute;
+	top: calc(5% + 8px);
+	left: 8px;
 }
-#sideNav{
-	margin-top: 35px !important;
-	margin-left: 20px !important;
-}
-.nav-img img{
-	width : 40px;
-	height : 40px;
+
+.nav-img img {
+	width: 40px;
+	height: 40px;
 }
 #fix{
 	background-color: black;
@@ -66,10 +112,91 @@
 	}
 
 </style>
-<div onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</div>
+
+<body id="body-pd">
+	<div class="l-navbar" id="navbar">
+		<nav class="nav">
+			<div>
+				<div class="nav__brand">
+					<ion-icon name="reorder-three-outline" class="nav__toggle"
+						id="nav-toggle"></ion-icon>
+				</div>
+				<div class="sidebar-logo">
+					<div class="nav-img">
+						<img src="imgs/icons/icon.png" alt="logo" />
+					</div>
+					<div>
+						<a href="/berp" class="nav__logo">YM NetWork</a>
+					</div>
+				</div>
+				<div class="nav__list">
+					<div class="side-menu">
+						<a href="#" class="nav__link active"> <ion-icon
+								name="home-outline" class="nav__icon"></ion-icon> <span
+							class="nav_name">회사정보</span>
+						</a>
+<!-- 						<div class="side-content"> -->
+<!-- 							<ul class="hidden list"> -->
+<!-- 								<li><a href="#">aaaaaa</a></li> -->
+<!-- 								<li><a href="#">ssssss</a></li> -->
+<!-- 								<li><a href="#">dddddd</a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+					</div>
+					<div class="side-menu side-menu2">
+						<a href="#" class="nav__link"> <ion-icon
+								name="settings-outline" class="nav__icon"></ion-icon> <span
+							class="nav_name">업무관리</span>
+						</a>
+						<div class="side-content">
+							<ul class="hidden list2">
+							<div onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</div>
 				<div onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</div>
 				<div onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</div>
 				<div onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</div>
-<div id='fix'><a href='<c:url value="/" />'><img src='imgs/hanul.logo.png'></a></div>
+							</ul>
+						</div>
+					</div>
+
+					<a href="#" class="nav__link"> <ion-icon
+							name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
+						class="nav_name">채용관리</span>
+					</a>
+					 <a href="#" class="nav__link"> <ion-icon
+							name="person-circle-outline" class="nav__icon"></ion-icon> <span
+						class="nav_name">인사관리</span>
+					</a>
+					<!-- 					<div href="#" class="nav__link collapse"> -->
+					<!-- 						<ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon> -->
+					<!-- 						<span class="nav_name">코드관리</span> -->
+
+					<!-- 						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon> -->
+					<!-- 					</div> -->
+
+					<a href="#" class="nav__link"> <ion-icon name="alarm-outline"
+							class="nav__icon"></ion-icon> <span class="nav_name">근태관리</span>
+					</a>
+					 <a href="#" class="nav__link"> <ion-icon
+							name="settings-outline" class="nav__icon"></ion-icon> <span
+						class="nav_name">코드관리</span>
+					</a>
+					 <a href="#" class="nav__link"> <ion-icon name="server-outline"
+							class="nav__icon"></ion-icon> <span class="nav_name">급여관리</span>
+					</a>
+
+				</div>
+				<a href="/berp" class="nav__link"> <ion-icon
+						name="log-out-outline" class="nav__icon"></ion-icon> <span
+					class="nav_name">Log out</span>
+				</a>
+			</div>
+		</nav>
+	</div>
+
+
+	<!-- IONICONS -->
+	<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+	<!-- JS -->
+	<script src="js/main.js"></script>
 </body>
 </html>

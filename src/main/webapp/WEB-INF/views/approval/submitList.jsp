@@ -7,22 +7,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 #submitListTable{
 	margin: 10px 0;
+}
+
+.w-px1600 {
+	width: 1600px;
+}
+.center{
+	text-align: center;
+}
+.hrlist{
+ margin : 3rem 0 ;
+ 
 }
 </style>
 </head>
 <body>
 <div class='centerFrame'>
-<h1>상신함</h1>
-<table id='submitListTable'>
 
+<h1 class="center">상신함</h1>
+
+<table class="table table-striped table-hover w-px1600">
 
 <colgroup>
 	<col width='50px'>
 	<col width='50px'>
 	<col width='150px'>
-	<col width='100px'>
 	<col width='100px'>
 	<col width='100px'>
 	<col width='100px'>
