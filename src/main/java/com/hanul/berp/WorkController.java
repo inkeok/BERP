@@ -126,6 +126,14 @@ public class WorkController {
 		return "side/work/holiday";
 	}
 	
+	@RequestMapping("listWork")
+	public String listWork() {
+		
+		dao.rList();
+		
+		return "side/work/workList";
+	}
+	
 	@RequestMapping("/workList")
 	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id) {
 		
@@ -135,14 +143,16 @@ public class WorkController {
 		
 		List<emp.DepartmentVO> departments = dao.departments();
 		
-		model.addAttribute("departments",departments);
 		
+		
+		dao.rList();
 		
 		if( department_id == -1 ) {
 			workList = dao.department_work();
 		}else {			
 			workList = dao.department_work(department_id);
 		}
+		model.addAttribute("departments",departments);
 		model.addAttribute("department_id", department_id);
 		model.addAttribute("workList",workList);
 		
