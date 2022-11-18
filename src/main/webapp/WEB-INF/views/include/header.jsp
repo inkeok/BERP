@@ -56,7 +56,7 @@
 	margin-left: 65px;
 }
 body {
-	background: url(imgs/0066ff01.jpg) repeat-x;
+	background: url(imgs/2e6ad3.jpg) repeat-x;
 	max-width: 100%;
 	height: 800px;
 }
@@ -76,32 +76,12 @@ body {
 	<div id="nav">
 		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
 			alt="logo" src="imgs/logo.png"></a>
-		<div class="mt-3">
-			<label id='nav-mouse'>
-
-			<ul id="nav-top">
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">회사정보</a></li>
-				<li><a href="#">채용안내</a></li>
-				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">${loginInfo.join_check }</a></li>
-			</ul>
-			
-			<ul id='nav-menu'>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">회사정보</a></li>
-				<li><a href="#">채용안내</a></li>
-				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">고객센터</a></li>
- 				<li><a href="#">고객센터</a></li>
-			</ul>
-			</label>
-			
-				
-				
+				<ul>
+					<li><a href="#">프로세스</a></li>
+					<li><a href="#">서비스영역</a></li>
+					<li><a href="#">회사소개</a></li>
+				</ul>
 			<div id='nav-sign'>
-
 				<c:if test="${empty loginInfo}">
 				<button class="frontBtn-fill" onclick='location="login.mem"'>로그인</button>
 				<button class="frontBtn-empty" onclick='location="join.mem"'>회원가입</button>
@@ -116,20 +96,11 @@ body {
 				login
 				</span></li>
 				</c:if>
-
 			</div>
-
 		</div>
 
 		<div id='nav-sign'>
-			
-			<c:if test="${empty loginInfo}">
-			<button class="btn btn-primary btn-ghost btn-fill" onclick='location="login.mem"'>로그인</button>
-<!-- 			<button class="btn btn-primary btn-ghost btn-through" onclick='location="login.mem"'>Through</button> -->
-<!-- 				<button class="btn btn-light" onclick='location="login.mem"'>로그인</button> -->
-				<button class="btn btn-light" onclick='location="join.mem"'>회원가입</button>
-			</c:if>
-
+		
 			<c:if test="${not empty loginInfo}">
 				<span>${loginInfo.name} 님</span>
 				<button class="btn btn-light" onclick='location="logout.mem"'>로그아웃</button>
