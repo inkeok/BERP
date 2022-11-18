@@ -35,7 +35,7 @@ public class MemberDAO {
 	
 
 	///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
-	public List<MemberVO> andCheckLogin() {
+	public List<AndLoginMemberVO> andCheckLogin() {
 		return sql.selectList("member.andCheckLogin");
 	}
 	
