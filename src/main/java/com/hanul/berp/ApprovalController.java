@@ -34,6 +34,24 @@ public class ApprovalController {
 		return "side/approval/lockerList";
 	}
 	
+	//보관함 디테일에서 취소 시 삭제
+	@ResponseBody
+	@RequestMapping(value="/deleteLockerList.ap",
+				produces="text/html; charset=utf8")
+	public String deleteLockerList(int employee_id, String url, 
+								Model model, int ing_no) {
+		if(dao.deleteIng(ing_no)==1) {
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('삭제했습니다.'); location='")
+				.append(url).append("?employee_id=").append(employee_id).append("'");
+			msg.append("</script>");
+			return msg.toString();
+		}
+		return null;
+	}
+	
+	
+	
 	//수신함 뷰
 	@RequestMapping("/receiveList.ap")
 	public String receiveList(int employee_id, Model model) {
@@ -43,14 +61,26 @@ public class ApprovalController {
 	}
 	//결재함 뷰
 	@RequestMapping("/approvalList.ap")
-	public String approvalList(int employee_id, Model model) {
-		model.addAttribute("approvalList", dao.approvalList(employee_id));
+	public String approvalList(int employee_id, Model model,
+			@RequestParam(defaultValue = "-1")String code_value) {
+		
 		model.addAttribute("employee_id", employee_id);
+		model.addAttribute("documentCheckAll", dao.document_check());
+		model.addAttribute("code_value", code_value);
+		
+		if(code_value.equals("-1")) {
+			model.addAttribute("approvalList", dao.approvalList(employee_id));
+			
+		}else {
+			model.addAttribute("approvalList", dao.approvalList(employee_id, code_value));
+		}
+		
 		return "side/approval/approvalList";
 	}
 	
 	@RequestMapping("/post.ap")
-	public String post(Model model, Ing_tableVO vo, int employee_id,
+	public String post(Model model, Ing_tableVO vo, int employee_id, 
+			@RequestParam(defaultValue = "-1") int ing_no,
 			@RequestParam(defaultValue = "부서") String department_name) {
 
 		if(department_name != "부서") 
@@ -61,14 +91,32 @@ public class ApprovalController {
 		
 		model.addAttribute("departments", emp_dao.departments());
 		model.addAttribute("department_name", department_name);
+		model.addAttribute("ing_no", ing_no);
 		return "side/approval/post";
 	}
 	
 	//상신함 저장
 	@ResponseBody
 	@RequestMapping(value="/insertPost.ap", produces="text/html; charset=utf8")
-	public String insertPost(Ing_tableVO vo, int employee_id, String url) {
+	public String insertPost(Ing_tableVO vo, int employee_id, String url,
+			@RequestParam(defaultValue = "-1") int ing_no) {
+		dao.deleteIng(ing_no);
 		if(dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('제출했습니다.'); location='")
+				.append(url).append("?employee_id=").append(employee_id).append("'");
+			msg.append("</script>");
+			return msg.toString();
+		}
+		
+		return null;
+	}
+	
+	//임시보관함 삭제 후 상신함 저장-결재함 저장
+	@ResponseBody
+	@RequestMapping(value="/deleteInsertSubmit.ap", produces="text/html; charset=utf8")
+	public String deleteInsertSubmit(Ing_tableVO vo, int employee_id, String url, int ing_no) {
+		if(dao.deleteIng(ing_no)==1 && dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('제출했습니다.'); location='")
 				.append(url).append("?employee_id=").append(employee_id).append("'");
@@ -85,6 +133,37 @@ public class ApprovalController {
 		return "redirect:lockerList.ap?employee_id="+employee_id;
 	}
 	
+	//임시보관함 저장
+	@ResponseBody
+	@RequestMapping(value="/deleteInsertLocker.ap", 
+					produces="text/html; charset=utf8")
+	public String deleteInsertLocker(Ing_tableVO vo, String url, 
+					int employee_id, int ing_no) {
+		int a = dao.insertLocker(vo);
+		int b = dao.deleteIng(ing_no);
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('저장했습니다.');").append("location='")
+			.append(url).append("?employee_id=").append(employee_id)
+			.append("<script>");
+			return msg.toString();
+	}
+	
+//	//보관함 디테일에서 취소 시 삭제
+//		@ResponseBody
+//		@RequestMapping(value="/deleteLockerList.ap",
+//					produces="text/html; charset=utf8")
+//		public String deleteLockerList(int employee_id, String url, 
+//									Model model, int ing_no) {
+//			if(dao.deleteIng(ing_no)==1) {
+//				StringBuffer msg = new StringBuffer("<script>");
+//				msg.append("alert('삭제했습니다.'); location='")
+//					.append(url).append("?employee_id=").append(employee_id).append("'");
+//				msg.append("</script>");
+//				return msg.toString();
+//			}
+//			return null;
+//		}
+	
 	//상신함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/submitListDetail.ap")
 	public String submitListDetail(int no, int employee_id, Model model) {
@@ -94,16 +173,37 @@ public class ApprovalController {
 	}
 	
 	//보관함 목록 중 제목 클릭시 상세화면
-	@RequestMapping("/lockerListDetail.ap")
-	public String lockerListDetail(Model model, int employee_id, int no, int ing_no) {
-		Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
-		model.addAttribute("document_content", vo.getDocument_content());
-		model.addAttribute("document_title", vo.getDocument_title());
-		model.addAttribute("employee_id", employee_id);
-		model.addAttribute("departments", emp_dao.departments());
-		dao.deleteIng(ing_no);
-		return "side/approval/lockerListDetail";
-	}
+		@RequestMapping("/lockerListDetail.ap")
+		public String lockerListDetail(Model model, int employee_id, int no, int ing_no) {
+			Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
+			model.addAttribute("document_content", vo.getDocument_content());
+			model.addAttribute("document_title", vo.getDocument_title());
+			model.addAttribute("employee_id", employee_id);
+			model.addAttribute("ing_no", ing_no);
+			model.addAttribute("departments", emp_dao.departments());
+			return "side/approval/lockerListDetail";
+		}
+	
+//	//보관함 목록 중 제목 클릭시 상세화면
+//	@RequestMapping("/lockerListDetail.ap")
+//	public String lockerListDetail(Model model, int employee_id, int no, int ing_no,
+//			@RequestParam(defaultValue = "부서") String department_name ) {
+//		
+//		if(department_name != "부서") 
+//			model.addAttribute("departmentEmployee", dao.departmentEmployee(department_name, employee_id));
+//		
+//		
+//		model.addAttribute("department_name", department_name);
+//		
+//		Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
+//		model.addAttribute("document_content", vo.getDocument_content());
+//		model.addAttribute("document_title", vo.getDocument_title());
+//		model.addAttribute("employee_id", employee_id);
+//		model.addAttribute("departments", emp_dao.departments());
+//		model.addAttribute("ing_no", ing_no);
+//		
+//		return "side/approval/lockerListDetail";
+//	}
 	
 	//수신함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/receiveListDetail.ap")

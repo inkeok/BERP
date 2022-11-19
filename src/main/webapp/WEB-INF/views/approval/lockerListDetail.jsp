@@ -58,7 +58,9 @@
 <a class='btn-empty' id='postCancel'>Cancel</a>
 </div>
 <script>
-document.querySelector('#postSubmit').onclick = function(){
+
+//서브밋 할 때
+$('#postSubmit').click(function(){
 	if( document.querySelector('#document_title').value.toString()<1 ){
 		alert('제목을 입력하세요')
 		return;
@@ -69,22 +71,24 @@ document.querySelector('#postSubmit').onclick = function(){
 		alert('결재자를 선택하세요')
 		return;
 	}
-	document.querySelector('#postForm').submit();	
-}
+	$('#postForm').attr('action', 'deleteInsertSubmit.ap?employee_id=${loginInfo.employee_id}&ing_no=${ing_no}&url=submitList.ap');
+	$('#postForm').submit();
+})
+
 
 //취소 버튼 선택 시 
 $('#postCancel').click(function(){
 	if(confirm('임시보관함에 저장할까요?')){
-		$('#postForm').attr('action', 'insertLocker.ap?email=${loginInfo.employee_id}');
+		$('#postForm').attr('action', 'deleteInsertLocker.ap?employee_id=${loginInfo.employee_id}&ing_no=${ing_no}&url=lockerList.ap');
 		$('#postForm').submit();
 	}else{
-		location = 'lockerList.ap?employee_id=${loginInfo.employee_id}'
+		location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${ing_no}'
 	}
 })
 
 //부서선택 시 그에 맞게 정보를 다시 가져옴
 $('#department_name').change(function(){
-	$('#postForm').attr('action', 'post.ap');
+	$('#postForm').attr('action', 'post.ap?ing_no=${ing_no}');
 	$('#postForm').submit();
 });
 

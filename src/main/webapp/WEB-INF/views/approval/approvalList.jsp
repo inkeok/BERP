@@ -8,12 +8,32 @@
 <title>Insert title here</title>
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
+#resultDiv{
+	position: relative;
+}
 
+#resultSelect{
+	position: relative;
+	top: 0;
+	right:-83%;
+}
 </style>
 </head>
 <body>
 <h2>결재함</h2>
-<table id='width90' class="table table-striped table-hover w-px1600">
+<form id='resultForm' action='approvalList.ap'>
+<input type='hidden' name='employee_id' value='${employee_id }'>
+<div id='resultDiv'>
+<select id='resultSelect' name='code_value'>
+<option value='-1'>전체</option>
+<c:forEach items='${documentCheckAll}' var='dca'>
+<option ${dca.code_value eq code_value ? 'selected' : ''}
+		value='${dca.code_value }'>${dca.code_name}</option>
+</c:forEach>
+</select>
+
+<table id='width90' style='margin-top: 10px' 
+class="table table-striped table-hover w-px1600">
 
 <colgroup>
 	<col width='80px'>
@@ -49,5 +69,12 @@
 </tr>
 </c:forEach>
 </table>
+</div>
+</form>
+<script>
+$('#resultSelect').change(function(){
+	$('#resultForm').submit();
+});
+</script>
 </body>
 </html>

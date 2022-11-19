@@ -26,8 +26,19 @@ public class ApprovalDAO {
 		List<Ing_tableVO> list = sql.selectList("approval.receiveList", employee_id);
 		return list;
 	}
+	
+	//결재함 전체 조회
 	public List<Result_tableVO> approvalList(int employee_id) {
 		List<Result_tableVO> list = sql.selectList("approval.approvalList", employee_id);
+		return list;
+	}
+	
+	//결재함에서 선택된 문서만 조회
+	public List<Result_tableVO> approvalList(int employee_id, String code_value) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("code_value", code_value);
+		map.put("employee_id", employee_id+"");
+		List<Result_tableVO> list = sql.selectList("approval.approvalListPart", map);
 		return list;
 	}
 	
@@ -99,6 +110,10 @@ public class ApprovalDAO {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("checkList", checkList);
 		return sql.delete("approval.deleteLocker", map);
+	}
+	
+	public List<Common_codeVO> document_check() {
+		return sql.selectList("approval.document_check");
 	}
 	
 	

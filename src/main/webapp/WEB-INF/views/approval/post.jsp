@@ -19,6 +19,7 @@
 	<input type='hidden' name='employee_id' value='${loginInfo.employee_id}'>
 	<input type='hidden' name='department_id' value='${loginInfo.department_id}'>
 	<input type='hidden' name='company_cd' value='${loginInfo.company_cd}'>
+	<input type='hidden' name='ing_no' value='${ing_no}'>
 
 	<select id='department_name' name='department_name'>
 	<option value='부서'>부서</option>
@@ -58,7 +59,7 @@
 </div>
 
 <div id='btnFix'>
-<a class='btn-fill' id='postSubmit'>Submit</a>
+<a class='btn-empty' id='postSubmit'>Submit</a>
 <a class='btn-empty' id='postCancel'>Cancel</a>
 </div>
 <script>
@@ -82,7 +83,7 @@ $('#postCancel').click(function(){
 		$('#postForm').attr('action', 'insertLocker.ap?employee_id=${loginInfo.employee_id}');
 		$('#postForm').submit();
 	}else{
-		location = 'submitList.ap?employee_id=${loginInfo.employee_id}'
+		location = 'lockerList.ap?employee_id=${loginInfo.employee_id}'
 	}
 })
 
