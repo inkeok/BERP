@@ -168,7 +168,7 @@ li:before {
 					<!-- 						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon> -->
 					<!-- 					</div> -->
 
-					<a href="#" class="nav__link"> <ion-icon name="alarm-outline"
+					<a href="workList" class="nav__link"> <ion-icon name="alarm-outline"
 							class="nav__icon"></ion-icon> <span class="nav_name">근태관리</span>
 					</a>
 					 <a href="#" class="nav__link"> <ion-icon
