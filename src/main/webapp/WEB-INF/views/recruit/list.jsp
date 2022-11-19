@@ -90,8 +90,8 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 </tr>
 <c:forEach items='${recruitList}' var='vo'>
 <tr>
-<td>${vo.code_name}</td>
-<td>${vo.career}</td>
+<td>${vo.employee_pattern_name}</td>
+<td>${vo.career_name}</td>
 	
 	
 	<td style="text-align:left"><a href="detail.rec?recruit_num=${vo.recruit_num }">

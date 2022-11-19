@@ -7,11 +7,25 @@ public class RecruitVO {
 	private String recruit_num, file_name, file_path, 
 	employee_pattern, recruit_title,recruit_content,
 	 code_value, code_name,recruit_start, recruit_end
-	 ,char_recruit_start, char_recruit_end, salary, company, career, company_name;
+	 ,char_recruit_start, char_recruit_end, salary, company, career, company_name
+	 ,employee_pattern_name, career_name
+	 ;
 	
 	
 	
 	
+	public String getEmployee_pattern_name() {
+		return employee_pattern_name;
+	}
+	public void setEmployee_pattern_name(String employee_pattern_name) {
+		this.employee_pattern_name = employee_pattern_name;
+	}
+	public String getCareer_name() {
+		return career_name;
+	}
+	public void setCareer_name(String career_name) {
+		this.career_name = career_name;
+	}
 	public String getCompany_name() {
 		return company_name;
 	}
