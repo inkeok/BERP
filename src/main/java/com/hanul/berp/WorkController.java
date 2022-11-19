@@ -137,21 +137,21 @@ public class WorkController {
 	@RequestMapping("/workList")
 	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id) {
 		
-		List<WorkResultVO> workList = null;// dao.rList();
+		List<WorkResultVO> workList = null;
 //		
-//		model.addAttribute("workList",workList);
-		
-		List<emp.DepartmentVO> departments = dao.departments();
-		
-		
-		
-		dao.rList();
-		
+		//model.addAttribute("workList",workList);
+
+
+		//dao.rList();
+
+
+
 		if( department_id == -1 ) {
-			workList = dao.department_work();
+			workList = dao.rList();
 		}else {			
 			workList = dao.department_work(department_id);
 		}
+		List<emp.DepartmentVO> departments = dao.departments();
 		model.addAttribute("departments",departments);
 		model.addAttribute("department_id", department_id);
 		model.addAttribute("workList",workList);
