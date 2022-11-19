@@ -13,7 +13,7 @@ td{
 </head>
 <body>
 <!-- <h2 class="center hrlist">코드관리</h2> -->
-<form action="list.cd">
+<form action="common.cd">
 
 <div class="card mb-4">
 	<div class="card-header">                                
@@ -26,7 +26,7 @@ td{
        			<label>
        				<select class="dataTable-selector" name="membercode" onchange='$("form").submit()'>
        				<option value="all">인사전체코드</option>
-						<c:forEach items='${common_code}' var='c'>
+						<c:forEach items='${code_title}' var='c'>
 							<option ${code_title eq c.code_title ? 'selected' : ''} 
 									value='${c.code_title}'>${c.code_title}
 							</option>
@@ -36,7 +36,7 @@ td{
       				
       				<label>
        				<select class="dataTable-selector">
-       				<option value="10" selected="">10</option>
+       				<option value="10">10</option>
        				<option value="15">15</option>
        				<option value="20">20</option>
        				<option value="25">25</option>

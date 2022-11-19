@@ -13,4 +13,8 @@ public class CommonDAO {
 	public List<CommonVO> Common_list() {
 		return sql.selectList("com.codelist");
 	}
+	
+	public List<CommonVO> document_list(String code_title) {
+		return sql.selectList("com.document_list", code_title);
+	}
 }

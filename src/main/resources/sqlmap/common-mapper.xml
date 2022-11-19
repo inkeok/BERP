@@ -10,4 +10,10 @@
 		order by code_title
 	</select>
 	
+	<select id="document_list" resultType="common.CommonVO">
+		select code_title 
+		from common_code 
+		order by code_title
+	</select>
+	
 	</mapper>
