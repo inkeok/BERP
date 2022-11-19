@@ -142,9 +142,14 @@ public class WorkController {
 		//model.addAttribute("workList",workList);
 
 
+
+	
+
+
+
+		
 		//dao.rList();
-
-
+		
 
 		if( department_id == -1 ) {
 			workList = dao.rList();
