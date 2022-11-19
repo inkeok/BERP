@@ -22,16 +22,18 @@ select w.*, d.department_name, c.code_name work_status
  common_code c 
  on w.work_code = c.code_value
  
-where nvl(w.department_id, 0) = #{department_id}	 
+where nvl(w.department_id, 0) = #{department_id}	
+ 
 order by employee_id
 
 </select>
 
 
 	<select id="list" resultType="work.WorkResultVO">
-		select w.*, c.code_name work_status
+		select w.*, c.code_name work_status , d.department_name
 		from work_result w left join common_code c
-		on w.work_code = c.code_value
+		on w.work_code = c.code_value left outer join departments d
+		on w.department_id = d.department_id
 		where w.employee_id = '20221015'
 		order by work_date desc
 	</select>

@@ -104,6 +104,7 @@ li:before {
 }
 </style>
 
+
 <script>
 	
 </script>
@@ -188,9 +189,37 @@ li:before {
 	</div>
 
 
-	<!-- IONICONS -->
-	<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-	<!-- JS -->
-	<script src="js/main.js"></script>
+
+                    <a href="#" class="nav__link">
+                       <ion-icon name="alarm-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">근태관리</span>
+                       
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">코드관리</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="server-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">급여관리</span>
+                    </a>
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">업무관리</span>
+                    </a>
+                </div>
+                <a href="/berp" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- IONICONS -->
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+    <!-- JS -->
+    <script src="js/main.js"></script>
+
 </body>
 </html>
