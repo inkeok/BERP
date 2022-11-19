@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import recruit.CommonCodeVO;
+import recruit.CompanyVO;
 import recruit.RecruitDAO;
 import recruit.RecruitVO;
 
@@ -79,9 +80,14 @@ public class RecruitController {
 	@RequestMapping("/modify.rec")
 	public String modify(Model model, String recruit_num) {
 		RecruitVO vo = dao.recruit_info(recruit_num);
-		model.addAttribute("vo", vo);
 		List<CommonCodeVO> code = dao.recruit_pattern();
+		List<CommonCodeVO> career = dao.recruit_career();
+		List<CompanyVO> company = dao.recruit_pattern_company();
+
+		model.addAttribute("vo", vo);
 		model.addAttribute("code", code);
+		model.addAttribute("career", career);
+		model.addAttribute("company", company);	
 		
 		return "recruit/modify";
 	}
@@ -90,29 +96,49 @@ public class RecruitController {
 	public String info(Model model, String recruit_num) {		
 		
 		
+		
+		model.addAttribute("com", dao.recruit_info_company(recruit_num));
 		model.addAttribute("vo", dao.recruit_info(recruit_num));
 		
 		return "recruit/detail";
 	}
 
 	@RequestMapping("/list.rec")
-	public String recruitList(Model model, @RequestParam(defaultValue="all") String employee_pattern) {
+	public String recruitList(Model model
+		, @RequestParam(defaultValue="all") String employee_pattern
+			//, @RequestParam(defaultValue="all") String career
+			) {
 		//사원조회
 		List<RecruitVO> recruit ;
 		
 		//코드 목록 조회
 		List<CommonCodeVO> code = dao.recruit_pattern();
 
+		//신입경력 코드목록조회
+		//List<CommonCodeVO> code_career = dao.recruit_career();
+		
+		
+
 		if(employee_pattern.equalsIgnoreCase("all")) {
 			recruit = dao.recruit_list();
 		}else {
 			recruit = dao.recruit_list(employee_pattern);
 		}
+
+		/*
+		if(career.equalsIgnoreCase("all")) {
+			recruit = dao.recruit_list();
+		}else {
+			recruit = dao.recruit_list(career);
+		}
+		*/
 		
-		
+		//model.addAttribute("com", dao.recruit_info_company_com());
 		model.addAttribute("recruitList", recruit);
 		model.addAttribute("code", code);
+		//model.addAttribute("code_career", code_career);
 		model.addAttribute("code_value", employee_pattern);
+		//model.addAttribute("code_value", career);
 		
 		
 		return "recruit/list";
@@ -121,9 +147,13 @@ public class RecruitController {
 	@RequestMapping("/new.rec")
 	public String board(Model model) {	
 		List<CommonCodeVO> code = dao.recruit_pattern();
+		List<CommonCodeVO> career = dao.recruit_career();
+		List<CompanyVO> company = dao.recruit_pattern_company();
 		List<RecruitVO> recruit = dao.recruit_list();
 		
 		model.addAttribute("code", code);
+		model.addAttribute("career", career);
+		model.addAttribute("company", company);		
 		model.addAttribute("recruitList", recruit);
 		
 		return "recruit/new";

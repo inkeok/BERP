@@ -34,15 +34,29 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 <h3>채용공고 리스트</h3>
 <form method='post' action='list.rec'>
 <div id='list-top' class='w-px1200'>
+	
 	<ul>
-		<li>
-		
+		<li>		
 			<select name='employee_pattern' class='w-px100' onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
 				<option value='all'>전체 유형</option>
 				<c:forEach items='${code}' var='c'>
 				<option ${code_value eq c.code_value ? 'selected' : '' } 
 				
 				value='${c.code_value}' > ${c.code_name }</option>
+				</c:forEach>				
+			</select>	
+		</li>	
+	</ul>
+	
+	<%-- <ul>
+		<li>
+		
+			<select name='career' class='w-px100' onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
+				<option value='all'>전체 유형</option>
+				<c:forEach items='${code_career}' var='cc'>
+				<option ${code_value eq cc.code_value ? 'selected' : '' } 
+				
+				value='${cc.code_value}' > ${cc.code_name }</option>
 				</c:forEach>
 				
 			</select>
@@ -50,7 +64,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 		</li>
 		
 	
-	</ul>
+	</ul> --%>
 	<ul><!-- 관리자인 경우만 글쓰기 가능 -->
 		<%-- <c:if test='${loginInfo.admin eq "Y"}'> --%>
 		<li><a class='btn-fill' href='new.rec'>글쓰기</a></li>
@@ -67,13 +81,17 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	<col width='200px'>
 	
 </colgroup>
-<tr><th>유형</th>
+<tr>
+<th>유형</th>
+<th>유형</th>
 	<th>제목</th>
 	<th>접수기간</th>
 	
 </tr>
 <c:forEach items='${recruitList}' var='vo'>
-<tr><td>${vo.code_name}</td>
+<tr>
+<td>${vo.code_name}</td>
+<td>${vo.career}</td>
 	
 	
 	<td style="text-align:left"><a href="detail.rec?recruit_num=${vo.recruit_num }">

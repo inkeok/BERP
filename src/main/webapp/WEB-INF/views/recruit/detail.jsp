@@ -18,9 +18,19 @@
 
 <table class='w-px1000'>
 
-<tr><th class='w-px140'>유형</th>
+<tr><th class='w-px140'>채용유형</th>
 	<td>
 		${vo.code_name }
+	</td>
+</tr>
+<tr><th class='w-px140'>채용유형</th>
+	<td>
+		${com.code_name }
+	</td>
+</tr>
+<tr><th class='w-px140'>회사</th>
+	<td>
+		${com.company_name }
 	</td>
 </tr>
 <tr><th>채용시작일</th>
@@ -36,6 +46,12 @@ ${vo.char_recruit_end }
 
 
 
+<tr><th class='w-px140'>연봉</th>
+	<td>
+	${vo.salary }
+	
+	</td>
+</tr>
 <tr><th class='w-px140'>제목</th>
 	<td>
 	${vo.recruit_title }
