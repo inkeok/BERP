@@ -16,10 +16,28 @@ select seq_recruit_num.currval from dual
 update recruit_board set recruit_num=#{recruit_num}, recruit_start=#{recruit_start}, employee_pattern=#{employee_pattern}
 ,recruit_end=#{recruit_end}, recruit_title=#{recruit_title}, recruit_content=#{recruit_content}
 ,file_name=#{file_name, jdbcType=VARCHAR}, file_path=#{file_path, jdbcType=VARCHAR}
+,career=#{career, jdbcType=VARCHAR}
+,company=#{company, jdbcType=VARCHAR}
+,salary=#{salary, jdbcType=VARCHAR}
+
 where recruit_num = #{recruit_num}
 
 </update>
 
+<select id="detail_company" resultType="recruit.RecruitVO">
+select  code_name, company_name
+
+from recruit_board r, common_code c, company com
+where r.career = c.code_value
+and  recruit_num = #{recruit_num}
+</select>
+
+<select id="detail_company_com" resultType="recruit.RecruitVO">
+select  r.*, code_name, company_name
+
+from recruit_board r, common_code c, company com
+where r.career = c.code_value
+</select>
 
 <select id="detail" resultType="recruit.RecruitVO">
 
@@ -27,26 +45,43 @@ select  r.*, code_name
 
 ,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
 
+
 from recruit_board r, common_code c
 where r.employee_pattern = c.code_value
-and recruit_num = #{recruit_num}
+and  recruit_num = #{recruit_num}
 </select>
 
 
 <select id="list" resultType="recruit.RecruitVO">
-select r.*, c.code_name
+select r.*, 
+
+c.code_name employee_pattern_name , cd.code_name career_name
 ,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
-from recruit_board r, common_code c
-where r.employee_pattern = c.code_value
+from recruit_board r left outer join common_code c
+on r.employee_pattern = c.code_value left outer join common_code cd
+on r.career = cd.code_value
 order by r.recruit_start
 </select>
 
 <select id="list_code" resultType="recruit.RecruitVO">
+select r.*, 
+
+c.code_name employee_pattern_name , cd.code_name career_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+from recruit_board r left outer join common_code c
+on r.employee_pattern = c.code_value left outer join common_code cd
+on r.career = cd.code_value
+where r.employee_pattern = #{employee_pattern}
+order by r.recruit_start
+
+
+</select>
+<select id="list_code_career" resultType="recruit.RecruitVO">
 select r.*, c.code_name
 ,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
 from recruit_board r, common_code c
 where r.employee_pattern = c.code_value
-and employee_pattern = #{employee_pattern}
+and career = #{career}
 order by r.recruit_start
 </select>
 
@@ -56,6 +91,15 @@ select *
 from common_code
 where code_title = 'H'
 </select>
+<select id="pattern_career" resultType="recruit.CommonCodeVO">
+select *
+from common_code
+where code_title = 'C'
+</select>
+<select id="pattern_company" resultType="recruit.CompanyVO">
+select *
+from company
+</select>
 
 
 <insert id='insert'>
@@ -63,15 +107,26 @@ where code_title = 'H'
 insert into recruit_board
 (recruit_num, file_name, file_path, 
 recruit_start, recruit_end, 
-recruit_title, recruit_content, employee_pattern)
+recruit_title, recruit_content, employee_pattern
+,salary, career, company
+)
 values (
 seq_recruit_num.nextval, #{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=VARCHAR},
  #{recruit_start}, #{recruit_end},  
  #{recruit_title, jdbcType=VARCHAR}, #{recruit_content, jdbcType=VARCHAR}
+, #{employee_pattern, jdbcType=VARCHAR}
+, #{salary, jdbcType=VARCHAR}
+, #{career, jdbcType=VARCHAR}
+, #{company, jdbcType=VARCHAR}
+ 
+ 
+<!--  
 <choose>
 	<when test='employee_pattern == -1'>,'H101'</when>
 	<otherwise>,'H102'</otherwise>
-</choose>
+</choose> -->
+
+
 )
 
 <!-- ]]> -->
