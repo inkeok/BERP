@@ -31,7 +31,7 @@
 	<select id='approver_id' name='approver_id'>
 	<option value='-1'>결재자</option>
 	<c:forEach items='${departmentEmployee}' var='de'>
-	<option value='${de.employee_id}'>${de.position} ${de.name}</option>
+	<option value='${de.employee_id}'>${de.c_position} ${de.name}</option>
 	</c:forEach> 
 	</select>
 	
@@ -84,6 +84,7 @@ $('#postCancel').click(function(){
 		$('#postForm').attr('action', 'deleteInsertLocker.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}&no=${lockerListDetail.no}');
 		$('#postForm').submit();
 	}else{
+		if(confirm('삭제하시겠습니까?'))
 		location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}'
 	}
 })

@@ -83,7 +83,7 @@ $('#postCancel').click(function(){
 		$('#postForm').attr('action', 'insertLocker.ap?employee_id=${loginInfo.employee_id}');
 		$('#postForm').submit();
 	}else{
-		location = 'lockerList.ap?employee_id=${loginInfo.employee_id}'
+		location = 'submitList.ap?employee_id=${loginInfo.employee_id}'
 	}
 })
 

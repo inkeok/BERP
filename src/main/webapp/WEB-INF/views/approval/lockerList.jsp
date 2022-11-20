@@ -48,6 +48,7 @@
 
 <script>
 $('#deleteLockerList').click(function(){
+	if(confirm('삭제하시겠습니까?'))
 	$('#form_deleteLocker').submit();
 });
 </script>
