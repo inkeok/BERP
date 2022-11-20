@@ -5,8 +5,20 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class HolidayResultVO {
-	private String employee_id, department_id, company_cd, work_code, work_status;
-	 @DateTimeFormat(pattern = "yyyy-MM-dd")private Date  holiday_date,
+	private String employee_id, department_id, company_cd, work_code, work_status ,start_work, end_work;
+	 public String getStart_work() {
+		return start_work;
+	}
+	public void setStart_work(String start_work) {
+		this.start_work = start_work;
+	}
+	public String getEnd_work() {
+		return end_work;
+	}
+	public void setEnd_work(String end_work) {
+		this.end_work = end_work;
+	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd")private Date  holiday_date,
 	work_date;
 	public String getEmployee_id() {
 		return employee_id;

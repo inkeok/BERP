@@ -35,12 +35,12 @@ public class MemberDAO {
 	
 
 	///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
-	public List<MemberVO> andCheckLogin() {
+	public List<AndLoginMemberVO> andCheckLogin() {
 		return sql.selectList("member.andCheckLogin");
 	}
 	
 	public List<AndLoginMemberVO> andLogin(String id) {
-		return sql.selectList("member.andLogin", id);
+		return sql.selectList("member.andLogin", Integer.parseInt(id));
 	}
 
 	public int andInsert(JoinDTO dto_temp) {

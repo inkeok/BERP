@@ -31,32 +31,23 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 </style>
 </head>
 <body>
-<h3>채용공고 리스트</h3>
-<form method='post' action='list.rec'>
+<h3>지원자 리스트/ 추후 관리자만 볼 수 있게 수정할거임</h3>
+<form method='post' action='applicantList.apply'>
 <div id='list-top' class='w-px1200'>
-	
 	<ul>
-		<li>		
-			<select name='employee_pattern' class='w-px100' onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
-				<option value='all'>전체 유형</option>
-				<c:forEach items='${code}' var='c'>
-				<option ${code_value eq c.code_value ? 'selected' : '' } 
-				
-				value='${c.code_value}' > ${c.code_name }</option>
-				</c:forEach>				
-			</select>	
-		</li>	
-	</ul>
-	
-	<%-- <ul>
 		<li>
 		
-			<select name='career' class='w-px100' onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
+			<select name='recruit_num' class='w-px100' onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
 				<option value='all'>전체 유형</option>
-				<c:forEach items='${code_career}' var='cc'>
-				<option ${code_value eq cc.code_value ? 'selected' : '' } 
+				<c:forEach items='${recruit_list}' var='re'>
 				
-				value='${cc.code_value}' > ${cc.code_name }</option>
+				<option 
+				${recruit_num eq re.recruit_num ? 'selected' : '' } 				
+				value='${re.recruit_num}' 				
+				> 
+				${re.recruit_title}</option>
+				
+				
 				</c:forEach>
 				
 			</select>
@@ -64,14 +55,15 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 		</li>
 		
 	
-	</ul> --%>
+	</ul>
 	<ul><!-- 관리자인 경우만 글쓰기 가능 -->
 		<%-- <c:if test='${loginInfo.admin eq "Y"}'> --%>
-		<li><a class='btn-fill' href='new.rec'>글쓰기</a></li>
+		<li><a class='btn-fill' href='pass_check.apply'>합격자 리스트</a></li>
 		<%-- </c:if> --%>
 	</ul>
 </div>
 </form>
+
 
 <!-- 테이블시작 -->
 <table class='w-px1200 tb-list'>
@@ -81,21 +73,20 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	<col width='200px'>
 	
 </colgroup>
-<tr>
-<th>유형</th>
-<th>유형</th>
-	<th>제목</th>
-	<th>접수기간</th>
+<tr><th>유형</th>
+	<th>지원자번호</th>
+	<th>이름</th>
+
+	<th>전화번호</th>
+	<th>합/불합</th>
 	
 </tr>
-<c:forEach items='${recruitList}' var='vo'>
-<tr>
-<td>${vo.employee_pattern_name}</td>
-<td>${vo.career_name}</td>
+<c:forEach items='${applicants}' var='vo'>
+<tr><td>${vo.recruit_num}</td>
 	
-	
-	<td style="text-align:left"><a href="detail.rec?recruit_num=${vo.recruit_num }">
-	${vo.recruit_title }
+	<td>${vo.apply_num }</td>
+	<td style="text-align:left"><a href="fillout.apply?recruit_num=${vo.recruit_num }">
+	${vo.apply_name }
 	</a>
 	</td>
 	<%-- 
@@ -106,15 +97,32 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	
 	</td>
 	 --%>
- 	<td>${vo.char_recruit_start}~${vo.char_recruit_end }</td>
+ 	<td>${vo.apply_phone }</td>
+ 	<td>
+ 	
+ 	<%-- <c:forEach items='${applicants}' var='vo'> --%>
+ 	<label>
+	 	<input type="radio" name="apply_check" value="N"	 	
+	 	<c:if test="${vo.apply_check eq 'N' }">checked</c:if>
+	 		 	
+	 	> 불합
+		<input type="radio" name="apply_check" value="Y"
+		<c:if test="${vo.apply_check eq 'Y' }">checked</c:if>
+	 	
+		> 합
+ 	</label>
+ <%-- 	</c:forEach> --%>
+
+
+ 	
+ 	</td>
 	
 	
 </tr>
 </c:forEach>
 </table>
-<div class='btnSet'>
 
-</div>
+
 <script>
 function page(no) {
 	$('[name=curPage]').val(no);
