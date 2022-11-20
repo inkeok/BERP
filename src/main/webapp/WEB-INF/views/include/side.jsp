@@ -24,6 +24,12 @@ body {
     transition: .5s;
 }
 
+/*  #backFromSide{
+	position: fixed;
+	bottom: 3%;
+	left: 2%;
+	color: #717ca2; */
+
 li:before, .side-menu:before {
 	font-family: "Material Icons" !important;
 	font-feature-settings: "liga";
@@ -54,7 +60,7 @@ ul {
     animation-duration: 500ms;
     animation-direction: normal;
 	z-index: 101;
-	
+
 }
 
 @keyframes side-right {
@@ -103,7 +109,6 @@ li:before {
 	height: 40px;
 }
 </style>
-
 
 <script>
 	

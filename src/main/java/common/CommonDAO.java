@@ -11,6 +11,10 @@ public class CommonDAO {
 	@Autowired private SqlSession sql;
 	
 	public List<CommonVO> Common_list() {
-		return sql.selectList("com.comList");
+		return sql.selectList("com.codelist");
+	}
+	
+	public List<CommonVO> document_list(String code_title) {
+		return sql.selectList("com.document_list", code_title);
 	}
 }
