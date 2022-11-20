@@ -107,6 +107,7 @@
 		where code_title = 'E'
 		order by code_value
 	</select>
+	
 	<select id="andCompany" resultType="emp.CompanyVO">
 		SELECT company_cd, company_name
 		FROM company
@@ -120,14 +121,30 @@
 		order by employee_pattern
 	</select>
 	<select id="anddepartment_select" resultType="emp.EmpVO">
-	select *
-	from employees
-	where department_id = #{department_id}
+	select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = cd.code_value
+	where e.department_id = #{department_id}
 	</select>
 	<select id="andcompany_select" resultType="emp.EmpVO">
-	select *
-	from employees
-	where company_cd = #{company}
+	select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = cd.code_value
+	where e.company_cd = #{company}
 	</select>
 	<select id="andposition_select" resultType="emp.EmpVO">
 	select e.*, d.department_name,
