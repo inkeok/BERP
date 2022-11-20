@@ -1,15 +1,26 @@
 package apply;
 
+import java.sql.Date;
+
 public class ApplyVO {
 
 	//RECRUIT_NUM, APPLY_EMAIL, APPLY_NUM, APPLY_NAME, FILE_NAME, FILE_PATH, APPLY_CHECK
 	private String recruit_num, apply_email, apply_name, 
 	file_name, file_path, apply_check, apply_phone, apply_pw,recruit_title;
 	private int apply_num;
+	private Date apply_date;
 	
 	
 	
 	
+	
+	
+	public Date getApply_date() {
+		return apply_date;
+	}
+	public void setApply_date(Date apply_date) {
+		this.apply_date = apply_date;
+	}
 	public String getRecruit_title() {
 		return recruit_title;
 	}
