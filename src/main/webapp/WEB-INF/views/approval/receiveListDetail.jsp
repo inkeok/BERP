@@ -17,26 +17,24 @@
 <form id='resultForm' action='insertResultEnd.ap'>
 
 <%-- <input type='hidden' name='employee_id' value='${loginInfo.employee_id}'> --%>
-<input type='hidden' name='url' value='receiveList.ap'>
-
-<input type='hidden' name='ing_no' value='${receiveListDetail.ing_no}'>
-<input type='hidden' name='employee_id' value='${receiveListDetail.employee_id}'>
+	<input type='hidden' name='url' value='receiveList.ap'>
+	<input type='hidden' name='ing_no' value='${receiveListDetail.ing_no}'>
+	<input type='hidden' name='employee_id' value='${receiveListDetail.employee_id}'>
 	<input type='hidden' name='department_id' value='${receiveListDetail.department_id}'>
 	<input type='hidden' name='company_cd' value='${receiveListDetail.company_cd}'>
 	<input type='hidden' name='document_title' value='${receiveListDetail.document_title}'>
 	<input type='hidden' name='document_content' value='${receiveListDetail.document_content}'>
 	<input type='hidden' name='document_date' value='${receiveListDetail.document_date}'>
-<%-- 	<input type='hidden' name='document_check' value='${receiveListDetail.document_check}'> --%>
 	<input type='hidden' name='document_submit' value='${receiveListDetail.document_submit}'>
 	<input type='hidden' name='approver_id' value='${receiveListDetail.approver_id}'>
 	
 	<table class='table'>
-	<colgroup>
-		<col width='100px'>
-		<col>
-		<col width='100px'>
-		<col>
-	</colgroup>
+		<colgroup>
+			<col width='100px'>
+			<col>
+			<col width='100px'>
+			<col>
+		</colgroup>
 	
 		<tr><th>제목</th>
 			<td colspan='3'>${receiveListDetail.document_title}</td>	
@@ -50,8 +48,8 @@
 		</tr>	
 		
 
-		<tr><th class='content'>내용</th>
-			<td colspan='3'>${receiveListDetail.document_content}</td>	
+		<tr><th>내용</th>
+			<td class='t-l' colspan='3'>${receiveListDetail.document_content}</td>	
 		</tr>
 		
 		<tr><th>첨부파일</th>

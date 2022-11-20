@@ -16,6 +16,8 @@
 	<input type='hidden' name='employee_id' value='${loginInfo.employee_id}'>
 	<input type='hidden' name='department_id' value='${loginInfo.department_id}'>
 	<input type='hidden' name='company_cd' value='${loginInfo.company_cd}'>
+	<input type='hidden' name='no' value='${lockerListDetail.no}'>
+	<input type='hidden' name='ing_no' value='${lockerListDetail.ing_no}'>
 	
 	
 	<select id='department_name' name='department_name'>
@@ -40,10 +42,10 @@
 	<col>
 	</colgroup>
 		<tr><th>제목</th>
-			<td><input type='text' id='document_title' name='document_title' value='${document_title}'></td>
+			<td><input type='text' id='document_title' name='document_title' value='${lockerListDetail.document_title }'></td>
 		</tr>
 		<tr><th>내용</th>
-			<td><textarea id='textarea' name='document_content'>${document_content}</textarea></td>
+			<td><textarea id='textarea' name='document_content'>${lockerListDetail.document_content }</textarea></td>
 		</tr>
 		<tr><th>첨부파일</th>
 			<td style='text-align: left'>
@@ -79,16 +81,16 @@ $('#postSubmit').click(function(){
 //취소 버튼 선택 시 
 $('#postCancel').click(function(){
 	if(confirm('임시보관함에 저장할까요?')){
-		$('#postForm').attr('action', 'deleteInsertLocker.ap?employee_id=${loginInfo.employee_id}&ing_no=${ing_no}&url=lockerList.ap');
+		$('#postForm').attr('action', 'deleteInsertLocker.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}&no=${lockerListDetail.no}');
 		$('#postForm').submit();
 	}else{
-		location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${ing_no}'
+		location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}'
 	}
 })
 
 //부서선택 시 그에 맞게 정보를 다시 가져옴
 $('#department_name').change(function(){
-	$('#postForm').attr('action', 'post.ap?ing_no=${ing_no}');
+	$('#postForm').attr('action', 'lockerListDetailTwo.ap');
 	$('#postForm').submit();
 });
 

@@ -2,6 +2,8 @@ package com.hanul.berp;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,6 +80,7 @@ public class ApprovalController {
 		return "side/approval/approvalList";
 	}
 	
+	//상신함에서 작성 버튼
 	@RequestMapping("/post.ap")
 	public String post(Model model, Ing_tableVO vo, int employee_id, 
 			@RequestParam(defaultValue = "-1") int ing_no,
@@ -112,6 +115,7 @@ public class ApprovalController {
 		return null;
 	}
 	
+	//임시보관 중인 문서를 상신함과 결재함에 업로드
 	//임시보관함 삭제 후 상신함 저장-결재함 저장
 	@ResponseBody
 	@RequestMapping(value="/deleteInsertSubmit.ap", produces="text/html; charset=utf8")
@@ -126,43 +130,28 @@ public class ApprovalController {
 		return null;
 	}
 	
-	//임시보관함 저장
+	//임시보관함 저장(새로 작성 중이던 문서 취소)
 	@RequestMapping("/insertLocker.ap")
 	public String insertLocker(Ing_tableVO vo, int employee_id) {
 		dao.insertLocker(vo);
 		return "redirect:lockerList.ap?employee_id="+employee_id;
 	}
 	
-	//임시보관함 저장
+	//임시보관함 저장(임시보관함에 있던 문서 다시 업로드 취소 후 저장)
 	@ResponseBody
 	@RequestMapping(value="/deleteInsertLocker.ap", 
 					produces="text/html; charset=utf8")
-	public String deleteInsertLocker(Ing_tableVO vo, String url, 
-					int employee_id, int ing_no) {
-		int a = dao.insertLocker(vo);
-		int b = dao.deleteIng(ing_no);
+	public String deleteInsertLocker(Ing_tableVO vo, String url, int ing_no, int employee_id, int no) {
+		//Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
+		if(dao.deleteIng(ing_no)==1 && dao.insertLocker(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
-			msg.append("alert('저장했습니다.');").append("location='")
-			.append(url).append("?employee_id=").append(employee_id)
-			.append("<script>");
+			msg.append("alert('저장했습니다.'); location='")
+				.append(url).append("?employee_id=").append(employee_id).append("'");
+			msg.append("</script>");
 			return msg.toString();
+		}
+		return null;
 	}
-	
-//	//보관함 디테일에서 취소 시 삭제
-//		@ResponseBody
-//		@RequestMapping(value="/deleteLockerList.ap",
-//					produces="text/html; charset=utf8")
-//		public String deleteLockerList(int employee_id, String url, 
-//									Model model, int ing_no) {
-//			if(dao.deleteIng(ing_no)==1) {
-//				StringBuffer msg = new StringBuffer("<script>");
-//				msg.append("alert('삭제했습니다.'); location='")
-//					.append(url).append("?employee_id=").append(employee_id).append("'");
-//				msg.append("</script>");
-//				return msg.toString();
-//			}
-//			return null;
-//		}
 	
 	//상신함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/submitListDetail.ap")
@@ -173,16 +162,36 @@ public class ApprovalController {
 	}
 	
 	//보관함 목록 중 제목 클릭시 상세화면
-		@RequestMapping("/lockerListDetail.ap")
-		public String lockerListDetail(Model model, int employee_id, int no, int ing_no) {
-			Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
-			model.addAttribute("document_content", vo.getDocument_content());
-			model.addAttribute("document_title", vo.getDocument_title());
-			model.addAttribute("employee_id", employee_id);
-			model.addAttribute("ing_no", ing_no);
-			model.addAttribute("departments", emp_dao.departments());
-			return "side/approval/lockerListDetail";
-		}
+	@RequestMapping("/lockerListDetail.ap")
+	public String lockerListDetail(Model model, int no, int ing_no,  
+			@RequestParam(defaultValue = "부서")String department_name, int employee_id) {
+		
+		//model.addAttribute("lockerListDetail", dao.lockerListDetail(no, employee_id));
+		Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
+		model.addAttribute("lockerListDetail", vo);
+		model.addAttribute("departments", emp_dao.departments());
+		 
+		return "side/approval/lockerListDetail";
+	}
+	
+	//보관함 목록 중 제목 클릭시 상세화면2
+	@RequestMapping("/lockerListDetailTwo.ap")
+	public String lockerListDetailTwo(Model model, Ing_tableVO vo, 
+			@RequestParam(defaultValue = "부서")String department_name) {
+//	public String lockerListDetailTwo(Model model, int no, int ing_no, String document_title, String document_content, 
+//			@RequestParam(defaultValue = "부서")String department_name, int employee_id) {
+		
+		model.addAttribute("lockerListDetail", vo);
+		model.addAttribute("departments", emp_dao.departments());
+		
+		if(department_name != "부서") 
+			model.addAttribute("departmentEmployee", dao.departmentEmployee(department_name, vo.getEmployee_id()));	
+		
+		model.addAttribute("department_name", department_name);
+		
+		
+		return "side/approval/lockerListDetail";
+	}
 	
 //	//보관함 목록 중 제목 클릭시 상세화면
 //	@RequestMapping("/lockerListDetail.ap")

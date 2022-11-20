@@ -68,6 +68,10 @@ select{
 	width: 150px;
 }
 
+.t-l{
+	text-align: left;
+}
+
 /* .table textarea{ */
 /* 	width: -webkit-fill-available; */
 /* 	height: -webkit-fill-available; */
