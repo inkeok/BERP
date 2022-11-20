@@ -20,7 +20,7 @@
 	<input type='hidden' name='ing_no' value='${lockerListDetail.ing_no}'>
 	
 	
-	<select id='department_name' name='department_name'>
+	<select id='department_name' name='department_name' style='height: 26px'>
 	<option value='부서'>부서</option>
 	<c:forEach items='${departments}' var='d'>
 	<option ${department_name eq d.department_name ? 'selected' : ''} value='${d.department_name}'>
@@ -28,7 +28,7 @@
 	</c:forEach>	
 	</select>
 	
-	<select id='approver_id' name='approver_id'>
+	<select id='approver_id' name='approver_id' style='height: 26px'>
 	<option value='-1'>결재자</option>
 	<c:forEach items='${departmentEmployee}' var='de'>
 	<option value='${de.employee_id}'>${de.c_position} ${de.name}</option>
@@ -36,7 +36,7 @@
 	</select>
 	
 	
-	<table class='table' style='margin-top: 10px'>
+	<table class='table detail' style='margin-top: 10px'>
 	<colgroup>
 	<col width='100px'>
 	<col>
@@ -44,7 +44,7 @@
 		<tr><th>제목</th>
 			<td><input type='text' id='document_title' name='document_title' value='${lockerListDetail.document_title }'></td>
 		</tr>
-		<tr><th>내용</th>
+		<tr><th class='content'>내용</th>
 			<td><textarea id='textarea' name='document_content'>${lockerListDetail.document_content }</textarea></td>
 		</tr>
 		<tr><th>첨부파일</th>
@@ -55,9 +55,10 @@
 	</table>
 </form>
 </div>
-<div id='btnFix'>
-<a class='btn-empty' id='postSubmit'>Submit</a>
-<a class='btn-empty' id='postCancel'>Cancel</a>
+<div id='btnFix43'>
+<a class='btn-empty' id='postSubmit'>제출</a>
+<a class='btn-empty' id='postCancel'>삭제</a>
+<a class='btn-empty' id='postBack'>이전으로</a>
 </div>
 <script>
 
@@ -78,14 +79,19 @@ $('#postSubmit').click(function(){
 })
 
 
-//취소 버튼 선택 시 
+//삭제 버튼 선택 시 
 $('#postCancel').click(function(){
-	if(confirm('임시보관함에 저장할까요?')){
+	if(confirm('삭제하시겠습니까?'))
+	location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}'
+})
+
+//이전으로 버튼 선택 시
+$('#postBack').click(function(){
+	if(confirm('변경된 내용을 저장할까요?')){
 		$('#postForm').attr('action', 'deleteInsertLocker.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}&no=${lockerListDetail.no}');
 		$('#postForm').submit();
 	}else{
-		if(confirm('삭제하시겠습니까?'))
-		location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}'
+		location = "lockerList.ap?employee_id=${loginInfo.employee_id}"
 	}
 })
 

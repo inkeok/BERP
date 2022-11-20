@@ -8,15 +8,12 @@
 <title>Insert title here</title>
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
-.result tr td{
-	text-align: left;
-	padding-left: 10px;
-}
+
 </style>
 </head>
 <body>
 <div class='centerFrame'>
-<table class="table result">
+<table class="table detail">
 	<colgroup>
 		<col width='100px'>
 		<col>

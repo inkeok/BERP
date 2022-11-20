@@ -46,7 +46,7 @@
 		<tr><th>제목</th>
 			<td><input type='text' id='document_title' name='document_title' value='${document_title}'></td>
 		</tr>
-		<tr><th>내용</th>
+		<tr><th class='content'>내용</th>
 			<td><textarea id='textarea' name='document_content'>${document_content}</textarea></td>
 		</tr>
 		<tr><th>첨부파일</th>
@@ -58,7 +58,7 @@
 </form>
 </div>
 
-<div id='btnFix'>
+<div id='btnFix45'>
 <a class='btn-empty' id='postSubmit'>Submit</a>
 <a class='btn-empty' id='postCancel'>Cancel</a>
 </div>

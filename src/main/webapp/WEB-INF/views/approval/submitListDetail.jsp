@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class='centerFrame'>
-	<table class='table w-px1600'>
+	<table class='table detail'>
 <colgroup>
 	<col width='100px'>
 	<col>
@@ -28,7 +28,7 @@
 			<td>${submitListDetail.c_position} ${submitListDetail.approver}</td>
 		</tr>	
 
-		<tr><th>내용</th>
+		<tr><th class='content'>내용</th>
 			<td class='t-l' colspan='3'>${submitListDetail.document_content}</td>	
 		</tr>
 		<tr><th>첨부파일</th>
@@ -37,7 +37,7 @@
 		
 	</table>
 	</div>
-	<div id='btnFix'><a class='btn-empty' href='submitList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
+	<div id='btnFix48'><a class='btn-empty' href='submitList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
 
 </body>
 </html>

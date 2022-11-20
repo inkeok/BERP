@@ -28,7 +28,7 @@
 	<input type='hidden' name='document_submit' value='${receiveListDetail.document_submit}'>
 	<input type='hidden' name='approver_id' value='${receiveListDetail.approver_id}'>
 	
-	<table class='table'>
+	<table class='table detail'>
 		<colgroup>
 			<col width='100px'>
 			<col>
@@ -48,7 +48,7 @@
 		</tr>	
 		
 
-		<tr><th>내용</th>
+		<tr><th class='content'>내용</th>
 			<td class='t-l' colspan='3'>${receiveListDetail.document_content}</td>	
 		</tr>
 		
@@ -75,7 +75,7 @@
 </form>
 	
 </div>
-<div id='btnFix'>
+<div id='btnFix47'>
 	<a class='btn-empty' id='resultInsert'>저장</a>
 	<a class='btn-empty' href='receiveList.ap?employee_id=${loginInfo.employee_id}'>뒤로가기</a>
 	</div>

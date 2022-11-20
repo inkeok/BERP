@@ -49,6 +49,36 @@ h1, h2, h3{
 	transform: translate(0, -50%);
 }
 
+#btnFix43{
+	position: fixed;
+	bottom: 5%;
+	left: 43%;
+	transform: translate(0, -50%);
+}
+
+#btnFix45{
+	position: fixed;
+	bottom: 5%;
+	left: 45%;
+	transform: translate(0, -50%);
+}
+
+
+
+#btnFix47{
+	position: fixed;
+	bottom: 5%;
+	left: 47%;
+	transform: translate(0, -50%);
+}
+
+#btnFix48{
+	position: fixed;
+	bottom: 5%;
+	left: 48%;
+	transform: translate(0, -50%);
+}
+
 .centerFrame {
 	position: fixed;
 	left: 50%;
@@ -70,6 +100,11 @@ select{
 
 .t-l{
 	text-align: left;
+}
+
+.detail tr td{
+	text-align: left;
+	padding-left: 10px;
 }
 
 /* .table textarea{ */
