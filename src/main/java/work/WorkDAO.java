@@ -86,4 +86,14 @@ public class WorkDAO {
 	public List<WorkResultVO> department_work() {
 		return sql.selectList("work.department_work");
 	}
+	
+	
+	public WorkPageVO tenList(WorkPageVO page) { // 글의 총건수를 조회
+		page.setTotalList(sql.selectOne("work.total", page)); // 공지글 10건 조회
+		page.setList(sql.selectList("board.list", page));
+		return page;
+	}
+	
+
+	
 }
