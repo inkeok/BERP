@@ -68,8 +68,7 @@
 		</tr>
 		
 		<tr><th>비고</th>
-		    <td colspan='3'>
-		    <textarea name='document_comment'></textarea></td>
+		    <td colspan='3'><input type='text' name='document_comment'></td>
 		</tr>
 	</table>
 </form>
