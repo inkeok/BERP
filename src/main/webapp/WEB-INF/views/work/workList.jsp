@@ -10,8 +10,8 @@
 </head>
 <body>
 
-	
-<div class="row mb-4" style= "width : 1200px">
+
+	<div class="row mb-4" style="width: 1200px">
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
@@ -22,22 +22,23 @@
 									<div class="text-muted">
 										<p class="mb-2" id="times"></p>
 										<form method='post' action='workList'>
-		<div id='list-top' class='w-px1200'>
-			<ul>
-				<li>부서명</li>
-				<li><select name='department_id' class='w-px200'
-					onchange='$("form").submit()'>
-						<option value='-1'>전체 부서</option>
-						<c:forEach items='${departments}' var='d'>
-							<option ${department_id eq d.department_id ? 'selected' : ''}
-								value='${d.department_id}'>${d.department_name}</option>
-						</c:forEach>
-				</select></li>
-			</ul>
+											<div id='list-top' class='w-px1200'>
+												<ul>
+													<li>부서명</li>
+													<li><select name='department_id' class='w-px200'
+														onchange='$("form").submit()'>
+															<option value='-1'>전체 부서</option>
+															<c:forEach items='${departments}' var='d'>
+																<option
+																	${department_id eq d.department_id ? 'selected' : ''}
+																	value='${d.department_id}'>${d.department_name}</option>
+															</c:forEach>
+													</select></li>
+												</ul>
 
 
-		</div>
-	</form>
+											</div>
+										</form>
 
 									</div>
 								</div>
@@ -66,8 +67,8 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="row mb-5" style= "width : 1200px">
+
+	<div class="row mb-5" style="width: 1200px">
 		<div class="col-xl-12">
 			<div class="card">
 				<div class="card-body">
