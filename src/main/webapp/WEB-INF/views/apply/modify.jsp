@@ -29,13 +29,13 @@
 <table class='w-px1000'>
 <tr><th>이름</th>
 <td> 
-<input type='text' class=".chk" name='apply_name' value="${vo.apply_name }">
+<input type='text' class="chk" name='apply_name' value="${vo.apply_name }">
 </td>
 
 <tr>
 <th>이메일</th>
 <td>
-<input type='text'  class=".chk" name='apply_email' value="${vo.apply_email }">
+<input type='text'  class="chk" name='apply_email' value="${vo.apply_email }">
 </td>
 </tr>
 <tr><th>첨부파일</th>
