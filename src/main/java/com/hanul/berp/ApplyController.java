@@ -29,6 +29,10 @@ public class ApplyController {
 
 	@Autowired ApplyDAO dao;
 	
+	
+	
+	
+	
 	@RequestMapping("/pass_check.apply")
 	public String pass_checkList(Model model, @RequestParam(defaultValue="all") String recruit_num) {
 		
@@ -52,7 +56,7 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "apply/pass_check";
+		return "side/apply/pass_check";
 	}
 	
 	@RequestMapping("/applicantList.apply")
@@ -78,7 +82,7 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "apply/applicantList";
+		return "side/apply/applicantList";
 	}
 	
 	
