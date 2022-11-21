@@ -70,7 +70,9 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	<col width='200px'>
 	
 </colgroup>
-<tr><th>유형</th>
+<tr>
+<th>유형</th>
+<th>공고</th>
 	<th>지원자번호</th>
 	<th>이름</th>
 
@@ -78,7 +80,9 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	
 </tr>
 <c:forEach items='${applicants}' var='vo'>
-<tr><td>${vo.recruit_num}</td>
+<tr>
+<td>${vo.recruit_num}</td>
+<td>${vo.recruit_title}</td>
 	
 	<td>${vo.apply_num }</td>
 	<td style="text-align:left"><a href="fillout.apply?recruit_num=${vo.recruit_num }">

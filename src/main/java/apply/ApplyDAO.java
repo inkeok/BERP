@@ -20,7 +20,7 @@ public class ApplyDAO {
 	}
 	
 	public List<ApplyVO> applicant_list(String recruit_num) {
-		return sql.selectList("apply.applicant_list_num");
+		return sql.selectList("apply.applicant_list_num",recruit_num);
 	}
 	
 	public List<ApplyVO> pass_list() {
@@ -32,14 +32,23 @@ public class ApplyDAO {
 	}
 	
 	
-	public List<apply.RecruitVO> recruit_num (String recruit_num) {
-		return sql.selectList("apply.recruit_num", recruit_num);
+	public List<apply.RecruitVO> recruit_num () {
+		return sql.selectList("apply.recruit_num");
 	}
 	
 	
 	public void apply_update(ApplyVO vo) {
 		
 		sql.update("apply.update", vo);
+	}
+	
+	public void apply_update_check(int apply_num, String apply_check) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("apply_check", apply_check);
+		map.put("apply_num", apply_num);
+		sql.update("apply.update_check", map);
 	}
 	
 	

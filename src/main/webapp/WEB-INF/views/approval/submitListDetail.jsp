@@ -6,44 +6,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 </head>
 <body>
 <div class='centerFrame'>
-	<table>
-	<colgroup>
-		<col width='100px'>
-		<col width='100px'>
-		<col width='100px'>
-		<col width='100px'>
-		<col width='100px'>
-	</colgroup>
-	
+	<table class='table detail'>
+<colgroup>
+	<col width='100px'>
+	<col>
+	<col width='100px'>
+	<col>
+</colgroup>	
 		<tr><th>제목</th>
-			<td colspan='5'>${submitListDetail.document_title}</td>
+			<td colspan='3'>${submitListDetail.document_title}</td>
+		</tr>
+		<tr>
 			<th>제출일자</th>
 			<td>${submitListDetail.document_date}</td>	
-		</tr>
 
-		<tr><th>결재자</th>
+			<th>결재자</th>
 			<td>${submitListDetail.c_position} ${submitListDetail.approver}</td>
-			<th>결재일자</th>
-			<td>${submitListDetail.document_date}</td>	
-		<tr>	
+		</tr>	
 
-		<tr><th>내용</th>
-			<td colspan='5'>${submitListDetail.document_content}</td>	
+		<tr><th class='content'>내용</th>
+			<td class='t-l' colspan='3'>${submitListDetail.document_content}</td>	
 		</tr>
 		<tr><th>첨부파일</th>
-			<td colspan='5'></td>	
-		</tr>
-		<tr><th>처리</th>
-			<td>${submitListDetail.c_status}</td>
-			<th>Comment</th>
-			<td>${submitListDetail.document_comment}</td>	
+			<td colspan='3'></td>	
 		</tr>
 		
 	</table>
-	<a href='submitList.ap?email=${email}'>뒤로가기</a>
-</div>
+	</div>
+	<div id='btnFix48'><a class='btn-empty' href='submitList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
+
 </body>
 </html>
