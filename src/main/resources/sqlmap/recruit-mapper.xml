@@ -157,6 +157,23 @@ on r.career = cd.code_value left outer join company cp
 on r.company = cp.company_cd
 where a.APPLY_NAME = #{name}
 </select>
+<select id="andApplySpinnerList" resultType="recruit.RecruitVO">
+select DISTINCT r.career, c.code_name career_name
+from recruit_board r left outer join common_code c
+on r.career = c.code_value
+</select>
+<select id="andApplySpinnerCareerList" resultType="recruit.RecruitVO">
+select r.*, 
+cp.company_name,
+c.code_name employee_pattern_name , cd.code_name career_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+from recruit_board r left outer join common_code c
+on r.employee_pattern = c.code_value left outer join common_code cd
+on r.career = cd.code_value left outer join company cp
+on r.company = cp.company_cd
+Where r.career = #{career}
+order by recruit_num desc
+</select>
 
 
 

@@ -76,7 +76,7 @@
 <a href="<c:url value='/'/>"><img src="imgs/icons/icon-48x48.png" id='l-img'></a>
 	<div id='l-box'>
 		<ul style='margin: 0; padding: 40px'>
-			<li><input type='text' id='id' name='id' placeholder='ID'></li>
+			<li><input type='text' id='employee_id' name='employee_id' placeholder='EMPLOYEE_ID'></li>
 			<li><input type='password' id='pw' name='pw' placeholder='password'></li>
 			<li><input type='button' onclick='login()' id='login' value='login' class='frontBtn-fill'></li>
 			<hr>
@@ -88,7 +88,7 @@
 	<a id='findPw'>find password</a>
 </div>
 <script>
-const id = document.querySelector('#id');
+const employee_id = document.querySelector('#employee_id');
 const pw = document.querySelector('#pw');
 
 $('#pw').keyup(function(e){
@@ -100,13 +100,13 @@ function login(){
 		
 		$.ajax({
 			url: 'checkLogin.mem',
-			data: { id:$('#id').val(), pw:$('#pw').val() },
+			data: { employee_id:$('#employee_id').val(), pw:$('#pw').val() },
 			success: function( response ){
 				if( response )
 					location = '<c:url value="/"/>';
 				else{
-					alert('아이디나 비밀번호가 일치하지 않습니다!');
-					$('#id').focus();
+					alert('사원번호나 비밀번호가 일치하지 않습니다!');
+					$('#employee_id').focus();
 				}
 				
 			},error: function(req, text){

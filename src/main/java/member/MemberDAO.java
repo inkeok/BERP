@@ -1,13 +1,14 @@
 package member;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import emp.EmpVO;
 
 
 
@@ -25,9 +26,9 @@ public class MemberDAO {
 	}
 	
 	//로그인할 때 아이디와 비밀번호 체크
-	public MemberVO checkLogin(String id, String pw) {
+	public EmpVO checkLogin(int employee_id, String pw) {
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
+		map.put("employee_id", employee_id+"");
 		map.put("pw", pw);
 		return sql.selectOne("member.checkLogin", map);
 	}

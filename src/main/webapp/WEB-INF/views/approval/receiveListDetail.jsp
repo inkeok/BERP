@@ -6,66 +6,78 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
+<style>
+
+</style>
 </head>
 <body>
 <div class='centerFrame'>
 <%-- <form id='resultForm' action='insertResult.ap?email=${loginInfo.email}&url=receiveList.ap'> --%>
 <form id='resultForm' action='insertResultEnd.ap'>
 
-<input type='hidden' name='email' value='${loginInfo.email}'>
-<input type='hidden' name='url' value='receiveList.ap'>
-
-<input type='hidden' name='ing_no' value='${receiveListDetail.ing_no}'>
-<input type='hidden' name='employee_id' value='${receiveListDetail.employee_id}'>
+<%-- <input type='hidden' name='employee_id' value='${loginInfo.employee_id}'> --%>
+	<input type='hidden' name='url' value='receiveList.ap'>
+	<input type='hidden' name='ing_no' value='${receiveListDetail.ing_no}'>
+	<input type='hidden' name='employee_id' value='${receiveListDetail.employee_id}'>
 	<input type='hidden' name='department_id' value='${receiveListDetail.department_id}'>
 	<input type='hidden' name='company_cd' value='${receiveListDetail.company_cd}'>
 	<input type='hidden' name='document_title' value='${receiveListDetail.document_title}'>
 	<input type='hidden' name='document_content' value='${receiveListDetail.document_content}'>
 	<input type='hidden' name='document_date' value='${receiveListDetail.document_date}'>
-<%-- 	<input type='hidden' name='document_check' value='${receiveListDetail.document_check}'> --%>
 	<input type='hidden' name='document_submit' value='${receiveListDetail.document_submit}'>
 	<input type='hidden' name='approver_id' value='${receiveListDetail.approver_id}'>
 	
-	<table>
-	<colgroup>
-		<col width='100px'>
-		<col width='100px'>
-		<col width='100px'>
-		<col width='100px'>
-		<col width='100px'>
-	</colgroup>
+	<table class='table detail'>
+		<colgroup>
+			<col width='100px'>
+			<col>
+			<col width='100px'>
+			<col>
+		</colgroup>
 	
 		<tr><th>제목</th>
-			<td colspan='5'>${receiveListDetail.document_title}</td>	
+			<td colspan='3'>${receiveListDetail.document_title}</td>	
 		</tr>
 
-		<tr><th>기안자</th>
+		<tr>
+			<th>기안자</th>
 			<td>${receiveListDetail.c_position} ${receiveListDetail.drafter}</td>	
-		<tr><th>제출일자</th>
-			<td>${receiveListDetail.document_date}</td>	
-		<tr><th>처리</th>
-			<td><select id='document_check' name='document_check'>
-				<c:forEach items='${document_checks}' var='d'>
-				<option ${d.code_value eq document_check ? 'selected' : ''} value='${d.code_value}'>${d.code_name}</option>
-				</c:forEach>
-			</select></td>	
-		</tr>
+			<th>제출일자</th>
+			<td>${receiveListDetail.document_date}</td>
+		</tr>	
+		
 
-		<tr><th>내용</th>
-			<td colspan='5'>${receiveListDetail.document_content}</td>	
+		<tr><th class='content'>내용</th>
+			<td class='t-l' colspan='3'>${receiveListDetail.document_content}</td>	
 		</tr>
+		
 		<tr><th>첨부파일</th>
-			<td colspan='5'></td>	
+			<td colspan='3'></td>	
 		</tr>
-		<tr><th>Comment</th>
-		    <td><textarea name='document_comment'></textarea></td>
+		
+		<tr>
+			<th>처리</th>
+			<td colspan='3' style='text-align: left'>
+			<select id='document_check' name='document_check'>
+			<c:forEach items='${document_checks}' var='d'>
+			<option ${d.code_value eq document_check ? 'selected' : ''} value='${d.code_value}'>${d.code_name}</option>
+			</c:forEach>
+			</select>
+			</td>	
+		</tr>
+		
+		<tr><th>비고</th>
+		    <td colspan='3'><input type='text' name='document_comment'></td>
 		</tr>
 	</table>
 </form>
-	<a class='sideBtn-empty' id='resultInsert'>저장</a>
-	<a href='receiveList.ap?email=${loginInfo.email}'>뒤로가기</a>
 	
 </div>
+<div id='btnFix47'>
+	<a class='btn-empty' id='resultInsert'>저장</a>
+	<a class='btn-empty' href='receiveList.ap?employee_id=${loginInfo.employee_id}'>뒤로가기</a>
+	</div>
 <script>
 document.querySelector('#resultInsert').onclick = function(){
 	if( document.querySelector('#document_check').value=='D101' ){
