@@ -6,25 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
-#receiveListTable{
-	margin: 10px 0;
-}
+
 </style>
 </head>
 <body>
-<div class='centerFrame'>
-<h1>수신함</h1>
-<table id='receiveListTable'>
+<h2>수신함</h2>
+<table id='width85' class="table table-striped table-hover w-px1600">
 
 
 <colgroup>
 	<col width='50px'>
-	<col width='50px'>
+	<col width='300px'>
 	<col width='150px'>
-	<col width='100px'>
-	<col width='100px'>
-	<col width='100px'>
 	<col width='100px'>
 </colgroup>
 
@@ -32,21 +27,16 @@
 	<th>번호</th>
 	<th>제목</th>
 	<th>제출일</th>
-	<th>상태</th>
 	<th>기안자</th>
-	<th>비고</th>
 </tr>
 <c:forEach items='${receiveList}' var='a'>
 <tr>
 	<td>${a.no}</td>
-	<td><a onclick='location="receiveListDetail.ap?no=${a.no}&email=${email}"'>${a.document_title}</a></td>
+	<td><a onclick='location="receiveListDetail.ap?no=${a.no}&employee_id=${employee_id}"'>${a.document_title}</a></td>
 	<td>${a.document_date}</td>
-	<td>${a.c_status}</td>
 	<td>${a.c_position} ${a.drafter}</td>
-	<td>${a.document_comment}</td>
 </tr>
 </c:forEach>
 </table>
-</div>
 </body>
 </html>

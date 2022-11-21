@@ -108,11 +108,17 @@ li:before {
 	width: 40px;
 	height: 40px;
 }
+#fix{
+	background-color: black;
+	width: 20%;
+	height: 20%;;
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	}
+
 </style>
 
-<script>
-	
-</script>
 <body id="body-pd">
 	<div class="l-navbar" id="navbar">
 		<nav class="nav">
@@ -150,10 +156,10 @@ li:before {
 						</a>
 						<div class="side-content">
 							<ul class="hidden list2">
-								<li><a href="submitList.ap">상신함</a></li>
-								<li><a href="#">수신함</a></li>
-								<li><a href="#">임시 보관함</a></li>
-								<li><a href="#">결재 처리함</a></li>
+								<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</li>
+								<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
+								<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
+								<li onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
 							</ul>
 						</div>
 					</div>
