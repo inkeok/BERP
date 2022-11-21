@@ -10,6 +10,7 @@ select a.*, recruit_title,
  '불합격' ) as "checkPass" 
 from apply_board a, recruit_board r
 where a.recruit_num = r.recruit_num
+order by apply_num
 </select>
 
 <select id="applicant_list_num" resultType="apply.ApplyVO">
@@ -20,6 +21,7 @@ select a.*, recruit_title,
 from apply_board a, recruit_board r
 where a.recruit_num = r.recruit_num
 and a.recruit_num=#{recruit_num}
+order by apply_num
 </select>
 
 <select id="pass_list" resultType="apply.ApplyVO">
