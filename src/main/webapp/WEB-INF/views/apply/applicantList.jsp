@@ -62,6 +62,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 		<%-- </c:if> --%>
 	</ul>
 </div>
+${recruit_num }
 </form>
 
 
@@ -81,7 +82,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	<th>이름</th>
 
 	<th>전화번호</th>
-	<th>합/불합</th>
+	
 	
 </tr>
 <c:forEach items='${applicants}' var='vo'>
@@ -90,7 +91,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 <td>${vo.recruit_title}</td>
 	
 	<td>${vo.apply_num }</td>
-	<td style="text-align:left"><a href="fillout.apply?recruit_num=${vo.recruit_num }">
+	<td style="text-align:left"><a href="check.apply?apply_num=${vo.apply_num }">
 	${vo.apply_name }
 	</a>
 	</td>
@@ -103,24 +104,14 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	</td>
 	 --%>
  	<td>${vo.apply_phone }</td>
- 	<td>
+ 	
  	
  	<%-- <c:forEach items='${applicants}' var='vo'> --%>
- 	<label>
-	 	<input type="radio" name="apply_check"${vo.apply_num } value="N"	 	
-	 	<c:if test="${vo.apply_check eq 'N' }">checked</c:if>
-	 		 	
-	 	> 불합
-		<input type="radio" name="apply_check"${vo.apply_num } value="Y"
-		<c:if test="${vo.apply_check eq 'Y' }">checked</c:if>
-	 	
-		> 합
- 	</label>
+ 	
 <%-- </c:forEach>  --%>
 
 
  	
- 	</td>
 	
 	
 </tr>

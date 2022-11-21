@@ -34,7 +34,7 @@
 	
 	//아이디관련 상태 확인 함수
 	apply_phone_status: function(apply_phone) {
-		var reg = /[^a-z0-9]/g;
+		var reg = /[^0-9]/g;
 		
 		if(apply_phone=='') 						return this.common.empty;
 		else if(apply_phone.match(this.space)) 	return this.common.space;
@@ -47,10 +47,10 @@
 	},
 	//아이디 상태 값
 	id: {
-		unUsable: {code: 'invalid', desc:'이미 사용중인 아이디'}
-		,usable: {code: 'valid', desc:'사용가능한 아이디'}
-		,valid: {code: 'valid', desc:'아이디 중복확인을 하세요'}
-		,invalid: {code:'invalid', desc:'영문소문자, 숫자만 입력가능'}
+		unUsable: {code: 'invalid', desc:'이미 사용중인 휴대폰번호'}
+		,usable: {code: 'valid', desc:'사용가능한 휴대폰번호'}
+		,valid: {code: 'valid', desc:'휴대폰번호 중복확인을 하세요'}
+		,invalid: {code:'invalid', desc:'숫자만 입력가능'}
 		
 	},
 	
