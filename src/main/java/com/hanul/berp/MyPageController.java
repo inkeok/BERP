@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import emp.EmpVO;
 import member.AndLoginMemberVO;
 import mypage.EmpMemberVO;
 import mypage.MemberVO;
@@ -58,12 +59,16 @@ public class MyPageController {
 	
 ///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
 	
-/*	
+
 @ResponseBody @RequestMapping(value="/andModify.mypage", produces="text/html; charset=utf-8")
-public String AndLoginCheck(String id, String pw) {
-Boolean info = false;
-List<AndLoginMemberVO> memList = dao.andCheckLogin();
-System.out.println(memList.get(0).getEmployee_id());
+public void AndMyPageModify(int employee_id) {
+//Boolean info = false;
+
+List<mypage.EmpVO> andMyPageList = dao.andMyPageList(employee_id);
+//List<AndLoginMemberVO> memList = dao.andCheckLogin();
+System.out.println(andMyPageList);
+
+/*
 for (int i = 0; i < memList.size(); i++) {
 if(memList.get(i).getEmployee_id() == Integer.parseInt(id) && memList.get(i).getPw().equals(pw)) {
 info = true;
@@ -82,9 +87,10 @@ return new Gson().toJson(loginList);
 }
 
 
-
+*/
 }
-	*/ 
 
+//and에서 스프링으로 로그인 정보 보내줌 => employee_id
+//변경저장처리 
 //dto 패스워드 추가 확인 
 }

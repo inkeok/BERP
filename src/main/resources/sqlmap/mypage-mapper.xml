@@ -39,8 +39,8 @@ where e.employee_id = ${employee_id} AND e.department_id = d.department_id AND e
 
 <!-- 안드!!!!!!!!!!!!!!!!!!! -->
 
-<select id="andMemberInfo" resultType="mypage.MemberVO">
-select * from member
+<select id="andEmployeeInfo" resultType="mypage.EmpVO">
+select * from employees
 where employee_id = #{employee_id}
 </select>
 

@@ -37,4 +37,11 @@ public EmpMemberVO empMember_list(int employee_id) {
 	return sql.selectOne("mypage.empMember", employee_id);
 }
 
+
+//안드
+
+public List<EmpVO> andMyPageList(int employee_id) {
+	return sql.selectOne("mypage.andEmployeeInfo",employee_id);
+}
+
 }
