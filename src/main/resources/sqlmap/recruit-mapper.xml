@@ -119,6 +119,7 @@ seq_recruit_num.nextval, #{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=V
 , #{career, jdbcType=VARCHAR}
 , #{company, jdbcType=VARCHAR}
  
+</insert>
  
 <!--  
 <choose>
@@ -127,10 +128,36 @@ seq_recruit_num.nextval, #{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=V
 </choose> -->
 
 
-)
+
 
 <!-- ]]> -->
-</insert>
+
+
+<!-- ///////////////////////////안드로이드 /////////////////// -->
+<select id="andSelect" resultType="recruit.RecruitVO">
+select r.*, 
+cp.company_name,
+c.code_name employee_pattern_name , cd.code_name career_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+from recruit_board r left outer join common_code c
+on r.employee_pattern = c.code_value left outer join common_code cd
+on r.career = cd.code_value left outer join company cp
+on r.company = cp.company_cd
+order by recruit_num desc
+</select>
+<select id="andMyList" resultType="recruit.AndApplyVO">
+select r.company, r.career, r.salary, r.recruit_content, r.recruit_title, r.employee_pattern, r.recruit_end, r.recruit_start, a.*, cp.company_name,
+c.code_name employee_pattern_name , cd.code_name career_name
+,to_char(r.recruit_start,'yyyy-mm-dd') char_recruit_start, to_char(r.recruit_end,'yyyy-mm-dd') char_recruit_end
+from recruit_board r left outer join common_code c
+on r.employee_pattern = c.code_value left outer join apply_board a
+on r.recruit_num = a.recruit_num
+left outer join common_code cd
+on r.career = cd.code_value left outer join company cp
+on r.company = cp.company_cd
+where a.APPLY_NAME = #{name}
+</select>
+
 
 
 </mapper>

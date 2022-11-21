@@ -199,6 +199,13 @@
 			<version>2.8.5</version>
 		</dependency>
 		
+		 <!-- 인터셉터 -->
+		 <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+		
 		
 		
 		

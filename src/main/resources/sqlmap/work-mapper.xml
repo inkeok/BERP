@@ -3,54 +3,118 @@
 <mapper namespace="work">
 
 
-<!-- 개인  출근 정보 출력  -->
-<select id="workInfo" resultType="work.WorkVO">
-	SELECT *
-	FROM work
-	where employee_id = '20221015'
+	<!-- 개인 출근 정보 출력 -->
+	<select id="workInfo" resultType="work.WorkVO">
+		SELECT *
+		FROM work
+		where employee_id = '20221015'
+
+	</select>
+	
+	<select id="departments" resultType="emp.DepartmentVO">
+	select * from departments order by department_name
+
+</select>
+<select id="department_work" resultType="work.WorkResultVO">
+select w.*, d.department_name, c.code_name work_status
+ from work_result  w left outer join departments d 
+ on w.department_id = d.department_id left outer join 
+ common_code c 
+ on w.work_code = c.code_value
+ 
+where nvl(w.department_id, 0) = #{department_id}	
+ 
+order by employee_id
+
 </select>
 
 
-<!-- result table 에 있는 출근 정보 등록  -->
-<select id="list" resultType="work.WorkResultVO">
-	select w.*, c.code_name work_status 
-	from work_result w left join common_code c 
-	on w.work_code = c.code_value
-	where w.employee_id = '20221015'
+	<select id="list" resultType="work.WorkResultVO">
+		select w.*, c.code_name work_status , d.department_name
+		from work_result w left join common_code c
+		on w.work_code = c.code_value left outer join departments d
+		on w.department_id = d.department_id
+		where w.employee_id = '20221015'
+		order by work_date desc
+	</select>
+
+	<!-- null값인 퇴근시간에 update 처리 -->
+	<update id="end_work">
+		UPDATE work
+		SET end_work = #{end_work}
+		WHERE employee_id= '20221015'
+	</update>
+
+	<!-- 출근 시간 등록 -->
+	<insert id="start_work">
+		insert into work
+		(employee_id, department_id, company_cd,start_work, work_code)
+		values('20221015',10,'1000', #{start_work},'W101')
+	</insert>
+
+	<!-- 연차사용 내역 -->
+
+	<select id="holiday_list" resultType="work.WorkResultVO">
+		select w.*, c.code_name work_status
+		from work_result w left join common_code c
+		on w.work_code = c.code_value
+		where employee_id = '20221015' and work_code ='HO101' or work_code ='HO102'
+
+	</select>
+
+	<!-- 로그인한 아이디의 출근정보만 출력 -->
+
+	<select id="empInfo" resultType="emp.EmpVO">
+		<!-- select e.*, c.code_name position_name from employees e left join common_code 
+			c on e.position = c.code_value where e.employee_id = '20221015' -->
+
+		SELECT e.*, c.code_name position_name,
+		TRUNC(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) hire_year
+		FROM employees e left join common_code c
+		on e.position = c.code_value
+		where e.employee_id = '20221015'
+
+
+	</select>
+
+
+	<select id="codeList" resultType="work.CommonCodeVO">
+		select *
+		from common_code
+		where code_title = 'HO'
+
+	</select>
+
+	<!-- 휴가신청 -->
+
+	<insert id="holiday_submit">
+<![CDATA[
+	INSERT INTO 
+holiday(holiday_date, employee_id, department_id,company_cd,work_code)
+ SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20221015','10','1000','HO101'
+   FROM dual 
+CONNECT BY LEVEL <= 
+(TO_DATE(#{end_holiday , jdbcType=VARCHAR},'YYYY-MM-DD')
+	-
+TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
+]]>
+	</insert>
+
+<select id="holiday_submit_list" resultType="work.HolidayResultVO">
+	select h.*, c.code_name work_status
+		from holiday_result h left join common_code c
+		on h.work_code = c.code_value
+
+		
+</select>
+<select id="holidayList" resultType="work.HolidayVO">
+select h.* , c.code_name work_status
+ from holiday h left join common_code c
+ on h.work_code = c.code_value
+ where employee_id = '20221015'
+
 </select>
 
-<!-- null값인 퇴근시간에 update 처리  -->
-<update id="end_work">
-	UPDATE work
-	   SET end_work = #{end_work}
-	 WHERE employee_id= '20221015'
-</update>
-
-<!-- 출근 시간 등록 -->
- <insert id="start_work">
-	insert into work
-	   (employee_id, department_id, company_cd,start_work, work_code)
-	   values('20221015',10,'1000', #{start_work},'W101')
-</insert>
-
-
-<!-- 로그인한 아이디의 출근정보만 출력 -->
-
-<select  id="empInfo" resultType="emp.EmpVO">
-select e.*, c.code_name position_name
-from  employees e left join common_code c
-on e.position = c.code_value 
-where e.employee_id = '20221015'
-
-</select>
-
-<!-- 관리자일 경우 부서별 선택 출근정보 출력  -->
-
-
-<!-- 근무 구분 코드에 휴가로 입력할 경우 출근, 퇴근시간 0 으로 하고 근무상태에 휴가 로 출력 -->
-
-
-
-
+ 
 
 </mapper>

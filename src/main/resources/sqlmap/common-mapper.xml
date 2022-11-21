@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com">
+
+	<!-- 코드목록 전체조회 -->
+	<select id="codelist" resultType="common.CommonVO">
+		select c.* , e.name code_maker_name
+		from common_code c left join employees e
+		on c.code_maker = e.employee_id
+		order by code_title
+	</select>
+	
+	<select id="document_list" resultType="common.CommonVO">
+		select code_title 
+		from common_code 
+		order by code_title
+	</select>
+	
+	</mapper>

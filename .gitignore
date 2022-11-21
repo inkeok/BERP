@@ -65,5 +65,7 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 .properties
+target/*
 
-
+target/m2e-wtp/web-resources/META-INF/maven/com.hanul/berp/pom.properties
+*.properties

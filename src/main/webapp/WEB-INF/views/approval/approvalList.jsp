@@ -20,7 +20,9 @@
 
 <colgroup>
 	<col width='50px'>
+	<col width='50px'>
 	<col width='150px'>
+	<col width='100px'>
 	<col width='100px'>
 	<col width='100px'>
 	<col width='100px'>
@@ -29,17 +31,24 @@
 <tr>
 	<th>번호</th>
 	<th>제목</th>
+	<th>기안자</th>
 	<th>제출일</th>
 	<th>상태</th>
-	<th>기안자</th>
+	<th>결재자</th>
+	<th>결재일</th>
+	<th>코멘트</th>
+	
 </tr>
 <c:forEach items='${approvalList}' var='a'>
 <tr>
 	<td>${a.no}</td>
-	<td>${a.document_title}</td>
+	<td><a onclick='location="approvalListDetail.ap?no=${a.no}&email=${email}"'>${a.document_title}</a></td>
+	<td>${a.drafter_position} ${a.drafter}</td>
 	<td>${a.document_date}</td>
-	<td>${a.document_check}</td>
-	<td>${a.drafter}</td>
+	<td>${a.c_status}</td>
+	<td>${a.approver_position} ${a.approver}</td>
+	<td>${a.finish_date}</td>
+	<td>${a.document_comment}</td>
 </tr>
 </c:forEach>
 </table>

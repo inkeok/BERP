@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+
+
+
 @Repository
 
 public class RecruitDAO {
@@ -73,6 +76,14 @@ public class RecruitDAO {
 	 */
 	public void recruit_update(RecruitVO vo) {
 		sql.update("recruit.update", vo);
+	}
+	
+	/////////////////////////////////////////////////////////////////
+	public List<RecruitVO> and_rec_list() {
+		return sql.selectList("recruit.andSelect");
+	}
+	public List<AndApplyVO> and_my_rec_list(String name) {
+		return sql.selectList("recruit.andMyList", name);
 	}
 
 }

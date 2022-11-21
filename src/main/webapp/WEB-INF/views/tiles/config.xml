@@ -11,7 +11,6 @@
 	<definition name="layout/*/*" extends="layout">
 		<put-attribute name="container" value='/WEB-INF/views/{1}/{2}.jsp'/>
 	</definition>
-	
 	<definition name="layout/*" extends="layout">
 		<put-attribute name="container" value='/WEB-INF/views/{1}.jsp'/>
 	</definition>

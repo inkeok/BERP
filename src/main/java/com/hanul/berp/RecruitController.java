@@ -14,9 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 
+import emp.EmpAndInsertDTO;
 import recruit.CommonCodeVO;
 import recruit.CompanyVO;
 import recruit.RecruitDAO;
@@ -216,6 +219,22 @@ public class RecruitController {
 			if (file.exists())
 				file.delete();
 		}
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////
+	@ResponseBody @RequestMapping(value="/andRecList.rec", produces="text/html; charset=utf-8")
+	public String andRecList() {
+		
+		
+		return new Gson().toJson(dao.and_rec_list());
+
+	}
+	@ResponseBody @RequestMapping(value="/andMyApplyList.rec", produces="text/html; charset=utf-8")
+	public String andMyApplyList(String name) {
+		
+		
+		return new Gson().toJson(dao.and_my_rec_list(name));
+
 	}
 	
 }

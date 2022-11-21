@@ -9,8 +9,8 @@
 
 <style>
 
-.w-px1400 {
-	width: 1400px;
+.w-px1600 {
+	width: 1600px;
 }
 .center{
 	text-align: center;
@@ -21,25 +21,24 @@
 }
 
 </style>
-<title>Insert title here</title>
 </head>
 <body>
 	<h2 class="center hrlist">사원목록</h2>
 	<a href="new.hr" class="btn btn-outline-success">신규사원등록</a>
 	<form action="list.hr">
-		<div class="w-px1400">
+		<div class="w-px1600">
 			<table class="table table-striped table-hover">
 				<colgroup>
 					<col width="120px" />
-					<col width="120px" />
-					<col width="120px" />
-					<col width="170px" />
+					<col width="100px" />
+					<col width="100px" />
+					<col width="150px" />
 					<col width="280px" />
 					<col width="200px" />
 					<col width="100px" />
 					<col width="130px" />
 					<col width="130px" />
-					<col width="170px" />
+					<col width="150px" />
 				</colgroup>
 
 				<tr>
