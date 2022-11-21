@@ -57,11 +57,17 @@ ${vo.apply_email }
 <tr><th>합/불합</th>
 	<td>
 		
-<label><input type="radio" name="apply_check" value="X" >불합</label>
-<label><input type="radio" name="apply_check" value="Y" 
+<label><input type="radio" id="apply_check" name="apply_check" value="N" 
+<c:if test="${vo.apply_check eq 'N' }">checked</c:if>
+>대기중</label>
+<label><input type="radio" id="apply_check" name="apply_check" value="X" 
+<c:if test="${vo.apply_check eq 'X' }">checked</c:if>
+
+>불합</label>
+<label><input type="radio" id="apply_check" name="apply_check" value="Y" 
 <c:if test="${vo.apply_check eq 'Y' }">checked</c:if>
 >합</label>
-
+<input type="hidden" name="apply_num" value="${vo.apply_num }">
 		
 		<%-- 
 		<input type="radio" name="apply_check" value="${vo.apply_check }"
@@ -77,7 +83,7 @@ ${vo.apply_email }
 
 </table>
 <div class='btnSet'>
-<a class='btn-fill' id="save" href='pass.apply?apply_num=${vo.apply_num }'>저장 </a>
+<a class='btn-fill' id="save" >저장 </a>
 
 </div>
 </form>

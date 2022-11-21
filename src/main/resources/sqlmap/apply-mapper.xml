@@ -4,13 +4,19 @@
 <mapper namespace="apply">
 
 <select id="applicant_list" resultType="apply.ApplyVO">
-select a.*, recruit_title 
+select a.*, recruit_title,
+ decode (apply_check, 'Y', '합격',  
+ 'N', '대기중', 
+ '불합격' ) as "checkPass" 
 from apply_board a, recruit_board r
 where a.recruit_num = r.recruit_num
 </select>
 
 <select id="applicant_list_num" resultType="apply.ApplyVO">
-select a.*, recruit_title 
+select a.*, recruit_title,
+ decode (apply_check, 'Y', '합격',  
+ 'N', '대기중', 
+ '불합격' ) as "checkPass" 
 from apply_board a, recruit_board r
 where a.recruit_num = r.recruit_num
 and a.recruit_num=#{recruit_num}
@@ -41,9 +47,7 @@ from recruit_board
 <select id="update_check">
 update apply_board set apply_check = #{apply_check}
 where apply_num = #{apply_num}
-
 </select>
-
 
 <select id="update">
 	update apply_board set apply_name = #{apply_name}, 

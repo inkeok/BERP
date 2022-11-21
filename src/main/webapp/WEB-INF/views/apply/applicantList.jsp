@@ -82,6 +82,7 @@ ${recruit_num }
 	<th>이름</th>
 
 	<th>전화번호</th>
+	<th>check</th>
 	
 	
 </tr>
@@ -104,7 +105,8 @@ ${recruit_num }
 	</td>
 	 --%>
  	<td>${vo.apply_phone }</td>
- 	
+ 	<td>${vo.checkPass }</td>
+ 		
  	
  	<%-- <c:forEach items='${applicants}' var='vo'> --%>
  	
