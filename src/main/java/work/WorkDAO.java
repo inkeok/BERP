@@ -51,6 +51,10 @@ public class WorkDAO {
 		
 		return sql.selectList("work.list");
 	}
+	public List<WorkResultVO> rList2() {
+		
+		return sql.selectList("work.list2");
+	}
 	public List<WorkResultVO> holiday_list() {
 		
 		return sql.selectList("work.holiday_list");
@@ -74,6 +78,12 @@ public class WorkDAO {
 		return sql.selectList("work.holidayList");
 	}
 	
+	public List<HolidayVO> holidayAllList(){
+		
+		return sql.selectList("work.holidayAllList");
+	}
+	
+	
 	public List<DepartmentVO> departments(){
 		
 		return sql.selectList("work.departments");
@@ -88,11 +98,7 @@ public class WorkDAO {
 	}
 	
 	
-	public WorkPageVO tenList(WorkPageVO page) { // 글의 총건수를 조회
-		page.setTotalList(sql.selectOne("work.total", page)); // 공지글 10건 조회
-		page.setList(sql.selectList("board.list", page));
-		return page;
-	}
+	
 	
 
 	
