@@ -140,14 +140,7 @@ public class WorkController {
 		List<WorkResultVO> workList = null;
 //		
 		//model.addAttribute("workList",workList);
-
-
-
 	
-
-
-
-		
 		//dao.rList();
 		
 
