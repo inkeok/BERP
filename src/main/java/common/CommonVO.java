@@ -1,9 +1,8 @@
 package common;
-
 import java.sql.Date;
 
 public class CommonVO {
-	private String code_title, code_value, code_used, code_name, code_maker, code_maker_name;
+	private String code_title/*인사코드*/, code_value/*문서코드*/, code_used/*고용형태코드*/, code_name/*근무코드*/, code_maker, code_maker_name;
 	private Date code_birth;
 
 

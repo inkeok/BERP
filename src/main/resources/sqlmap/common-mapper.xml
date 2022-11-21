@@ -6,14 +6,62 @@
 	<select id="codelist" resultType="common.CommonVO">
 		select c.* , e.name code_maker_name
 		from common_code c left join employees e
+
 		on c.code_maker = e.employee_id
 		order by code_title
 	</select>
 	
-	<select id="document_list" resultType="common.CommonVO">
-		select code_title 
+	<!-- 선택한 코드에 해당하는 목록 가져오기 -->
+	<select id="codelist_select" resultType="common.CommonVO">
+		select distinct c.* , e.name code_maker_name
+		from common_code c left join employees e
+		on code_maker = e.employee_id
+		<choose>
+			<when test="code == 'code_title'">where ${code} = #{vo.code_title}</when>
+			<when test="code == 'code_value'">where ${code} = #{vo.code_value}</when>
+			<when test="code == 'code_used'">where ${code} = #{vo.code_used}</when>
+			<when test="code == 'code_name'">where ${code} = #{vo.code_name}</when>
+		</choose>
+		order by ${code}
+	</select>
+
+	<!-- 인사코드 드롭다운 -->
+	<select id="personal_code" resultType="common.CommonVO">
+		select distinct code_title 
 		from common_code 
 		order by code_title
 	</select>
+	
+	<!-- 문서코드 드롭다운 -->
+	<select id="document_code" resultType="common.CommonVO">
+		select distinct code_value 
+		from common_code 
+		order by code_value
+	</select>
+	
+	<!-- 고용형태코드 드롭다운 -->
+	<select id="employee_code" resultType="common.CommonVO">
+		select distinct code_used
+		from common_code 
+		order by code_used
+	</select>
+		
+	<!-- 근무구분코드 드롭다운 -->
+	<select id="work_code" resultType="common.CommonVO">
+		select distinct code_name 
+		from common_code 
+		order by code_name
+	</select>
+	
+	<!-- 인사코드 가져오기 -->
+	<!--  
+	<select id="codelist_select" resultType="common.CommonVO">
+		select distinct c.* , e.name code_maker_name
+		from common_code c left join employees e
+		on c.code_maker = e.employee_id
+		where c.code_title = #{code_title}
+		order by code_title
+	</select>
+	-->
 	
 	</mapper>
