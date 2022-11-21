@@ -136,12 +136,19 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 
 	</select>
 	<select id="holidayAllList" resultType="work.HolidayVO">
-		select h.* , c.code_name work_status
+		select h.* , c.code_name work_status, e.name name
 		from holiday h left join common_code c
-		on h.work_code = c.code_value
+		on h.work_code = c.code_value left outer join employees e
+		on e.employee_id = w.employee_id
+		
 
 	</select>
-
+	
+	<select id="search" resultType="work.WorkVO">
+		select start_work 
+		from work
+		where employee_id = '20120001'	
+	</select>
 
 
 </mapper>

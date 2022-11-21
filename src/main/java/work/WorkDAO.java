@@ -97,7 +97,10 @@ public class WorkDAO {
 		return sql.selectList("work.department_work");
 	}
 	
-	
+	public WorkVO search() {
+		
+		return sql.selectOne("work.search");
+	}
 	
 	
 

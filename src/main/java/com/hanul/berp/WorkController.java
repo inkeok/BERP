@@ -192,14 +192,22 @@ public class WorkController {
 		
 		}
 
-		@ResponseBody @RequestMapping(value="/holidayAllList", produces="text/html; charset=utf-8")
-		public String holidayAllList()  {
+		
+		@ResponseBody @RequestMapping(value="/andHolidayList", produces="text/html; charset=utf-8")
+		public String andHolidayList()  {
 			
 			Gson gson = new GsonBuilder()
-					   .setDateFormat("yyyy-MM-dd").create();
+					.setDateFormat("yyyy-MM-dd").create();
 			
 			return gson.toJson(dao.holidayAllList());
 			
 			
 		}
+		@ResponseBody @RequestMapping(value="/andSearch", produces="text/html; charset=utf-8")
+		public String andSearch() {
+			
+			
+			return dao.search()+"";
+		}
+		
 }
