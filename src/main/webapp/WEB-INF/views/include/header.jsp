@@ -82,7 +82,7 @@ body {
 					<li><a href="#">회사소개</a></li>
 					<li><a href="#">회사정보</a></li>
 					<li><a href="#">프로세서</a></li>
-					<li></li>
+					<li><a href="list.rec">채용공고</a></li>
 					<li></li>
 					<li></li>
 					<li></li>
@@ -97,6 +97,8 @@ body {
 <!-- 				</ul> -->
 			</label>
 		</div>
+		
+		<!-- ddddddddddddddddd -->
 
 		<div id='nav-sign'>
 

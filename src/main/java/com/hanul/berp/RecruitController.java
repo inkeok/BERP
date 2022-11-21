@@ -141,7 +141,7 @@ public class RecruitController {
 		//model.addAttribute("code_value", career);
 		
 		
-		return "recruit/list";
+		return "layout/recruit/list";
 	}
 	
 	@RequestMapping("/new.rec")
