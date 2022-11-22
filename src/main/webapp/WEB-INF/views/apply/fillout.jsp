@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
@@ -27,12 +27,12 @@
 <table class='w-px1000'>
 <tr><th>이름</th>
 <td> 
-<input type='text' class=".chk" name='apply_name' placeholder="이름">
+<input type='text' class="chk" name='apply_name' placeholder="이름">
 </td>
 <tr>
 <th>휴대폰번호</th>
 <td>
-<input type='text' class=".chk"  name='apply_phone' placeholder="휴대폰">
+<input type='text' class="chk"  name='apply_phone' placeholder="휴대폰">
 <a class='btn-fill' id='btn-id'>중복확인</a>
 <div class='valid'>휴대폰번호를 입력하세요</div>
 </td>
@@ -40,7 +40,7 @@
 <tr>
 <th>이메일</th>
 <td>
-<input type='text'  class=".chk" name='apply_email' placeholder="email">
+<input type='text'  class="chk" name='apply_email' placeholder="email">
 </td>
 </tr>
 <tr><th>첨부파일</th>
@@ -60,7 +60,7 @@
 <tr>
 <th>지원서 비밀번호</th>
 <td>
-<input type='password'  class=".chk" name='apply_pw' id="apply_pw" placeholder="비밀번호">
+<input type='password'  class="chk" name='apply_pw' id="apply_pw" placeholder="비밀번호">
 
 <span id="passEqual1">비번입력</span>
 </td>
@@ -68,7 +68,7 @@
 <tr>
 <th>비밀번호 확인</th>
 <td>
-<input type='password'  class=".chk" name='apply_pw_ck' id="apply_pw_ck" placeholder="비밀번호 확인">
+<input type='password'  class="chk" name='apply_pw_ck' id="apply_pw_ck" placeholder="비밀번호 확인">
 
 <span id="passEqual2">한번더 비번입력</span>
 </td>
@@ -131,10 +131,10 @@ $(document).ready(function() {
 		
 		if(pass1==pass2) {
 			$("#passEqual1").hide();
-			$("#passEqual2").html("<span style='color:green'>ㅇㅇ</span>");
+			$("#passEqual2").html("<span style='color:green'>일치</span>");
 		}else {
 			$("#passEqual1").hide();
-			$("#passEqual2").html("<span style='color:red'>ㅇㅇ</span>");
+			$("#passEqual2").html("<span style='color:red'>불일치</span>");
 			
 		}
 	});

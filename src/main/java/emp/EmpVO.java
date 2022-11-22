@@ -7,11 +7,17 @@ public class EmpVO {
 	private int employee_id, department_id;
 	private String company_cd, name, email, phone, admin, job_id,position , hire_year
 	, position_name, employee_pattern, employee_pattern_name, department_name, company_name,
-	c_position;
+	c_position, pw;
 	private Date hire_date;
 	
 	
 	
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 	public String getC_position() {
 		return c_position;
 	}

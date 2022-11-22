@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import emp.EmpVO;
 import work.CommonCodeVO;
 import work.HolidayResultVO;
@@ -156,6 +159,55 @@ public class WorkController {
 		
 		return "side/work/workList";
 	}
+	/* =======================안드로이드 ====================== */
+	@ResponseBody @RequestMapping(value="/andWorkList", produces="text/html; charset=utf-8")
+	public String andWorkList() {
+		
+		List<WorkResultVO> list = dao.rList();
+		Gson gson = new GsonBuilder()
+				   .setDateFormat("yyyy-MM-dd").create();
+		return gson.toJson(list);
+	}
 	
+	 // 퇴근 버튼 눌렀을 때 시간 update
+	 
+	 @ResponseBody
+	 @RequestMapping("/andWork_end_input") 
+	 public String andWork_end_input( String end_work) {
+	
+	 
+	 return dao.work_end_input(end_work)+""; }
 
+	
+		//출근버튼 눌렀을 때 시간 insert
+		
+		@ResponseBody
+		@RequestMapping("/andWork_start_input")
+		public String andWork_start_input(String start_work)  {
+	
+			System.out.println(start_work);
+		
+			return dao.work_start_input(start_work)+"";
+		
+		
+		}
+
+		
+		@ResponseBody @RequestMapping(value="/andHolidayList", produces="text/html; charset=utf-8")
+		public String andHolidayList()  {
+			
+			Gson gson = new GsonBuilder()
+					.setDateFormat("yyyy-MM-dd").create();
+			
+			return gson.toJson(dao.holidayAllList());
+			
+			
+		}
+		@ResponseBody @RequestMapping(value="/andSearch", produces="text/html; charset=utf-8")
+		public String andSearch() {
+			
+			
+			return dao.search()+"";
+		}
+		
 }

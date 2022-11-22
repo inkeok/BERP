@@ -29,7 +29,30 @@ public class ApplyController {
 
 	@Autowired ApplyDAO dao;
 	
+	@RequestMapping("/pass.apply")
+	public String pass (ApplyVO vo ,String file_name, MultipartFile file, 
+			HttpServletRequest request, int apply_num, String apply_check) {
 	
+		
+		//ApplyVO apply = dao.apply_info(vo.getApply_num());
+	
+		dao.apply_update_check(apply_num, apply_check);
+		
+		
+		return "redirect:applycantList.apply";
+		
+	}
+	
+	
+	
+	@RequestMapping("/check.apply") 
+	public String admin_check(int apply_num, Model model) {
+		ApplyVO vo = dao.apply_info(apply_num);
+		model.addAttribute("vo",vo);
+		
+		
+		return "apply/check";
+	}
 	
 	
 	
@@ -40,7 +63,7 @@ public class ApplyController {
 		List<ApplyVO> applicants;
 		
 		//채용공고 번호 조회
-		List<apply.RecruitVO> recruit_list = dao.recruit_num(recruit_num);
+		List<apply.RecruitVO> recruit_list = dao.recruit_num();
 		
 		
 		if(recruit_num.equalsIgnoreCase("all")) {
@@ -56,7 +79,7 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "side/apply/pass_check";
+		return "apply/pass_check";
 	}
 	
 	@RequestMapping("/applicantList.apply")
@@ -66,7 +89,7 @@ public class ApplyController {
 		List<ApplyVO> applicants;
 		
 		//채용공고 번호 조회
-		List<apply.RecruitVO> recruit_list = dao.recruit_num(recruit_num);
+		List<apply.RecruitVO> recruit_list = dao.recruit_num();
 		
 		
 		if(recruit_num.equalsIgnoreCase("all")) {
@@ -82,10 +105,9 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "side/apply/applicantList";
+		return "apply/applicantList";
 	}
-	
-	
+
 	@RequestMapping("/update.apply")
 	public String update (ApplyVO vo ,String file_name, MultipartFile file, 
 			HttpServletRequest request, int apply_num) throws Exception {
@@ -143,13 +165,13 @@ public class ApplyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/application_detail") // ★ResponseBody<login.jsp
+	@RequestMapping("/application_detail") // ★ResponseBody
 	public Object login(String apply_phone, String apply_pw, HttpSession session) {
 				
 		ApplyVO vo = dao.apply_info(apply_phone, apply_pw);
 				
 				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("apply_num", vo.getApply_num());
+				map.put("apply_num", vo == null? null : vo.getApply_num());
 				map.put("exist", vo == null ? false : true);
 		return map;
 
@@ -183,49 +205,7 @@ public class ApplyController {
 	  
 	}
 	 
-	/*
-	@RequestMapping(value="/insert.apply", produces="text/html; charset=utf-8")	
-	public String insert( String recruit_num,RecruitVO recruit 
-			,Model model ,ApplyVO vo, MultipartFile file, HttpServletRequest request) {
-		
-		if (!file.isEmpty()) {
-			vo.setFile_name(file.getOriginalFilename());
-			vo.setFile_path(fileUpload("apply", file, request));
-		}
-		
-		StringBuffer msg = new StringBuffer();
-		dao.apply_insert(vo);
-		if(dao.apply_insert(vo)==1) {
-			msg.append("alert('회원가입을 축하합니다^^'); location='")
-			 .append( request.getContextPath() ).append("'");			
-		}else {
-			msg.append("alert('회원가입에 실패했습니다ㅠㅠ'); history.go(-1);");
-
-		}
-			
-		msg.append("</script>");
-		
-		
-		
-		return msg.toString();
-		//return "redirect:applyList.apply";
-	}
 	
-	
-	@RequestMapping("/fillout.apply")
-	public String fillout(String recruit_num,String recruit_title, 
-			 Model model) {
-		
-		
-		//vo.setRecruit_num(recruit.get)
-		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
-		//model.addAttribute("recruit",recruit);
-		model.addAttribute("recruit",recruit);
-		
-		return "apply/fillout";
-	}
-	
-	*/
 	@RequestMapping("/applyList.apply")
 	public String recruitList(Model model, @RequestParam(defaultValue="all") String employee_pattern) {
 		//사원조회
@@ -307,18 +287,18 @@ public class ApplyController {
 			vo.setFile_name(file.getOriginalFilename());
 			vo.setFile_path(fileUpload("apply", file, request));
 		}
-		//★★★recruit_num <받아서 보내줘야됨
-		//dao.apply_info(recruit_num);
-		//vo.setRecruit_num(recruit.getRecruit_num());
-		//model.addAttribute("vo",dao.apply_insert(vo));
+		
 		
 		dao.apply_insert(vo);
-		//int apply_num = dao.currval();		
-		String apply_phone = vo.getApply_phone();
-		String apply_pw = vo.getApply_pw();
+		int apply_num = dao.currval();		
+		//String apply_phone = vo.getApply_phone();
+		//String apply_pw = vo.getApply_pw();
+		//int apply_num = vo.getApply_num();
 		
-		return "redirect:detail.apply?apply_phone=" + apply_phone+"&apply_pw="+apply_pw;
-		//return "redirect:applyList.apply";
+		
+		return "redirect:detail.apply?apply_num="+apply_num;
+		//return "redirect:detail.apply?apply_phone=" + apply_phone+"&apply_pw="+apply_pw;
+		
 	}
 	
 	
@@ -328,8 +308,8 @@ public class ApplyController {
 		
 		
 		//vo.setRecruit_num(recruit.get)
-		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
 		//model.addAttribute("recruit",recruit);
+		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
 		model.addAttribute("recruit",recruit);
 		
 		return "apply/fillout";

@@ -236,5 +236,19 @@ public class RecruitController {
 		return new Gson().toJson(dao.and_my_rec_list(name));
 
 	}
+	@ResponseBody @RequestMapping(value="/andApplySpinnerList.rec", produces="text/html; charset=utf-8")
+	public String andApplySpinnerList() {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerList());
+
+	}
+	@ResponseBody @RequestMapping(value="/andApplyCareerSelect.rec", produces="text/html; charset=utf-8")
+	public String andApplyCareerSelect(String career) {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerCareerList(career));
+
+	}
 	
 }

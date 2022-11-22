@@ -86,4 +86,10 @@ public class RecruitDAO {
 		return sql.selectList("recruit.andMyList", name);
 	}
 
+	public List<RecruitVO> and_apply_spinnerList() {
+		return sql.selectList("recruit.andApplySpinnerList");
+	}
+	public List<RecruitVO> and_apply_spinnerCareerList(String career) {
+		return sql.selectList("recruit.andApplySpinnerCareerList", career);
+	}
 }

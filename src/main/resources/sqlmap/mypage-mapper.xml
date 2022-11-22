@@ -37,5 +37,11 @@ where e.employee_id = ${employee_id} AND e.department_id = d.department_id AND e
 
 </select>
 
+<!-- 안드!!!!!!!!!!!!!!!!!!! -->
+
+<select id="andEmployeeInfo" resultType="mypage.EmpVO">
+select * from employees
+where employee_id = #{employee_id}
+</select>
 
 </mapper>

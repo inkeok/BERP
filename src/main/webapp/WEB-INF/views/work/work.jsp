@@ -156,7 +156,7 @@ body{
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${workList}" var="woR">
+										<c:forEach begin="1" end="7" items="${workList}" var="woR">
 										<tr>
 											<td><fmt:formatDate value="${woR.work_date}" dateStyle="full" pattern="yyyy년MM월dd일"/></td>
 											<c:if test="${not empty woR.start_work }">
