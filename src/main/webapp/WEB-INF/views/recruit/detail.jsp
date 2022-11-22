@@ -67,7 +67,7 @@ ${vo.char_recruit_end }
 	<td>
 	
 <div>
-<input type="hidden" id='file_name' value="${vo.file_name }">
+<span id='file_name'>${vo.file_name }</span>
 <c:if test="${not empty vo.file_name }">
 <a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
 </c:if>
@@ -89,7 +89,12 @@ ${vo.char_recruit_end }
 
 
 <script>
-
+$('#download').click(function(){
+	
+	$(this).attr('href'
+			, 'download.rec?recruit_num=${vo.recruit_num }&url='+$(location).attr('href'));
+	
+});
 
 $('#remove').click(function() {
 	if(confirm('정말 삭제?')) {

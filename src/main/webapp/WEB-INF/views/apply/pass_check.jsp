@@ -106,10 +106,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 
 
 <script>
-function page(no) {
-	$('[name=curPage]').val(no);
-	$('form').submit();
-}
+
 
 </script>
 

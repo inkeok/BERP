@@ -65,9 +65,7 @@
 </form>
 
 <script>
-/* $('#save').click(function(){
-	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
-}); */
+
 $('#save').click(function(){
 	$('[name=file_name]').val( $('#file_name').text() );
 	if( emptyCheck() ) $('form').submit();

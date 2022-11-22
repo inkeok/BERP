@@ -100,10 +100,6 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 	<a class='btn-fill' href='application.apply'>나의지원서보기</a>
 </div>
 <script>
-function page(no) {
-	$('[name=curPage]').val(no);
-	$('form').submit();
-}
 
 </script>
 
