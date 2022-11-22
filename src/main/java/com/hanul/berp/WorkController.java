@@ -54,12 +54,12 @@ public class WorkController {
 
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
-		System.out.println(end_work);
+		
 		
 		
 		dao.work_end_input(end_work);
 		
-		System.out.println("ajax end");
+		
 
 		return "work";
 	}
@@ -73,7 +73,7 @@ public class WorkController {
 		
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
-		System.out.println(start_work);
+		
 		
 		dao.work_start_input(start_work);			
 
@@ -205,9 +205,26 @@ public class WorkController {
 		}
 		@ResponseBody @RequestMapping(value="/andSearch", produces="text/html; charset=utf-8")
 		public String andSearch() {
+			Gson gson = new Gson();
 			
-			
-			return dao.search()+"";
+			return gson.toJson(dao.search());
 		}
+		@ResponseBody @RequestMapping(value="/andEndSearch", produces="text/html; charset=utf-8")
+		public String andEndSearch() {
+			Gson gson = new Gson();
+			
+			return gson.toJson(dao.andEndSearch());
+		}
+		
+		@ResponseBody @RequestMapping(value="/andHoliday", produces="text/html; charset=utf-8")
+		public String andHoliday(String vo) {
+			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
+			
+			System.out.println(dto.getStart_holiday());
+			System.out.println(dto.getEnd_holiday());
+			
+				return dao.andHoliday(dto)+""; 		
+				
+	}
 		
 }
