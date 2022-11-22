@@ -41,6 +41,6 @@ public EmpMemberVO empMember_list(int employee_id) {
 //안드
 
 public void and_emp_modify(EmpVO vo) {
-	sql.update("mypage.andUpdate", vo);
+	 sql.update("mypage.andUpdate", vo);
 }
 }

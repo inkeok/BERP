@@ -61,18 +61,26 @@ public class MyPageController {
 	
 
 @ResponseBody @RequestMapping(value="/andModify.mp", produces="text/html; charset=utf-8")
-public String AndMyPageModify(int employee_id, String phone, String pw, String email) {
+public void AndMyPageModify(int employee_id, String phone, String pw, String email) {
 
 	mypage.EmpVO vo = new mypage.EmpVO();
 	vo.setEmployee_id(employee_id);
 	vo.setPhone(phone);
 	vo.setPw(pw);
 	vo.setEmail(email);
+	System.out.println(pw);
+	dao.and_emp_modify(vo);
 	//System.out.println(vo);
 //mypage.EmpVO vo2= new Gson().fromJson(vo, mypage.EmpVO.class);
+	
+	//if(pw==pw_ck) {
+		
+		
+	//}else {
+		//System.out.println(pw);
+		//return 1;
+	//}
 
-dao.and_emp_modify(vo);
-return new Gson().toJson("dd");
 
 /*
 for (int i = 0; i < memList.size(); i++) {
