@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
 import apply.ApplyDAO;
 import apply.ApplyVO;
 import member.MemberVO;
@@ -315,6 +317,13 @@ public class ApplyController {
 		return "apply/fillout";
 	}
 	
-		  
+		 ////////////////////////////////////////////////////
+	@ResponseBody @RequestMapping(value="/andApplyCheckSelect.rec", produces="text/html; charset=utf-8")
+	public String andApplyCheckSelect() {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectList());
+
+	}
 		 
 }

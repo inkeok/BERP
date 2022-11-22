@@ -101,6 +101,9 @@ public class ApplyDAO {
 		return sql.selectOne("apply.apply_check", map);
 	}
 	
-	
+	/////////////////////////////////////////////
+	public List<RecruitVO> and_apply_spinnerSelectList() {
+		return sql.selectList("recruit.andApplySpinnerCareerList");
+	}
 	
 }
