@@ -27,7 +27,7 @@
 <td> 
 ${recruit_num } ${vo.apply_num }
 </td>
-<tr>
+</tr>
 <tr><th>이름</th>
 <td> 
 ${vo.apply_name }
@@ -89,16 +89,19 @@ ${vo.apply_email }
 </form>
 
 <script>
+$('#download').click(function(){
+	
+	$(this).attr('href'
+			, 'download.apply?apply_num=${vo.apply_num }&url='+$(location).attr('href'));
+	
+});
+
+
 $('#save').click(function(){
 	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
 });
 
-$('#remove').click(function() {
-	if(confirm('정말 삭제?')) {
-		
-		location='delete.apply?apply_num=${vo.apply_num}';
-	}
-});
+
 if(isImage("${vo.file_name}")) {
 	$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
 	
