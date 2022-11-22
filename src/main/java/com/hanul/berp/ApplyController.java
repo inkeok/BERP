@@ -98,7 +98,7 @@ public class ApplyController {
 		dao.apply_update_check(apply_num, apply_check);
 		
 		
-		return "redirect:applycantList.apply";
+		return "redirect:applicantList.apply";
 		
 	}
 	
