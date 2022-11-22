@@ -61,50 +61,15 @@ public class MyPageController {
 	
 
 @ResponseBody @RequestMapping(value="/andModify.mp", produces="text/html; charset=utf-8")
-public void AndMyPageModify(int employee_id, String phone, String pw, String email) {
+public String AndMyPageModify(int employee_id, String phone, String pw, String email) {
 
 	mypage.EmpVO vo = new mypage.EmpVO();
 	vo.setEmployee_id(employee_id);
 	vo.setPhone(phone);
 	vo.setPw(pw);
 	vo.setEmail(email);
-	System.out.println(pw);
-	dao.and_emp_modify(vo);
-	//System.out.println(vo);
-//mypage.EmpVO vo2= new Gson().fromJson(vo, mypage.EmpVO.class);
 	
-	//if(pw==pw_ck) {
-		
-		
-	//}else {
-		//System.out.println(pw);
-		//return 1;
-	//}
-
-
-/*
-for (int i = 0; i < memList.size(); i++) {
-if(memList.get(i).getEmployee_id() == Integer.parseInt(id) && memList.get(i).getPw().equals(pw)) {
-info = true;
-break;
-}else {
-continue;
+	dao.and_emp_modify(vo);
+	return "ok";
 }
-}
-
-if(!info) {
-return "zzz";
-}else{
-List<AndLoginMemberVO> loginList = dao.andLogin(id);
-
-return new Gson().toJson(loginList);
-}
-
-
-*/
-}
-
-//and에서 스프링으로 로그인 정보 보내줌 => employee_id
-//변경저장처리 
-//dto 패스워드 추가 확인 
 }

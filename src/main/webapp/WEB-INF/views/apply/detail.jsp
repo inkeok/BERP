@@ -12,7 +12,12 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
- 
+<style>
+td {
+text-align:left;
+padding-left: 2rem;
+}
+</style> 
 
 </head>
 <body>
@@ -26,7 +31,8 @@
 <td> 
 ${recruit_num } ${vo.apply_num }
 </td>
-<tr>
+</tr>
+
 <tr><th>이름</th>
 <td> 
 ${vo.apply_name }
@@ -62,12 +68,10 @@ ${vo.apply_email }
 </form>
 
 <script>
-$('#save').click(function(){
-	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
-});
+
 
 $('#remove').click(function() {
-	if(confirm('정말 삭제?')) {
+	if(confirm('정말 삭제하시겠습니까?')) {
 		
 		location='delete.apply?apply_num=${vo.apply_num}';
 	}
