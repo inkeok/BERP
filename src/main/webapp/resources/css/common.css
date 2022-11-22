@@ -377,7 +377,7 @@ a {
 .app-03{
 	align-items: baseline;
 	display: inline-flex;
-	margin-top : 5rem; 
+	margin-top : 2rem; 
  	margin-right: 25rem;
  	flex-direction: row-reverse;
 }
@@ -456,6 +456,9 @@ particle {
   display: flex;
   flex-direction: column;
 }
+.service{
+	margin-top : 20rem;
+}
 .service-list {
 	margin : 20px;
     background: #fff;
@@ -502,3 +505,4 @@ particle {
   text-align: center;
 
 }
+
