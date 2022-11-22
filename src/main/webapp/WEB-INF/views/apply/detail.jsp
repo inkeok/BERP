@@ -66,6 +66,7 @@ ${vo.apply_email }
 <div class='btnSet'>
 <a class='btn-fill' href='modify.apply?apply_num=${vo.apply_num }'>지원서 수정 </a>
 <a class='btn-fill' id='remove'>지원서 삭제</a>
+<a class='btn-fill' href='applyList.apply'>목록으로</a>
 </div>
 </form>
 

@@ -51,11 +51,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 		
 	
 	</ul>
-	<ul><!-- 관리자인 경우만 글쓰기 가능 -->
-		<%-- <c:if test='${loginInfo.admin eq "Y"}'> --%>
-		<li><a class='btn-fill' href='new.rec'>글쓰기</a></li>
-		<%-- </c:if> --%>
-	</ul>
+	
 </div>
 </form>
 

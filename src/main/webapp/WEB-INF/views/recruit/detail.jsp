@@ -64,16 +64,19 @@ ${vo.char_recruit_end }
 </td>
 </tr> --%>
 <tr><th>내용</th>
-	<td>
+	<td>${vo.recruit_content }
 	
+<span id='file_name'></span>
+</td>
+</tr>
+<tr><th>첨부파일</th>
+<td>${vo.file_name }
 <div>
-<span id='file_name'>${vo.file_name }</span>
 <c:if test="${not empty vo.file_name }">
 <a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
 </c:if>
 </div>
 </td>
-</tr>
 </table>
 <div>
 <a href='list.rec' class='btn-fill'>목록으로 </a>
