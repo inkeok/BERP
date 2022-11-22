@@ -82,7 +82,7 @@
 		,lack: {code:'invalid', desc:'영문 대/소문자, 숫자 모두 포함해'}
 		,valid: {code: 'valid', desc:'사용가능한 비밀번호'}
 		,equal: {code: 'valid', desc:'비번 일치'}
-		,notEqual: {code: 'invalid', desc:'비번 노일치'}
+		,notEqual: {code: 'invalid', desc:'비번가 일치하지 않습니다'}
 	},
 	
 	
