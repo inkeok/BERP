@@ -81,7 +81,7 @@ public class MemberController {
 	public String AndLoginCheck(String id, String pw) {
 		Boolean info = false;
 		List<AndLoginMemberVO> memList = dao.andCheckLogin();
-		System.out.println(memList.get(0).getEmployee_id());
+	
 		for (int i = 0; i < memList.size(); i++) {
 			if(memList.get(i).getEmployee_id() == Integer.parseInt(id) && memList.get(i).getPw().equals(pw)) {
 				info = true;
