@@ -1,6 +1,7 @@
 package com.hanul.berp;
 
-import java.util.List;
+import java.sql.Date;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import emp.DepartmentVO;
 import emp.EmpDAO;
 import salary.SalaryDAO;
 
@@ -27,8 +27,19 @@ public class SalaryController {
 		return gson.toJson(emp_dao.departments());
 	}
 	
-	@ResponseBody @RequestMapping(value="/andDeptList.sa", produces="text/html; charset=utf-8")
+	@ResponseBody @RequestMapping(value="/andSalaryList.sa", produces="text/html; charset=utf-8")
 	public String SalaryList() {
 		return gson.toJson(dao.SalaryList());
+	}
+	
+	@ResponseBody @RequestMapping(value="/andInsertBonus.sa", produces="text/html; charset=utf-8")
+	public String andInsertBonus(int employee_id, String bonus, String bonus_comment, Date bonus_date) {
+		
+		HashMap<String, Object> map = new HashMap<>();
+        map.put("bonus" , bonus);
+        map.put("bonus_date" , bonus_date);
+        map.put("bonus_comment", bonus_comment);
+        map.put("employee_id", employee_id);
+		return gson.toJson(dao.andInsertBonus(map));
 	}
 }
