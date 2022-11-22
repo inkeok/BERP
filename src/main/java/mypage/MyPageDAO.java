@@ -40,8 +40,7 @@ public EmpMemberVO empMember_list(int employee_id) {
 
 //안드
 
-public List<EmpVO> andMyPageList(int employee_id) {
-	return sql.selectOne("mypage.andEmployeeInfo",employee_id);
+public void and_emp_modify(EmpVO vo) {
+	sql.update("mypage.andUpdate", vo);
 }
-
 }

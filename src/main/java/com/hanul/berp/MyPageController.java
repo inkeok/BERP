@@ -60,13 +60,19 @@ public class MyPageController {
 ///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
 	
 
-@ResponseBody @RequestMapping(value="/andModify.mypage", produces="text/html; charset=utf-8")
-public void AndMyPageModify(int employee_id) {
-//Boolean info = false;
+@ResponseBody @RequestMapping(value="/andModify.mp", produces="text/html; charset=utf-8")
+public String AndMyPageModify(int employee_id, String phone, String pw, String email) {
 
-List<mypage.EmpVO> andMyPageList = dao.andMyPageList(employee_id);
-//List<AndLoginMemberVO> memList = dao.andCheckLogin();
-System.out.println(andMyPageList);
+	mypage.EmpVO vo = new mypage.EmpVO();
+	vo.setEmployee_id(employee_id);
+	vo.setPhone(phone);
+	vo.setPw(pw);
+	vo.setEmail(email);
+	//System.out.println(vo);
+//mypage.EmpVO vo2= new Gson().fromJson(vo, mypage.EmpVO.class);
+
+dao.and_emp_modify(vo);
+return new Gson().toJson("dd");
 
 /*
 for (int i = 0; i < memList.size(); i++) {
