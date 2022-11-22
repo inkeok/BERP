@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import apply.ApplyVO;
+
 
 
 
@@ -102,5 +104,13 @@ public class RecruitDAO {
 	public List<RecruitVO> and_apply_spinnerSelectAllOne(String title) {
 		return sql.selectList("recruit.andApplyCheckSelectOne", title);
 	}
-	
+	public List<RecruitVO> and_apply_spinnerSelectPassList() {
+		return sql.selectList("recruit.andApplyPassSelectList");
+	}
+	public List<RecruitVO> and_apply_spinnerSelectPassOne(String title) {
+		return sql.selectList("recruit.andApplyPassSelectOne", title);
+	}
+	public void and_apply_PassORFail(ApplyVO vo) {
+		sql.update("recruit.andApplyPassORFail", vo);
+	}
 }

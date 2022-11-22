@@ -213,6 +213,35 @@ on r.company = cp.company_cd
 where r.recruit_title = #{title} AND a.apply_check = 'N'
 
 </select>
+<select id="andApplyPassSelectList" resultType="recruit.AndApplyVO">
+select r.RECRUIT_NUM, r.RECRUIT_START, r.RECRUIT_END, r.EMPLOYEE_PATTERN, r.RECRUIT_TITLE, r.RECRUIT_CONTENT, r.SALARY, r.CAREER, r.COMPANY ,
+a.APPLY_EMAIL, a.APPLY_NUM, a.APPLY_NAME, a.FILE_NAME, a.FILE_PATH,a.APPLY_DATE,a.APPLY_PW, a.APPLY_PHONE, a.APPLY_CHECK, 
+c.code_name employee_pattern_name , cd.code_name career_name
+from recruit_board r left outer join apply_board a
+on r.recruit_num = a.recruit_num left outer join
+common_code c
+on r.employee_pattern = c.code_value left outer join common_code cd
+on r.career = cd.code_value left outer join company cp
+on r.company = cp.company_cd 
+where a.apply_check = 'Y'
 
+</select>
+<select id="andApplyPassSelectOne" resultType="recruit.AndApplyVO">
+select r.RECRUIT_NUM, r.RECRUIT_START, r.RECRUIT_END, r.EMPLOYEE_PATTERN, r.RECRUIT_TITLE, r.RECRUIT_CONTENT, r.SALARY, r.CAREER, r.COMPANY ,
+a.APPLY_EMAIL, a.APPLY_NUM, a.APPLY_NAME, a.FILE_NAME, a.FILE_PATH,a.APPLY_DATE,a.APPLY_PW, a.APPLY_PHONE, a.APPLY_CHECK, 
+c.code_name employee_pattern_name , cd.code_name career_name
+from recruit_board r left outer join apply_board a
+on r.recruit_num = a.recruit_num left outer join
+common_code c
+on r.employee_pattern = c.code_value left outer join common_code cd
+on r.career = cd.code_value left outer join company cp
+on r.company = cp.company_cd
+where r.recruit_title = #{title} AND a.apply_check = 'Y'
+
+</select>
+<update id="andApplyPassORFail">
+update apply_board set apply_check = #{apply_check}
+where apply_phone = #{apply_phone}
+</update>
 
 </mapper>
