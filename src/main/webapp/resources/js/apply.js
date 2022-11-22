@@ -27,7 +27,7 @@
 	//상태확인
 	email : {
 		valid: {code: 'valid', desc:'사용 가능한 이메일'},
-		invalid: {code:'invalid', desc:'사용할 수 없느 ㄴ이메일'}
+		invalid: {code:'invalid', desc:'사용할 수 없는 이메일'}
 		
 	},
 	
@@ -72,7 +72,7 @@
 	//비밀번호 확인 관련상태
 	apply_pw_ck_status: function(apply_pw_ck) {
 		if(apply_pw_ck=='')						 return this.common.empty;
-		else if(apply_pw_ck=$('[name=apply_pw]').val()) return this.pw.notEqual;
+		else if(apply_pw_ck!=$('[name=apply_pw]').val()) return this.pw.notEqual;
 		else									return this.pw.equal;
 	},
 	

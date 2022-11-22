@@ -169,18 +169,6 @@ $('.attach-file').change(function(){
 	}
 });
 
-//지도 팝업효과 태그 ->항상 가운데 두기
-function center(tag, back) {
-	var width = Math.max ($(window).width(), $('body').prop('scrollWidth'));
-	var height = Math.max ($(window).width(), $('body').prop('scrollHeight'));
-	back.css({'width':width, 'height':height});
-	
-	var left = ($(window).width() - tag.width())/2 + $(window).scrollLeft();
-	var top = ($(window).height() - tag.height())/2 + $(window).scrollTop();
-	tag.removeClass('center').css({'left':left, 'top':top, 'position':'absolute'});
-	
-	
-}
 
 function loading(is) {
 	$('.loading').css('display', is ? 'block':'none');
