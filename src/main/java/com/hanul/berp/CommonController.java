@@ -81,7 +81,7 @@ public class CommonController {
 		return "side/common/common";
 	}
 	
-	@RequestMapping("/common.modify")
+	@RequestMapping("/common.detail")
 	public String id(Model model, 
 			@RequestParam(defaultValue = "") String code, CommonVO vo) {
 		
@@ -116,7 +116,7 @@ public class CommonController {
 		model.addAttribute("list", commonlist);
 		model.addAttribute("list", list);
 		
-		return "side/common/modify";
+		return "side/common/detail";
 		
 	}
 	

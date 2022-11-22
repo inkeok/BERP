@@ -70,7 +70,47 @@ td {
     			</label>
 			</div>
 		</div>
-	</form>
+	
+		</div>
+<div class="dataTable-container">
+<table id="datatablesSimple" class="dataTable-table">
+	<thead>
+	    <tr>
+	     <th data-sortable="" style="width: 10%;">
+	    	<span class="dataTable-sorter">인사코드</span>
+	    </th>
+        <th data-sortable="" style="width: 10%;">
+        	<span class="dataTable-sorter">문서코드</span>
+       	</th>
+     	<th data-sortable="" style="width: 10%;">
+     		<span class="dataTable-sorter">고용형태코드</span>
+   		</th>
+   		<th data-sortable="" style="width: 10%;">
+     		<span class="dataTable-sorter">근무구분코드</span>
+   		</th>
+   		<th data-sortable="" style="width: 10%;">
+   			<span class="dataTable-sorter">코드생성일</span>
+		</th>
+		<th data-sortable="" style="width: 13%;">
+			<span class="dataTable-sorter">코드생성자</span>
+		</th>
+		</tr>
+	</thead>   
+      	<c:forEach items="${list}" var="vo">
+            
+            <tr><td><a href='common.detail?id=${vo.code_title}'>${vo.code_title}</a></td>
+            	<td>${vo.code_value}</td>
+            	<td>${vo.code_used}</td>
+            	<td>${vo.code_name}</td>
+            	<td>${vo.code_birth}</td>
+            	<td>${vo.code_maker_name}</td>
+           	</tr>
+           	</c:forEach>
+        </table>
+        </div><div class="dataTable-bottom"><div class="dataTable-info"></div></div></div>
+    </div>
+</div>
+</form>
  
 </body>
 </html>
