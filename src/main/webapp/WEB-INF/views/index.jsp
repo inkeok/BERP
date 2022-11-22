@@ -90,7 +90,21 @@ img.sec-image {
 	animation: img 3s;
 }
 
+.Inquire{
+	display : none;
+	animation : button 3s;
+}
 /* index keyframes */
+
+@keyframes button {
+ 0%{
+	left: 0%;
+ }100% 
+
+{
+	left:22.8%;
+	}
+}
 
 @keyframes text1 { 
 0%{
@@ -136,8 +150,11 @@ left:20%;
 				style="font-size: 44px">기획부터 디자인, 개발까지<br /> 영문 네트워크에서<br />
 				앱/웹 개발을 연구합니다
 			</span>
-			<button class="btn btn-dark btn-lg ask fi"
+			<div class="Inquire">
+				<button class="button button-second" data-type="circle" 
 				onclick='location="login.mem"'>문의하기</button>
+			</div>
+			
 			<img class="sec-image" src="imgs/icons/logo.png" alt="bodyimage" />
 		</section>
 	</div>
@@ -376,7 +393,12 @@ left:20%;
 		$(document).ready(function() {
 			$('img.sec-image').fadeIn(3000);
 		});
+		
+		$(document).ready(function() {
+			$('.Inquire').fadeIn(3000);
+		});
 
 	</script>
+	<script src="js/header.js"></script>
 </body>
 </html>

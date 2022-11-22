@@ -5,6 +5,8 @@ li a{
 	font-size: 14px;
 }
 body {
+	background: linear-gradient(90deg, #ffffff, #aaaaaa);
+/* 	background: linear-gradient(90deg, #3b5290, #472f58); */
     position: relative;
     margin: 0;
     padding: 2rem 0 0 3.75rem;
@@ -98,16 +100,14 @@ li:before {
 	top: calc(5% + 8px);
 	left: 8px;
 }
-
 .nav-img img {
 	width: 40px;
 	height: 40px;
 }
-#fix{
-	background-color: black;
-	width: 20%;
-	height: 20%;;
-	position: fixed;
-	bottom: 30px;
-	left: 30px;
-	}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-47%, 2%);
+}
