@@ -102,8 +102,6 @@ public class ApplyDAO {
 	}
 	
 	/////////////////////////////////////////////
-	public List<RecruitVO> and_apply_spinnerSelectList() {
-		return sql.selectList("recruit.andApplySpinnerCareerList");
-	}
+	
 	
 }

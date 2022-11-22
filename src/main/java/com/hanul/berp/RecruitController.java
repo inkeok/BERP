@@ -250,6 +250,31 @@ public class RecruitController {
 		return new Gson().toJson(dao.and_apply_spinnerCareerList(career));
 
 	}
+	//관리자 부분
+	@ResponseBody @RequestMapping(value="/andApplyCheckSelect.rec", produces="text/html; charset=utf-8")
+	public String andApplyCheckSelect() {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectList());
+
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApplyCheckSelectList.rec", produces="text/html; charset=utf-8")
+	public String andApplyCheckSelectList() {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectAllList());
+
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApplyCheckSelectOne.rec", produces="text/html; charset=utf-8")
+	public String andApplyCheckSelectOne(String title) {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectAllOne(title));
+
+	}
+		
 	
 	
 }
