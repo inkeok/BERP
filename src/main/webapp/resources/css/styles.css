@@ -235,11 +235,11 @@ sup {
 }
 
 a {
-  color: #0d6efd;
+  color: #adb5bd;
   text-decoration: underline;
 }
 a:hover {
-  color: #0a58ca;
+  color: #212529;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -11684,6 +11684,7 @@ body {
   position: relative;
   width: 100%;
   padding-right: 1rem;
+  text-align: center;
 }
 
 .dataTable-sorter::before,

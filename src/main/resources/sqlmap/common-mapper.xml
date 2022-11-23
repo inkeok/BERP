@@ -63,5 +63,21 @@
 		order by code_title
 	</select>
 	-->
+
+	<!-- 특정 사원정보 조회 -->
+	<select id='detail' resultType='common.CommonVO'>
+		select c.* , e.name code_maker_name
+		from common_code c left join employees e
+		on c.code_maker = e.employee_id
+		where c.code_value = #{code_value}
+	</select>
+	
+	<!-- 사원정보 수정저장처리 -->
+	<update id="update">
+		update common_code
+		set <if test="code_value == -1">, code_value = null</if>
+			<if test="code_value > -1">, code_value = #{cdoe_value}</if>
+		where 
+	</update>
 	
 	</mapper>

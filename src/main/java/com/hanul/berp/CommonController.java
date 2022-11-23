@@ -18,7 +18,7 @@ public class CommonController {
 	@RequestMapping("/common.cd")
 	public String list(Model model
 			,@RequestParam(defaultValue = "") String code, CommonVO vo
-//			,@RequestParam(defaultValue = "all") String code_title
+	//		,@RequestParam(defaultValue = "all") String code_title
 //			,@RequestParam(defaultValue = "all") String code_value
 //			,@RequestParam(defaultValue = "all") String code_used
 //			,@RequestParam(defaultValue = "all") String code_name
@@ -82,18 +82,17 @@ public class CommonController {
 	}
 	
 	@RequestMapping("/common.detail")
-	public String id(Model model, 
-			@RequestParam(defaultValue = "") String code, CommonVO vo) {
+	public String detail(String code_value, Model model) {
 		
-		if( code.equals("code_title") ) {
-			model.addAttribute("code_title", vo.getCode_title());  //선택한 코드
-		}else if( code.equals("code_value") ) {
-			model.addAttribute("code_value", vo.getCode_value());  //선택한 코드
-		}else if( code.equals("code_used") ) {
-			model.addAttribute("code_used", vo.getCode_used());  //선택한 코드
-		}else if( code.equals("code_name") ) {
-			model.addAttribute("code_name", vo.getCode_name());  //선택한 코드
-		}
+		CommonVO vo = dao.code_detail(code_value);
+		
+		model.addAttribute("vo", vo);
+		return "side/common/detail";
+		
+	}
+	
+	@RequestMapping("/common.modify")
+	public String modify(String code_value, Model model) {
 		
 		List<CommonVO> code_titles = dao.personal_code(); //인사코드 목록(드랍다운목록)
 		model.addAttribute("code_titles",code_titles);
@@ -103,21 +102,16 @@ public class CommonController {
 		model.addAttribute("code_used",code_used);
 		List<CommonVO> code_name = dao.work_code(); //문서코드 목록(드랍다운목록)
 		model.addAttribute("code_name",code_name);
+
 		
-		List<CommonVO> commonlist = dao.common_list();
-		
-		List<CommonVO> list = null;
-		if( code.isEmpty() ) {
-			list = dao.common_list(); //코드 전체 목록
-		}else {
-			list = dao.common_list(vo, code); //선택한 코드 전체 목록
-		}
-		
-		model.addAttribute("list", commonlist);
-		model.addAttribute("list", list);
-		
-		return "side/common/detail";
-		
+		model.addAttribute("vo", dao.code_detail(code_value));
+		return "side/common/modify";
+	}
+	
+	@RequestMapping("/common.update")
+	public String update(CommonVO vo) {
+		dao.code_update(vo);
+		return "common/modify";
 	}
 	
 }

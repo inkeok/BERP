@@ -47,4 +47,13 @@ public class CommonDAO {
 	public List<CommonVO> work_code() {
 		return sql.selectList("com.work_code");
 	}
+	
+	public CommonVO code_detail(String code_value) {
+		return sql.selectOne("com.detail", code_value);
+	}
+
+	public void code_update(CommonVO vo) {
+		sql.update("common.update", vo);
+	}
+	
 }
