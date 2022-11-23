@@ -3,10 +3,25 @@ package salary;
 public class SalaryVO {
 
 	private int employee_id, department_id, salary, commission_pct, c_position, c_employee_pattern;
-	private String company_cd;
+	private String company_cd, name, hire_date;
 	
 	
 	
+	
+	
+	
+	public String getHire_date() {
+		return hire_date;
+	}
+	public void setHire_date(String hire_date) {
+		this.hire_date = hire_date;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getC_position() {
 		return c_position;
 	}
