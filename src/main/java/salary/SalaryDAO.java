@@ -1,5 +1,6 @@
 package salary;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,5 +14,9 @@ public class SalaryDAO {
 
 	public List<SalaryVO> SalaryList() {
 		return sql.selectList("salary.salaryList");
+	}
+	
+	public int andInsertBonus(HashMap<String, Object> map) {
+		return sql.insert("salary.andInsertBonus", map);
 	}
 }

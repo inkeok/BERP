@@ -13,5 +13,9 @@
 
 	</select>
 	
+	<insert id='andInsertBonus'>
+		insert into bonus (employee_id, bonus, bonus_date, bonus_comment)
+		values (#{employee_id}, #{bonus}, #{bonus_date}, #{bonus_commnet})
+	</insert>
 
 </mapper>
