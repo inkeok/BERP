@@ -93,6 +93,7 @@ public class WorkDAO {
 		return sql.selectList("work.department_work", department_id);
 	}
 	
+	
 	public List<WorkResultVO> department_work() {
 		return sql.selectList("work.department_work");
 	}
@@ -110,6 +111,14 @@ public class WorkDAO {
 		
 		return sql.insert("work.andHoliday", vo);
 	}
-
+	
+	public List<CommonCodeVO> andCode() {
+		
+		return sql.selectList("work.andCode");
+	}
+	public List<CommonCodeVO> andHolidaySearch() {
+		
+		return sql.selectOne("work.andHolidaySearch");
+	}
 	
 }
