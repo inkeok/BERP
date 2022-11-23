@@ -40,7 +40,8 @@
 <tr>
 <th>이메일</th>
 <td>
-<input type='text'  class="chk" name='apply_email' placeholder="email">
+<input type='text'  class="chk" name='apply_email' placeholder="이메일">
+<div class='valid'>이메일 입력하세요</div>
 </td>
 </tr>
 <tr><th>첨부파일</th>
@@ -61,16 +62,18 @@
 <th>지원서 비밀번호</th>
 <td>
 <input type='password'  class="chk" name='apply_pw' id="apply_pw" placeholder="비밀번호">
+<div class='valid'>비밀번호 입력하세요</div>
+<!-- <span id="passEqual1">비번입력</span> -->
 
-<span id="passEqual1">비번입력</span>
 </td>
 </tr>
 <tr>
 <th>비밀번호 확인</th>
 <td>
 <input type='password'  class="chk" name='apply_pw_ck' id="apply_pw_ck" placeholder="비밀번호 확인">
+<div class='valid'>비밀번호 입력하세요</div>
+<!-- <span id="passEqual2">한번더 비번입력</span> -->
 
-<span id="passEqual2">한번더 비번입력</span>
 </td>
 
 </tr>
@@ -115,11 +118,13 @@ $('#save').click(function(){
 		}	
 	}
 	
+	if(tagIsInValid($('[name=apply_pw]'))) return;
+	if(tagIsInValid($('[name=apply_pw_ck]'))) return;
+	if(tagIsInValid($('[name=apply_email]'))) return;
 	
 	
 	
-	
-	$('form').submit();
+	if( emptyCheck() )  $('form').submit();
 });
 
 

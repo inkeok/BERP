@@ -101,6 +101,7 @@ public class ApplyDAO {
 		return sql.selectOne("apply.apply_check", map);
 	}
 	
+	/////////////////////////////////////////////
 	
 	
 }

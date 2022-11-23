@@ -99,7 +99,7 @@
 	</td>
 </tr>
 </table>
-<input type='hidden' name='file_name'>
+<input type='hidden' name='file_name' value="${vo.file_name}">
 <%-- <input type='hidden' name='writer' value='${loginInfo.id}'> --%>
 </form>
 <div class='btnSet'>

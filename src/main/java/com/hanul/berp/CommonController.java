@@ -81,4 +81,43 @@ public class CommonController {
 		return "side/common/common";
 	}
 	
+	@RequestMapping("/common.detail")
+	public String id(Model model, 
+			@RequestParam(defaultValue = "") String code, CommonVO vo) {
+		
+		if( code.equals("code_title") ) {
+			model.addAttribute("code_title", vo.getCode_title());  //선택한 코드
+		}else if( code.equals("code_value") ) {
+			model.addAttribute("code_value", vo.getCode_value());  //선택한 코드
+		}else if( code.equals("code_used") ) {
+			model.addAttribute("code_used", vo.getCode_used());  //선택한 코드
+		}else if( code.equals("code_name") ) {
+			model.addAttribute("code_name", vo.getCode_name());  //선택한 코드
+		}
+		
+		List<CommonVO> code_titles = dao.personal_code(); //인사코드 목록(드랍다운목록)
+		model.addAttribute("code_titles",code_titles);
+		List<CommonVO> code_values = dao.document_code(); //문서코드 목록(드랍다운목록)
+		model.addAttribute("code_values",code_values);
+		List<CommonVO> code_used = dao.employee_code(); //문서코드 목록(드랍다운목록)
+		model.addAttribute("code_used",code_used);
+		List<CommonVO> code_name = dao.work_code(); //문서코드 목록(드랍다운목록)
+		model.addAttribute("code_name",code_name);
+		
+		List<CommonVO> commonlist = dao.common_list();
+		
+		List<CommonVO> list = null;
+		if( code.isEmpty() ) {
+			list = dao.common_list(); //코드 전체 목록
+		}else {
+			list = dao.common_list(vo, code); //선택한 코드 전체 목록
+		}
+		
+		model.addAttribute("list", commonlist);
+		model.addAttribute("list", list);
+		
+		return "side/common/detail";
+		
+	}
+	
 }

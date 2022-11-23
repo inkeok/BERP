@@ -33,6 +33,8 @@
 
 
 <script>
+
+
 $('#apply_pw').keyup(function(e){
 	if(e.keyCode==13) check();
 });

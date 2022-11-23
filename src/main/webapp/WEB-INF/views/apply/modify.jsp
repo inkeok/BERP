@@ -45,9 +45,11 @@
 			<input type='file' name='file' id='attach-file'>
 			<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
 		</label>
-		<span id='file_name'></span>
+		<span id='file_name'>${vo.file_name}</span>
 		<span id='preview'></span>
-		<a id='delete-file'><i class="font-r fa-solid fa-trash-can"></i></a>
+		<!-- //첨부파일이 있는 경우 삭제 이미지가 보이게 처리 -->
+		<a id='delete-file' style='display:${empty vo.file_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
+		
 		</div>
 	</td>
 </tr>
@@ -63,13 +65,10 @@
 </form>
 
 <script>
-/* $('#save').click(function(){
-	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
-}); */
-$('#save').click(function(){
 
-	
-	$('form').submit();
+$('#save').click(function(){
+	$('[name=file_name]').val( $('#file_name').text() );
+	if( emptyCheck() ) $('form').submit();
 });
 if(isImage("${vo.file_name}")) {
 	$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
