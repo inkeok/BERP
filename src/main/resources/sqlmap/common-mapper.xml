@@ -79,4 +79,9 @@
 		where code_value = #{code_value}
 	</update>
 	
+	<delete id="delete">
+	 	delete from common_code
+	 	where code_value = #{code_value}
+	</delete>
+	
 	</mapper>

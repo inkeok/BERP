@@ -111,10 +111,27 @@ public class CommonController {
 	}
 	
 	@RequestMapping("/common.update")
-	public String update(CommonVO vo, String code_value, HttpServletRequest request) throws Exception {
+	public String update(CommonVO vo, String code_value) {
 		CommonVO code = dao.code_detail(vo.getCode_value());
-		dao.code_update(vo);
-		return "redirect:common.detail?code_value=" + code_value;
+		
+		
+		try {
+			dao.code_update(vo);
+			System.out.println("잘됨");
+			return "redirect:common.detail?code_value=" + code_value;
+			
+		} catch (Exception e) {
+			
+			System.out.println("안됨 ");
+			return "redirect:common.detail?code_value=" + code_value;
+		}
+		
+	}
+	
+	@RequestMapping("/common.delete")
+	public String delete(String code_value) {
+		dao.delete(code_value);
+		return "redirect:common.cd";
 	}
 	
 }

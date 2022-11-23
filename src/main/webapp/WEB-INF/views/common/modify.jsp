@@ -96,12 +96,8 @@ select {
 </tr>
 <tr><th>근무코드</th>
 	<td>
-		<select class="dataTable-selector" name="code_name" onchange='$("#code").val("code_name");'>
-						<c:forEach items='${code_name}' var='n'>
-							<option ${vo.code_name eq n.code_name ? 'selected' : ''} 
-									value='${n.code_name}'>${n.code_name}
-							</option>
-				</select></td>
+		<input type="text" id="code_name" name="code_name" />
+				</td>
 			</tr>
 			<tr>
 				<th>생성날짜</th>
@@ -114,7 +110,7 @@ select {
 		</table>
 	</form>
 	<div class='btnSet'>
-		<a class='btn-fill' onclick='$("form").submit()'>저장</a> <a
+		<a class='btn-fill' id='save' onclick='$("form").submit()'>저장</a> <a
 			class='btn-empty' href='common.detail?code_value=${vo.code_value}'>취소</a>
 	</div>
 </body>

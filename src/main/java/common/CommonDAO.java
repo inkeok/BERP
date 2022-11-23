@@ -56,4 +56,8 @@ public class CommonDAO {
 		sql.update("com.update", vo);
 	}
 	
+	public void delete(String code_value) {
+		sql.delete("com.delete", code_value);
+	}
+	
 }
