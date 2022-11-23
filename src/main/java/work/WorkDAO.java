@@ -120,5 +120,10 @@ public class WorkDAO {
 		
 		return sql.selectOne("work.andHolidaySearch");
 	}
+	public List<HolidayVO> andHoliday_List(){
+		
+		return sql.selectList("work.andHoliday_List");
+		
+	}
 	
 }

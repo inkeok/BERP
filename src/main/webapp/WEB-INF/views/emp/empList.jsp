@@ -77,15 +77,33 @@ tbody td:hover:before {
   z-index: -1;
 }
 .new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
 	position: relative;
-	left: 5%;
+	left: 4%;
+}
+
+.button-second {
+  background: #2b32b2;
+  box-shadow: 0 3px 25px rgba(48, 37, 223, 0.7);
 }
 
 </style>
 </head>
 <body >
 	<h2 class="center hrlist">사원목록</h2>
-	<a href="new.hr" class="btn btn-outline-success new-btn">신규사원등록</a>
+	<button class="new-btn" onclick='location="new.hr"'>신규사원등록</button>
 	<form action="list.hr" class="list">
 		<div class="w-px1600">
 			<table class="table-hover">

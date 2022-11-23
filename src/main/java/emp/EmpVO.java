@@ -10,6 +10,7 @@ public class EmpVO {
 	c_position, pw;
 	private Date hire_date;
 	
+
 	
 	
 	
@@ -25,6 +26,7 @@ public class EmpVO {
 	public void setCommission_pct(int commission_pct) {
 		this.commission_pct = commission_pct;
 	}
+
 	public String getPw() {
 		return pw;
 	}
@@ -134,6 +136,4 @@ public class EmpVO {
 		this.hire_date = hire_date;
 	}
 		
-	
-
 }
