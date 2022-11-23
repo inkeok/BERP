@@ -15,7 +15,6 @@ const showMenu = (toggleId, navbarId, bodyId) => {
 
 showMenu('nav-toggle', 'navbar', 'body-pd')
 
-/* LINK ACTIVE */
 const linkColor = document.querySelectorAll('.nav__link')
 function colorLink() {
 	linkColor.forEach(l => l.classList.remove('active'))
@@ -23,7 +22,7 @@ function colorLink() {
 }
 linkColor.forEach(l => l.addEventListener('click', colorLink))
 
-/* COLLAPSE MENU */
+
 const linkCollapse = document.getElementsByClassName('collapse__link')
 var i
 
@@ -44,3 +43,4 @@ $('.side-menu').on('click', function (){
 $('.side-menu2').on('click', function (){
   $('.list2').toggleClass('hidden');
 });
+

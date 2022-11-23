@@ -1,21 +1,29 @@
 package com.hanul.berp;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
 
 import apply.ApplyDAO;
 import apply.ApplyVO;
@@ -27,6 +35,210 @@ import recruit.RecruitVO;
 public class ApplyController {
 
 	@Autowired ApplyDAO dao;
+	
+	
+	
+	//첨부파일 다운로드 요청
+	@ResponseBody @RequestMapping(value="/download.apply",produces="text/html; charset=utf-8")
+	public String download(int apply_num, String url, HttpServletRequest request
+						, HttpServletResponse response) throws Exception{
+		
+		ApplyVO vo = dao.apply_info(apply_num);
+		boolean download
+		= fileDownload(vo.getFile_name(), vo.getFile_path(), request, response);
+		
+		if(!download) {
+			
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('다운로드할 파일이 없습니다!'); location='")
+			.append(url).append("';");
+			msg.append("</script>");
+			return msg.toString();
+			
+		}else
+			return null;
+		
+		
+	}
+
+	public boolean fileDownload(String file_name, String file_path, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		file_path = file_path.replace(appURL(request), "d://app/" + request.getContextPath());
+
+//다운로드할 파일객체 생성		
+		File file = new File(file_path);
+		if (!file.exists())
+			return false;
+
+//text/html, image/png,  xlxs, .....
+		String mime = request.getSession().getServletContext().getMimeType(file_path);
+		response.setContentType(mime);
+
+		file_name = URLEncoder.encode(file_name, "utf-8");
+		file_name = file_name.replaceAll("\\+", "%20");// .replaceAll("?", "%36");
+
+		response.setHeader("content-disposition", "attachment; filename=" + file_name); // 첨부되어진 파일을 내려받도록 처리
+
+		ServletOutputStream out = response.getOutputStream();
+		FileCopyUtils.copy(new FileInputStream(file), out);
+		out.flush();
+		return true;
+	}
+	
+	
+////////////////////////////////////////
+	
+	
+	@RequestMapping("/pass.apply")
+	public String pass (ApplyVO vo ,String file_name, MultipartFile file, 
+			HttpServletRequest request, int apply_num, String apply_check) {
+	
+		
+		//ApplyVO apply = dao.apply_info(vo.getApply_num());
+	
+		dao.apply_update_check(apply_num, apply_check);
+		
+		
+		return "redirect:applicantList.apply";
+		
+	}
+	
+	
+	
+	@RequestMapping("/check.apply") 
+	public String admin_check(int apply_num, Model model) {
+		ApplyVO vo = dao.apply_info(apply_num);
+		model.addAttribute("vo",vo);
+		
+		
+		return "apply/check";
+	}
+	
+	
+	
+	@RequestMapping("/pass_check.apply")
+	public String pass_checkList(Model model, @RequestParam(defaultValue="all") String recruit_num) {
+		
+		//지원자 조회
+		List<ApplyVO> applicants;
+		
+		//채용공고 번호 조회
+		List<apply.RecruitVO> recruit_list = dao.recruit_num();
+		
+		
+		if(recruit_num.equalsIgnoreCase("all")) {
+			//전체 지원자 리스트 조회recruits = 
+			applicants = dao.pass_list();
+		}else {
+			//s선택
+			applicants = dao.pass_list(recruit_num);
+		}
+		
+		model.addAttribute("applicants", applicants);
+		model.addAttribute("recruit_list", recruit_list);
+		model.addAttribute("recruit_num", recruit_num);
+		
+		
+		return "apply/pass_check";
+	}
+	
+	@RequestMapping("/applicantList.apply")
+	public String applicantList(Model model, @RequestParam(defaultValue="all") String recruit_num) {
+		
+		//지원자 조회
+		List<ApplyVO> applicants;
+		
+		//채용공고 번호 조회
+		List<apply.RecruitVO> recruit_list = dao.recruit_num();
+		
+		
+		if(recruit_num.equalsIgnoreCase("all")) {
+			//전체 지원자 리스트 조회recruits = 
+			applicants = dao.applicant_list();
+		}else {
+			//s선택
+			applicants = dao.applicant_list(recruit_num);
+		}
+		
+		model.addAttribute("applicants", applicants);
+		model.addAttribute("recruit_list", recruit_list);
+		model.addAttribute("recruit_num", recruit_num);
+		
+		
+		return "apply/applicantList";
+	}
+
+	@RequestMapping("/update.apply")
+	public String update (ApplyVO vo ,String file_name, MultipartFile file, 
+			HttpServletRequest request, int apply_num
+			, MultipartFile pic_name, String pic_file_name
+			) throws Exception {
+		
+		ApplyVO apply = dao.apply_info(vo.getApply_num());
+		
+		if( file.isEmpty() ) {
+			//첨부파일이 없는 경우
+			if( file_name.isEmpty() ) {							
+				attachedFile_delete(apply.getFile_path(), request);
+				
+			}else {
+				//파일명이 있는 경우
+				//원래 첨부파일이 있었고, 그 파일을 그대로 사용하는 경우
+				vo.setFile_name(apply.getFile_name());
+				vo.setFile_path(apply.getFile_path());
+				
+			}
+			
+		}else {
+			//첨부파일이 있는 경우
+			vo.setFile_name( file.getOriginalFilename() );
+			vo.setFile_path( fileUpload("apply", file, request) );	
+			
+			//원래 첨부파일이 있었다면 물리적파일을 삭제
+			attachedFile_delete( apply.getFile_path(), request );
+		}
+		//////////////시작/////////////////사진
+		if( pic_name.isEmpty() ) {
+			//첨부파일이 없는 경우
+			if( pic_file_name.isEmpty() ) {							
+				attachedFile_delete_pic(apply.getApply_pic_path(), request);
+				
+			}else {
+				//파일명이 있는 경우
+				//원래 첨부파일이 있었고, 그 파일을 그대로 사용하는 경우
+				vo.setApply_pic_name(apply.getApply_pic_name());
+				vo.setApply_pic_path(apply.getApply_pic_path());
+				
+				
+			}
+			////////////////★ㅁ/ㅁ/★★★★
+		}else {
+			//첨부파일이 있는 경우
+			vo.setApply_pic_name(pic_name.getOriginalFilename());
+			vo.setApply_pic_path(fileUpload_pic("apply",pic_name, request));
+			
+			
+			
+			//원래 첨부파일이 있었다면 물리적파일을 삭제
+			attachedFile_delete_pic( apply.getApply_pic_path(), request );
+		}
+		
+		dao.apply_update(vo);
+		
+		
+		return "redirect:detail.apply?apply_num=" +apply_num;
+		
+	}
+	
+	@RequestMapping("/modify.apply")
+	public String modify_apply(int apply_num, Model model) {
+		ApplyVO vo = dao.apply_info(apply_num);
+		model.addAttribute("vo",vo);
+		
+		
+		return "apply/modify";
+	}
 
 	@ResponseBody @RequestMapping("/phone_check")
 	public boolean id_check(String apply_phone) {
@@ -40,12 +252,15 @@ public class ApplyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/application_detail") // ★ResponseBody<login.jsp
-	public boolean login(String apply_phone, String apply_pw, HttpSession session) {
+	@RequestMapping("/application_detail") // ★ResponseBody
+	public Object login(String apply_phone, String apply_pw, HttpSession session) {
 				
 		ApplyVO vo = dao.apply_info(apply_phone, apply_pw);
 				
-		return vo == null ? false : true;
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("apply_num", vo == null? null : vo.getApply_num());
+				map.put("exist", vo == null ? false : true);
+		return map;
 
 	}
 		
@@ -66,10 +281,10 @@ public class ApplyController {
 	
 	  
 	@RequestMapping("/detail.apply") 
-	public String detail (String apply_phone, String apply_pw,Model model) {
+	public String detail (int apply_num,Model model) {
 	 
 		
-		ApplyVO vo = dao.apply_info(apply_phone, apply_pw);
+		ApplyVO vo = dao.apply_info(apply_num);
 		 
 		 model.addAttribute("vo",vo);
 		  
@@ -77,49 +292,7 @@ public class ApplyController {
 	  
 	}
 	 
-	/*
-	@RequestMapping(value="/insert.apply", produces="text/html; charset=utf-8")	
-	public String insert( String recruit_num,RecruitVO recruit 
-			,Model model ,ApplyVO vo, MultipartFile file, HttpServletRequest request) {
-		
-		if (!file.isEmpty()) {
-			vo.setFile_name(file.getOriginalFilename());
-			vo.setFile_path(fileUpload("apply", file, request));
-		}
-		
-		StringBuffer msg = new StringBuffer();
-		dao.apply_insert(vo);
-		if(dao.apply_insert(vo)==1) {
-			msg.append("alert('회원가입을 축하합니다^^'); location='")
-			 .append( request.getContextPath() ).append("'");			
-		}else {
-			msg.append("alert('회원가입에 실패했습니다ㅠㅠ'); history.go(-1);");
-
-		}
-			
-		msg.append("</script>");
-		
-		
-		
-		return msg.toString();
-		//return "redirect:applyList.apply";
-	}
 	
-	
-	@RequestMapping("/fillout.apply")
-	public String fillout(String recruit_num,String recruit_title, 
-			 Model model) {
-		
-		
-		//vo.setRecruit_num(recruit.get)
-		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
-		//model.addAttribute("recruit",recruit);
-		model.addAttribute("recruit",recruit);
-		
-		return "apply/fillout";
-	}
-	
-	*/
 	@RequestMapping("/applyList.apply")
 	public String recruitList(Model model, @RequestParam(defaultValue="all") String employee_pattern) {
 		//사원조회
@@ -142,20 +315,16 @@ public class ApplyController {
 		
 		return "apply/applyList";
 	}
-	
+	/////////////////////////////////////이력서 첨부파일/////////////////////////////////////////////////
 	// 파일업로드
 		public String fileUpload(String category, MultipartFile file, HttpServletRequest request) {
 			
 			String path
 
-					= "d://app" + request.getContextPath();
-
-			
+					= "d://app" + request.getContextPath();			
 			String upload = "/upload/" + category + new SimpleDateFormat("/yyyy/MM/dd").format(new Date());
-
-			
+	
 			path += upload;
-
 			
 			File folder = new File(path);
 			if (!folder.exists())
@@ -163,12 +332,10 @@ public class ApplyController {
 
 			// 업로드하는 파일명을 고유한 아이디를 붙여 저장한다: ajlh2348-ahflhq_abc.txt
 			String file_name = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-
 			try {
 				file.transferTo(new File(path, file_name));
 			} catch (Exception e) {
 			}
-
 			
 			return appURL(request) + upload + "/" + file_name;
 		}
@@ -187,32 +354,89 @@ public class ApplyController {
 					file.delete();
 			}
 		}
+		/////////////////////////////증명사진 첨부파일 11.23. 추가////////////////////////
+		// 파일업로드
+		public String fileUpload_pic(String category, MultipartFile pic_name, HttpServletRequest request) {
+			
+			String path
+
+					= "d://app" + request.getContextPath();			
+			String upload = "/upload/" + category + new SimpleDateFormat("/yyyy/MM/dd").format(new Date());
+	
+			path += upload;
+			
+			File folder = new File(path);
+			if (!folder.exists())
+				folder.mkdirs();
+
+			// 업로드하는 파일명을 고유한 아이디를 붙여 저장한다: ajlh2348-ahflhq_abc.txt
+			String pic_file_name = UUID.randomUUID().toString() + "_" + pic_name.getOriginalFilename();
+			try {
+				pic_name.transferTo(new File(path, pic_file_name));
+			} catch (Exception e) {
+			}
+			
+			return appURL(request) + upload + "/" + pic_file_name;
+		}
+
 		
+		//첨부되어진 물리적 파일 삭제
+		public void attachedFile_delete_pic(String apply_pic_path, HttpServletRequest request) {
+			if (apply_pic_path != null) {
+				
+				apply_pic_path = apply_pic_path.replace(appURL(request), "d://app/" + request.getContextPath());
+				File pic_name = new File(apply_pic_path);
+				if (pic_name.exists())
+					pic_name.delete();
+			}
+		}
 		
-		
+	///////////////////////////////이력서 이미지 끝////////////	
 	
 		 
 		  @RequestMapping("/insert.apply")	
 	public String insert( String recruit_num,RecruitVO recruit 
-			,Model model ,ApplyVO vo, MultipartFile file, HttpServletRequest request) {
+			,Model model ,ApplyVO vo, HttpServletRequest request
+			, MultipartFile file, MultipartFile pic_name
+			
+			) {
 		
+			//  if(file[].)
+			  
 		// 첨부파일이 있는 경우
 		if (!file.isEmpty()) {
 			vo.setFile_name(file.getOriginalFilename());
 			vo.setFile_path(fileUpload("apply", file, request));
+			
+			
+			/*
+			if(file.getName().equals("file_pic")) {
+				vo.setApply_pic_name(file.getOriginalFilename());
+				vo.setFile_path(fileUpload("apply_pic", file, request));
+			
+			}*/
+		
 		}
-		//★★★recruit_num <받아서 보내줘야됨
-		//dao.apply_info(recruit_num);
-		//vo.setRecruit_num(recruit.getRecruit_num());
-		//model.addAttribute("vo",dao.apply_insert(vo));
+		if(!pic_name.isEmpty()) {
+			vo.setApply_pic_name(pic_name.getOriginalFilename());
+			vo.setApply_pic_path(fileUpload_pic("apply", pic_name, request));
+		}
+		
+		
+		
+		
+		
 		
 		dao.apply_insert(vo);
-		//int apply_num = dao.currval();		
-		String apply_phone = vo.getApply_phone();
-		String apply_pw = vo.getApply_pw();
+		int apply_num = dao.currval();		
+		//String apply_phone = vo.getApply_phone();
+		//String apply_pw = vo.getApply_pw();
+		//int apply_num = vo.getApply_num();
 		
-		return "redirect:detail.apply?apply_phone=" + apply_phone+"&apply_pw="+apply_pw;
-		//return "redirect:applyList.apply";
+		
+		return "redirect:detail.apply?apply_num="+apply_num;
+		//return "redirect:detail.apply?apply_phone=" + apply_phone+"&apply_pw="+apply_pw;
+		
 	}
 	
 	
@@ -222,13 +446,13 @@ public class ApplyController {
 		
 		
 		//vo.setRecruit_num(recruit.get)
-		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
 		//model.addAttribute("recruit",recruit);
+		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
 		model.addAttribute("recruit",recruit);
 		
 		return "apply/fillout";
 	}
 	
-		  
-		 
+		 ////////////////////////////////////////////////////
+ 
 }

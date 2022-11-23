@@ -3,94 +3,83 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
 
 <style>
+.header-nav {
+	display: inline-flex;
+	padding-top: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	align-items: center;
+	margin-bottom: 0.5rem;
+	margin-left: 60px;
+	margin-right : 21em;
+}
+
 #nav {
 	display: flex;
 	justify-content: center;
 	margin-top: 30px;
 }
+
 #nav img {
 	width: 60px;
 	height: 60px;
 }
+
 #nav-top, #nav-sign, #nav-top>li {
 	display: flex;
 }
-#nav-top {
-	padding-top: 10px;
-	font-size: 16px;
-	font-weight: bold;
+
+.header-nav>li a {
+	color: #ffffff;
+	margin-right: 30px;
 }
-#nav-top>li>a:hover {
+
+.header-nav>li>a:hover {
 	color: #6ca6fa;
 }
+
 #nav-top>li {
 	margin-left: 50px;
 }
-#nav-top>li a {
-	color: #ffffff;
+
+.header-nav li:nth-child(1) {
+	margin-left: 0px;
 }
-#nav-sign {
-	align-items: center;
-	margin-bottom: 0.5rem;
-	margin-left: 60px;
-}
-#nav-sign>button:nth-child(2) {
-	margin-left: 10px;
-}
-#sideIndex {
-	cursor: pointer;
-	margin-left: 5px;
-	vertical-align: top;
-}
-#nav-menu {
-	display: none;
-	background: #91aed7a8;
-	font-size: 16px;
-	position: absolute;
-	top: 50px;
-	left: 100px;
-	width: 850px;
-	height: 260px;
-	margin-left: 65px;
-}
+
 body {
-	background: url(imgs/2e6ad3.jpg) repeat-x;
+	background: url(imgs/bg/2e6ad3.jpg) repeat-x;
 	max-width: 100%;
 	height: 800px;
 }
-#fix{
-	background-color: black;
-	width: 20%;
-	height: 20%;;
-	position: fixed;
-	bottom: 30px;
-	left: 30px;
-	}
 </style>
 
 <header>
 	<!-- 		로고 -->
 	<div id="nav">
 		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
-			alt="logo" src="imgs/logo.png"></a>
-				<ul>
-					<li><a href="#">프로세스</a></li>
-					<li><a href="#">서비스영역</a></li>
-					<li><a href="#">회사소개</a></li>
-				</ul>
-			<div id='nav-sign'>
-				<c:if test="${empty loginInfo}">
-				<button class="frontBtn-fill" onclick='location="login.mem"'>로그인</button>
-				<button class="frontBtn-empty" onclick='location="join.mem"'>회원가입</button>
-				</c:if>
+			alt="logo" src="imgs/icons/logo.png"></a>
+		<ul class="header-nav">
+			<li><a href="javascript:window.scrollBy( 0, 800 );">회사소개</a></li>
+			<li><a href="javascript:window.scrollBy( 0, 4430 );">서비스영역</a></li>
+			<li><a href="javascript:window.scrollBy( 0, 5430 );">프로세서</a></li>
+			<li><a href="list.rec">채용공고</a></li>
+
+
+		</ul>
+		<div id='nav-sign'>
+			<div class="frame-center">
+			<c:if test="${empty loginInfo}">
+				<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
 				
-				<c:if test="${not empty loginInfo}">
+			</c:if>
+
+			<c:if test="${not empty loginInfo}">
 				<span>${loginInfo.name} 님</span>
-				<button class="frontBtn-empty" onclick='location="logout.mem"'>로그아웃</button>
-				</c:if>
-				<li><div></div><span id='sideIndex' class="material-symbols-outlined" onclick='location="sideIndex"'>
-				login
-				</span></li>
+				<button class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
+				<a onclick="location='sideIndex'">사이드로</a>
+			</c:if>
 			</div>
 		</div>
+	</div>
+<script src="js/header.js"></script>
 </header>

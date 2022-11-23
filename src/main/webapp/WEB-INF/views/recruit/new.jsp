@@ -20,20 +20,54 @@
 <form method='post' action='insert.rec' enctype='multipart/form-data'>
 <table class='w-px1000'>
 
-<tr><th class='w-px140'>유형</th>
+<tr><th class='w-px140'>채용유형</th>
 	<td>
 	<select	name='employee_pattern' class='w-px200' > 
-				
+				<!-- 
 				
 						<option value='-1'>정규직</option>
 						<option value='1'>계약직</option>
 	
-				
-<%-- 				<c:forEach items='${code}' var='c'>
+				 -->
+				<c:forEach items='${code}' var='c'>
 						<option value='${c.code_value }'>
 	 ${c.code_name }</option>
 	
-				</c:forEach> --%>
+				</c:forEach> 
+			</select>
+	</td>
+</tr>
+<tr><th class='w-px140'>채용유형</th>
+	<td>
+	<select	name='career' class='w-px200' > 
+				<!-- 
+				
+						<option value='-1'>신입</option>
+						<option value='1'>경력</option>
+	
+				 -->
+				<c:forEach items='${career}' var='car'>
+						<option value='${car.code_value }'>
+	 ${car.code_name }</option>
+	
+				</c:forEach> 
+			</select>
+	</td>
+</tr>
+<tr><th class='w-px140'>회사</th>
+	<td>
+	<select	name='company' class='w-px200' > 
+				
+	<!-- 			
+						<option value='-1'>신입</option>
+						<option value='1'>경력</option>
+	
+				 -->
+				<c:forEach items='${company}' var='com'>
+						<option value='${com.company_cd }'>
+	 ${com.company_name }</option>
+	
+				</c:forEach>
 			</select>
 	</td>
 </tr>
@@ -50,6 +84,9 @@
 
 
 
+<tr><th class='w-px140'>연봉</th>
+	<td><input type='text' name='salary' class='full chk' title='연봉'></td>
+</tr>
 <tr><th class='w-px140'>제목</th>
 	<td><input type='text' name='recruit_title' class='full chk' title='제목'></td>
 </tr>
@@ -124,7 +161,7 @@
 	  } );
   
   $('#save').click(function(){
-		$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
+	  if( emptyCheck() ) 	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
 	});
 </script>
 </body>
