@@ -318,12 +318,5 @@ public class ApplyController {
 	}
 	
 		 ////////////////////////////////////////////////////
-	@ResponseBody @RequestMapping(value="/andApplyCheckSelect.rec", produces="text/html; charset=utf-8")
-	public String andApplyCheckSelect() {
-		
-		
-		return new Gson().toJson(dao.and_apply_spinnerSelectList());
-
-	}
-		 
+ 
 }

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+import apply.ApplyVO;
 import emp.EmpAndInsertDTO;
 import recruit.CommonCodeVO;
 import recruit.CompanyVO;
@@ -248,6 +249,55 @@ public class RecruitController {
 		
 		
 		return new Gson().toJson(dao.and_apply_spinnerCareerList(career));
+
+	}
+	//관리자 부분
+	@ResponseBody @RequestMapping(value="/andApplyCheckSelect.rec", produces="text/html; charset=utf-8")
+	public String andApplyCheckSelect() {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectList());
+
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApplyCheckSelectList.rec", produces="text/html; charset=utf-8")
+	public String andApplyCheckSelectList() {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectAllList());
+
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApplyCheckSelectOne.rec", produces="text/html; charset=utf-8")
+	public String andApplyCheckSelectOne(String title) {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectAllOne(title));
+
+	}
+		
+	@ResponseBody @RequestMapping(value="/andApplyPassSelectList.rec", produces="text/html; charset=utf-8")
+	public String andApplyPassSelectList() {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectPassList());
+
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApplyPassSelectOne.rec", produces="text/html; charset=utf-8")
+	public String andApplyPassSelectOne(String title) {
+		
+		
+		return new Gson().toJson(dao.and_apply_spinnerSelectPassOne(title));
+
+	}
+	@ResponseBody @RequestMapping(value="/andApplyPassORFail.rec", produces="text/html; charset=utf-8")
+	public void andApplyPassORFail(String phone, String check) {
+		ApplyVO vo = new ApplyVO();
+		vo.setApply_phone(phone);
+		vo.setApply_check(check);
+		
+		dao.and_apply_PassORFail(vo);
 
 	}
 	

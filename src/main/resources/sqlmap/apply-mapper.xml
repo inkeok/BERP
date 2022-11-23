@@ -143,5 +143,7 @@ where r.employee_pattern = c.code_value
 and employee_pattern = #{employee_pattern}
 order by r.recruit_start
 </select>
+<!-- 안드로이드 -->
+
 
 </mapper>
