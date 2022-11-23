@@ -67,3 +67,6 @@ secrets.yml
 .properties
 target/*
 
+target/m2e-wtp/web-resources/META-INF/maven/com.hanul/berp/pom.properties
+*.properties
+target/m2e-wtp/web-resources/META-INF/maven/com.hanul/berp/pom.properties

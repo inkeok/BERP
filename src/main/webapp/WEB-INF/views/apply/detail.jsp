@@ -12,7 +12,12 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
- 
+<style>
+td {
+text-align:left;
+padding-left: 2rem;
+}
+</style> 
 
 </head>
 <body>
@@ -24,9 +29,10 @@
 
 <tr><th>지원자번호</th>
 <td> 
-${recruit_num } ${vo.apply_num }
+${vo.apply_num }
 </td>
-<tr>
+</tr>
+
 <tr><th>이름</th>
 <td> 
 ${vo.apply_name }
@@ -46,7 +52,9 @@ ${vo.apply_email }
 <tr><th>첨부파일</th>
 	<td>
 		<div>
-<input type="hidden" id='file_name' value="${vo.file_name }">
+		<span id='file_name'>${vo.file_name }</span>
+<%-- <input type="hidden" id='file_name' value="${vo.file_name }"> --%>
+
 <c:if test="${not empty vo.file_name }">
 <a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
 </c:if>
@@ -58,16 +66,22 @@ ${vo.apply_email }
 <div class='btnSet'>
 <a class='btn-fill' href='modify.apply?apply_num=${vo.apply_num }'>지원서 수정 </a>
 <a class='btn-fill' id='remove'>지원서 삭제</a>
+<a class='btn-fill' href='applyList.apply'>목록으로</a>
 </div>
 </form>
 
 <script>
-$('#save').click(function(){
-	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
+
+$('#download').click(function(){
+	
+	$(this).attr('href'
+			, 'download.apply?apply_num=${vo.apply_num }&url='+$(location).attr('href'));
+	
 });
 
+
 $('#remove').click(function() {
-	if(confirm('정말 삭제?')) {
+	if(confirm('정말 삭제하시겠습니까?')) {
 		
 		location='delete.apply?apply_num=${vo.apply_num}';
 	}

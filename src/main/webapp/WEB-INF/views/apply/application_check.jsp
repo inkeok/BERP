@@ -20,10 +20,10 @@
 <div>
 <ul>
 <li>
-<input type="text" id="apply_phone" class=".chk" name="apply_phone" placeholder="phone_number">
+<input type="text" id="apply_phone" class="chk" name="apply_phone" placeholder="phone_number">
 </li>
 <li>
-<input type="password" id="apply_pw" class=".chk"  name="apply_pw" placeholder="password">
+<input type="password" id="apply_pw" class="chk"  name="apply_pw" placeholder="password">
 </li>
 <li><input type='button' value='확인' id='check'></li>
 
@@ -33,10 +33,13 @@
 
 
 <script>
+
+
 $('#apply_pw').keyup(function(e){
 	if(e.keyCode==13) check();
 });
 function check() {
+	
 	if(emptyCheck()) {//empty check가 true일때 실행 < webapp-> resources->js-> common.js
 			
 			$.ajax({
@@ -44,21 +47,17 @@ function check() {
 				data: { apply_phone:$('#apply_phone').val(), apply_pw:$('#apply_pw').val()},
 				
 				success: function(response){
+					console.log(response);
 					
-					if(response) {
+					if(response.exist) {
 						
-						location = 'detail.apply?apply_phone=0510&apply_pw=0510';
+						location = 'detail.apply?apply_num='+response.apply_num;
 					}
-					else if($('#apply_phone').val()==''){
-						alert('휴대폰 번호를 입력하세요');
-					}
-					else if($('#apply_pw').val()==''){
-						alert('패스워드를 입력하세요');
-					}
+					
 					else{
 						alert('일치하지 않습니다');
 						$('#apply_phone').focus();
-					}
+					} 
 				},error: function(req, text){
 					alert(text+':'+req.status);
 				}

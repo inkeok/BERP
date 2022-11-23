@@ -58,7 +58,7 @@ public class EmpDAO {
 
 	public List<EmpVO> andEmp_list() {
 		
-		return sql.selectList("emp.empList");
+		return sql.selectList("emp.andempList");
 	}
 	public List<DepartmentVO> andEmp_department_list(){
 		return sql.selectList("emp.andDepartments");

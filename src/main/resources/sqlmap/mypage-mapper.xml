@@ -37,5 +37,12 @@ where e.employee_id = ${employee_id} AND e.department_id = d.department_id AND e
 
 </select>
 
+<!-- 안드!!!!!!!!!!!!!!!!!!! -->
+
+<update id="andUpdate">
+update employees set
+phone = #{phone}, email = #{email}, pw=#{pw}
+where employee_id = #{employee_id}
+</update>
 
 </mapper>

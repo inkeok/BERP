@@ -6,9 +6,28 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class HolidayVO {
 
-	private String employee_id, department_id, company_cd, work_code, work_status;
-	 public String getWork_status() {
+	private String employee_id, department_id, company_cd, work_code, work_status , name,dname, hire_year;
+	
+	 public String getDname() {
+		return dname;
+	}
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+	public String getHire_year() {
+		return hire_year;
+	}
+	public void setHire_year(String hire_year) {
+		this.hire_year = hire_year;
+	}
+	public String getWork_status() {
 		return work_status;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public void setWork_status(String work_status) {
 		this.work_status = work_status;

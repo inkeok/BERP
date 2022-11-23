@@ -3,6 +3,64 @@
 
 <mapper namespace="apply">
 
+<select id="applicant_list" resultType="apply.ApplyVO">
+select a.*, recruit_title,
+ decode (apply_check, 'Y', '합격',  
+ 'N', '대기중', 
+ '불합격' ) as "checkPass" 
+from apply_board a, recruit_board r
+where a.recruit_num = r.recruit_num
+order by apply_num
+</select>
+
+<select id="applicant_list_num" resultType="apply.ApplyVO">
+select a.*, recruit_title,
+ decode (apply_check, 'Y', '합격',  
+ 'N', '대기중', 
+ '불합격' ) as "checkPass" 
+from apply_board a, recruit_board r
+where a.recruit_num = r.recruit_num
+and a.recruit_num=#{recruit_num}
+order by apply_num
+</select>
+
+<select id="pass_list" resultType="apply.ApplyVO">
+select a.*, recruit_title 
+from apply_board a, recruit_board r
+where a.recruit_num = r.recruit_num
+and apply_check='Y'
+</select>
+
+<select id="pass_list_num" resultType="apply.ApplyVO">
+select a.*, recruit_title 
+from apply_board a, recruit_board r
+where a.recruit_num = r.recruit_num
+and a.recruit_num=#{recruit_num, jdbcType=VARCHAR}
+and apply_check='Y'
+</select>
+
+
+<select id="recruit_num" resultType="apply.RecruitVO">
+select recruit_num, recruit_title
+from recruit_board
+
+
+</select>
+<select id="update_check">
+update apply_board set apply_check = #{apply_check}
+where apply_num = #{apply_num}
+</select>
+
+<select id="update">
+	update apply_board set apply_name = #{apply_name}, 
+	apply_email = #{apply_email}
+	,file_name=#{file_name, jdbcType=VARCHAR}, file_path=#{file_path, jdbcType=VARCHAR}
+
+
+	where apply_num = #{apply_num}
+</select>
+
+
 <select id="phone_check" resultType="Integer">
 	select count(apply_phone) from apply_board where apply_phone = #{apply_phone}
 </select>
@@ -85,5 +143,7 @@ where r.employee_pattern = c.code_value
 and employee_pattern = #{employee_pattern}
 order by r.recruit_start
 </select>
+<!-- 안드로이드 -->
+
 
 </mapper>

@@ -2,8 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="salary">
 
+<select id="empList" resultType="emp.EmpVO">
+		select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = ccd.code_value
+		order by employee_id
+	</select>
+
+
+
+
+
+
+
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+
 	<select id="salaryList" resultType="salary.SalaryVO">
-		select e.employee_id, e.name, c.code_name c_position, c2.code_name c_employee_pattern, 
+		select e.employee_id, e.name, c.code_name c_employee_pattern, c2.code_name c_position, 
 		s.salary, s.commission_pct, e.hire_date, d.department_name
 		from salary s join employees e 
 		on s.employee_id = e.employee_id join common_code c
@@ -17,5 +40,12 @@
 		insert into bonus (employee_id, bonus, bonus_date, bonus_comment)
 		values (#{employee_id}, #{bonus}, #{bonus_date}, #{bonus_commnet})
 	</insert>
+	
+	<select id='andBonusList' resultType="salary.BonusVO">
+		select b.*, e.name, e.employee_pattern c_employee_pattern, e.position c_position, d.department_name
+		from bonus b join employees e
+		on b.employee_id = e.employee_id join departments d
+		on e.department_id = d.department_id
+	</select>
 
 </mapper>

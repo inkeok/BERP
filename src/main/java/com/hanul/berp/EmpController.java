@@ -93,7 +93,7 @@ public class EmpController {
 	public String list(Model model, HttpSession session) {
 
 		List<EmpVO> empList = dao.employee_list();
-			
+
 		model.addAttribute("list", empList);
 
 		return "side/emp/empList";

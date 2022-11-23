@@ -21,7 +21,7 @@
 <input type='hidden' name='recruit_num' value='${vo.recruit_num }'>
 <table class='w-px1000'>
 
-<tr><th class='w-px140'>유형</th>
+<tr><th class='w-px140'>채용유형</th>
 	<td>
 	<select	name='employee_pattern' class='w-px200' >
 		<c:forEach items="${code }" var='c'>
@@ -29,6 +29,34 @@
 			<option ${vo.employee_pattern eq c.code_value ? 'selected':'' }
 			value='${c.code_value }'
 			>${c.code_name }</option>
+			
+		</c:forEach> 
+			
+	</select>
+	</td>
+</tr>
+<tr><th class='w-px140'>채용유형</th>
+	<td>
+	<select	name='career' class='w-px200' >
+		<c:forEach items="${career }" var='car'>
+		
+			<option ${vo.career eq car.code_value ? 'selected':'' }
+			value='${car.code_value }'
+			>${car.code_name }</option>
+			
+		</c:forEach> 
+			
+	</select>
+	</td>
+</tr>
+<tr><th class='w-px140'>회사</th>
+	<td>
+	<select	name='company' class='w-px200' >
+		<c:forEach items="${company }" var='com'>
+		
+			<option ${vo.company eq com.company_cd ? 'selected':'' }
+			value='${com.company_cd}'
+			> ${com.company_name }</option>
 			
 		</c:forEach> 
 			
@@ -48,6 +76,9 @@
 
 
 
+<tr><th class='w-px140'>연봉</th>
+	<td><input type='text' name='salary' class='full chk' value="${vo.salary }"></td>
+</tr>
 <tr><th class='w-px140'>제목</th>
 	<td><input type='text' name='recruit_title' class='full chk' value="${vo.recruit_title }"></td>
 </tr>
@@ -68,7 +99,7 @@
 	</td>
 </tr>
 </table>
-<input type='hidden' name='file_name'>
+<input type='hidden' name='file_name' value="${vo.file_name}">
 <%-- <input type='hidden' name='writer' value='${loginInfo.id}'> --%>
 </form>
 <div class='btnSet'>
