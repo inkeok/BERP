@@ -11,6 +11,7 @@
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
+<script src='js/apply_pic.js?<%=new java.util.Date() %>'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
 td {
@@ -31,6 +32,16 @@ padding-left: 2rem;
 <td> 
 ${vo.apply_num }
 </td>
+<td rowspan='3' style="width:100px">
+<span id='pic_name'></span>
+<span id='preview_pic'></span>
+<input type="hidden" id='apply_pic_name' value="${vo.apply_pic_name }">
+<%-- 
+<span id='pic_name'>${vo.apply_pic_name }</span>
+
+ --%>
+
+</td>
 </tr>
 
 <tr><th>이름</th>
@@ -45,14 +56,17 @@ ${vo.apply_phone }
 </tr>
 <tr>
 <th>이메일</th>
-<td>
+<td colspan='2'>
 ${vo.apply_email }
 </td>
 </tr>
 <tr><th>첨부파일</th>
-	<td>
-		<div>
-		<span id='file_name'>${vo.file_name }</span>
+	<td colspan='2'>
+		<div>${vo.file_name }
+		
+		<span id='file_name'></span>
+		
+		
 <%-- <input type="hidden" id='file_name' value="${vo.file_name }"> --%>
 
 <c:if test="${not empty vo.file_name }">
@@ -86,11 +100,15 @@ $('#remove').click(function() {
 		location='delete.apply?apply_num=${vo.apply_num}';
 	}
 });
+
 if(isImage("${vo.file_name}")) {
 	$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
 	
 }
-
+if(isImage("${vo.apply_pic_name}")) {
+	$('#pic_name').after('<span id="preview_pic"><img src="${vo.apply_pic_path}"</span>' );
+	
+}
 
 </script>
 

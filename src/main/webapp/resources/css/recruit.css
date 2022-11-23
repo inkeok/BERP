@@ -327,6 +327,9 @@ ul.grid li div:nth-child(2) {
 	opacity: 0.3;
 	display: none;
 }
+#preview_pic img{
+	width:100px;
+}
 
 .w-px40 {
 	width: 40px

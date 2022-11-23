@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<script src='js/apply_pic.js?<%=new java.util.Date() %>'></script>
 <script src='js/apply.js?<%=new java.util.Date() %>'></script>
 
 </head>
@@ -29,6 +30,23 @@
 <td> 
 <input type='text' class="chk" name='apply_name' placeholder="이름">
 </td>
+
+<!-- 증사 수정 -->
+<td rowspan='3' style="width:100px">
+<div class='align'>
+		<label>
+			<input type='file' name='pic_name' id='attach-file-pic'>
+		
+		</label>
+		<span id='apply_pic_name'></span>
+		<span id='preview_pic'></span>
+		<a id='delete-file-pic'><i class="font-r fa-solid fa-trash-can"></i></a>
+		</div>
+
+
+</td>
+</tr>
+
 <tr>
 <th>휴대폰번호</th>
 <td>
@@ -45,7 +63,7 @@
 </td>
 </tr>
 <tr><th>첨부파일</th>
-	<td class='text-left'>
+	<td colspan='2' class='text-left'>
 		<div class='align'>
 		<label>
 			<input type='file' name='file' id='attach-file'>
@@ -60,7 +78,7 @@
 
 <tr>
 <th>지원서 비밀번호</th>
-<td>
+<td colspan='2'>
 <input type='password'  class="chk" name='apply_pw' id="apply_pw" placeholder="비밀번호">
 <div class='valid'>비밀번호 입력하세요</div>
 <!-- <span id="passEqual1">비번입력</span> -->
@@ -69,7 +87,7 @@
 </tr>
 <tr>
 <th>비밀번호 확인</th>
-<td>
+<td colspan='2'>
 <input type='password'  class="chk" name='apply_pw_ck' id="apply_pw_ck" placeholder="비밀번호 확인">
 <div class='valid'>비밀번호 입력하세요</div>
 <!-- <span id="passEqual2">한번더 비번입력</span> -->
