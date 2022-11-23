@@ -47,8 +47,7 @@
 
 	<!-- 직급조회 -->
 	<select id="position" resultType="emp.PositionVO">
-		select e.position, c.code_name
-		position_name
+		select e.position, c.code_name position_name
 		from employees e left outer join common_code c
 		on
 		e.pattern = c.code_value

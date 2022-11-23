@@ -2,21 +2,41 @@ package com.hanul.berp;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
 import emp.EmpDAO;
+import emp.EmpVO;
 import salary.SalaryDAO;
 
 @Controller
 public class SalaryController {
 	@Autowired SalaryDAO dao;
 	@Autowired EmpDAO emp_dao;
+	
+	@RequestMapping("list.sa")
+	public String hrList(Model model, HttpSession session) {
+		
+		List<EmpVO> empList = dao.employee_list();
+		
+		model.addAttribute("list", empList);
+		
+		return "side/salary/salList";
+	}
+	
+	
+	
+	
+	
 	
 	//====================================안드로이드==========================================
 	
