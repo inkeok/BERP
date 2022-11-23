@@ -6,6 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+ul{
+			
+}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -91,6 +96,7 @@
 									<tr>
 										<th scope="col">근무 일자</th>
 										<th scope="col">사번</th>
+										<th scope="col">이름</th>
 										<th scope="col">부서</th>
 										<th scope="col">출근시간</th>
 										<th scope="col">퇴근시간</th>
@@ -98,11 +104,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items='${workList}' var='vo'>
+									<c:forEach begin="1" end="15" items='${workList}' var='vo'>
 										<tr>
 											<td><fmt:formatDate value="${vo.work_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
 											<td>${vo.employee_id}</td>
+											<td>${vo.name}</td>
 											<td>${vo.department_name}</td>
 											<td>${vo.start_work}</td>
 											<td>${vo.end_work}</td>

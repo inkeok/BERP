@@ -2,8 +2,10 @@ package work;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class WorkResultVO {
-	private String company_cd, excess_date, work_code ,work_status, department_name; 
+	private String company_cd, excess_date, work_code ,work_status, department_name ,name; 
 	public String getDepartment_name() {
 		return department_name;
 	}
@@ -12,6 +14,7 @@ public class WorkResultVO {
 	}
 	private int employee_id, department_id;
 	private String start_work, end_work;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date work_date;
 	public String getCompany_cd() {
 		return company_cd;
@@ -30,6 +33,12 @@ public class WorkResultVO {
 	}
 	public void setWork_code(String work_code) {
 		this.work_code = work_code;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getWork_status() {
 		return work_status;

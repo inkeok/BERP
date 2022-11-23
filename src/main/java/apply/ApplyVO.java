@@ -7,14 +7,16 @@ public class ApplyVO {
 	//RECRUIT_NUM, APPLY_EMAIL, APPLY_NUM, APPLY_NAME, FILE_NAME, FILE_PATH, APPLY_CHECK
 	private String recruit_num, apply_email, apply_name, 
 	file_name, file_path, apply_check, apply_phone, apply_pw,recruit_title,checkPass;
-	private int apply_num;
+	private int apply_num, dual_num;
 	private Date apply_date;
 	
 	
-	
-	
-	
-	
+	public int getDual_num() {
+		return dual_num;
+	}
+	public void setDual_num(int dual_num) {
+		this.dual_num = dual_num;
+	}
 	public String getCheckPass() {
 		return checkPass;
 	}

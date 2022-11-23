@@ -92,4 +92,5 @@ public class RecruitDAO {
 	public List<RecruitVO> and_apply_spinnerCareerList(String career) {
 		return sql.selectList("recruit.andApplySpinnerCareerList", career);
 	}
+	
 }
