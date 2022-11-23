@@ -10,10 +10,18 @@
 <style>
 
 .pagination{
-	margin : 10px;
+    width: 1490px;
 	background : #12192c;
     justify-content: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
+
+.pagination li{
+	margin-right : 14px;
+}
+
 #pagination a {
 
 	display:inline-block;
@@ -35,7 +43,8 @@
 }
 table {
 	margin-top : 5px;
-	border-radius : 20px;
+	border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
@@ -78,14 +87,14 @@ tbody td:hover:before {
 	<h2 class="center hrlist">사원목록</h2>
 	<a href="new.hr" class="btn btn-outline-success new-btn">신규사원등록</a>
 	<form action="list.hr" class="list">
-		<div class="w-px1600 table-responsive">
+		<div class="w-px1600">
 			<table class="table-hover">
 				<colgroup>
 					<col width="140px" />
 					<col width="100px" />
 					<col width="100px" />
 					<col width="100px" />
-					<col width="200px" />
+					<col width="250px" />
 					<col width="200px" />
 					<col width="100px" />
 					<col width="130px" />
@@ -127,9 +136,11 @@ tbody td:hover:before {
 			</table>
 		</div>
 	</form>
-	<ul class="pagination">
-    
- 	 </ul>
+	<div style="text-align: -webkit-center;">
+		<ul class="pagination">
+		    
+		 	 </ul>
+	</div>
 </body>
 <script>
 	function pagination(){
