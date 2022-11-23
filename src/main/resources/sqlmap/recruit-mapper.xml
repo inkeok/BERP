@@ -111,13 +111,14 @@ recruit_title, recruit_content, employee_pattern
 ,salary, career, company
 )
 values (
-seq_recruit_num.nextval, #{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=VARCHAR},
- #{recruit_start}, #{recruit_end},  
- #{recruit_title, jdbcType=VARCHAR}, #{recruit_content, jdbcType=VARCHAR}
+seq_recruit_num.nextval, #{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=VARCHAR}
+, #{recruit_start}, #{recruit_end}
+, #{recruit_title, jdbcType=VARCHAR}
+, #{recruit_content, jdbcType=VARCHAR}
 , #{employee_pattern, jdbcType=VARCHAR}
 , #{salary, jdbcType=VARCHAR}
 , #{career, jdbcType=VARCHAR}
-, #{company, jdbcType=VARCHAR}
+, #{company, jdbcType=VARCHAR})
  
 </insert>
  

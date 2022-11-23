@@ -118,7 +118,9 @@ $('#save').click(function(){
 		}	
 	}
 	
-	
+	if(tagIsInValid($('[name=apply_pw]'))) return;
+	if(tagIsInValid($('[name=apply_pw_ck]'))) return;
+	if(tagIsInValid($('[name=apply_email]'))) return;
 	
 	
 	

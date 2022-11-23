@@ -29,7 +29,7 @@ padding-left: 2rem;
 
 <tr><th>지원자번호</th>
 <td> 
-${recruit_num } ${vo.apply_num }
+${vo.apply_num }
 </td>
 </tr>
 
@@ -52,7 +52,9 @@ ${vo.apply_email }
 <tr><th>첨부파일</th>
 	<td>
 		<div>
-<input type="hidden" id='file_name' value="${vo.file_name }">
+		<span id='file_name'>${vo.file_name }</span>
+<%-- <input type="hidden" id='file_name' value="${vo.file_name }"> --%>
+
 <c:if test="${not empty vo.file_name }">
 <a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
 </c:if>
@@ -64,10 +66,18 @@ ${vo.apply_email }
 <div class='btnSet'>
 <a class='btn-fill' href='modify.apply?apply_num=${vo.apply_num }'>지원서 수정 </a>
 <a class='btn-fill' id='remove'>지원서 삭제</a>
+<a class='btn-fill' href='applyList.apply'>목록으로</a>
 </div>
 </form>
 
 <script>
+
+$('#download').click(function(){
+	
+	$(this).attr('href'
+			, 'download.apply?apply_num=${vo.apply_num }&url='+$(location).attr('href'));
+	
+});
 
 
 $('#remove').click(function() {

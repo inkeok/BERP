@@ -2,16 +2,21 @@
 package com.hanul.berp;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +35,59 @@ import recruit.RecruitVO;
 public class RecruitController {
 	@Autowired
 	RecruitDAO dao;
+	
+	//첨부파일 다운로드 요청
+		@ResponseBody @RequestMapping(value="/download.rec",produces="text/html; charset=utf-8")
+		public String download(String recruit_num, String url, HttpServletRequest request
+							, HttpServletResponse response) throws Exception{
+			
+			RecruitVO vo = dao.recruit_info(recruit_num);
+			boolean download
+			= fileDownload(vo.getFile_name(), vo.getFile_path(), request, response);
+			
+			if(!download) {
+				
+				StringBuffer msg = new StringBuffer("<script>");
+				msg.append("alert('다운로드할 파일이 없습니다!'); location='")
+				.append(url).append("';");
+				msg.append("</script>");
+				return msg.toString();
+				
+			}else
+				return null;
+			
+			
+		}
+
+		public boolean fileDownload(String file_name, String file_path, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+
+			file_path = file_path.replace(appURL(request), "d://app/" + request.getContextPath());
+
+	//다운로드할 파일객체 생성		
+			File file = new File(file_path);
+			if (!file.exists())
+				return false;
+
+	//text/html, image/png,  xlxs, .....
+			String mime = request.getSession().getServletContext().getMimeType(file_path);
+			response.setContentType(mime);
+
+			file_name = URLEncoder.encode(file_name, "utf-8");
+			file_name = file_name.replaceAll("\\+", "%20");// .replaceAll("?", "%36");
+
+			response.setHeader("content-disposition", "attachment; filename=" + file_name); // 첨부되어진 파일을 내려받도록 처리
+
+			ServletOutputStream out = response.getOutputStream();
+			FileCopyUtils.copy(new FileInputStream(file), out);
+			out.flush();
+			return true;
+		}
+		
+	
+	
+	
+	
 	
 	@RequestMapping("/delete.rec")
 	public String delete(String recruit_num) {
