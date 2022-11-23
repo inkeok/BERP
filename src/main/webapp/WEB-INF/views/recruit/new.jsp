@@ -161,7 +161,7 @@
 	  } );
   
   $('#save').click(function(){
-		$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
+	  if( emptyCheck() ) 	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
 	});
 </script>
 </body>

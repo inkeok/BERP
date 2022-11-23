@@ -12,6 +12,7 @@
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
+<script src='js/apply_pic.js?<%=new java.util.Date() %>'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
 table { margin: 0 auto;  border-collapse: collapse; }
@@ -106,10 +107,11 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 
 
 <script>
-function page(no) {
-	$('[name=curPage]').val(no);
-	$('form').submit();
+if(isImage("${vo.apply_pic_name}")) {
+	$('#pic_name').after('<span id="preview_pic"><img src="${vo.apply_pic_path}"</span>' );
+	
 }
+
 
 </script>
 

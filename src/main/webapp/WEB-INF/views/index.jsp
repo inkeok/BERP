@@ -22,9 +22,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR&family=Maven+Pro&family=Nanum+Gothic&family=Noto+Sans+KR:wght@500;700&display=swap"
 	rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	
 <style>
 
 h1, h2, h3, h4, h5, h6 span {
@@ -87,7 +90,21 @@ img.sec-image {
 	animation: img 3s;
 }
 
+.Inquire{
+	display : none;
+	animation : button 3s;
+}
 /* index keyframes */
+
+@keyframes button {
+ 0%{
+	left: 0%;
+ }100% 
+
+{
+	left:22.8%;
+	}
+}
 
 @keyframes text1 { 
 0%{
@@ -126,19 +143,23 @@ left:20%;
 </style>
 </head>
 <body>
-	<div style="height: 810px;">
+	<div style="height: 810px;" data-aos-offset="300px">
 		<section class="sec-body">
 			<span class="sec-text1 fi" style="font-size: 27px; color: #E0DCDC;">​
 				모바일앱, 웹 어플리케이션제작</span><br /> <span class="sec-text2 fi2"
 				style="font-size: 44px">기획부터 디자인, 개발까지<br /> 영문 네트워크에서<br />
 				앱/웹 개발을 연구합니다
 			</span>
-			<button class="btn btn-dark btn-lg ask fi"
+			<div class="Inquire">
+				<button class="button button-second" data-type="circle" 
 				onclick='location="login.mem"'>문의하기</button>
+			</div>
+			
 			<img class="sec-image" src="imgs/icons/logo.png" alt="bodyimage" />
 		</section>
 	</div>
-	<div class="center mb-5">
+	
+	<div class="center">
 		<span style="font-size: 44px; font-family: 'Noto Sans KR' !important;">
 		설명만 해주시면<br />현실을 만들수 있습니다
 		</span>
@@ -146,7 +167,7 @@ left:20%;
 	
 <section class="center sec-font">
 	<!-- app01 -->
-	<div class="app-03">
+	<div class="app-03"  data-aos="fade-up" data-aos-anchor-placement="top-center">
 		<div style="text-align: start;">
 			<div class="applist">
 				<img class="applist-logo" src="imgs/app/app04logo.png" alt="app01logo" />
@@ -165,7 +186,7 @@ left:20%;
 			<img src="imgs/app/app04.webp" alt="app01" />	
 		</div>
 	</div>
-	<div class="app-01">
+	<div class="app-01"  data-aos="fade-up" data-aos-anchor-placement="top-center">
 		<div style="text-align: start;">
 			<div class="applist">
 				<img class="applist-logo" src="imgs/app/app01logo.webp" alt="app01logo" />
@@ -183,7 +204,7 @@ left:20%;
 		</div>
 	</div>
 	
-	<div class="app-03">
+	<div class="app-03" data-aos="fade-up" data-aos-anchor-placement="top-center">
 		<div style="text-align: start;">
 			<div class="applist">
 				<img class="applist-logo" src="imgs/app/app03logo.png" alt="app03logo" />
@@ -202,7 +223,7 @@ left:20%;
 		</div>
 	</div>
 	<!-- app02 -->
-	<div class="app-02">
+	<div class="app-02" data-aos="fade-up" data-aos-anchor-placement="top-center">
 		<div style="text-align: start;">
 			<div class="applist">
 				<img class="applist-logo" src="imgs/app/app02logo.webp" alt="app02logo" />
@@ -331,7 +352,30 @@ left:20%;
 		<p class="process-span">현재 프로젝트가 어떤 단계에 있어도 진행 가능합니다<br />
 		언제든지 문의주세요</p>
 	</section>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+  	  AOS.init();
+  	  AOS.init({
+    	  disable: false, 
+    	  startEvent: 'DOMContentLoaded',
+    	  initClassName: 'aos-init', 
+    	  animatedClassName: 'aos-animate',
+    	  useClassNames: false, 
+    	  disableMutationObserver: false, 
+    	  debounceDelay: 0,
+    	  throttleDelay: 200, 
 
+    	  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+    	  offset: 120,
+    	  delay: 0,
+    	  duration: 800, 
+    	  easing: 'ease',
+    	  once: false, 
+    	  mirror: false, 
+    	  anchorPlacement: 'top-bottom',
+    	});
+  </script>
+  
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -349,6 +393,12 @@ left:20%;
 		$(document).ready(function() {
 			$('img.sec-image').fadeIn(3000);
 		});
+		
+		$(document).ready(function() {
+			$('.Inquire').fadeIn(3000);
+		});
+
 	</script>
+	<script src="js/header.js"></script>
 </body>
 </html>

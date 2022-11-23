@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<script src='js/apply_pic.js?<%=new java.util.Date() %>'></script>
 <script src='js/apply.js?<%=new java.util.Date() %>'></script>
 
 </head>
@@ -25,6 +26,7 @@
 <h3>${recruit.recruit_title}</h3>
 <input type='hidden' name='apply_num' value="${vo.apply_num }">
 <input type='hidden' name='file_name' value="${vo.file_name }">
+<input type='hidden' name='pic_file_name' value="${vo.apply_pic_name }">
 
 <table class='w-px1000'>
 <tr><th>이름</th>
@@ -32,22 +34,47 @@
 <input type='text' class="chk" name='apply_name' value="${vo.apply_name }">
 </td>
 
+
+<td rowspan='3' style="width:100px">
+<div class='align'>
+		<label>
+			<input type='file' name='pic_name' id='attach-file-pic'>
+			
+		</label>
+		<span id='pic_file_name'>${vo.apply_pic_name}</span>
+		<span id='preview_pic'></span>
+		<!-- //첨부파일이 있는 경우 삭제 이미지가 보이게 처리 -->
+		<a id='delete-file-pic' style='display:${empty vo.apply_pic_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
+		
+		</div>
+
+</td>
+<tr>
+<th>휴대폰번호</th>
+<td>
+<input type='text'  class="chk" name='apply_phone' value="${vo.apply_phone }">
+</td>
+</tr>
 <tr>
 <th>이메일</th>
 <td>
 <input type='text'  class="chk" name='apply_email' value="${vo.apply_email }">
 </td>
 </tr>
+
+
 <tr><th>첨부파일</th>
-	<td class='text-left'>
+	<td colspan= '2' class='text-left'>
 		<div class='align'>
 		<label>
 			<input type='file' name='file' id='attach-file'>
 			<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
 		</label>
-		<span id='file_name'></span>
+		<span id='file_name'>${vo.file_name}</span>
 		<span id='preview'></span>
-		<a id='delete-file'><i class="font-r fa-solid fa-trash-can"></i></a>
+		<!-- //첨부파일이 있는 경우 삭제 이미지가 보이게 처리 -->
+		<a id='delete-file' style='display:${empty vo.file_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
+		
 		</div>
 	</td>
 </tr>
@@ -63,13 +90,10 @@
 </form>
 
 <script>
-/* $('#save').click(function(){
-	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
-}); */
-$('#save').click(function(){
 
-	
-	$('form').submit();
+$('#save').click(function(){
+	$('[name=file_name]').val( $('#file_name').text() );
+	if( emptyCheck() ) $('form').submit();
 });
 if(isImage("${vo.file_name}")) {
 	$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
@@ -77,7 +101,10 @@ if(isImage("${vo.file_name}")) {
 }
 
 
-
+if(isImage("${vo.apply_pic_name}")) {
+	$('#pic_name').after('<span id="preview_pic"><img src="${vo.apply_pic_path}"</span>' );
+	
+}
 
 
 

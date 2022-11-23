@@ -53,9 +53,10 @@ where apply_num = #{apply_num}
 
 <select id="update">
 	update apply_board set apply_name = #{apply_name}, 
-	apply_email = #{apply_email}
+	apply_email = #{apply_email}, apply_phone=#{apply_phone}
 	,file_name=#{file_name, jdbcType=VARCHAR}, file_path=#{file_path, jdbcType=VARCHAR}
-
+	,apply_pic_name=#{apply_pic_name, jdbcType=VARCHAR}
+	,apply_pic_path=#{apply_pic_path, jdbcType=VARCHAR}
 
 	where apply_num = #{apply_num}
 </select>
@@ -104,11 +105,14 @@ where recruit_num = #{recruit_num}
 insert into apply_board (
 recruit_num, apply_email, apply_num, 
 apply_name, file_name, file_path, apply_phone,apply_pw
+,apply_pic_name, apply_pic_path
 )
 values (
 #{recruit_num} ,#{apply_email, jdbcType=VARCHAR} , seq_apply_num.nextval 
 ,#{apply_name} ,#{file_name, jdbcType=VARCHAR} ,#{file_path, jdbcType=VARCHAR} 
 ,#{apply_phone}, #{apply_pw}
+,#{apply_pic_name, jdbcType=VARCHAR}
+,#{apply_pic_path, jdbcType=VARCHAR}
 
 )
 
@@ -143,5 +147,7 @@ where r.employee_pattern = c.code_value
 and employee_pattern = #{employee_pattern}
 order by r.recruit_start
 </select>
+<!-- 안드로이드 -->
+
 
 </mapper>

@@ -59,9 +59,9 @@ body {
 		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
 			alt="logo" src="imgs/icons/logo.png"></a>
 		<ul class="header-nav">
-			<li><a href="#">회사소개</a></li>
-			<li><a href="#">서비스영역</a></li>
-			<li><a href="#">프로세서</a></li>
+			<li><a href="javascript:window.scrollBy( 0, 800 );">회사소개</a></li>
+			<li><a href="javascript:window.scrollBy( 0, 4430 );">서비스영역</a></li>
+			<li><a href="javascript:window.scrollBy( 0, 5430 );">프로세서</a></li>
 			<li><a href="list.rec">채용공고</a></li>
 
 

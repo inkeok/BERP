@@ -118,6 +118,18 @@ CONNECT BY LEVEL <=
 TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 ]]>
 	</insert>
+	<insert id="andHoliday">
+<![CDATA[
+	INSERT INTO 
+holiday(holiday_date, employee_id, department_id,company_cd,work_code)
+ SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20120001','40','1000',#{work_code}
+   FROM dual 
+CONNECT BY LEVEL <= 
+(TO_DATE(#{end_holiday , jdbcType=VARCHAR},'YYYY-MM-DD')
+	-
+TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
+]]>
+	</insert>
 
 	<select id="holiday_submit_list"
 		resultType="work.HolidayResultVO">
@@ -139,7 +151,7 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		select h.* , c.code_name work_status, e.name name
 		from holiday h left join common_code c
 		on h.work_code = c.code_value left outer join employees e
-		on e.employee_id = w.employee_id
+		on e.employee_id = h.employee_id
 		
 
 	</select>
@@ -149,6 +161,31 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		from work
 		where employee_id = '20120001'	
 	</select>
-
+	<select id="andEndSearch" resultType="work.WorkVO">
+		select end_work 
+		from work
+		where employee_id = '20120001'	
+	</select>
+	<select id="andCode" resultType="work.CommonCodeVO">
+		select * from common_code where code_title ='HO'
+	</select>
+	<select id="andHolidaySearch" resultType="work.HolidayVO" >
+		select holiday_date from holiday where holiday_date = #{holiday_date} and employee_id =  #{employee_id}
+	
+	</select>
+	
+	<select id="andHoliday_List" resultType="work.HolidayVO">
+		select h.employee_id ,e.name name, d.department_name dname, c.code_name work_code,h.holiday_date,TRUNC(MONTHS_BETWEEN(SYSDATE,
+		hire_date) / 12) hire_year
+		from holiday h 
+		left outer join common_code c 
+		on h.work_code = c.code_value
+		left outer join departments d
+		on h.department_id = d.department_id
+		left outer join employees e
+		on h.employee_id = e.employee_id
+		
+		 
+	</select>
 
 </mapper>

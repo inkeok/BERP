@@ -10,18 +10,10 @@
 <style>
 
 .pagination{
-    width: 1490px;
+	margin : 10px;
 	background : #12192c;
     justify-content: center;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
-
-.pagination li{
-	margin-right : 14px;
-}
-
 #pagination a {
 
 	display:inline-block;
@@ -43,8 +35,7 @@
 }
 table {
 	margin-top : 5px;
-	border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+	border-radius : 20px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
@@ -77,42 +68,23 @@ tbody td:hover:before {
   z-index: -1;
 }
 .new-btn{
-  padding: 1em 1.8em;
-  font-size: 14px;
-  font-weight: 400;
-  font-family:'Noto Sans KR', sans-serif;
-  border-radius: 4px;
-  cursor: pointer;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border: none;
-  color: #ffffff;
-  margin-bottom: 10px;
-	background : #12192c;
 	position: relative;
-	left: 4%;
-}
-
-.button-second {
-  background: #2b32b2;
-  box-shadow: 0 3px 25px rgba(48, 37, 223, 0.7);
+	left: 5%;
 }
 
 </style>
 </head>
 <body >
-	<h2 class="center hrlist">사원목록</h2>
-	<button class="new-btn" onclick='location="new.hr"'>신규사원등록</button>
+	<h2 class="center hrlist">사원별 급여조회</h2>
 	<form action="list.hr" class="list">
-		<div class="w-px1600">
+		<div class="w-px1600 table-responsive">
 			<table class="table-hover">
 				<colgroup>
 					<col width="140px" />
 					<col width="100px" />
 					<col width="100px" />
 					<col width="100px" />
-					<col width="250px" />
+					<col width="200px" />
 					<col width="200px" />
 					<col width="100px" />
 					<col width="130px" />
@@ -131,7 +103,7 @@ tbody td:hover:before {
 					<th>입사일자</th>
 <!-- 					<th>업무제목</th> -->
 					<th>직급</th>
-					<th>업무형태</th>
+					<th>급여</th>
 				</tr>
 			</thead>
 				<c:forEach items="${list}" var="vo">
@@ -154,11 +126,9 @@ tbody td:hover:before {
 			</table>
 		</div>
 	</form>
-	<div style="text-align: -webkit-center;">
-		<ul class="pagination">
-		    
-		 	 </ul>
-	</div>
+	<ul class="pagination">
+    
+ 	 </ul>
 </body>
 <script>
 	function pagination(){

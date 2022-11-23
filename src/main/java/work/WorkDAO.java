@@ -32,7 +32,7 @@ public class WorkDAO {
 	
 	public int work_end_input(String end_work) {
 		
-		System.out.println(end_work+"dao");
+		
 		return sql.update("work.end_work",end_work);
 	}
 	
@@ -66,7 +66,7 @@ public class WorkDAO {
 	}
 	public int holiday_submit(HolidayVO vo){
 		
-		return sql.insert("holiday_submit", vo);
+		return sql.insert("work.holiday_submit", vo);
 	}
 	
 	public List<HolidayResultVO> holiday_submit_list(){
@@ -93,16 +93,37 @@ public class WorkDAO {
 		return sql.selectList("work.department_work", department_id);
 	}
 	
+	
 	public List<WorkResultVO> department_work() {
 		return sql.selectList("work.department_work");
 	}
 	
-	public WorkVO search() {
+	public List<WorkVO> search() {
 		
-		return sql.selectOne("work.search");
+		return sql.selectList("work.search");
+	}
+	public List<WorkVO> andEndSearch() {
+		
+		return sql.selectList("work.andEndSearch");
 	}
 	
+	public int andHoliday(HolidayVO vo){
+		
+		return sql.insert("work.andHoliday", vo);
+	}
 	
-
+	public List<CommonCodeVO> andCode() {
+		
+		return sql.selectList("work.andCode");
+	}
+	public List<CommonCodeVO> andHolidaySearch() {
+		
+		return sql.selectOne("work.andHolidaySearch");
+	}
+	public List<HolidayVO> andHoliday_List(){
+		
+		return sql.selectList("work.andHoliday_List");
+		
+	}
 	
 }
