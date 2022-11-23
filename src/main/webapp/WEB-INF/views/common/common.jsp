@@ -15,6 +15,7 @@ body{
 td {
 	color: #b1b1b1;
 }
+
 </style>
 </head>
 <body>
@@ -28,12 +29,11 @@ td {
    <div class="card-body">
        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
        	<div class="dataTable-top">
-       		<div class="dataTable-create" ><a href='common.new'>신규코드생성</a></div>
        		<div class="dataTable-dropdown">
        			<input type='hidden' name='code' id='code'>
        			<label>
        				<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title"); $("form").submit()'>
-       				<option value="all">인사코드</option>
+       				<option class="title" value="all">인사코드</option>
 						<c:forEach items='${code_titles}' var='c'>
 							<option ${code_title eq c.code_title ? 'selected' : ''} 
 									value='${c.code_title}'>${c.code_title}
@@ -98,7 +98,7 @@ td {
 	</thead>   
       	<c:forEach items="${list}" var="vo">
             
-            <tr><td><a href='common.detail?id=${vo.code_title}'>${vo.code_title}</a></td>
+            <tr><td><a href='common.detail?code_value=${vo.code_value}'>${vo.code_title}</a></td>
             	<td>${vo.code_value}</td>
             	<td>${vo.code_used}</td>
             	<td>${vo.code_name}</td>
@@ -107,7 +107,8 @@ td {
            	</tr>
            	</c:forEach>
         </table>
-        </div><div class="dataTable-bottom"><div class="dataTable-info"></div></div></div>
+        </div><div class="dataTable-bottom"><div class="dataTable-info"></div></div>
+        </div>
     </div>
 </div>
 </form>
