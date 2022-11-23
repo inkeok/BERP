@@ -10,8 +10,6 @@ public class EmpVO {
 	c_position, pw;
 	private Date hire_date;
 	
-	
-	
 	public String getPw() {
 		return pw;
 	}
@@ -121,6 +119,4 @@ public class EmpVO {
 		this.hire_date = hire_date;
 	}
 		
-	
-
 }
