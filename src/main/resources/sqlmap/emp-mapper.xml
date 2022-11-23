@@ -3,7 +3,7 @@
 <mapper namespace="emp">
 
 	<update id="update">
-		update emplotyees
+		update employees
 		set department_name =
 		#{department_name}, company_name = #{company_name}, name = #{name}
 		,
