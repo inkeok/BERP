@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import emp.DepartmentVO;
 import emp.EmpVO;
 import work.CommonCodeVO;
 import work.HolidayResultVO;
@@ -26,6 +27,8 @@ import work.WorkVO;
 public class WorkController {
 	@Autowired
 	WorkDAO dao;
+	Gson gson = new GsonBuilder()
+	.setDateFormat("yyyy-MM-dd").create();
 
 	@RequestMapping("/work")
 	public String work_list(String id, Model model) {
@@ -160,14 +163,13 @@ public class WorkController {
 		return "side/work/workList";
 	}
 	/* =======================안드로이드 ====================== */
-	@ResponseBody @RequestMapping(value="/andWorkList", produces="text/html; charset=utf-8")
-	public String andWorkList() {
-		
-		List<WorkResultVO> list = dao.rList();
-		Gson gson = new GsonBuilder()
-				   .setDateFormat("yyyy-MM-dd").create();
-		return gson.toJson(list);
-	}
+	
+	@ResponseBody @RequestMapping(value="/andWorkList",
+	produces="text/html; charset=utf-8") public String andWorkList() {
+	
+	List<WorkResultVO> list = dao.rList(); 
+	return gson.toJson(list); }
+	
 	
 	 // 퇴근 버튼 눌렀을 때 시간 update
 	 
@@ -205,13 +207,13 @@ public class WorkController {
 		}
 		@ResponseBody @RequestMapping(value="/andSearch", produces="text/html; charset=utf-8")
 		public String andSearch() {
-			Gson gson = new Gson();
+			
 			
 			return gson.toJson(dao.search());
 		}
 		@ResponseBody @RequestMapping(value="/andEndSearch", produces="text/html; charset=utf-8")
 		public String andEndSearch() {
-			Gson gson = new Gson();
+			
 			
 			return gson.toJson(dao.andEndSearch());
 		}
@@ -222,9 +224,40 @@ public class WorkController {
 			
 			System.out.println(dto.getStart_holiday());
 			System.out.println(dto.getEnd_holiday());
+			System.out.println(dto.getWork_code());
+			try {
+				return dao.andHoliday(dto)+"";
+			} catch (Exception e) {
+				return "1";
+			}
 			
-				return dao.andHoliday(dto)+""; 		
-				
 	}
 		
+		
+		@ResponseBody @RequestMapping(value="/andWorkDept", produces="text/html; charset=utf-8")
+		public String andWorkDept() {
+		
+			List<DepartmentVO> list = dao.departments();
+			return gson.toJson(list);
+		}
+		@ResponseBody @RequestMapping(value="/andWorkDeptList", produces="text/html; charset=utf-8")
+		public String andWorkDeptList(int department_id) {
+			System.out.println(department_id);
+			
+			
+			return gson.toJson(dao.department_work(department_id));
+		}
+		@ResponseBody @RequestMapping(value="/andCode", produces="text/html; charset=utf-8")
+		public String andCode() {
+			
+			List<CommonCodeVO> list = dao.andCode();
+			
+			return gson.toJson(list);
+		}
+		@ResponseBody @RequestMapping(value="/andHolidaySearch", produces="text/html; charset=utf-8")
+		public String andHolidaySearch(String vo) {
+			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
+			
+			return gson.toJson(dto);
+		}
 }

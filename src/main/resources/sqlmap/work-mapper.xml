@@ -122,7 +122,7 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 <![CDATA[
 	INSERT INTO 
 holiday(holiday_date, employee_id, department_id,company_cd,work_code)
- SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20120001','40','1000','HO101'
+ SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20120001','40','1000',#{work_code}
    FROM dual 
 CONNECT BY LEVEL <= 
 (TO_DATE(#{end_holiday , jdbcType=VARCHAR},'YYYY-MM-DD')
@@ -166,6 +166,12 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		from work
 		where employee_id = '20120001'	
 	</select>
-
+	<select id="andCode" resultType="work.CommonCodeVO">
+		select * from common_code where code_title ='HO'
+	</select>
+	<select id="andHolidaySearch" resultType="work.HolidayVO" >
+		select holiday_date from holiday where holiday_date = #{holiday_date} and employee_id =  #{employee_id}
+	
+	</select>
 
 </mapper>

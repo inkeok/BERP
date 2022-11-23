@@ -16,17 +16,22 @@ ul{
 <body>
 
 
-	<div class="row mb-4" style="width: 1200px">
-		<div class="col-lg-12">
+
+
+	<div class="row mb-5" style="width: 1200px">
+		<div class="col-xl-12">
 			<div class="card">
 				<div class="card-body">
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="d-flex">
-								<div class="flex-grow-1 align-self-center">
-									<div class="text-muted">
-										<p class="mb-2" id="times"></p>
-										<form method='post' action='workList'>
+					<div class="clearfix">
+						<div class="card-body">
+							<div class="d-flex align-items-center mb-3">
+								<div class="avatar-xs me-3">
+									<span
+										class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
+										<i class="bx bx-task"></i>
+									</span>
+								</div>
+								<form method='post' action='workList'>
 											<div id='list-top' class='w-px1200'>
 												<ul>
 													<li>부서명</li>
@@ -45,52 +50,10 @@ ul{
 											</div>
 										</form>
 
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 align-self-center">
-							<div class="text-lg-center mt-4 mt-lg-0">
-								<div class="row">
-									<div class="col-4">
-										<div></div>
-									</div>
-									<div class="col-4">
-										<div></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 d-none d-lg-block">
-							<div class="clearfix mt-4 mt-lg-0"></div>
-						</div>
-					</div>
-					<!-- end row -->
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row mb-5" style="width: 1200px">
-		<div class="col-xl-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="clearfix">
-						<div class="card-body">
-							<div class="d-flex align-items-center mb-3">
-								<div class="avatar-xs me-3">
-									<span
-										class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
-										<i class="bx bx-task"></i>
-									</span>
-								</div>
-								<h5 class="font-size-16 mb-0">근무 내역</h5>
-
 							</div>
 
 							<!--  work_result table 에서 가져온다 -->
+								<h5 class="font-size-16 mb-0">근무 내역</h5>
 							<table class="table table-sm">
 								<thead>
 									<tr>
@@ -104,7 +67,7 @@ ul{
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach begin="1" end="15" items='${workList}' var='vo'>
+									<c:forEach begin="1" end="10" items='${workList}' var='vo'>
 										<tr>
 											<td><fmt:formatDate value="${vo.work_date}"
 													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
