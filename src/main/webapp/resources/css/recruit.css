@@ -205,6 +205,10 @@ ul.grid li div:nth-child(2) {
 	display: none;
 }
 
+#preview_pic img{
+	width:100px;
+}
+
 .w-px40 { width: 40px }
 .w-px60 { width: 60px }
 .w-px80 { width: 80px }
