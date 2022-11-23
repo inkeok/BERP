@@ -184,8 +184,19 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		on h.department_id = d.department_id
 		left outer join employees e
 		on h.employee_id = e.employee_id
-		
-		 
+
+	</select>
+	<select id="andHolidayDept_List" resultType="work.HolidayVO">
+		select h.employee_id ,e.name name, d.department_name dname, c.code_name work_code,h.holiday_date,TRUNC(MONTHS_BETWEEN(SYSDATE,
+		hire_date) / 12) hire_year
+		from holiday h 
+		left outer join common_code c 
+		on h.work_code = c.code_value
+		left outer join departments d
+		on h.department_id = d.department_id
+		left outer join employees e
+		on h.employee_id = e.employee_id
+		where h.department_id = #{department_id}
 	</select>
 
 </mapper>

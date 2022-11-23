@@ -265,9 +265,14 @@ public class WorkController {
 		public String andHoliday_List() {
 			
 			
-			
-			
 			return gson.toJson(dao.andHoliday_List());
+			
+		}
+		@ResponseBody @RequestMapping(value="/andHolidayDept_List", produces="text/html; charset=utf-8")
+		public String andHolidayDept_List(int department_id) {
+			
+			
+			return gson.toJson(dao.andHolidayDept_List(department_id));
 			
 		}
 		
