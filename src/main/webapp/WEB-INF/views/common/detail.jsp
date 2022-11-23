@@ -40,7 +40,7 @@ td {
 	<td>${vo.code_name }</td>
 </tr>
 <tr><th>생성날짜</th>
-	<td>${vo.code_maker }</td>
+	<td>${vo.code_birth }</td>
 </tr>
 <tr><th>생성인</th>
 	<td>${vo.code_maker_name }</td>

@@ -2,6 +2,8 @@ package com.hanul.berp;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,9 +111,10 @@ public class CommonController {
 	}
 	
 	@RequestMapping("/common.update")
-	public String update(CommonVO vo) {
+	public String update(CommonVO vo, String code_value, HttpServletRequest request) throws Exception {
+		CommonVO code = dao.code_detail(vo.getCode_value());
 		dao.code_update(vo);
-		return "common/modify";
+		return "redirect:common.detail?code_value=" + code_value;
 	}
 	
 }
