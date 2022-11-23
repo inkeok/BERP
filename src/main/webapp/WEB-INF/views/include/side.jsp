@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="css/common.css?<%=new java.util.Date()%>" rel="stylesheet">
+<link href="css/side.css?<%=new java.util.Date()%>" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link
@@ -11,105 +12,6 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <style>
-li a{
-	color : #ffffff;
-	font-size: 14px;
-}
-body {
-    position: relative;
-    margin: 0;
-    padding: 2rem 0 0 3.75rem;
-/*     font-family: var(--body-font); */
-/*     font-size: var(--normal-font-size); */
-    transition: .5s;
-}
-
-li:before, .side-menu:before {
-	font-family: "Material Icons" !important;
-	font-feature-settings: "liga";
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-*, :before, :after {
-	box-sizing: border-box;
-	transition: 0.3s;
-}
-
-ul {
-	background: #12192c;
-	padding: 1.5em;
-	margin: 0;
-	margin-top: 1em;
-	border-radius: 5px;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
-	position: absolute;
-	top: 100%;
-	left: 0;
-	font: 400 18px Roboto;
-	white-space: nowrap;
-	cursor: default;
-	animation-name: side-right;
-    animation-duration: 500ms;
-    animation-direction: normal;
-	z-index: 101;
-	
-}
-
-@keyframes side-right {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-ul.hidden {
-	margin-top: 0.7em;
-	display: none;
-	opacity: 0;
-}
-
-ul:before {
-	content: "";
-	width: 0.75em;
-	height: 0.75em;
-	background: inherit;
-	position: absolute;
-	left: -0.375em;
-	left: calc(56px/ 2 - .375em);
-	transform: rotate(45deg);
-}
-
-li {
-	list-style: none;
-	padding: 0.5em;
-	margin: 0;
-	position: relative;
-	cursor: pointer;
-}
-
-li:before {
-	position: absolute;
-	top: calc(5% + 8px);
-	left: 8px;
-}
-
-.nav-img img {
-	width: 40px;
-	height: 40px;
-}
-#fix{
-	background-color: black;
-	width: 20%;
-	height: 20%;;
-	position: fixed;
-	bottom: 30px;
-	left: 30px;
-	}
 
 </style>
 
@@ -149,8 +51,8 @@ li:before {
 							class="nav_name">업무관리</span>
 						</a>
 						<div class="side-content">
-							<ul class="hidden list2">
-								<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</li>
+							<ul class="hidden list2 sidebar">
+								<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'><a href="list.hr">보관함</a></li>
 								<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
 								<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
 								<li onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
@@ -162,7 +64,7 @@ li:before {
 							name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
 						class="nav_name">채용관리</span>
 					</a>
-					 <a href="#" class="nav__link"> <ion-icon
+					 <a href="list.hr" class="nav__link"> <ion-icon
 							name="person-circle-outline" class="nav__icon"></ion-icon> <span
 						class="nav_name">인사관리</span>
 					</a>
@@ -173,7 +75,7 @@ li:before {
 					<!-- 						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon> -->
 					<!-- 					</div> -->
 
-					<a href="#" class="nav__link"> <ion-icon name="alarm-outline"
+					<a href="workList" class="nav__link"> <ion-icon name="alarm-outline"
 							class="nav__icon"></ion-icon> <span class="nav_name">근태관리</span>
 					</a>
 					 <a href="#" class="nav__link"> <ion-icon
@@ -192,11 +94,11 @@ li:before {
 			</div>
 		</nav>
 	</div>
+          
+    <!-- IONICONS -->
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+    <!-- JS -->
+    <script src="js/main.js"></script>
 
-
-	<!-- IONICONS -->
-	<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-	<!-- JS -->
-	<script src="js/main.js"></script>
 </body>
 </html>

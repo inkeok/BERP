@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
+import emp.EmpVO;
+import member.AndLoginMemberVO;
 import mypage.EmpMemberVO;
 import mypage.MemberVO;
 import mypage.MyPageDAO;
@@ -51,4 +56,20 @@ public class MyPageController {
 		return "side/myPage/info";
 	}
 	
+	
+///////////////////////////////////안드로이드/////////////////////////////////////////////////////////
+	
+
+@ResponseBody @RequestMapping(value="/andModify.mp", produces="text/html; charset=utf-8")
+public String AndMyPageModify(int employee_id, String phone, String pw, String email) {
+
+	mypage.EmpVO vo = new mypage.EmpVO();
+	vo.setEmployee_id(employee_id);
+	vo.setPhone(phone);
+	vo.setPw(pw);
+	vo.setEmail(email);
+	
+	dao.and_emp_modify(vo);
+	return "ok";
+}
 }

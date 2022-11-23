@@ -1,7 +1,5 @@
 package work;
 
-import java.util.Date;
-
 public class WorkVO {
 
 	private String company_cd, excess_date, work_code; 

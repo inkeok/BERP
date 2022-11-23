@@ -1,59 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+<link href='css/styles.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
 <style>
 
-.w-px1600 {
-	width: 1600px;
-}
-.center{
-	text-align: center;
-}
-.hrlist{
- margin : 3rem 0 ;
- 
+body{
+	width : 1600px;
 }
 
+td {
+	color: #b1b1b1;
+}
 </style>
 </head>
 <body>
-<h2 class="center hrlist">코드관리</h2>
-<form action="list.cd">
-	<div class="w-px1600">
-		<table class="table table-striped table-hover">
-			<colgroup>
-					<col width="120px" />
-					<col width="120px" />
-					<col width="150px" />
-					<col width="120px" />
-					<col width="130px" />
-					<col width="130px" />
-				</colgroup>
-				
-				<tr>
-					<th>인사코드</th>
-					<th>문서코드</th>
-					<th>근무구분코드</th>
-					<th>고용형태</th>
-					
-					<th>코드생성일</th>
-					<th>코드생성자</th>
-				</tr>
-				<tr>
-					<select class='w-px100'>
-						<option value="none">==선택==</option>
-						<option value="1">one</option>
-						<option value="2">two</option>
+	<!-- <h2 class="center hrlist">코드관리</h2> -->
+	<form action="common.cd">
+
+		<div class="card mb-4">
+	<div class="card-header">                                
+	    코드관리
+	</div>	
+   <div class="card-body">
+       <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+       	<div class="dataTable-top">
+       		<div class="dataTable-create" ><a href='common.new'>신규코드생성</a></div>
+       		<div class="dataTable-dropdown">
+       			<input type='hidden' name='code' id='code'>
+       			<label>
+       				<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title"); $("form").submit()'>
+       				<option value="all">인사코드</option>
+						<c:forEach items='${code_titles}' var='c'>
+							<option ${code_title eq c.code_title ? 'selected' : ''} 
+									value='${c.code_title}'>${c.code_title}
+							</option>
+						</c:forEach>
 					</select>
-				</tr>
-		</table>
-	</div>
+					
+					<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value"); $("form").submit()'>
+       				<option value="all">문서코드</option>
+						<c:forEach items='${code_values}' var='c'>
+							<option ${code_value eq c.code_value ? 'selected' : ''} 
+									value='${c.code_value}'>${c.code_value}
+							</option>
+						</c:forEach>
+					</select>
+					
+					<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
+       				<option value="all">고용형태코드</option>
+						<c:forEach items='${code_used}' var='c'>
+							<option ${code_used eq c.code_used ? 'selected' : ''} 
+									value='${c.code_used}'>${c.code_used}
+							</option>
+						</c:forEach>
+					</select>
+					
+<!-- 					<select class="dataTable-selector" name="code_name" onchange='$("#code").val("code_name"); $("form").submit()'> -->
+<!--        				<option value="all">근무구분코드</option> -->
+<%-- 						<c:forEach items='${code_name}' var='c'> --%>
+<%-- 							<option ${code_name eq c.code_name ? 'selected' : ''}  --%>
+<%-- 									value='${c.code_name}'>${c.code_name} --%>
+<!-- 							</option> -->
+<%-- 						</c:forEach> --%>
+<!-- 					</select> -->
+    			</label>
+			</div>
+		</div>
+	
+		</div>
+<div class="dataTable-container">
+<table id="datatablesSimple" class="dataTable-table">
+	<thead>
+	    <tr>
+	     <th data-sortable="" style="width: 10%;">
+	    	<span class="dataTable-sorter">인사코드</span>
+	    </th>
+        <th data-sortable="" style="width: 10%;">
+        	<span class="dataTable-sorter">문서코드</span>
+       	</th>
+     	<th data-sortable="" style="width: 10%;">
+     		<span class="dataTable-sorter">고용형태코드</span>
+   		</th>
+   		<th data-sortable="" style="width: 10%;">
+     		<span class="dataTable-sorter">근무구분코드</span>
+   		</th>
+   		<th data-sortable="" style="width: 10%;">
+   			<span class="dataTable-sorter">코드생성일</span>
+		</th>
+		<th data-sortable="" style="width: 13%;">
+			<span class="dataTable-sorter">코드생성자</span>
+		</th>
+		</tr>
+	</thead>   
+      	<c:forEach items="${list}" var="vo">
+            
+            <tr><td><a href='common.detail?id=${vo.code_title}'>${vo.code_title}</a></td>
+            	<td>${vo.code_value}</td>
+            	<td>${vo.code_used}</td>
+            	<td>${vo.code_name}</td>
+            	<td>${vo.code_birth}</td>
+            	<td>${vo.code_maker_name}</td>
+           	</tr>
+           	</c:forEach>
+        </table>
+        </div><div class="dataTable-bottom"><div class="dataTable-info"></div></div></div>
+    </div>
+</div>
 </form>
+ 
 </body>
 </html>

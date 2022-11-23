@@ -27,7 +27,9 @@ public class SalaryController {
 		return gson.toJson(emp_dao.departments());
 	}
 	
-	@ResponseBody @RequestMapping(value="/andSalaryList.sa", produces="text/html; charset=utf-8")
+
+	@ResponseBody @RequestMapping(value="/andSalary.sa", produces="text/html; charset=utf-8")
+
 	public String SalaryList() {
 		return gson.toJson(dao.salaryList());
 	}

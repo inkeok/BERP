@@ -18,9 +18,19 @@
 
 <table class='w-px1000'>
 
-<tr><th class='w-px140'>유형</th>
+<tr><th class='w-px140'>채용유형</th>
 	<td>
 		${vo.code_name }
+	</td>
+</tr>
+<tr><th class='w-px140'>채용유형</th>
+	<td>
+		${com.code_name }
+	</td>
+</tr>
+<tr><th class='w-px140'>회사</th>
+	<td>
+		${com.company_name }
 	</td>
 </tr>
 <tr><th>채용시작일</th>
@@ -36,6 +46,12 @@ ${vo.char_recruit_end }
 
 
 
+<tr><th class='w-px140'>연봉</th>
+	<td>
+	${vo.salary }
+	
+	</td>
+</tr>
 <tr><th class='w-px140'>제목</th>
 	<td>
 	${vo.recruit_title }
@@ -48,16 +64,19 @@ ${vo.char_recruit_end }
 </td>
 </tr> --%>
 <tr><th>내용</th>
-	<td>
+	<td>${vo.recruit_content }
 	
+<span id='file_name'></span>
+</td>
+</tr>
+<tr><th>첨부파일</th>
+<td>${vo.file_name }
 <div>
-<input type="hidden" id='file_name' value="${vo.file_name }">
 <c:if test="${not empty vo.file_name }">
 <a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
 </c:if>
 </div>
 </td>
-</tr>
 </table>
 <div>
 <a href='list.rec' class='btn-fill'>목록으로 </a>
@@ -73,7 +92,12 @@ ${vo.char_recruit_end }
 
 
 <script>
-
+$('#download').click(function(){
+	
+	$(this).attr('href'
+			, 'download.rec?recruit_num=${vo.recruit_num }&url='+$(location).attr('href'));
+	
+});
 
 $('#remove').click(function() {
 	if(confirm('정말 삭제?')) {
