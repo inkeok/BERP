@@ -86,21 +86,22 @@ order by no desc
 <!-- 기안 제출 저장 처리 -->
 <insert id='insertPost'>
 insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, 
-document_submit, document_comment)
+document_submit, document_comment, file_name, file_path)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
 #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
 #{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'Y',
-#{document_comment, jdbcType=VARCHAR})
+#{document_comment, jdbcType=VARCHAR}, #{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=VARCHAR})
 </insert>
 
 <!-- 기안 제출 저장 처리 -->
 <insert id='insertResult'>
 insert into result_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, 
-document_submit, document_comment, finish_date)
+document_submit, document_comment, finish_date, file_name, file_path)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
 #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
 #{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'Y',
-#{document_comment, jdbcType=VARCHAR}, #{finish_date, jdbcType=VARCHAR})
+#{document_comment, jdbcType=VARCHAR}, #{finish_date, jdbcType=VARCHAR},
+#{file_name, jdbcType=VARCHAR}, #{file_path, jdbcType=VARCHAR})
 </insert>
 
 <!-- 기안 처리 후 결과 테이블에 저장 처리  -->
@@ -121,10 +122,12 @@ values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR},
 
 <!-- 기안 임시보관함 저장 처리 -->
 <insert id='insertLocker'>
-insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, document_submit)
+insert into ing_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, 
+document_submit, file_path, file_name)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
 #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
-#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'N')
+#{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'N',
+#{file_path, jdbcType=VARCHAR}, #{file_name, jdbcType=VARCHAR})
 </insert>
 
 <!-- 특정 부서에 소속된 직원 리스트를 찾는다 -->

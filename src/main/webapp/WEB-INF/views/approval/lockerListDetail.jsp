@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
+<link href='js/approval.js?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
 </style>
 </head>
@@ -39,7 +40,7 @@
 	<table class='table detail' style='margin-top: 10px'>
 	<colgroup>
 	<col width='100px'>
-	<col>
+	<col width='100%'>
 	</colgroup>
 		<tr><th>제목</th>
 			<td><input type='text' id='document_title' name='document_title' value='${lockerListDetail.document_title }'></td>
@@ -48,9 +49,12 @@
 			<td><textarea id='textarea' name='document_content'>${lockerListDetail.document_content }</textarea></td>
 		</tr>
 		<tr><th>첨부파일</th>
-			<td style='text-align: left'>
+			<td  colspan='3'>
 				<input type="file" id='file' name='file'>
-			</td>
+				<c:if test='${not empty submitListDetail.file_name }'>
+				<a class='file'>${lockerListDetail.file_name}</a>
+				</c:if>
+			</td>	
 		</tr>
 	</table>
 </form>

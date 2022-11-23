@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
+<link href='js/approval.js?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
 #postForm{
 	margin: 10px 0;
@@ -51,7 +52,7 @@
 		</tr>
 		<tr><th>첨부파일</th>
 			<td style='text-align: left'>
-				<input type="file" id='file' name='file'>
+				<input type="file" id='file' name='file'>${vo.file_name }
 			</td>
 		</tr>
 	</table>

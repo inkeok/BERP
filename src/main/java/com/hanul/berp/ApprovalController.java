@@ -2,7 +2,8 @@ package com.hanul.berp;
 
 
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,15 +11,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import approval.ApprovalDAO;
+import approval.FileUtility;
 import approval.Ing_tableVO;
+import approval.Result_tableVO;
 import emp.EmpDAO;
 
 @Controller
 public class ApprovalController {
 	@Autowired ApprovalDAO dao;
 	@Autowired EmpDAO emp_dao;
+	@Autowired FileUtility fileUtility;
 	
 	//상신함 뷰
 	@RequestMapping("/submitList.ap")
@@ -83,8 +88,14 @@ public class ApprovalController {
 	//상신함에서 작성 버튼
 	@RequestMapping("/post.ap")
 	public String post(Model model, Ing_tableVO vo, int employee_id, 
-			@RequestParam(defaultValue = "-1") int ing_no,
+			@RequestParam(defaultValue = "-1") int ing_no, HttpServletRequest request,
+			MultipartFile file,
 			@RequestParam(defaultValue = "부서") String department_name) {
+		
+//		if( ! file.isEmpty() ) {
+//			vo.setFile_name( file.getOriginalFilename() );
+//			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );
+//		}
 
 		if(department_name != "부서") 
 			model.addAttribute("departmentEmployee", dao.departmentEmployee(department_name, employee_id));
@@ -101,8 +112,14 @@ public class ApprovalController {
 	//상신함 저장
 	@ResponseBody
 	@RequestMapping(value="/insertPost.ap", produces="text/html; charset=utf8")
-	public String insertPost(Ing_tableVO vo, int employee_id, String url,
+	public String insertPost(Ing_tableVO vo, int employee_id, String url, MultipartFile file, HttpServletRequest request,
 			@RequestParam(defaultValue = "-1") int ing_no) {
+		
+		if( ! file.isEmpty() ) {
+			vo.setFile_name( file.getOriginalFilename() );
+			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );
+		}
+		
 		dao.deleteIng(ing_no);
 		if(dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
@@ -119,8 +136,16 @@ public class ApprovalController {
 	//임시보관함 삭제 후 상신함 저장-결재함 저장
 	@ResponseBody
 	@RequestMapping(value="/deleteInsertSubmit.ap", produces="text/html; charset=utf8")
-	public String deleteInsertSubmit(Ing_tableVO vo, int employee_id, String url, int ing_no) {
+	public String deleteInsertSubmit(Ing_tableVO vo, int employee_id, String url, 
+			int ing_no, MultipartFile file, HttpServletRequest request) {
+			
+		if( ! file.isEmpty() ) {
+			vo.setFile_name( file.getOriginalFilename() );
+			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );
+		}
+		
 		if(dao.deleteIng(ing_no)==1 && dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
+			
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('제출했습니다.'); location='")
 				.append(url).append("?employee_id=").append(employee_id).append("'");
@@ -132,7 +157,9 @@ public class ApprovalController {
 	
 	//임시보관함 저장(새로 작성 중이던 문서 취소)
 	@RequestMapping("/insertLocker.ap")
-	public String insertLocker(Ing_tableVO vo, int employee_id) {
+	public String insertLocker(Ing_tableVO vo, int employee_id,
+			MultipartFile file, HttpServletRequest request) {
+				
 		dao.insertLocker(vo);
 		return "redirect:lockerList.ap?employee_id="+employee_id;
 	}
@@ -141,9 +168,12 @@ public class ApprovalController {
 	@ResponseBody
 	@RequestMapping(value="/deleteInsertLocker.ap", 
 					produces="text/html; charset=utf8")
-	public String deleteInsertLocker(Ing_tableVO vo, String url, int ing_no, int employee_id, int no) {
+	public String deleteInsertLocker(Ing_tableVO vo, String url, int ing_no, int employee_id, 
+			int no, MultipartFile file, HttpServletRequest request) {
 		//Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
+		
 		if(dao.deleteIng(ing_no)==1 && dao.insertLocker(vo)==1) {
+								
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('저장했습니다.'); location='")
 				.append(url).append("?employee_id=").append(employee_id).append("'");
@@ -216,7 +246,7 @@ public class ApprovalController {
 	
 	//수신함 목록 중 제목 클릭시 상세화면
 	@RequestMapping("/receiveListDetail.ap")
-	public String approvalListDetail(int no, int employee_id, Model model, String document_check) {
+	public String receiveListDetail(int no, int employee_id, Model model, String document_check) {
 		model.addAttribute("receiveListDetail", dao.receiveListDetail(no, employee_id));
 		model.addAttribute("employee_id", employee_id);
 		model.addAttribute("document_checks", dao.document_checks());
@@ -258,6 +288,90 @@ public class ApprovalController {
  			return msg.toString();
 		}
 		return null;		
+	}
+	
+	@ResponseBody @RequestMapping(value="/downloadSubmit.ap"
+			, produces="text/html; charset=utf-8")
+	public String downloadSubmit(int no, int employee_id, String url, HttpServletRequest request
+			, HttpServletResponse response) throws Exception{
+		
+		Ing_tableVO vo = dao.submitListDetail(no, employee_id);
+		
+		boolean download 
+		=fileUtility.fileDownload(vo.getFile_name(), vo.getFile_path(), request, response);
+		
+		if( !download ) {
+			
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('다운로드할 파일이 없습니다!'); location='")
+				.append(url).append("'; ");
+			msg.append("</script>");
+			return msg.toString();
+		}else
+			return null;
+	}
+	
+	@ResponseBody @RequestMapping(value="/downloadApproval.ap"
+			, produces="text/html; charset=utf-8")
+	public String downloadApproval(int no, int employee_id, String url, HttpServletRequest request
+			, HttpServletResponse response) throws Exception{
+		
+		Result_tableVO vo = dao.approvalListDetail(no, employee_id);
+		
+		boolean download 
+		=fileUtility.fileDownload(vo.getFile_name(), vo.getFile_path(), request, response);
+		
+		if( !download ) {
+			
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('다운로드할 파일이 없습니다!'); location='")
+				.append(url).append("'; ");
+			msg.append("</script>");
+			return msg.toString();
+		}else
+			return null;
+	}
+	
+	@ResponseBody @RequestMapping(value="/downloadReceive.ap"
+			, produces="text/html; charset=utf-8")
+	public String downloadReceive(int no, int employee_id, String url, HttpServletRequest request
+			, HttpServletResponse response) throws Exception{
+		
+		Ing_tableVO vo = dao.receiveListDetail(no, employee_id);
+		
+		boolean download 
+		=fileUtility.fileDownload(vo.getFile_name(), vo.getFile_path(), request, response);
+		
+		if( !download ) {
+			
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('다운로드할 파일이 없습니다!'); location='")
+				.append(url).append("'; ");
+			msg.append("</script>");
+			return msg.toString();
+		}else
+			return null;
+	}
+	
+	@ResponseBody @RequestMapping(value="/downloadLocker.ap"
+			, produces="text/html; charset=utf-8")
+	public String downloadLocker(int no, int employee_id, String url, HttpServletRequest request
+			, HttpServletResponse response) throws Exception{
+		
+		Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
+		
+		boolean download 
+		=fileUtility.fileDownload(vo.getFile_name(), vo.getFile_path(), request, response);
+		
+		if( !download ) {
+			
+			StringBuffer msg = new StringBuffer("<script>");
+			msg.append("alert('다운로드할 파일이 없습니다!'); location='")
+				.append(url).append("'; ");
+			msg.append("</script>");
+			return msg.toString();
+		}else
+			return null;
 	}
 	
 }
