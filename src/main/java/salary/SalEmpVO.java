@@ -1,10 +1,10 @@
-package emp;
+package salary;
 
 import java.sql.Date;
 
-public class EmpVO {
+public class SalEmpVO {
 	
-	private int employee_id, department_id, salary, commission_pct;
+	private int employee_id, department_id;
 	private String company_cd, name, email, phone, admin, job_id,position , hire_year
 	, position_name, employee_pattern, employee_pattern_name, department_name, company_name,
 	c_position, pw;
@@ -12,19 +12,6 @@ public class EmpVO {
 	
 	
 	
-	
-	public int getSalary() {
-		return salary;
-	}
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
-	public int getCommission_pct() {
-		return commission_pct;
-	}
-	public void setCommission_pct(int commission_pct) {
-		this.commission_pct = commission_pct;
-	}
 	public String getPw() {
 		return pw;
 	}
