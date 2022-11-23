@@ -3,18 +3,22 @@
 <mapper namespace="salary">
 
 <select id="empList" resultType="emp.EmpVO">
-		select e.*, d.department_name,
-		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
-		from employees e left outer join departments d
-		on e.department_id = d.department_id
-		left outer join company c
-		on e.company_cd = c.company_cd
-		left outer join common_code cd
-		on e.position = cd.code_value
-		left outer join common_code ccd
-		on e.employee_pattern = ccd.code_value
-		order by employee_id
-	</select>
+	select e.*, d.department_name,
+	c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+	from employees e left outer join departments d
+	on e.department_id = d.department_id
+	left outer join company c
+	on e.company_cd = c.company_cd
+	left outer join common_code cd
+	on e.position = cd.code_value
+	left outer join common_code ccd
+	on e.employee_pattern = ccd.code_value
+	order by employee_id
+</select>
+
+
+
+
 
 
 
@@ -47,5 +51,17 @@
 		on b.employee_id = e.employee_id join departments d
 		on e.department_id = d.department_id
 	</select>
+	
+	<update id='andCommissionSave'>
+		update salary
+		set commission_pct = #{commission_pct}
+		where employee_id = #{employee_id}
+	</update>
+	
+	<update id='andSalarySave'>
+		update salary
+		set salary = #{salary}
+		where employee_id = #{employee_id}
+	</update>
 
 </mapper>

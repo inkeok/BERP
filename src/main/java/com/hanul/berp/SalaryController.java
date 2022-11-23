@@ -48,15 +48,14 @@ public class SalaryController {
 	}
 	
 
-	@ResponseBody @RequestMapping(value="/andSalary.sa", produces="text/html; charset=utf-8")
-
+	@ResponseBody @RequestMapping(value="/andSalaryList.sa", produces="text/html; charset=utf-8")
 	public String SalaryList() {
 		return gson.toJson(dao.salaryList());
 	}
 	
 	@ResponseBody @RequestMapping(value="/andInsertBonus.sa", produces="text/html; charset=utf-8")
 	public String andInsertBonus(int employee_id, String bonus, String bonus_comment, Date bonus_date) {
-		
+		System.out.println("상여");
 		HashMap<String, Object> map = new HashMap<>();
         map.put("bonus" , bonus);
         map.put("bonus_date" , bonus_date);
@@ -68,6 +67,17 @@ public class SalaryController {
 	@ResponseBody @RequestMapping(value="/andBonusList.sa", produces="text/html; charset=utf-8")
 	public String andBonusList() {
 		return gson.toJson(dao.andBonusList());
+	}
+	
+	@ResponseBody @RequestMapping(value="/andCommissionSave.sa", produces="text/html; charset=utf-8")
+	public String andCommissionSave(int employee_id, int commission_pct) {
+		System.out.println("커미션");
+		return gson.toJson(dao.andCommissionSave(employee_id, commission_pct));
+	}
+	@ResponseBody @RequestMapping(value="/andSalarySave.sa", produces="text/html; charset=utf-8")
+	public String andSalarySave(int employee_id, int salary) {
+		System.out.println("샐러리");
+		return gson.toJson(dao.andSalarySave(employee_id, salary));
 	}
 	
 	

@@ -36,4 +36,16 @@ public class SalaryDAO {
 	public List<BonusVO> andBonusList(){
 		return sql.selectList("salary.andBonusList");
 	}
+	public int andCommissionSave(int employee_id, int commission_pct){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("employee_id", employee_id+"");
+		map.put("commission_pct", commission_pct+"");
+		return sql.update("salary.andCommissionSave", map);
+	}
+	public int andSalarySave(int employee_id, int salary){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("employee_id", employee_id+"");
+		map.put("salary", salary+"");
+		return sql.update("salary.andSalarySave", map);
+	}
 }
