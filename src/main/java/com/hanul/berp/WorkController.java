@@ -257,7 +257,7 @@ public class WorkController {
 		@ResponseBody @RequestMapping(value="/andHolidaySearch", produces="text/html; charset=utf-8")
 		public String andHolidaySearch(String vo) {
 			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
-			
+			//
 			return gson.toJson(dto);
 		}
 }
