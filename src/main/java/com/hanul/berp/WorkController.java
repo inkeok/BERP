@@ -276,5 +276,13 @@ public class WorkController {
 			
 		}
 		
+		@ResponseBody @RequestMapping(value="/andHolidayIndi_List", produces="text/html; charset=utf-8")
+		public String andHolidayIndi_List() {
+			List<WorkResultVO> list = dao.andHolidayIndi_List();
+			
+			return gson.toJson(list);
+			
+		}
+		
 		
 }

@@ -198,5 +198,22 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		on h.employee_id = e.employee_id
 		where h.department_id = #{department_id}
 	</select>
+	
+	<select id="andHolidayIndi_List" resultType="work.WorkResultVO">
+	select to_char( w.work_date,'yyyy-MM-DD hh:mm:ss') as work_date ,
+w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_CODE
+, c.code_name work_status
+		, d.department_name , e.name name
+		from work_result w left join
+		common_code c
+		on w.work_code = c.code_value 
+		left outer join departments	d
+		on w.department_id = d.department_id 
+		left outer join employees e
+		on w.employee_id = e.employee_id
+		where w.employee_id = '20120001'
+		order by work_date desc
+	</select>
+	
 
 </mapper>
