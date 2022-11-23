@@ -7,86 +7,121 @@
 <head>
 <meta charset="UTF-8">
 <style>
+
+table {
+	margin-top: 5px;
+/* 	border-top-left-radius: 20px; */
+/* 	border-top-right-radius: 20px; */
+	border-radius : 15px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	margin-bottom: 10rem;
+}
+
+td a {
+	color: #323232;
+}
+
+th, td {
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #000000;
+}
+
+th {
+	text-align: center;
+}
+
+th {
+	background-color: #12192c;
+	color: #fff;
+}
+
+tbody tr:hover, td:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+tbody td {
+	position: relative;
+}
+
+tbody td:hover:before {
+	background-color: rgba(255, 255, 255, 0.2);
+	z-index: -1;
+}
+
+select {
+  position: relative;
+  left : -2%;
+  width: 180px;
+  padding: .7em 1.9em;
+  font-family: inherit;
+  background: url('imgs/arrow.jfif') no-repeat 95% 50%; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #999;
+  border-radius: 0px;
+
+}
+
+select::-ms-expand {
+  display: none;
+}
 ul{
-			
+	margin-bottom: 0;
 }
 </style>
 <title>Insert title here</title>
 </head>
 <body>
 
-
-
-
-	<div class="row mb-5" style="width: 1200px">
-		<div class="col-xl-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="clearfix">
-						<div class="card-body">
-							<div class="d-flex align-items-center mb-3">
-								<div class="avatar-xs me-3">
-									<span
-										class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
-										<i class="bx bx-task"></i>
-									</span>
-								</div>
-								<form method='post' action='workList'>
-											<div id='list-top' class='w-px1200'>
-												<ul>
-													<li>부서명</li>
-													<li><select name='department_id' class='w-px200'
-														onchange='$("form").submit()'>
-															<option value='-1'>전체 부서</option>
-															<c:forEach items='${departments}' var='d'>
-																<option
-																	${department_id eq d.department_id ? 'selected' : ''}
-																	value='${d.department_id}'>${d.department_name}</option>
-															</c:forEach>
-													</select></li>
-												</ul>
-
-
-											</div>
-										</form>
-
-							</div>
-
-							<!--  work_result table 에서 가져온다 -->
-								<h5 class="font-size-16 mb-0">근무 내역</h5>
-							<table class="table table-sm">
-								<thead>
-									<tr>
-										<th scope="col">근무 일자</th>
-										<th scope="col">사번</th>
-										<th scope="col">이름</th>
-										<th scope="col">부서</th>
-										<th scope="col">출근시간</th>
-										<th scope="col">퇴근시간</th>
-										<th scope="col">근무구분코드</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach begin="1" end="10" items='${workList}' var='vo'>
-										<tr>
-											<td><fmt:formatDate value="${vo.work_date}"
-													dateStyle="full" pattern="yyyy년MM월dd일" /></td>
-											<td>${vo.employee_id}</td>
-											<td>${vo.name}</td>
-											<td>${vo.department_name}</td>
-											<td>${vo.start_work}</td>
-											<td>${vo.end_work}</td>
-											<td>${vo.work_status}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+	<h2 style="text-align: center;">근무 내역</h2>
+		<form method='post' action='workList'>
+			<div id='list-top' style="margin-bottom: 0;">
+				<ul class="select-list">
+					<li><select name='department_id' class='w-px200'
+						onchange='$("form").submit()'>
+							<option value='-1'>전체 부서</option>
+							<c:forEach items='${departments}' var='d'>
+								<option ${department_id eq d.department_id ? 'selected' : ''}
+									value='${d.department_id}'>${d.department_name}</option>
+							</c:forEach>
+					</select></li>
+				</ul>
 			</div>
-		</div>
-	</div>
+		</form>
+
+	
+	<!--  work_result table 에서 가져온다 -->
+	<table style="width: 1400px">
+		<thead>
+			<tr>
+				<th scope="col">근무 일자</th>
+				<th scope="col">사번</th>
+				<th scope="col">이름</th>
+				<th scope="col">부서</th>
+				<th scope="col">출근시간</th>
+				<th scope="col">퇴근시간</th>
+				<th scope="col">근무구분코드</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach begin="1" end="15" items='${workList}' var='vo'>
+				<tr>
+					<td><fmt:formatDate value="${vo.work_date}" dateStyle="full"
+							pattern="yyyy년MM월dd일" /></td>
+					<td>${vo.employee_id}</td>
+					<td>${vo.name}</td>
+					<td>${vo.department_name}</td>
+					<td>${vo.start_work}</td>
+					<td>${vo.end_work}</td>
+					<td>${vo.work_status}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>
 

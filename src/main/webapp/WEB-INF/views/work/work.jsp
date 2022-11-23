@@ -6,14 +6,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <title>Insert title here</title>
 <style>
 input {
 	display: none;
 }
-body{
-	width: 1200px;
+
+table {
+	margin-top: 5px;
+	/* 	border-top-left-radius: 20px; */
+	/* 	border-top-right-radius: 20px; */
+	border-radius: 15px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	margin-bottom: 10rem;
+}
+
+td a {
+	color: #323232;
+}
+
+th, td {
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #000000;
+}
+
+th {
+	text-align: center;
+}
+
+th {
+	background-color: #12192c;
+	color: #fff;
+}
+
+tbody tr:hover, td:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+tbody td {
+	position: relative;
+}
+
+tbody td:hover:before {
+	background-color: rgba(255, 255, 255, 0.2);
+	z-index: -1;
 }
 </style>
 </head>
@@ -21,7 +65,7 @@ body{
 	<a action="work_end_input" method="post" id="input" />
 	<div class="row">
 		<div class="col-12">
-			<div style="margin : 35px"
+			<div style="margin: 35px"
 				class="page-title-box d-sm-flex align-items-center justify-content-between">
 
 				<h1 class="mb-sm-0 font-size-20" id="timesm">
@@ -31,8 +75,7 @@ body{
 				<div class="page-title-right">
 					<ol class="breadcrumb m-0">
 						<li class="breadcrumb-item"><a href="work">근태 </a></li>
-						<li class="breadcrumb-item"><a href="holiday">
-								휴무관리</a></li>
+						<li class="breadcrumb-item"><a href="holiday"> 휴무관리</a></li>
 					</ol>
 				</div>
 
@@ -127,60 +170,44 @@ body{
 
 	</div>
 	<!-- end row -->
-	<div class="row">
-		<div class="col-xl-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="clearfix">
-						<div class="card-body">
-							<div class="d-flex align-items-center mb-3">
-								<div class="avatar-xs me-3">
-									<span
-										class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
-										<i class="bx bx-task"></i>
-									</span>
-								</div>
-								<h5 class="font-size-16 mb-0">이번 주 근무</h5>
-								
-							</div>
-							
-							<!--  work_result table 에서 가져온다 -->
-							<table class="table table-sm">
-									<thead>
-										<tr>
-											<th scope="col">일자</th>
-											<th scope="col">출근 시간</th>
-											<th scope="col">퇴근 시간</th>
-									
-											<th scope="col">근무 형태</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach begin="1" end="7" items="${workList}" var="woR">
-										<tr>
-											<td><fmt:formatDate value="${woR.work_date}" dateStyle="full" pattern="yyyy년MM월dd일"/></td>
-											<c:if test="${not empty woR.start_work }">
-											<td>${woR.start_work}</td>
-											<td>${woR.end_work}</td>
-											</c:if>
-											<c:if test="${empty woR.start_work }">
-											<td>-</td>
-											</c:if>
-											<c:if test="${empty woR.end_work }">
-											<td>-</td>
-											</c:if>
-				
-											<td>${woR.work_status}</td>
-										</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
+	<div>
+		<h5 class="font-size-16 mb-0">이번 주 근무</h5>
 	</div>
+
+	<!--  work_result table 에서 가져온다 -->
+	<table style="width : 1400px;">
+		<thead>
+			<tr>
+				<th scope="col">일자</th>
+				<th scope="col">출근 시간</th>
+				<th scope="col">퇴근 시간</th>
+
+				<th scope="col">근무 형태</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach begin="1" end="7" items="${workList}" var="woR">
+				<tr>
+					<td><fmt:formatDate value="${woR.work_date}" dateStyle="full"
+							pattern="yyyy년MM월dd일" /></td>
+					<c:if test="${not empty woR.start_work }">
+						<td>${woR.start_work}</td>
+						<td>${woR.end_work}</td>
+					</c:if>
+					<c:if test="${empty woR.start_work }">
+						<td>-</td>
+					</c:if>
+					<c:if test="${empty woR.end_work }">
+						<td>-</td>
+					</c:if>
+
+					<td>${woR.work_status}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
 </body>
 <!-- <script type="text/javascript">
 	$(document).ready(function() {
@@ -200,8 +227,6 @@ body{
 	}
 </script> -->
 <script>
-
-
 	const a = document.querySelector('#start_btn');
 	const b = document.querySelector('#end_btn');
 
@@ -218,12 +243,12 @@ body{
 				new Date().getHours() + ':' + new Date().getMinutes() + ':'
 						+ new Date().getSeconds());
 		$('#input').submit();
-			work_start_input();						
-		
-/* 		if($('#start_work').val()){			
-		}else {
-			alert('이미 출근되었습니다 ');
-		} */
+		work_start_input();
+
+		/* 		if($('#start_work').val()){			
+		 }else {
+		 alert('이미 출근되었습니다 ');
+		 } */
 	}
 
 	function work_end_input() {
@@ -248,19 +273,19 @@ body{
 			},
 			success : function(response) {
 				console.log(start_work);
-				if (response){
+				if (response) {
 					alert('출근 되었습니다');
-				/* 	if($('#start_work').val() != null ){
-						alert('이미 출근 되었습니다');
-						
-					}	 */				
+					/* 	if($('#start_work').val() != null ){
+							alert('이미 출근 되었습니다');
+							
+						}	 */
 				}
 			},
 			error : function(req, text) {
-					alert('이미 출근 되었습니다');
-				
+				alert('이미 출근 되었습니다');
+
 			}
 		});
 	}
 </script>
-</html>	
+</html>
