@@ -52,7 +52,7 @@
 						</a>
 						<div class="side-content">
 							<ul class="hidden list2 sidebar">
-								<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</li>
+								<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'><a href="list.hr">보관함</a></li>
 								<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
 								<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
 								<li onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
@@ -64,7 +64,7 @@
 							name="chatbubbles-outline" class="nav__icon"></ion-icon> <span
 						class="nav_name">채용관리</span>
 					</a>
-					 <a href="#" class="nav__link"> <ion-icon
+					 <a href="list.hr" class="nav__link"> <ion-icon
 							name="person-circle-outline" class="nav__icon"></ion-icon> <span
 						class="nav_name">인사관리</span>
 					</a>
@@ -95,7 +95,6 @@
 		</nav>
 	</div>
           
-
     <!-- IONICONS -->
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
     <!-- JS -->

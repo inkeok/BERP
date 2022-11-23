@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <style>
+
 .footer-logo{
 	position: relative;
 	left:-25.5%;
@@ -9,7 +10,7 @@
 }
 </style>
 
-<footer style="	background: rgb(245, 247 ,250); width: 1903px; height: 400px; padding-top: 7rem;">
+<footer style="	background: rgb(245, 247 ,250); height: 400px; padding-top: 7rem; width: 1920px;">
 	<div style="text-align: center;">	
 			<div class="footer-logo">
 				<img src="imgs/icons/logo.png" alt="" style="filter: invert(100%); width: 60px; height: 60px;"/>
