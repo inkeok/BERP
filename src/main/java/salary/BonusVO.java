@@ -6,8 +6,34 @@ public class BonusVO {
 
 	private int employee_id, bonus; 
 	private Date bonus_date; 
-	private String bonus_comment;
+	private String bonus_comment, name, c_position, c_employee_pattern, department_name;
 	
+	
+	
+	public String getDepartment_name() {
+		return department_name;
+	}
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getC_position() {
+		return c_position;
+	}
+	public void setC_position(String c_position) {
+		this.c_position = c_position;
+	}
+	public String getC_employee_pattern() {
+		return c_employee_pattern;
+	}
+	public void setC_employee_pattern(String c_employee_pattern) {
+		this.c_employee_pattern = c_employee_pattern;
+	}
 	public int getEmployee_id() {
 		return employee_id;
 	}

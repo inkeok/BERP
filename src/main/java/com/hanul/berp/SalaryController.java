@@ -29,7 +29,7 @@ public class SalaryController {
 	
 	@ResponseBody @RequestMapping(value="/andSalaryList.sa", produces="text/html; charset=utf-8")
 	public String SalaryList() {
-		return gson.toJson(dao.SalaryList());
+		return gson.toJson(dao.salaryList());
 	}
 	
 	@ResponseBody @RequestMapping(value="/andInsertBonus.sa", produces="text/html; charset=utf-8")
@@ -42,4 +42,11 @@ public class SalaryController {
         map.put("employee_id", employee_id);
 		return gson.toJson(dao.andInsertBonus(map));
 	}
+	
+	@ResponseBody @RequestMapping(value="/andBonusList.sa", produces="text/html; charset=utf-8")
+	public String andBonusList() {
+		return gson.toJson(dao.andBonusList());
+	}
+	
+	
 }

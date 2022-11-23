@@ -3,7 +3,7 @@
 <mapper namespace="salary">
 
 	<select id="salaryList" resultType="salary.SalaryVO">
-		select e.employee_id, e.name, c.code_name c_position, c2.code_name c_employee_pattern, 
+		select e.employee_id, e.name, c.code_name c_employee_pattern, c2.code_name c_position, 
 		s.salary, s.commission_pct, e.hire_date, d.department_name
 		from salary s join employees e 
 		on s.employee_id = e.employee_id join common_code c
@@ -17,5 +17,12 @@
 		insert into bonus (employee_id, bonus, bonus_date, bonus_comment)
 		values (#{employee_id}, #{bonus}, #{bonus_date}, #{bonus_commnet})
 	</insert>
+	
+	<select id='andBonusList' resultType="salary.BonusVO">
+		select b.*, e.name, e.employee_pattern c_employee_pattern, e.position c_position, d.department_name
+		from bonus b join employees e
+		on b.employee_id = e.employee_id join departments d
+		on e.department_id = d.department_id
+	</select>
 
 </mapper>

@@ -12,11 +12,15 @@ import org.springframework.stereotype.Repository;
 public class SalaryDAO {
 	@Autowired @Qualifier("bteam") private SqlSession sql;
 
-	public List<SalaryVO> SalaryList() {
+	public List<SalaryVO> salaryList() {
 		return sql.selectList("salary.salaryList");
 	}
 	
 	public int andInsertBonus(HashMap<String, Object> map) {
 		return sql.insert("salary.andInsertBonus", map);
+	}
+	
+	public List<BonusVO> andBonusList(){
+		return sql.selectList("salary.andBonusList");
 	}
 }
