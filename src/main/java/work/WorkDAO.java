@@ -39,7 +39,7 @@ public class WorkDAO {
 	
 	public int work_start_input(String start_work) {
 		
-		return sql.insert("work.start_work");
+		return sql.insert("work.start_work", start_work);
 	}
 
 	public EmpVO empInfo(String id) {

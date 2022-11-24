@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,19 +37,18 @@ public class WorkController {
 	@RequestMapping("/work")
 	public String work_list(String id, Model model) {
 
+
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
 
 		WorkVO wVo = dao.workInfo(id);
 		model.addAttribute("wVo", wVo);
-		
+	
 		List<WorkResultVO> workList = dao.workResult();
 		
 		model.addAttribute("workList",workList); 
 		
-		/*
-		 * WorkVO wVo = dao.workInfo(id); model.addAttribute("wVo",wVo);
-		 */
+	
 
 		return "side/work/work";
 	}
@@ -67,6 +67,7 @@ public class WorkController {
 		dao.work_end_input(end_work);
 		
 		
+		
 
 		return "work";
 	}
@@ -78,11 +79,9 @@ public class WorkController {
 	@RequestMapping("/work_start_input")
 	public String work_start_input(String start_work, Model model, String id, WorkVO wVo)  {
 		
-		EmpVO vo = dao.empInfo(id);
-		model.addAttribute("vo", vo);
-		
 		try {
-			dao.work_start_input(start_work);					
+			
+			dao.work_start_input(start_work);	
 		} catch (Exception e) {
 			
 			StringBuffer msg = new StringBuffer("<html>");
@@ -94,11 +93,9 @@ public class WorkController {
 			msg.append("</html>");
 			return msg.toString();	
 		}
-
 		System.out.println("ajax end");
-
+		
 		return "work";
-	
 	
 	}
 	
