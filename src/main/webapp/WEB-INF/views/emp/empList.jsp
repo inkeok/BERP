@@ -136,7 +136,7 @@ tbody td:hover:before {
 			</thead>
 				<c:forEach items="${list}" var="vo">
 			<tbody class="">
-				<tr onClick="location.href='info.hr?id=${vo.employee_id}'">
+				<tr class="" onClick="location.href='info.hr?id=${vo.employee_id}'">
 					<td>${vo.employee_id}</td>
 					<td>${vo.department_name}</td>
 					<td>${vo.company_name}</td>
@@ -149,7 +149,6 @@ tbody td:hover:before {
 					<td>${vo.position_name}</td>
 					<td>${vo.employee_pattern_name}</td>
 				</tr>
-				
 			</tbody>
 				</c:forEach>
 			</table>
@@ -163,7 +162,7 @@ tbody td:hover:before {
 </body>
 <script>
 	function pagination(){
-	var req_num_row=8;
+	var req_num_row=9;
 	var $tr=jQuery('tbody tr');
 	var total_num_row=$tr.length;
 	var num_pages=0;
