@@ -149,8 +149,6 @@ $("#code_name").on("propertychange change keyup paste input", function() {
         }
     });//사용중인 코드가 중복이 불가능하게 처리
 // }
-	
-function 
 
 	
     
