@@ -14,6 +14,23 @@ h3 {
 th {
 	background: none;
 }
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
 </style>
 </head>
 <body>
@@ -63,10 +80,9 @@ th {
 		</table>
 	</div>
 	<div class='center'>
-	<a class='btn btn-primary' href='modify.hr?id=${vo.employee_id}'>정보수정</a>
-	<a class='btn btn-primary' 
-	onclick="if( confirm('사번[${vo.employee_id}] 삭제?') ) href='delete.hr?id=${vo.employee_id}' " >정보삭제</a>
-	<a class='btn btn-primary' href='list.hr'>사원목록</a>
+	<a class='new-btn' href='modify.hr?id=${vo.employee_id}'>정보수정</a>
+	<a class='new-btn' onclick="if( confirm('사번[${vo.employee_id}] 삭제?') ) href='delete.hr?id=${vo.employee_id}' " >정보삭제</a>
+	<a class='new-btn' href='list.hr'>사원목록</a>
 </div>
 </body>
 </html>

@@ -5,7 +5,7 @@ const showMenu = (toggleId, navbarId, bodyId) => {
 		bodypadding = document.getElementById(bodyId)
 
 	if (toggle && navbar) {
-		toggle.addEventListener('click', () => {
+		toggle.addEventListener('mouseover', () => {
 			navbar.classList.toggle('expander');
 
 			bodypadding.classList.toggle('body-pd')
@@ -20,7 +20,7 @@ function colorLink() {
 	linkColor.forEach(l => l.classList.remove('active'))
 	this.classList.add('active')
 }
-linkColor.forEach(l => l.addEventListener('click', colorLink))
+linkColor.forEach(l => l.addEventListener('mouseover', colorLink))
 
 
 const linkCollapse = document.getElementsByClassName('collapse__link')
@@ -43,4 +43,3 @@ $('.side-menu').on('click', function (){
 $('.side-menu2').on('click', function (){
   $('.list2').toggleClass('hidden');
 });
-
