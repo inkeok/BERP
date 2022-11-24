@@ -189,7 +189,7 @@ tbody td:hover:before {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach begin="1" end="7" items="${workList}" var="woR">
+			<c:forEach begin="0" end="7" items="${workList}" var="woR">
 				<tr>
 					<td><fmt:formatDate value="${woR.work_date}" dateStyle="full"
 							pattern="yyyy년MM월dd일" /></td>

@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +42,7 @@ public class WorkController {
 		WorkVO wVo = dao.workInfo(id);
 		model.addAttribute("wVo", wVo);
 		
-		List<WorkResultVO> workList = dao.rList();
+		List<WorkResultVO> workList = dao.workResult();
 		
 		model.addAttribute("workList",workList); 
 		
@@ -113,6 +115,10 @@ public class WorkController {
 		
 		model.addAttribute("holiday_list",holiday_list); 
 		
+		List<HolidayVO> hoList = dao.holidayList();
+		
+		model.addAttribute("hoList", hoList);
+		
 		List<CommonCodeVO> codeList = dao.codeList();
 		
 		model.addAttribute("codeList", codeList);
@@ -121,9 +127,7 @@ public class WorkController {
 		
 		model.addAttribute("holiday_submit_list",holiday_submit_list);
 		
-		List<HolidayVO> hoList = dao.holidayList();
 		
-		model.addAttribute("hoList", hoList);
 		
 		
 		return "side/work/holiday";
@@ -182,26 +186,56 @@ public class WorkController {
 	
 	 // 퇴근 버튼 눌렀을 때 시간 update
 	 
-	 @ResponseBody
-	 @RequestMapping("/andWork_end_input") 
-	 public String andWork_end_input( String end_work) {
-	
-	 
-	 return dao.work_end_input(end_work)+""; }
+		/*
+		 * @ResponseBody
+		 * 
+		 * @RequestMapping("/andWork_end_input") public String andWork_end_input( String
+		 * end_work) {
+		 * 
+		 * 
+		 * return dao.work_end_input(end_work)+""; }
+		 */
 
 	
 		//출근버튼 눌렀을 때 시간 insert
 		
 		@ResponseBody
 		@RequestMapping("/andWork_start_input")
-		public String andWork_start_input(String start_work)  {
+		public String andWork_start_input(String dto)  {
 	
-			System.out.println(start_work);
-		
-			return dao.work_start_input(start_work)+"";
-		
-		
+			WorkVO vo =  new Gson().fromJson(dto, WorkVO.class);
+			
+			return dao.andWork_start_input(vo)+"";
+	
 		}
+		@ResponseBody
+		@RequestMapping("/andWork_end_input")
+		public String andWork_end_input(String dto)  {
+			
+			WorkVO vo =  new Gson().fromJson(dto, WorkVO.class);
+			System.out.println(vo.getEnd_work());
+			System.out.println(vo.getEmployee_id());
+			
+			return dao.andWork_end_input(vo)+"";
+			
+		}
+		@ResponseBody @RequestMapping(value="/andHoliday", produces="text/html; charset=utf-8")
+		public String andHoliday(String vo) {
+			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
+			
+			System.out.println(dto.getEmployee_id());
+			System.out.println(dto.getDepartment_id());
+			System.out.println(dto.getCompany_cd());
+			System.out.println(dto.getStart_holiday());
+			System.out.println(dto.getEnd_holiday());
+			System.out.println(dto.getWork_code());
+			try {
+				return dao.andHoliday(dto)+"";
+			} catch (Exception e) {
+				return "1";
+			}
+			
+	}
 
 		
 		@ResponseBody @RequestMapping(value="/andHolidayList", produces="text/html; charset=utf-8")
@@ -215,32 +249,23 @@ public class WorkController {
 			
 		}
 		@ResponseBody @RequestMapping(value="/andSearch", produces="text/html; charset=utf-8")
-		public String andSearch() {
+		public String andSearch(int employee_id) {
 			
+			System.out.println("?");
 			
-			return gson.toJson(dao.search());
-		}
-		@ResponseBody @RequestMapping(value="/andEndSearch", produces="text/html; charset=utf-8")
-		public String andEndSearch() {
-			
-			
-			return gson.toJson(dao.andEndSearch());
+			return gson.toJson(dao.search(employee_id));
 		}
 		
-		@ResponseBody @RequestMapping(value="/andHoliday", produces="text/html; charset=utf-8")
-		public String andHoliday(String vo) {
-			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
+		
+		
+		@ResponseBody @RequestMapping(value="/andEndSearch", produces="text/html; charset=utf-8")
+		public String andEndSearch(int employee_id) {
 			
-			System.out.println(dto.getStart_holiday());
-			System.out.println(dto.getEnd_holiday());
-			System.out.println(dto.getWork_code());
-			try {
-				return dao.andHoliday(dto)+"";
-			} catch (Exception e) {
-				return "1";
-			}
 			
-	}
+			return gson.toJson(dao.andEndSearch(employee_id));
+		}
+		
+		
 		
 		
 		@ResponseBody @RequestMapping(value="/andWorkDept", produces="text/html; charset=utf-8")

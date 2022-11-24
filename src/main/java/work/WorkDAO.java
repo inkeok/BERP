@@ -39,7 +39,7 @@ public class WorkDAO {
 	
 	public int work_start_input(String start_work) {
 		
-		return sql.insert("work.start_work", start_work);
+		return sql.insert("work.start_work");
 	}
 
 	public EmpVO empInfo(String id) {
@@ -51,6 +51,11 @@ public class WorkDAO {
 		
 		return sql.selectList("work.list");
 	}
+	public List<WorkResultVO> workResult() {
+		
+		return sql.selectList("work.workResult");
+	}
+	
 	public List<WorkResultVO> rList2() {
 		
 		return sql.selectList("work.list2");
@@ -98,13 +103,13 @@ public class WorkDAO {
 		return sql.selectList("work.department_work");
 	}
 	
-	public List<WorkVO> search() {
+	public List<WorkVO> search(int employee_id) {
 		
-		return sql.selectList("work.search");
+		return sql.selectList("work.search",employee_id);
 	}
-	public List<WorkVO> andEndSearch() {
+	public List<WorkVO> andEndSearch(int employee_id) {
 		
-		return sql.selectList("work.andEndSearch");
+		return sql.selectList("work.andEndSearch", employee_id);
 	}
 	
 	public int andHoliday(HolidayVO vo){
@@ -134,5 +139,15 @@ public class WorkDAO {
 		
 		return sql.selectList("work.andHolidayIndi_List", employee_id);
 	}
-	
+		public int andWork_start_input(WorkVO dto) {
+		
+		return sql.insert("work.andStart_work",dto);
+	}
+		public int andWork_end_input(WorkVO dto) {
+			
+			return sql.update("work.andEnd_work",dto);
+		}
+
+
+		
 }
