@@ -161,6 +161,9 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		from work
 		where employee_id = '20120001'	
 	</select>
+	
+	
+	
 	<select id="andEndSearch" resultType="work.WorkVO">
 		select end_work 
 		from work
@@ -211,7 +214,7 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 		on w.department_id = d.department_id 
 		left outer join employees e
 		on w.employee_id = e.employee_id
-		where w.employee_id = '20120001'
+		where w.employee_id = #{employee_id}
 		order by work_date desc
 	</select>
 	
