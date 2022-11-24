@@ -65,12 +65,8 @@ tbody td:hover:before {
 </head>
 <body>
 	<h2 class="center hrlist">상여금 지급</h2>
-	<div>
-	<button class="salary_btn" onclick='location="new.hr"'>기본급여수정</button>
-	<button class="commission_btn" onclick='location="new.hr"'>커미션 변경</button>
-	<button class="bonus_btn" onclick='location="new.hr"'>상여금 입력</button>
-	</div> 
-	<form action="update.hr" method="post">
+	
+	<form action="update.hr" method="post" style="margin-top: 60px">
 		<div class="">
 			<table class="">
 				<colgroup>

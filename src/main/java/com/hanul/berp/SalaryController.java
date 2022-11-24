@@ -61,6 +61,22 @@ public class SalaryController {
 		return "side/salary/salModify";
 	}
 	
+	@RequestMapping("bonus.sa")
+	public String salBonus(Model model , int id) {
+	
+		SalEmpVO emp = dao.mod_info(id);
+		List<SalaryVO> sa = dao.salary_List();
+		List<SalEmpVO> sl = dao.employee_list();
+		
+	
+		
+		model.addAttribute("emp", emp);
+		 model.addAttribute("sa", sa); 
+		model.addAttribute("sl", sl);
+		
+		return "side/salary/salBonus";
+	}
+	
 	
 	
 	
