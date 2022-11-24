@@ -6,7 +6,6 @@
 	<select id="codelist" resultType="common.CommonVO">
 		select c.* , e.name code_maker_name
 		from common_code c left join employees e
-
 		on c.code_maker = e.employee_id
 		order by code_title
 	</select>

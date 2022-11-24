@@ -147,23 +147,11 @@ $("#code_name").on("propertychange change keyup paste input", function() {
         	   alert('이미 사용 중인 코드입니다.');
            }
         }
-    });
+    });//사용중인 코드가 중복이 불가능하게 처리
 // }
 	
+function 
 
-// 	$.ajax({
-// 		url:'common.check_code',
-//         data: { code_value:currentVal },
-//         success: function(result) {
-//            console.log(result);
-//            if(result == '1'){
-//         	   alert('이미 사용 중인 코드입니다.');
-//            }else {
-//         	   alert("사용 가능한 코드입니다")
-//            }
-//         }
-// 	});
-// }
 	
     
 });
