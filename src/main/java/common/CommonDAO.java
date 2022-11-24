@@ -60,4 +60,9 @@ public class CommonDAO {
 		sql.delete("com.delete", code_value);
 	}
 	
+	public CommonVO check_code(String code_name) {
+		return sql.selectOne("com.check_code", code_name);
+	}
+
+	
 }

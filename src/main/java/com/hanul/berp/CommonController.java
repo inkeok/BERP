@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.CommonDAO;
 import common.CommonVO;
@@ -132,6 +133,18 @@ public class CommonController {
 	public String delete(String code_value) {
 		dao.delete(code_value);
 		return "redirect:common.cd";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/common.check_code")
+	public String check_code(String code_value) {
+		System.out.println(code_value);
+		CommonVO code = dao.check_code(code_value);
+		if(code!=null) {
+			return "1";
+		}else {
+			return "0";
+		}
 	}
 	
 }

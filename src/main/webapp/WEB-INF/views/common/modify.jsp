@@ -57,13 +57,24 @@ select {
 	width : 120px;
 
 }
+
+.dataTable-selector {
+    width: 8rem;
+    text-align: center;
+ }
+ 
+code_name {
+  	width: 8rem;
+    text-align: center;
+ }
+
 </style>
 </head>
 <body>
 <h3>사원정보수정</h3>
 <form method='get' action='common.update'>
 <table class='w-px600'>
-<tr><th>인사코드</th>
+<tr><th class='w-px160'>인사코드</th>
 	<td>
 		<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title");'>
 						<c:forEach items='${code_titles}' var='c'>
@@ -85,7 +96,7 @@ select {
 </tr>
 <tr><th>고용형태코드</th>
 	<td>
-		<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used");'>
+		<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used");' >
 						<c:forEach items='${code_used}' var='u'>
 							<option ${vo.code_used eq u.code_used ? 'selected' : ''} 
 									value='${u.code_used}'>${u.code_used}
@@ -96,7 +107,7 @@ select {
 </tr>
 <tr><th>근무코드</th>
 	<td>
-		<input type="text" id="code_name" name="code_name" />
+		<input type="text" id="code_name" name="code_name" style="width:8rem;text-align: center;"/>
 				</td>
 			</tr>
 			<tr>
@@ -114,4 +125,48 @@ select {
 			class='btn-empty' href='common.detail?code_value=${vo.code_value}'>취소</a>
 	</div>
 </body>
+
+<script type="text/javascript">
+var oldVal = '';
+$("#code_name").on("propertychange change keyup paste input", function() {
+    var currentVal = $(this).val();
+    if(currentVal == oldVal) {
+        return;
+    }
+ 
+    oldVal = currentVal;
+    
+// const code_name = document.querySelector('#code_name');
+// document.querySelector('#save').onclick = function() {  
+	$.ajax({
+        url:'common.check_code',
+        data: { code_value:currentVal },
+        success: function(result) {
+           console.log(result);
+           if(result == '1'){
+        	   alert('이미 사용 중인 코드입니다.');
+           }
+        }
+    });
+// }
+	
+
+// 	$.ajax({
+// 		url:'common.check_code',
+//         data: { code_value:currentVal },
+//         success: function(result) {
+//            console.log(result);
+//            if(result == '1'){
+//         	   alert('이미 사용 중인 코드입니다.');
+//            }else {
+//         	   alert("사용 가능한 코드입니다")
+//            }
+//         }
+// 	});
+// }
+	
+    
+});
+</script>
+
 </html>
