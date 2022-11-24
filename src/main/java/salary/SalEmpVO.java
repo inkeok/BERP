@@ -4,14 +4,26 @@ import java.sql.Date;
 
 public class SalEmpVO {
 	
-	private int employee_id, department_id;
-	private String company_cd, name, email, phone, admin, job_id,position , hire_year
+	private int employee_id, department_id, salary, commission_pct;
+	private String company_cd, name, email, phone, admin, position , hire_year
 	, position_name, employee_pattern, employee_pattern_name, department_name, company_name,
 	c_position, pw;
 	private Date hire_date;
 	
 	
 	
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	public int getCommission_pct() {
+		return commission_pct;
+	}
+	public void setCommission_pct(int commission_pct) {
+		this.commission_pct = commission_pct;
+	}
 	public String getPw() {
 		return pw;
 	}
@@ -90,12 +102,7 @@ public class SalEmpVO {
 	public void setAdmin(String admin) {
 		this.admin = admin;
 	}
-	public String getJob_id() {
-		return job_id;
-	}
-	public void setJob_id(String job_id) {
-		this.job_id = job_id;
-	}
+	
 	public String getPosition() {
 		return position;
 	}
