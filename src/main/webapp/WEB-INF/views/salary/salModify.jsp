@@ -83,7 +83,8 @@ tbody td:hover:before {
 <body>
 	<h2 class="center hrlist">사원목록</h2>
 	
-	<form action="update.hr" method="post">
+	<form action="insertCommission.sa" method="post">
+	<input type='hidden' name='employee_id' value="${emp.employee_id }">
 		<div class="">
 			<table class="">
 				<colgroup>
@@ -112,31 +113,36 @@ tbody td:hover:before {
 			</tr>
 			<tr>
 				<th>기본급</th>
-				<td><input style="width : 150px; padding-left: 10px" type="text" placeholder='$${emp.salary }' /></td>
+				<td><input name='salary' style="width : 150px; padding-left: 10px" type="text" placeholder='$${emp.salary }' /></td>
 		
 			</tr>
 			<tr>
 				<th>커미션 퍼센트</th>
+				
 				<td style="display: flex; justify-content:center;">
-					<select name='commission' class='w-px100' > <!-- name줘야 전달가넝 -->
+		 <fmt:parseNumber var = "commission_pct" integerOnly = "true" 
+         type = "number" value = "${emp.commission_pct*100}" />
+					<select name='commission' class='w-px100'  > <!-- name줘야 전달가넝 -->
 							<option value='-1'>선택</option>
-							<option value='0.0'>0.00</option>
-							<option value='0.05'>0.05</option>
-							<option value='0.1'>0.10</option>
-							<option value='0.15'>0.15</option>
-							<option value='0.2'>0.20</option>
-							<option value='0.25'>0.25</option>
-							<option value='0.3'>0.30</option>
+							<option ${commission_pct == 0.00 *100 ? 'selected' : '' } value='0.0'>0.00</option>
+							<option ${commission_pct == 0.05 *100 ? 'selected' : '' } value='0.05'>0.05</option>
+							<option ${commission_pct == 0.1 * 100 ? 'selected' : '' } value='0.10'>0.10</option>
+							<option ${commission_pct == 0.15 *100 ? 'selected' : '' } value='0.15'>0.15</option>
+							<option ${commission_pct == 0.2 * 100 ? 'selected' : '' } value='0.20'>0.20</option>
+							<option ${commission_pct == 0.25 *100 ? 'selected' : '' } value='0.25'>0.25</option>
+							<option ${commission_pct == 0.3 * 100 ? 'selected' : '' } value='0.30'>0.30</option>
 					</select>
 					
 					</td>
 			</tr>
 			
+			
+			
 			</table>
 		</div>
 	</form>
 	<div class='center' style="margin-top: 25px">
-	<a class='new-btn' href='insertCommission.sa'>정보수정</a>
+	<a class='new-btn' onclick='$("form").submit()'>정보수정</a>
 	<a class='new-btn' href='list.sa'>취소</a>
 	</div>
 </body>

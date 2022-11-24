@@ -191,7 +191,7 @@ td button:nth-child(1) {
 			</thead>
 				<c:forEach items="${list}" var="vo">
 			<tbody>
-				<tr class="tr-start" onclick="location.href='modify.sa?id=${vo.employee_id}'">
+				<tr class="tr-start" >
 					<td>${vo.employee_id}</td>
 					<td>${vo.department_name}</td>
 					<td>${vo.name}</td>
@@ -200,8 +200,8 @@ td button:nth-child(1) {
 					<td>${vo.position_name}</td>
 					<td>${vo.employee_pattern_name}</td>
 					<td>$${vo.salary}</td>
-					<td><button class=''>정보수정</button>
-						<button class=>상여금지급</button>
+					<td><button type="button" onclick='location.href="modify.sa?id=${vo.employee_id}"' class=''>정보수정</button>
+						<button type="button" onclick='location.href="bonus.sa?id=${vo.employee_id}"'  class=''>상여금지급</button>
 					</td>
 				</tr>
 			</tbody>

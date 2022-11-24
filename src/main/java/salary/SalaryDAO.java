@@ -29,6 +29,12 @@ public class SalaryDAO {
 	public SalEmpVO mod_info(int employee_id) {
 		return sql.selectOne("salary.modInfo", employee_id);
 	}
+	public void update_salary(SalEmpVO vo) {
+		sql.update("salary.update_salary", vo);
+	}
+	public int insert_bonus(SalEmpVO vo) {
+		return sql.insert("salary.insert_bonus", vo);
+	}
 	
 	
 	
