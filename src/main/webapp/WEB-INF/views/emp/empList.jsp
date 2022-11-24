@@ -38,7 +38,7 @@
 .hrlist{
  	margin : 3rem 0 ;
  	color : #000000;
- 	font-size : 38px;
+ 	font-size : 35px;
  	font-family: 'Noto Sans KR' !important;
 }
 table {
@@ -136,11 +136,11 @@ tbody td:hover:before {
 			</thead>
 				<c:forEach items="${list}" var="vo">
 			<tbody>
-				<tr>
+				<tr onClick="location.href='info.hr?id=${vo.employee_id}'">
 					<td>${vo.employee_id}</td>
 					<td>${vo.department_name}</td>
 					<td>${vo.company_name}</td>
-					<td><a href="info.hr?id=${vo.employee_id}">${vo.name}</a></td>
+					<td>${vo.name}</td>
 					<td>${vo.email}</td>
 					<td>${vo.phone}</td>
 					<td>${vo.admin}</td>
@@ -162,7 +162,7 @@ tbody td:hover:before {
 </body>
 <script>
 	function pagination(){
-	var req_num_row=10;
+	var req_num_row=8;
 	var $tr=jQuery('tbody tr');
 	var total_num_row=$tr.length;
 	var num_pages=0;

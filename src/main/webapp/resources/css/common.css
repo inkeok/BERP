@@ -332,31 +332,6 @@ a {
     background-color: var(--first-color);
 }
 
-/* COLLAPSE */
-
-.collapse {
-    grid-template-columns: 20px max-content 1fr;
-}
-
-.collapse__link {
-    justify-self: flex-end;
-    transition: .5;
-}
-
-.collapse__sublink {
-    color: var(--sub-color);
-    font-size: var(--small-font-size);
-}
-
-.collapse__sublink:hover {
-    color: var(--white-color);
-}
-
-/* Show collapse */
-.showCollapse {
-    display: block;
-}
-
 .applist{
     align-items: center;
 	display: inline-flex;
@@ -387,6 +362,7 @@ a {
     transition: .5s;
 }
 .sidebar-logo{
+    align-items: baseline;
 	display: inline-flex;
 	margin-bottom: 30px;
 }

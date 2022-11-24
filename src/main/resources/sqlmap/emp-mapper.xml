@@ -56,11 +56,8 @@
 	<!-- 사원정보저장 -->
 	<insert id="insert">
 		insert into employees(department_id, company_cd,
-		name, email, phone, admin,
-		job_id, position, employee_pattern)
-		values(#{department_id}, #{company_cd}, #{name}, #{email}, #{phone}
-		,
-		#{admin}, #{position}, #{employee_pattern})
+		name, email, phone, admin, position)
+		values(#{department_id}, '1000', #{name}, #{email}, #{phone} ,#{admin}, #{position},)
 	</insert>
 
 	<!-- 부서목록조회 -->
