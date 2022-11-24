@@ -43,26 +43,42 @@ public class SalaryDAO {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public List<SalaryVO> salaryList() {
-		return sql.selectList("salary.salaryList");
+		List<SalaryVO> salaryList = sql.selectList("salary.salaryList");
+		return salaryList;
 	}
 	
 	public int andInsertBonus(HashMap<String, Object> map) {
-		return sql.insert("salary.andInsertBonus", map);
+		int res = sql.insert("salary.andInsertBonus", map);
+		return res;
 	}
 	
 	public List<BonusVO> andBonusList(){
-		return sql.selectList("salary.andBonusList");
+		List<BonusVO> bonusList = sql.selectList("salary.andBonusList");
+		return bonusList;
 	}
 	public int andCommissionSave(int employee_id, int commission_pct){
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("employee_id", employee_id+"");
 		map.put("commission_pct", commission_pct+"");
-		return sql.update("salary.andCommissionSave", map);
+		int res = sql.update("salary.andCommissionSave", map);
+		return res;
 	}
 	public int andSalarySave(int employee_id, int salary){
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("employee_id", employee_id+"");
 		map.put("salary", salary+"");
-		return sql.update("salary.andSalarySave", map);
+		int res = sql.update("salary.andSalarySave", map);
+		return res;
+	}
+	
+	
+	public SalaryVO andMySalaryVo(int employee_id) {
+		SalaryVO vo = sql.selectOne("salary.andMySalaryVo", employee_id); 
+		return vo;
+	}
+	
+	public List<BonusVO> andMyBonusList(int employee_id) {
+		List<BonusVO> list = sql.selectList("salary.andMyBonusList", employee_id);
+		return list;
 	}
 }
