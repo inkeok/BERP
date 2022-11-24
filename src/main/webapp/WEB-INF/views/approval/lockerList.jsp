@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
+<link href='js/approval.js?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
 </style>
 </head>

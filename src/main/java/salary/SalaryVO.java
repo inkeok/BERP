@@ -3,10 +3,10 @@ package salary;
 import java.sql.Date;
 
 public class SalaryVO {
-
 	private int employee_id, salary, commission_pct;
 	private String company_cd, c_position, c_employee_pattern, name, department_name; 
 	private Date hire_date;
+	
 	public int getEmployee_id() {
 		return employee_id;
 	}

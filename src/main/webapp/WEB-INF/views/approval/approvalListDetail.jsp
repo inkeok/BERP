@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
+<link href='js/approval.js?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
 
 </style>
@@ -48,7 +49,11 @@
 		</tr>
 
 		<tr><th>첨부파일</th>
-			<td></td>	
+			<td  colspan='3'>
+			<c:if test='${not empty approvalListDetail.file_name }'>
+			<a class='file'>${approvalListDetail.file_name}</a>
+			</c:if>
+			</td>	
 		</tr>
 		
 		<tr>
@@ -61,5 +66,12 @@
 	</table>
 	</div>
 	<div id='btnFix'><a class='btn-empty' href='approvalList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
+<script>
+$('.file').click(function(){
+	$(this).attr('href'
+			, 'downloadApproval.ap?employee_id=${employee_id}&no=${approvalListDetail.no}&url=' + $(location).attr('href'));
+	console.log(this.getAttribute('href'));
+});
+</script>
 </body>
 </html>
