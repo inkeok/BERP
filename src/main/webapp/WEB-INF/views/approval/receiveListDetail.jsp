@@ -28,6 +28,7 @@
 	<input type='hidden' name='document_date' value='${receiveListDetail.document_date}'>
 	<input type='hidden' name='document_submit' value='${receiveListDetail.document_submit}'>
 	<input type='hidden' name='approver_id' value='${receiveListDetail.approver_id}'>
+<%-- 	<input type='hidden' name='file' value='${receiveListDetail.file_name}'> --%>
 	
 	<table class='table detail'>
 		<colgroup>

@@ -90,8 +90,16 @@ $('#postCancel').click(function(){
 
 //부서선택 시 그에 맞게 정보를 다시 가져옴
 $('#department_name').change(function(){
-	$('#postForm').attr('action', 'post.ap');
-	$('#postForm').submit();
+	$.ajax({
+		url: 'post_department',
+		data: { department_name: $(this).val(), employee_id: ${loginInfo.employee_id} },
+		success: function(response){
+			$('#approver_id').html(response);
+		}
+	});
+	
+// 	$('#postForm').attr('action', 'post.ap');
+// 	$('#postForm').submit();
 });
 
 

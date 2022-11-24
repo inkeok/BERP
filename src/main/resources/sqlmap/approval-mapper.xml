@@ -107,11 +107,19 @@ values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR},
 <!-- 기안 처리 후 결과 테이블에 저장 처리  -->
 <insert id='insertResultEnd'>
 insert into result_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, 
+document_submit, document_comment, document_check, file_name, file_path, finish_date)
+select employee_id, department_id, company_cd, document_title, document_content, approver_id, 
+document_submit, document_comment, #{document_check}, file_name, file_path, sysdate
+from ing_table
+where ing_no = #{ing_no}
+<!--  
+insert into result_table (employee_id, department_id, company_cd, document_title, document_content, approver_id, 
 document_submit, document_comment, document_check, finish_date)
 values (#{employee_id, jdbcType=VARCHAR}, #{department_id, jdbcType=VARCHAR}, 
 #{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR}, 
 #{document_content, jdbcType=VARCHAR}, #{approver_id, jdbcType=VARCHAR}, 'Y',
 #{document_comment, jdbcType=VARCHAR}, #{document_check, jdbcType=VARCHAR}, sysdate)
+-->
 </insert>
 
 <!-- <update id='updateIng'> -->

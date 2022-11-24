@@ -100,9 +100,18 @@ $('#postBack').click(function(){
 })
 
 //부서선택 시 그에 맞게 정보를 다시 가져옴
+//submit을 하면 안 되고 필요한 파라미터를 전송해서 데이터 뽑아서 화면만 갖다 붙인다
 $('#department_name').change(function(){
-	$('#postForm').attr('action', 'lockerListDetailTwo.ap');
-	$('#postForm').submit();
+	$.ajax({
+		url: 'post_department',
+		data: { department_name: $(this).val(), employee_id: ${loginInfo.employee_id} },
+		success: function(response){
+			$('#approver_id').html(response);
+		}
+	});
+	
+// 	$('#postForm').attr('action', 'post.ap');
+// 	$('#postForm').submit();
 });
 
 

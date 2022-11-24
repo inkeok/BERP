@@ -86,6 +86,17 @@ public class ApprovalController {
 	}
 	
 	//상신함에서 작성 버튼
+	@RequestMapping("/post_department")
+	public String post(Model model, String department_name, int employee_id) {
+		
+		if( !department_name.equals("부서") ) 
+			model.addAttribute("departmentEmployee", dao.departmentEmployee(department_name, employee_id));
+		
+		return "approval/department/approver_list";
+	}
+			
+	
+	//상신함에서 작성 버튼
 	@RequestMapping("/post.ap")
 	public String post(Model model, Ing_tableVO vo, int employee_id, 
 			@RequestParam(defaultValue = "-1") int ing_no, HttpServletRequest request,
@@ -97,7 +108,7 @@ public class ApprovalController {
 //			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );
 //		}
 
-		if(department_name != "부서") 
+		if( !department_name.equals("부서")) 
 			model.addAttribute("departmentEmployee", dao.departmentEmployee(department_name, employee_id));
 		
 		model.addAttribute("document_title", vo.getDocument_title());
