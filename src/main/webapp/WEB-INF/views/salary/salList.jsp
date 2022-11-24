@@ -10,10 +10,18 @@
 <style>
 
 .pagination{
-	margin : 10px;
+    width: 1080px;
 	background : #12192c;
     justify-content: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
+
+.pagination li{
+	margin-right : 14px;
+}
+
 #pagination a {
 
 	display:inline-block;
@@ -35,7 +43,8 @@
 }
 table {
 	margin-top : 5px;
-	border-radius : 20px;
+	border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
@@ -68,67 +77,125 @@ tbody td:hover:before {
   z-index: -1;
 }
 .new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
 	position: relative;
-	left: 5%;
+	left: 4%;
+}
+
+.button-second {
+  background: #2b32b2;
+  box-shadow: 0 3px 25px rgba(48, 37, 223, 0.7);
+}
+
+select {
+  position: relative;
+  left : 20%;
+  width: 180px;
+  padding: .7em 1.9em;
+  font-family: inherit;
+  background: url('imgs/arrow.jfif') no-repeat 95% 50%; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+  border: 2px solid #fff[];
+  border-radius: 3px;
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 </style>
 </head>
 <body >
 	<h2 class="center hrlist">사원별 급여조회</h2>
-	<form action="list.hr" class="list">
-		<div class="w-px1600 table-responsive">
+	
+	<form method="post" action="list.sa" class="list">
+	<div id='list-top' class='w-px1200'>
+	<ul>
+		<li>
+			<select name='department_id'  onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
+				<option value='-1'>전체 유형</option>
+				<c:forEach items='${departments}' var='c'>
+				<option ${department_name eq c.department_name ? 'selected' : '' } 				
+				value='${c.department_id}' > ${c.department_name }</option>
+				</c:forEach>
+				
+			</select>
+		
+		</li>
+		
+	
+	</ul>
+	
+</div>
+		<div class="w-px1600">
 			<table class="table-hover">
 				<colgroup>
 					<col width="140px" />
 					<col width="100px" />
 					<col width="100px" />
 					<col width="100px" />
-					<col width="200px" />
-					<col width="200px" />
-					<col width="100px" />
 					<col width="130px" />
 					<col width="130px" />
 					<col width="190px" />
+					<col width="190px" />
+					<col width="300px" />
+					
 				</colgroup>
 			<thead>
 				<tr>
 					<th>사번</th>
 					<th>부서명</th>
-					<th>회사코드</th>
 					<th>사원명</th>
-					<th>이메일</th>
-					<th>전화번호</th>
 					<th>관리자</th>
 					<th>입사일자</th>
-<!-- 					<th>업무제목</th> -->
 					<th>직급</th>
-					<th>급여</th>
+					<th>업무형태</th>
+					<th>기본급여</th>
+					<th>버튼</th>
+				
+					
+					
 				</tr>
+				
 			</thead>
 				<c:forEach items="${list}" var="vo">
 			<tbody>
-				<tr>
+				<tr onclick="location.href='modify.sa?id=${vo.employee_id}'">
 					<td>${vo.employee_id}</td>
 					<td>${vo.department_name}</td>
-					<td>${vo.company_name}</td>
-					<td><a href="info.hr?id=${vo.employee_id}">${vo.name}</a></td>
-					<td>${vo.email}</td>
-					<td>${vo.phone}</td>
+					<td>${vo.name}</td>
 					<td>${vo.admin}</td>
 					<td>${vo.hire_date}</td>
-<%-- 						<td>${vo.job_id}</td> --%>
 					<td>${vo.position_name}</td>
 					<td>${vo.employee_pattern_name}</td>
+					<td>$${vo.salary}</td>
+					<td><button>gd</button><button>gd2</button></td>
 				</tr>
 			</tbody>
 				</c:forEach>
 			</table>
 		</div>
 	</form>
-	<ul class="pagination">
-    
- 	 </ul>
+	<div style="text-align: -webkit-center;">
+		<ul class="pagination">
+		    
+		 	 </ul>
+	</div>
 </body>
 <script>
 	function pagination(){

@@ -18,7 +18,7 @@
 	<select id="info" resultType="emp.EmpVO">
 		select e.*, d.department_name,
 		c.company_name, cd.code_name position_name, ccd.code_name
-		employee_pattern_name
+		employee_pattern_name 
 		from employees e left outer join departments d
 		on
 		e.department_id = d.department_id
@@ -30,7 +30,8 @@
 		= cd.code_value
 		left outer join common_code ccd
 		on e.employee_pattern =
-		cd.code_value
+		cd.code_value 
+		
 		where employee_id = #{employee_id}
 	</select>
 
