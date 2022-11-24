@@ -52,9 +52,9 @@ td {
 					
 					<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
        				<option value="all">고용형태코드</option>
-						<c:forEach items='${code_used}' var='c'>
+						<c:forEach items='${code_usedd}' var='c'>  <!-- 드롭다운이름 처리 -->
 							<option ${code_used eq c.code_used ? 'selected' : ''} 
-									value='${c.code_used}'>${c.code_used}
+									value='${c.code_used}' >${c.code_used}
 							</option>
 						</c:forEach>
 					</select>
@@ -98,7 +98,7 @@ td {
 	</thead>   
       	<c:forEach items="${list}" var="vo">
             
-            <tr><td><a href='common.detail?code_value=${vo.code_value}'>${vo.code_title}</a></td>
+            <tr><td><a href='common.cd?code_value=${vo.code_value}'>${vo.code_title}</a></td>
             	<td>${vo.code_value}</td>
             	<td>${vo.code_used}</td>
             	<td>${vo.code_name}</td>
