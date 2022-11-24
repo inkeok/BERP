@@ -362,9 +362,10 @@ a {
     transition: .5s;
 }
 .sidebar-logo{
+    margin-top: 5rem;
     align-items: baseline;
 	display: inline-flex;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 }
 .nav-img{
 	margin-left: 5px;

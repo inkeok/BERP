@@ -135,7 +135,7 @@ tbody td:hover:before {
 				</tr>
 			</thead>
 				<c:forEach items="${list}" var="vo">
-			<tbody>
+			<tbody class="">
 				<tr onClick="location.href='info.hr?id=${vo.employee_id}'">
 					<td>${vo.employee_id}</td>
 					<td>${vo.department_name}</td>
@@ -149,6 +149,7 @@ tbody td:hover:before {
 					<td>${vo.position_name}</td>
 					<td>${vo.employee_pattern_name}</td>
 				</tr>
+				
 			</tbody>
 				</c:forEach>
 			</table>

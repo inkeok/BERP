@@ -12,16 +12,21 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <style>
+
+.l-navbar:hover body{
+		padding: 2rem 0 0 16rem;
+}
+
 </style>
 
 <body id="body-pd">
 	<div class="l-navbar" id="navbar">
 		<nav class="nav">
 			<div>
-				<div class="nav__brand">
-					<ion-icon name="reorder-three-outline" class="nav__toggle"
-						id="nav-toggle"></ion-icon>
-				</div>
+<!-- 				<div class="nav__brand"> -->
+<!-- 					<ion-icon name="reorder-three-outline" class="nav__toggle" -->
+<!-- 						id="nav-toggle"></ion-icon> -->
+<!-- 				</div> -->
 				<div class="sidebar-logo">
 					<div class="nav-img">
 						<img src="imgs/icons/icon.png" alt="logo" />

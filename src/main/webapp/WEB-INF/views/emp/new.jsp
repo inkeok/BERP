@@ -116,8 +116,8 @@ tbody td:hover:before {
 			<tr>
 				<th class="">관리자</th>
 				<td>
-					<label><input type="radio" name="gender" value="y">Y</label>
-					<label><input type="radio" name="gender" value="n" checked>N</label>
+					<label><input type="radio" name="admin" value="y">Y</label>
+					<label><input type="radio" name="admin" value="n" checked>N</label>
 				</td>
 			</tr>
 			<tr>
@@ -125,7 +125,7 @@ tbody td:hover:before {
 				<td><select name="position" style="width:185px">
 				<option value="">직급선택</option>
 					<c:forEach items="${position}" var="vo">
-						<option value="">${vo.position}</option>
+						<option value="${vo.position}">${vo.position_name}</option>
 					</c:forEach>
 				</select></td>
 			</tr>
@@ -133,8 +133,8 @@ tbody td:hover:before {
 				<th>고용형태</th>
 				<td><select name="employee_pattern" style="width:185px">
 				<option value="">고용선택</option>
-					<c:forEach items="${employee_pattern}" var="vo">
-						<option value="">${vo.employee_pattern}</option>
+					<c:forEach items="${pattern}" var="vo">
+						<option value="${vo.employee_pattern}">${vo.employee_pattern_name}</option>
 					</c:forEach>
 				</select></td>
 			</tr>

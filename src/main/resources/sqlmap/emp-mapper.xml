@@ -35,29 +35,37 @@
 	</select>
 
 	<!-- 고용형태조회 -->
-	<select id="employee_pattern" resultType="emp.EmpVO">
+	<select id="employee_pattern" resultType="emp.PatternVO">
 		select
-		e.employee_pattern, c.code_name employee_pattern_name
-		from employees e
-		left outer join common_code c
-		on e.employee_pattern = c.code_value
-		order by
-		employee_pattern
+			code_value employee_pattern, code_name employee_pattern_name
+			from common_code 
+		where code_title = 'H'
+<!-- 		SELECT -->
+<!-- 		E.EMPLOYEE_PATTERN, C.CODE_NAME EMPLOYEE_PATTERN_NAME -->
+<!-- 		FROM EMPLOYEES E -->
+<!-- 		LEFT OUTER JOIN COMMON_CODE C -->
+<!-- 		ON E.EMPLOYEE_PATTERN = C.CODE_VALUE -->
+<!-- 		ORDER BY -->
+<!-- 		EMPLOYEE_PATTERN -->
 	</select>
 
 	<!-- 직급조회 -->
 	<select id="position" resultType="emp.PositionVO">
-		select e.position, c.code_name position_name
-		from employees e left outer join common_code c
-		on e.position = c.code_value
-		order by position
+			select 
+				code_value  position, code_name position_name
+				from common_code 
+			where code_title = 'E'
+<!-- 		select e.position, c.code_name position_name -->
+<!-- 		from employees e left outer join common_code c -->
+<!-- 		on e.position = c.code_value -->
+<!-- 		order by position -->
 	</select>
 
 	<!-- 사원정보저장 -->
 	<insert id="insert">
 		insert into employees(department_id, company_cd,
-		name, email, phone, admin, position)
-		values(#{department_id}, '1000', #{name}, #{email}, #{phone} ,#{admin}, #{position},)
+		name, email, phone, admin, position, employee_pattern)
+		values(#{department_id}, '1000', #{name}, #{email}, #{phone} ,#{admin}, #{position}, #{employee_pattern})
 	</insert>
 
 	<!-- 부서목록조회 -->
