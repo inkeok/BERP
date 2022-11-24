@@ -53,7 +53,11 @@ public class CommonDAO {
 	}
 
 	public void code_update(CommonVO vo) {
-		sql.update("common.update", vo);
+		sql.update("com.update", vo);
+	}
+	
+	public void delete(String code_value) {
+		sql.delete("com.delete", code_value);
 	}
 	
 }

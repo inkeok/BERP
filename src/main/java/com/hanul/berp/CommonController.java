@@ -2,6 +2,8 @@ package com.hanul.berp;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -109,9 +111,27 @@ public class CommonController {
 	}
 	
 	@RequestMapping("/common.update")
-	public String update(CommonVO vo) {
-		dao.code_update(vo);
-		return "common/modify";
+	public String update(CommonVO vo, String code_value) {
+		CommonVO code = dao.code_detail(vo.getCode_value());
+		
+		
+		try {
+			dao.code_update(vo);
+			System.out.println("잘됨");
+			return "redirect:common.detail?code_value=" + code_value;
+			
+		} catch (Exception e) {
+			
+			System.out.println("안됨 ");
+			return "redirect:common.detail?code_value=" + code_value;
+		}
+		
+	}
+	
+	@RequestMapping("/common.delete")
+	public String delete(String code_value) {
+		dao.delete(code_value);
+		return "redirect:common.cd";
 	}
 	
 }
