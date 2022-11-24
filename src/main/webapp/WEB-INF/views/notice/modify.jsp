@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +15,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 </head>
 <body>
-<h3>공지글쓰기</h3>
-<form method='post' action='insert.no' enctype='multipart/form-data'>
+<h3>공지글수정dddddd</h3>
+<form method='post' action='update.no' enctype='multipart/form-data'>
 <table class='w-px1000'>
 <tr><th class='w-px140'>제목</th>
-	<td><input type='text' name='notice_title' class='full chk' title='제목'></td>
+	<td><input type='text' value='${fn: escapeXml(vo.notice_title)}' name='notice_title' class='full chk' title='제목'></td>
 </tr>
 <tr><th>내용</th>
-	<td><textarea name='notice_content' class='full chk' title='내용'></textarea></td>
+	<td><textarea name='notice_content' class='full chk' title='내용'>${vo.notice_content}</textarea></td>
 </tr>
 <tr><th>첨부파일</th>
 	<td class='text-left'>
@@ -30,15 +31,15 @@
 			<input type='file' name='file' id='attach-file'>
 			<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
 		</label>
-		<span id='file_name'></span>
+		<span id='file_name'>${vo.file_name}</span>
 		<span id='preview'></span>
-		<a id='delete-file'><i class="font-r fa-solid fa-trash-can"></i></a>
+		<!-- //첨부파일이 있는 경우 삭제 이미지가 보이게 처리 -->
+		<a id='delete-file' style='display:${empty vo.file_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
 		</div>
 	</td>
 </tr>
 </table>
- 
-<input type='hidden' name='employee_id' value='${loginInfo.employee_id}'>
+<input type='hidden' name='notice_num' value='${vo.notice_num}'>
 
 
 </form>
@@ -47,10 +48,20 @@
 	<a class='btn-empty' href='list.no'>취소</a>
 </div>
 <script>
+
+
+
 $('#save').click(function(){
+	$('[name=file_name]').val( $('#file_name').text() );
 	if( emptyCheck() ) $('form').submit();
 });
 </script>
 </body>
 </html>
+
+
+
+
+
+
 

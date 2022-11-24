@@ -4,7 +4,13 @@ import java.sql.Date;
 
 public class NoticeVO {
 
-	private int notice_num, employee_id, department_id, notice_readcnt;
+	private int notice_num, employee_id, department_id, notice_readcnt,no;
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	private Date notice_date;
 	private String company_cd, notice_content, notice_title, notice_writer
 	, file_name, file_path;

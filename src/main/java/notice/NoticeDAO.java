@@ -14,4 +14,28 @@ public class NoticeDAO {
 	public List<NoticeVO> notice_list() {
 		return sql.selectList("notice.notice_list");
 	}
+	
+	public int notice_insert(NoticeVO vo) {
+		return sql.insert("notice.insert", vo);
+	}
+	
+	public NoticeVO notice_detail(int notice_num) {
+		
+		return sql.selectOne("notice.detail", notice_num);
+	}
+	
+	public int notice_read(int notice_num) {
+		
+		return sql.update("notice.read", notice_num);
+	}
+	
+	public int notice_update(NoticeVO vo) {
+		
+		return sql.update("notice.update", vo);
+	}
+	
+	public int notice_delete(int notice_num) {
+		
+		return sql.delete("notice.delete", notice_num);
+	}
 }
