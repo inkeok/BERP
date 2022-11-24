@@ -27,6 +27,8 @@
 <!-- 					<ion-icon name="reorder-three-outline" class="nav__toggle" -->
 <!-- 						id="nav-toggle"></ion-icon> -->
 <!-- 				</div> -->
+
+					 
 				<div class="sidebar-logo">
 					<div class="nav-img">
 						<img src="imgs/icons/icon.png" alt="logo" />
@@ -35,33 +37,22 @@
 						<a href="/berp" class="nav__logo">YM NetWork</a>
 					</div>
 				</div>
-
-				<div class="nav__list">
-					<div class="side-menu">
-						<a href="#" class="nav__link active"> <ion-icon
-								name="home-outline" class="nav__icon"></ion-icon> <span
-							class="nav_name">회사정보</span>
-						</a>
-<!-- 						<div class="side-content"> -->
-<!-- 							<ul class="hidden list"> -->
-<!-- 								<li><a href="#">aaaaaa</a></li> -->
-<!-- 								<li><a href="#">ssssss</a></li> -->
-<!-- 								<li><a href="#">dddddd</a></li> -->
-<!-- 							</ul> -->
-<!-- 						</div> -->
-					</div>
-					<div class="side-menu side-menu2">
-						<a href="#" class="nav__link"> <ion-icon
-								name="settings-outline" class="nav__icon"></ion-icon> <span
-							class="nav_name">업무관리</span>
-						</a>
-						<div class="side-content">
-							<ul class="hidden list2 sidebar">
-								<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</a></li>
-								<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
-								<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
-								<li onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
-							</ul>
+				<ul class="ul-nav">
+					<li class="">
+						<div class="nav__list">
+							<div class="side-menu">
+								<a href="#" class="nav__link  nav-start"> 					
+									<ion-icon name="home-outline" class="nav__icon"></ion-icon>
+									 <span class="nav_name">회사정보</span>
+								</a>
+								<ul class="submenu hide">
+									<li><a href="#">submenu01</a></li>
+									<li><a href="#">submenu02</a></li>
+									<li><a href="#">submenu03</a></li>
+									<li><a href="#">submenu04</a></li>
+									<li><a href="#">submenu05</a></li>
+								</ul>
+							</div>
 						</div>
 					</li>
 				</ul>
@@ -88,7 +79,7 @@
 					<li class="">
 						<div class="nav__list">
 							<div class="side-menu">
-								<a href="#" class="nav__link  nav-start"> 
+								<a href="#" class="nav__link nav-start"> 
 									<ion-icon name="settings-outline" class="nav__icon"></ion-icon> 
 									 <span class="nav_name">업무관리</span>
 								</a>
@@ -160,8 +151,9 @@
 					</li>
 				</ul>
 			</div>
-				<a href="/berp" class="nav__link"> <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-	 			<span class="nav_name">Log out</span></a>
+				<a href="/berp" class="nav__link"> 
+					<ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+	 				<span class="nav_name">Log out</span></a>
 		</nav>
 	</div>
 	<!-- IONICONS -->

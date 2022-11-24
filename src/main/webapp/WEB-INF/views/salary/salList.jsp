@@ -10,7 +10,7 @@
 <style>
 
 .pagination{
-    width: 1080px;
+    width: 1101px;
 	background : #12192c;
     justify-content: center;
     border-bottom-left-radius: 20px;
@@ -36,7 +36,7 @@
 	text-align: center;
 }
 .hrlist{
- 	margin : 3rem 0 ;
+ 	margin : 1rem 0 ;
  	color : #000000;
  	font-size : 38px;
  	font-family: 'Noto Sans KR' !important;
@@ -101,7 +101,7 @@ tbody td:hover:before {
 
 select {
   position: relative;
-  left : 20%;
+  left : 22%;
   width: 180px;
   padding: .7em 1.9em;
   font-family: inherit;
@@ -117,7 +117,23 @@ select {
 select::-ms-expand {
   display: none;
 }
-
+td button{
+  padding: .5em 1.3em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  background: #63666c;
+}
+td button:nth-child(1) {
+	margin-right : 10px;
+}
 </style>
 </head>
 <body >
@@ -148,12 +164,12 @@ select::-ms-expand {
 					<col width="140px" />
 					<col width="100px" />
 					<col width="100px" />
+					<col width="80px" />
+					<col width="130px" />
 					<col width="100px" />
-					<col width="130px" />
-					<col width="130px" />
-					<col width="190px" />
-					<col width="190px" />
-					<col width="300px" />
+					<col width="100px" />
+					<col width="100px" />
+					<col width="250px" />
 					
 				</colgroup>
 			<thead>
@@ -166,7 +182,7 @@ select::-ms-expand {
 					<th>직급</th>
 					<th>업무형태</th>
 					<th>기본급여</th>
-					<th>버튼</th>
+					<th>정보수정</th>
 				
 					
 					
@@ -175,7 +191,7 @@ select::-ms-expand {
 			</thead>
 				<c:forEach items="${list}" var="vo">
 			<tbody>
-				<tr onclick="location.href='modify.sa?id=${vo.employee_id}'">
+				<tr class="tr-start" onclick="location.href='modify.sa?id=${vo.employee_id}'">
 					<td>${vo.employee_id}</td>
 					<td>${vo.department_name}</td>
 					<td>${vo.name}</td>
@@ -184,7 +200,9 @@ select::-ms-expand {
 					<td>${vo.position_name}</td>
 					<td>${vo.employee_pattern_name}</td>
 					<td>$${vo.salary}</td>
-					<td><button>gd</button><button>gd2</button></td>
+					<td><button class=''>정보수정</button>
+						<button class=>상여금지급</button>
+					</td>
 				</tr>
 			</tbody>
 				</c:forEach>
@@ -198,8 +216,17 @@ select::-ms-expand {
 	</div>
 </body>
 <script>
+	// html dom 이 다 로딩된 후 실행된다.
+	$(document).ready(function(){
+	   // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+	   $(".tr-start").mouseover(function(){
+	   	  $(this).next("ul").toggleClass("hide");
+	   });
+	});
+
+
 	function pagination(){
-	var req_num_row=10;
+	var req_num_row=9;
 	var $tr=jQuery('tbody tr');
 	var total_num_row=$tr.length;
 	var num_pages=0;
