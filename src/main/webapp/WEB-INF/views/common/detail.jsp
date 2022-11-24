@@ -60,6 +60,28 @@ tbody td:hover:before {
 	background-color: rgba(255, 255, 255, 0.2);
 	z-index: -1;
 }
+
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
+
+.bottom {
+	margin-bottom : 3rem;
+}
 </style>
 </head>
 <body>
@@ -68,7 +90,7 @@ tbody td:hover:before {
 	<form action="common.cd">
 
 		<div class="dataTable-container">
-			<table class='w-px600'>
+			<table class='w-px600 bottom'>
 				<tr>
 					<th class='w-px160'>인사코드</th>
 					<td>${vo.code_title }</td>
@@ -95,11 +117,11 @@ tbody td:hover:before {
 				</tr>
 			</table>
 		</div>
-		<div>
+		<div class='center'>
 
-			<a href='common.modify?code_value=${vo.code_value}'>정보수정</a>
-			<a onclick="if( confirm('사번[${vo.code_value}] 삭제?') ) href='common.delete?code_value=${vo.code_value}' " >정보삭제</a>
-			<a class='btn-fill' href='common.cd'>사원목록</a>
+			<a class='new-btn' href='common.modify?code_value=${vo.code_value}'>정보수정</a>
+			<a class='new-btn' onclick="if( confirm('사번[${vo.code_value}] 삭제?') ) href='common.delete?code_value=${vo.code_value}' " >정보삭제</a>
+			<a class='new-btn' href='common.cd'>사원목록</a>
 		</div>
 	</form>
 </body>

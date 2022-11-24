@@ -146,7 +146,7 @@ public class CommonController {
 	@RequestMapping("/common.check_code")
 	public String check_code(String code_value) {
 		System.out.println(code_value);
-		CommonVO code = dao.code_detail(code_value);
+		CommonVO code = dao.check_code(code_value);
 		if(code!=null) {
 			return "1";
 		}else {

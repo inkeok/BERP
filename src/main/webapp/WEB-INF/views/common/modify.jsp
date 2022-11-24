@@ -67,12 +67,34 @@ code_name {
   	width: 8rem;
     text-align: center;
  }
+ 
+ .new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
+
+.bottom {
+margin-bottom : 3rem;
+}
 
 </style>
 </head>
 <body>
 <h3>사원정보수정</h3>
-<form method='get' action='common.update'>
+<form class='bottom' method='get' action='common.update'>
 <table class='w-px600'>
 <tr><th class='w-px160'>인사코드</th>
 	<td>
@@ -120,9 +142,9 @@ code_name {
 			</tr>
 		</table>
 	</form>
-	<div class='btnSet'>
-		<a class='btn-fill' id='save' onclick='$("form").submit()'>저장</a> <a
-			class='btn-empty' href='common.detail?code_value=${vo.code_value}'>취소</a>
+	<div class='center'>
+		<a class='new-btn' id='save' onclick='$("form").submit()'>저장</a> <a
+			class='new-btn' href='common.detail?code_value=${vo.code_value}'>취소</a>
 	</div>
 </body>
 
@@ -138,6 +160,7 @@ $("#code_name").on("propertychange change keyup paste input", function() {
     
 // const code_name = document.querySelector('#code_name');
 // document.querySelector('#save').onclick = function() {  
+	
 	$.ajax({
         url:'common.check_code',
         data: { code_value:currentVal },
@@ -149,10 +172,6 @@ $("#code_name").on("propertychange change keyup paste input", function() {
         }
     });//사용중인 코드가 중복이 불가능하게 처리
 // }
-	
-function 
-
-	
     
 });
 </script>
