@@ -63,7 +63,15 @@
 	
 		where e.employee_id = #{employee_id}
 	</select>
-
+	<update id="update_salary">
+	update salary set salary=#{salary}, commission_pct=#{commission_pct}
+	where employee_id = #{employee_id}
+	
+	</update>
+	<insert id="insert_bonus">
+	INSERT into bonus (employee_id, bonus, bonus_comment)
+	values (#{employee_id}, #{bonus}, #{bonus_comment})
+	</insert>
 
 
 

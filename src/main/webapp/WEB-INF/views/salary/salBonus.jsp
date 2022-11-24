@@ -61,12 +61,30 @@ tbody td:hover:before {
     left: 4%;
     border-top-left-radius: 10px;
 }
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
 </style>
 </head>
 <body>
 	<h2 class="center hrlist">상여금 지급</h2>
 	
-	<form action="update.hr" method="post" style="margin-top: 60px">
+	<form action="insertBonus.sa" method="post" style="margin-top: 60px">
+	<input type='hidden' name='employee_id' value="${emp.employee_id }">
 		<div class="">
 			<table class="">
 				<colgroup>
@@ -95,16 +113,20 @@ tbody td:hover:before {
 			</tr>
 			<tr>
 				<th>상여급</th>
-				<td><input type="text" placeholder='$${emp.salary }' /></td>
+				<td><input name='bonus' style="width : 150px; type="text" placeholder='금액을 입력하세요' /></td>
 		
 			</tr>
 			<tr>
 				<th>상여급 사유</th>
-				<td><input type="text" /></td>
+				<td><input name='bonus_comment' style="width : 300px; height: 100px;" type="text"  placeholder='사유 입력'/></td>
 		
 			</tr>
 			</table>
 		</div>
 	</form>
+	<div class='center' style="margin-top: 25px">
+	<a class='new-btn' onclick='$("form").submit()'>정보수정</a>
+	<a class='new-btn' href='list.sa'>취소</a>
+	</div>
 </body>
 </html>
