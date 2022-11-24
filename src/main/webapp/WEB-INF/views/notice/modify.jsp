@@ -40,6 +40,8 @@
 </tr>
 </table>
 <input type='hidden' name='notice_num' value='${vo.notice_num}'>
+<input type='hidden' name='file_name' value='${vo.file_name}'>
+
 
 
 </form>

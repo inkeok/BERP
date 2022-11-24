@@ -18,12 +18,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import emp.EmpVO;
 import member.MemberDAO;
 
 import notice.NoticeDAO;
+import notice.NoticeListVO;
 import notice.NoticeVO;
 
 @Controller
@@ -34,8 +36,8 @@ public class NoticeController {
 	
 	//게시판 리스트 
 	@RequestMapping("/list.no")
-	public String noticeList(Model model, HttpSession session) {
-		List<NoticeVO> list =dao.notice_list();
+	public String noticeList(Model model, HttpSession session, NoticeListVO search) {
+		//List<NoticeVO> list =dao.notice_list();
 		
 		//로그인처리
 		int id = 20221016;
@@ -43,7 +45,11 @@ public class NoticeController {
 		EmpVO vo = member.checkLogin(id, pw);
 		session.setAttribute("loginInfo", vo);
 		
-		model.addAttribute("list",list);
+		//추가부분
+		search = dao.notice_list_search(search);
+		model.addAttribute("search", search);
+		
+		//model.addAttribute("list",list);
 		return "notice/list";
 	}
 	
@@ -212,6 +218,30 @@ public class NoticeController {
 			FileCopyUtils.copy( new FileInputStream(file), out );
 			out.flush();
 			return true;
+		}
+		
+		//공지글 첨부파일 다운로드 요청
+		@ResponseBody @RequestMapping(value="/download.no",produces="text/html; charset=utf-8")
+		public String download(int notice_num, String url, HttpServletRequest request
+							, HttpServletResponse response) throws Exception{
+			//해당 공지글에 대한 첨부파일 정보를 DB에서 조회해와
+			//클라이언트 에 다운로드하는 처리
+			NoticeVO vo = dao.notice_detail(notice_num);
+			boolean download
+			= fileDownload(vo.getFile_name(), vo.getFile_path(), request, response);
+			
+			if(!download) {
+				//다운로드가 안되어지는 경우 처리
+				StringBuffer msg = new StringBuffer("<script>");
+				msg.append("alert('다운로드할 파일이 없습니다!'); location='")
+				.append(url).append("';");
+				msg.append("</script>");
+				return msg.toString();
+				
+			}else
+				return null;
+			
+			
 		}
 		
 	

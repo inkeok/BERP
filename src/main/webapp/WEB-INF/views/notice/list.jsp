@@ -16,39 +16,36 @@
 </head>
 <body>
 <h3>${loginInfo.name } / 로그인정보</h3>
-<%-- 
+ 
 <form method='post' action='list.no'>
 <div id='list-top' class='w-px1200'>
 	<ul>
 		<li>
 		
 			<select name='search' class='w-px100'> <!-- name줘야 전달가넝 -->
-				<option value='all' ${page.search eq 'all'? 'selected':'' }>전체</option>
+				<option value='all' ${search.search eq 'all'? 'selected':'' }>전체</option>
 				
-				<option value='title' ${page.search eq 'title'? 'selected':'' }>
+				<option value='notice_title' ${search.search eq 'notice_title'? 'selected':'' }>
 				제목</option>
-				<option value='content'${page.search eq 'content'? 'selected':'' }>내용</option>
-				<option value='writer' ${page.search eq 'writer'? 'selected':'' }>작성자</option>
+				<option value='notice_content'${search.search eq 'notice_content'? 'selected':'' }>내용</option>
+				
+				<option value='notice_writer' ${search.search eq 'notice_writer'? 'selected':'' }>작성자</option>
+			
 			</select>
 		
 		</li>
-		<li><input type='text' value='${page.keyword }' name='keyword' class='w-px300'> </li>
+		<li><input type='text' value='${search.keyword }' name='keyword' class='w-px300'> </li>
 		<li><a class='btn-fill' onclick='$("form").submit()'>검색</a></li>
 	
 	</ul>
-	<ul><!-- 관리자인 경우만 글쓰기 가능 -->
-		<c:if test='${loginInfo.admin eq "Y"}'>
-		<li><a class='btn-fill' href='new.no'>글쓰기</a></li>
-		</c:if>
-	</ul>
+	
 </div>
 
 
 
 </form>
 
- --%>
- 
+
  <ul><!-- 관리자인 경우만 글쓰기 가능 -->
 		<c:if test='${loginInfo.admin eq "Y"}'>
 		<li><a class='btn-fill' href='new.no'>글쓰기</a></li>
@@ -68,7 +65,7 @@
 	<th>작성일자</th>
 	<th>첨부파일</th>
 </tr>
-<c:forEach items='${list}' var='vo'>
+<c:forEach items='${search.list}' var='vo'>
 <tr><td>${vo.no}</td>
 	<td>
 	<a href="detail.no?notice_num=${vo.notice_num }">${vo.notice_title}</a>
