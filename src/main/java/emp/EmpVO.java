@@ -5,13 +5,10 @@ import java.sql.Date;
 public class EmpVO {
 	
 	private int employee_id, department_id, salary, commission_pct;
-	private String company_cd, name, email, phone, admin, job_id,position , hire_year
+	private String company_cd, name, email, phone, admin, job_id, position , hire_year
 	, position_name, employee_pattern, employee_pattern_name, department_name, company_name,
 	c_position, pw;
 	private Date hire_date;
-	
-
-	
 	
 	
 	public int getSalary() {

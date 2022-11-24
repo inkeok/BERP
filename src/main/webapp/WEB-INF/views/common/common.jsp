@@ -41,14 +41,14 @@ td {
 						</c:forEach>
 					</select>
 					
-					<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value"); $("form").submit()'>
-       				<option value="all">문서코드</option>
-						<c:forEach items='${code_values}' var='c'>
-							<option ${code_value eq c.code_value ? 'selected' : ''} 
-									value='${c.code_value}'>${c.code_value}
-							</option>
-						</c:forEach>
-					</select>
+<!-- 					<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value"); $("form").submit()'> -->
+<!--        				<option value="all">문서코드</option> -->
+<%-- 						<c:forEach items='${code_values}' var='c'> --%>
+<%-- 							<option ${code_value eq c.code_value ? 'selected' : ''}  --%>
+<%-- 									value='${c.code_value}'>${c.code_value} --%>
+<!-- 							</option> -->
+<%-- 						</c:forEach> --%>
+<!-- 					</select> -->
 					
 					<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
        				<option value="all">고용형태코드</option>

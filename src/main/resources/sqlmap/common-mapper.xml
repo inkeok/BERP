@@ -75,9 +75,13 @@
 	<!-- 사원정보 수정저장처리 -->
 	<update id="update">
 		update common_code
-		set <if test="code_value == -1">, code_value = null</if>
-			<if test="code_value > -1">, code_value = #{cdoe_value}</if>
-		where 
+		set code_title = #{code_title}, code_value = #{code_value}, code_used = #{code_used}, code_name = #{code_name}, code_birth = sysdate
+		where code_value = #{code_value}
 	</update>
+	
+	<delete id="delete">
+	 	delete from common_code
+	 	where code_value = #{code_value}
+	</delete>
 	
 	</mapper>

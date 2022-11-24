@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
+<link href='js/approval.js?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
 
 </style>
@@ -27,6 +28,7 @@
 	<input type='hidden' name='document_date' value='${receiveListDetail.document_date}'>
 	<input type='hidden' name='document_submit' value='${receiveListDetail.document_submit}'>
 	<input type='hidden' name='approver_id' value='${receiveListDetail.approver_id}'>
+<%-- 	<input type='hidden' name='file' value='${receiveListDetail.file_name}'> --%>
 	
 	<table class='table detail'>
 		<colgroup>
@@ -53,7 +55,11 @@
 		</tr>
 		
 		<tr><th>첨부파일</th>
-			<td colspan='3'></td>	
+			<td  colspan='3'>
+			<c:if test='${not empty receiveListDetail.file_name }'>
+			<a class='file'>${receiveListDetail.file_name}</a>
+			</c:if>
+			</td>	
 		</tr>
 		
 		<tr>
@@ -86,6 +92,12 @@ document.querySelector('#resultInsert').onclick = function(){
 	}
 	document.querySelector('#resultForm').submit();	
 }
+
+$('.file').click(function(){
+	$(this).attr('href'
+			, 'downloadReceive.ap?employee_id=${loginInfo.employee_id}&no=${receiveListDetail.no}&url=' + $(location).attr('href'));
+	console.log(this.getAttribute('href'));
+});
 </script>
 </body>
 </html>

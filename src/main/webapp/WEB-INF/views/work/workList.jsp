@@ -115,8 +115,16 @@ ul{
 					<td>${vo.employee_id}</td>
 					<td>${vo.name}</td>
 					<td>${vo.department_name}</td>
-					<td>${vo.start_work}</td>
-					<td>${vo.end_work}</td>
+					<c:if test="${not empty vo.start_work }">
+						<td>${vo.start_work}</td>
+						<td>${vo.end_work}</td>
+					</c:if>
+					<c:if test="${empty vo.start_work }">
+						<td>-</td>
+					</c:if>
+					<c:if test="${empty vo.end_work }">
+						<td>-</td>
+					</c:if>
 					<td>${vo.work_status}</td>
 				</tr>
 			</c:forEach>

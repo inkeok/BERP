@@ -111,7 +111,6 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
   <script>
   $( function() {
-	  
 	    var dateFormat = "yy/mm/dd",
 	      from = $( "#from" )
 	        .datepicker({

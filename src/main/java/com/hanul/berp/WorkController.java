@@ -30,6 +30,7 @@ public class WorkController {
 	Gson gson = new GsonBuilder()
 	.setDateFormat("yyyy-MM-dd").create();
 
+	//세션처리 필요
 	@RequestMapping("/work")
 	public String work_list(String id, Model model) {
 
@@ -50,6 +51,7 @@ public class WorkController {
 		return "side/work/work";
 	}
 
+	//세션처리 필요
 	// 퇴근 버튼 눌렀을 때 시간 update
 	@ResponseBody
 	@RequestMapping("/work_end_input")
@@ -67,7 +69,7 @@ public class WorkController {
 		return "work";
 	}
 
-	
+	//세션처리 필요
 	//출근버튼 눌렀을 때 시간 insert
 	
 	@ResponseBody
@@ -77,8 +79,19 @@ public class WorkController {
 		EmpVO vo = dao.empInfo(id);
 		model.addAttribute("vo", vo);
 		
-		
-		dao.work_start_input(start_work);			
+		try {
+			dao.work_start_input(start_work);					
+		} catch (Exception e) {
+			
+			StringBuffer msg = new StringBuffer("<html>");
+			msg.append("<body>");
+			msg.append("<script>");
+			msg.append("alert('이미 출근 되었습니다');");
+			msg.append("</script>");
+			msg.append("</body>");
+			msg.append("</html>");
+			return msg.toString();	
+		}
 
 		System.out.println("ajax end");
 
@@ -86,6 +99,8 @@ public class WorkController {
 	
 	
 	}
+	
+	//세션처리 필요
 	@RequestMapping("/holiday")
 	public String holiday(String id, Model model ) {
 		EmpVO vo = dao.empInfo(id);
@@ -132,13 +147,7 @@ public class WorkController {
 		return "side/work/holiday";
 	}
 	
-	@RequestMapping("listWork")
-	public String listWork() {
-		
-		dao.rList();
-		
-		return "side/work/workList";
-	}
+	
 	
 	@RequestMapping("/workList")
 	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id) {
@@ -265,9 +274,22 @@ public class WorkController {
 		public String andHoliday_List() {
 			
 			
-			
-			
 			return gson.toJson(dao.andHoliday_List());
+			
+		}
+		@ResponseBody @RequestMapping(value="/andHolidayDept_List", produces="text/html; charset=utf-8")
+		public String andHolidayDept_List(int department_id) {
+			
+			
+			return gson.toJson(dao.andHolidayDept_List(department_id));
+			
+		}
+		
+		@ResponseBody @RequestMapping(value="/andHolidayIndi_List", produces="text/html; charset=utf-8")
+		public String andHolidayIndi_List(int employee_id) {
+			List<WorkResultVO> list = dao.andHolidayIndi_List(employee_id);
+			
+			return gson.toJson(list);
 			
 		}
 		

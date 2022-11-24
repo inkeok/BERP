@@ -1,26 +1,29 @@
 @charset "UTF-8";
 
-li a{
-	color : #ffffff;
+li a {
+	color: #ffffff;
 	font-size: 14px;
 }
+
 body {
 	background: linear-gradient(90deg, #ffffff, #aaaaaa);
-/* 	background: linear-gradient(90deg, #3b5290, #472f58); */
-    position: relative;
-    margin: 0;
-    padding: 2rem 0 0 3.75rem;
-/*     font-family: var(--body-font); */
-/*     font-size: var(--normal-font-size); */
-    transition: .5s;
+	/* 	background: linear-gradient(90deg, #3b5290, #472f58); */
+	position: relative;
+	margin: 0;
+	padding: 2rem 0 0 3.75rem;
+	/*     font-family: var(--body-font); */
+	/*     font-size: var(--normal-font-size); */
+	transition: .5s;
 }
 
+ul {
+	padding-left: 0 !important;
+}
 /*  #backFromSide{
 	position: fixed;
 	bottom: 3%;
 	left: 2%;
 	color: #717ca2; */
-
 li:before, .side-menu:before {
 	font-family: "Material Icons" !important;
 	font-feature-settings: "liga";
@@ -48,28 +51,26 @@ li:before, .side-menu:before {
 	white-space: nowrap;
 	cursor: default;
 	animation-name: side-right;
-    animation-duration: 500ms;
-    animation-direction: normal;
+	animation-duration: 500ms;
+	animation-direction: normal;
 	z-index: 101;
-
 }
+
 .side-content:before, .side-content {
-  position: absolute;
-  top: 24%;
-  left: 99%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 24%;
+	left: 99%;
+	transform: translate(-50%, -50%);
 }
 
-@keyframes side-right {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* @keyframes side-right {from { opacity:0; */
+/* 	transform: translateX(-30px); */
+/* } */
 
+/* to { */
+/* 	opacity: 1; */
+/* } */
+/* } */
 .sidebar.hidden {
 	margin-top: 0.7em;
 	display: none;
@@ -89,7 +90,7 @@ li:before, .side-menu:before {
 
 li {
 	list-style: none;
-	padding: 0.5em;
+	/* 	padding: 0.5em; */
 	margin: 0;
 	position: relative;
 	cursor: pointer;
@@ -100,14 +101,39 @@ li:before {
 	top: calc(5% + 8px);
 	left: 8px;
 }
+
 .nav-img img {
 	width: 40px;
 	height: 40px;
 }
 
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-47%, 2%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-47%, 2%);
+}
+
+
+.submenu>li {
+	text-align : left;
+	line-height: 40px;
+	background-color: #0f1f38;
+	animation : 2.0s
+}
+
+/* .submenu { */
+/* 	height: 0; ul의 높이를 안보이게 처리 */
+/* 	/*   overflow: hidden; */
+/* 	overflow: hidden; */
+/* } */
+
+.hide {
+	display: none;
+}
+.l-navbar:hover{
+	width : calc(var(--nav--width) + 9.25rem);
+}
+.pagination li{
+	padding: .7rem;
 }
