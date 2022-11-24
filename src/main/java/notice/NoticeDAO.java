@@ -38,4 +38,11 @@ public class NoticeDAO {
 		
 		return sql.delete("notice.delete", notice_num);
 	}
+	
+	public NoticeListVO notice_list_search(NoticeListVO search) {
+		
+		//page.setList( sql.selectList("notice.list", page));
+		search.setList(sql.selectList("notice.list", search));
+		return search;
+	}
 }

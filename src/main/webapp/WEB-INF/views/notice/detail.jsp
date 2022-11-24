@@ -80,7 +80,12 @@ table td {text-align: left;}
 </div>
 
 <script>
-
+$('#download').click(function(){
+	
+	$(this).attr('href'
+			, 'download.no?notice_num=${vo.notice_num }&url='+$(location).attr('href'));
+	
+});
 
 if(isImage("${vo.file_name}")) {
 	$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
@@ -99,4 +104,4 @@ $('#remove').click(function() {
 
 
 </body>
-</html>ml>
+</html>
