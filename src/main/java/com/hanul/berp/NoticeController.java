@@ -24,7 +24,6 @@ import emp.EmpVO;
 import member.MemberDAO;
 
 import notice.NoticeDAO;
-import notice.NoticePageVO;
 import notice.NoticeVO;
 
 @Controller

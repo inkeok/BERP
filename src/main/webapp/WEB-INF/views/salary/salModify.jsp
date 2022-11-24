@@ -61,15 +61,28 @@ tbody td:hover:before {
     left: 4%;
     border-top-left-radius: 10px;
 }
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
 </style>
 </head>
 <body>
 	<h2 class="center hrlist">사원목록</h2>
-	<div>
-	<button class="salary_btn" onclick='location="new.hr"'>기본급여수정</button>
-	<button class="commission_btn" onclick='location="new.hr"'>커미션 변경</button>
-	<button class="bonus_btn" onclick='location="new.hr"'>상여금 입력</button>
-	</div> 
+	
 	<form action="update.hr" method="post">
 		<div class="">
 			<table class="">
@@ -99,7 +112,7 @@ tbody td:hover:before {
 			</tr>
 			<tr>
 				<th>기본급</th>
-				<td><input type="text" placeholder='$${emp.salary }' /></td>
+				<td><input style="width : 150px; padding-left: 10px" type="text" placeholder='$${emp.salary }' /></td>
 		
 			</tr>
 			<tr>
@@ -115,13 +128,16 @@ tbody td:hover:before {
 							<option value='0.25'>0.25</option>
 							<option value='0.3'>0.30</option>
 					</select>
-					<p style='font-size: 20px; color: green;  ;position: relative; margin-left: 20px; margin-top: 10px; '>
-					${emp.salary} </p>
+					
 					</td>
 			</tr>
 			
 			</table>
 		</div>
 	</form>
+	<div class='center' style="margin-top: 25px">
+	<a class='new-btn' href='insertCommission.sa'>정보수정</a>
+	<a class='new-btn' href='list.sa'>취소</a>
+	</div>
 </body>
 </html>
