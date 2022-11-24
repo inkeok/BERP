@@ -130,9 +130,9 @@ public class WorkDAO {
 		return sql.selectList("work.andHolidayDept_List",department_id);
 		
 	}
-	public List<WorkResultVO> andHolidayIndi_List(){
+	public List<WorkResultVO> andHolidayIndi_List(int employee_id){
 		
-		return sql.selectList("work.andHolidayIndi_List");
+		return sql.selectList("work.andHolidayIndi_List", employee_id);
 	}
 	
 }
