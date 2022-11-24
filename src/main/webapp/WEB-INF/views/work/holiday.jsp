@@ -97,10 +97,24 @@ ul li {
 <body>
 	<a action="work_end_input" method="post" id="input" />
 
-	<ul style="text-align: right;">
+	<div class="row">
+		<div class="col-12">
+			<div style="margin: 35px"
+				class="page-title-box d-sm-flex align-items-center justify-content-between">
+
+				<h1 class="mb-sm-0 font-size-20" id="timesm">
+					<i class="bx bx-buildings"></i>
+				</h1>
+
+				<ul style="text-align: right;">
 		<li><a href="work">근태</a></li>
 		<li><a href="holiday"> 휴무관리</a></li>
 	</ul>
+
+
+			</div>
+		</div>
+	</div>
 
 	<!-- end page title -->
 
@@ -118,7 +132,7 @@ ul li {
 										<p class="mb-0">사 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;번 /
 											${vo.employee_id}</p>
 										<p class="mb-0">입사일자 / ${vo.hire_date}</p>
-										<p class="mb-0"">근속년수 / ${vo.hire_year }년차
+										<p class="mb-0">근속년수 / ${vo.hire_year }년차
 									</div>
 								</div>
 							</div>
@@ -150,18 +164,20 @@ ul li {
 
 
 	<div class="">
+	
 		<div class="card">
+		<h5 style="margin:20px; ">휴가신청</h5>
 			<div style="display: inline-flex;">
-				<input style="width: 130px" id="holiday_start_btn" type="date"
+				<input style="width: 130px;  height : 50px; margin: 10px;" id="holiday_start_btn" type="date"
 					min="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
 					class="btn btn-light waves-effect" value="휴가 시작일" /> <input
-					style="width: 130px" id="holiday_end_btn" type="date"
+					style="width: 130px; height : 50px; margin: 10px;" id="holiday_end_btn" type="date"
 					min="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
 					class="btn btn-light waves-effect" value="휴가 종료일" />
 				<!-- </input> -->
 				<div>
 					<ul>
-						<li><select name='holiday_category' id="category">
+						<li><select style="height : 50px; margin: 10px;" name='holiday_category' id="category">
 								<c:forEach items="${codeList}" var="code">
 									<option ${code_value eq code.code_value ? 'selected' : ''}
 										value="${code.code_value }">${code.code_name }</option>
@@ -171,7 +187,7 @@ ul li {
 				</div>
 			</div>
 			<div>
-				<input id="holiday_submit_btn" type="button"
+				<input  style="width:130px; height : 50px; margin:0 0 1rem 0.725rem;" id="holiday_submit_btn" type="button"
 					class="btn btn-light waves-effect" value="휴가신청" />
 			</div>
 		</div>
