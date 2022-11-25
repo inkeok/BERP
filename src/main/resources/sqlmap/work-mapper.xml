@@ -8,9 +8,19 @@
 		SELECT *
 		FROM work
 		where
-		employee_id = '20120001'
+		employee_id = #{employee_id}
 
 	</select>
+	<select id="workResult" resultType="work.WorkResultVO">
+		SELECT w.* , c.code_name work_status
+		FROM work_result w left outer join common_code c
+		on w.work_code = c.code_value
+		where
+		w.employee_id = #{employee_id}
+		order by work_date desc
+
+	</select>
+	
 
 	<select id="departments" resultType="emp.DepartmentVO">
 		select * from departments order by department_name
@@ -44,8 +54,9 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 		on w.department_id = d.department_id 
 		left outer join employees e
 		on w.employee_id = e.employee_id
-		order by work_date desc
+
 	</select>
+	
 	
 
 	<!-- null값인 퇴근시간에 update 처리 -->
@@ -53,7 +64,13 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 		UPDATE work
 		SET end_work = #{end_work}
 		WHERE
-		employee_id= '20120001'
+		employee_id= #{employee_id}
+	</update>
+	<update id="andEnd_work">
+		UPDATE work
+		SET end_work = #{end_work}
+		WHERE
+		employee_id= #{employee_id}
 	</update>
 
 	<!-- 출근 시간 등록 -->
@@ -61,7 +78,14 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 		insert into work
 		(employee_id, department_id,
 		company_cd,start_work, work_code)
-		values('20120001',10,'1000',
+		values(#{employee_id},#{department_id},#{company_cd},
+		#{start_work},'W101')
+	</insert>
+	<insert id="andStart_work">
+		insert into work
+		(employee_id, department_id,
+		company_cd,start_work, work_code)
+		values(#{employee_id},#{department_id},#{company_cd},
 		#{start_work},'W101')
 	</insert>
 
@@ -73,9 +97,8 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 		from work_result w left join common_code c
 		on w.work_code =
 		c.code_value
-		where employee_id = '20120001' and work_code ='HO101' or
+		where employee_id = #{employee_id} and work_code ='HO101' or
 		work_code ='HO102'
-
 	</select>
 
 	<!-- 로그인한 아이디의 출근정보만 출력 -->
@@ -90,7 +113,7 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 		FROM employees e left join common_code c
 		on
 		e.position = c.code_value
-		where e.employee_id = '20120001'
+		where e.employee_id = #{employee_id}
 
 
 	</select>
@@ -110,7 +133,7 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 <![CDATA[
 	INSERT INTO 
 holiday(holiday_date, employee_id, department_id,company_cd,work_code)
- SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20120001','40','1000','HO101'
+ SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , #{employee_id},#{department_id},#{company_cd},#{work_code}
    FROM dual 
 CONNECT BY LEVEL <= 
 (TO_DATE(#{end_holiday , jdbcType=VARCHAR},'YYYY-MM-DD')
@@ -122,7 +145,7 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 <![CDATA[
 	INSERT INTO 
 holiday(holiday_date, employee_id, department_id,company_cd,work_code)
- SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20120001','40','1000',#{work_code}
+ SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20120001','10','1000',#{work_code}
    FROM dual 
 CONNECT BY LEVEL <= 
 (TO_DATE(#{end_holiday , jdbcType=VARCHAR},'YYYY-MM-DD')
@@ -137,14 +160,14 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		from holiday_result h left join
 		common_code c
 		on h.work_code = c.code_value
-
-
-	</select>
+		where h.employee_id = #{employee_id}
+			</select>
 	<select id="holidayList" resultType="work.HolidayVO">
 		select h.* , c.code_name work_status
 		from holiday h left join common_code c
 		on h.work_code = c.code_value
-		where employee_id = '20120001'
+		where h.employee_id = #{employee_id}
+		order by holiday_date asc
 
 	</select>
 	<select id="holidayAllList" resultType="work.HolidayVO">
@@ -152,19 +175,22 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		from holiday h left join common_code c
 		on h.work_code = c.code_value left outer join employees e
 		on e.employee_id = h.employee_id
-		
+		order by work_date asc
 
 	</select>
 	
 	<select id="search" resultType="work.WorkVO">
-		select start_work 
+		select start_work
 		from work
-		where employee_id = '20120001'	
+		where employee_id = #{employee_id}	
 	</select>
+	
+	
+	
 	<select id="andEndSearch" resultType="work.WorkVO">
 		select end_work 
 		from work
-		where employee_id = '20120001'	
+		where employee_id = #{employee_id}	
 	</select>
 	<select id="andCode" resultType="work.CommonCodeVO">
 		select * from common_code where code_title ='HO'
@@ -184,8 +210,36 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 		on h.department_id = d.department_id
 		left outer join employees e
 		on h.employee_id = e.employee_id
-		
-		 
+
 	</select>
+	<select id="andHolidayDept_List" resultType="work.HolidayVO">
+		select h.employee_id ,e.name name, d.department_name dname, c.code_name work_code,h.holiday_date,TRUNC(MONTHS_BETWEEN(SYSDATE,
+		hire_date) / 12) hire_year
+		from holiday h 
+		left outer join common_code c 
+		on h.work_code = c.code_value
+		left outer join departments d
+		on h.department_id = d.department_id
+		left outer join employees e
+		on h.employee_id = e.employee_id
+		where h.department_id = #{department_id}
+	</select>
+	
+	<select id="andHolidayIndi_List" resultType="work.WorkResultVO">
+	select to_char( w.work_date,'yyyy-MM-DD hh:mm:ss') as work_date ,
+w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_CODE
+, c.code_name work_status
+		, d.department_name , e.name name
+		from work_result w left join
+		common_code c
+		on w.work_code = c.code_value 
+		left outer join departments	d
+		on w.department_id = d.department_id 
+		left outer join employees e
+		on w.employee_id = e.employee_id
+		where w.employee_id = #{employee_id}
+		order by work_date desc
+	</select>
+	
 
 </mapper>

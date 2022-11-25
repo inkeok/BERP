@@ -41,6 +41,14 @@ a {
 	cursor: pointer;
 }
 
+.hrlist{
+	text-align : center;
+ 	margin : 1rem 0 ;
+ 	color : #000000;
+ 	font-size : 35px;
+ 	font-family: 'Noto Sans KR' !important;
+}
+
 .sec-font{
 	font-family: 'Nanum Gothic', sans-serif;
 }
@@ -332,31 +340,6 @@ a {
     background-color: var(--first-color);
 }
 
-/* COLLAPSE */
-
-.collapse {
-    grid-template-columns: 20px max-content 1fr;
-}
-
-.collapse__link {
-    justify-self: flex-end;
-    transition: .5;
-}
-
-.collapse__sublink {
-    color: var(--sub-color);
-    font-size: var(--small-font-size);
-}
-
-.collapse__sublink:hover {
-    color: var(--white-color);
-}
-
-/* Show collapse */
-.showCollapse {
-    display: block;
-}
-
 .applist{
     align-items: center;
 	display: inline-flex;
@@ -387,8 +370,10 @@ a {
     transition: .5s;
 }
 .sidebar-logo{
+    margin-top: 5rem;
+    align-items: baseline;
 	display: inline-flex;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 }
 .nav-img{
 	margin-left: 5px;

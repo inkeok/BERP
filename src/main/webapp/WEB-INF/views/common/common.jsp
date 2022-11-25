@@ -41,20 +41,20 @@ td {
 						</c:forEach>
 					</select>
 					
-					<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value"); $("form").submit()'>
-       				<option value="all">문서코드</option>
-						<c:forEach items='${code_values}' var='c'>
-							<option ${code_value eq c.code_value ? 'selected' : ''} 
-									value='${c.code_value}'>${c.code_value}
-							</option>
-						</c:forEach>
-					</select>
+<!-- 					<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value"); $("form").submit()'> -->
+<!--        				<option value="all">문서코드</option> -->
+<%-- 						<c:forEach items='${code_values}' var='c'> --%>
+<%-- 							<option ${code_value eq c.code_value ? 'selected' : ''}  --%>
+<%-- 									value='${c.code_value}'>${c.code_value} --%>
+<!-- 							</option> -->
+<%-- 						</c:forEach> --%>
+<!-- 					</select> -->
 					
 					<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
        				<option value="all">고용형태코드</option>
-						<c:forEach items='${code_used}' var='c'>
+						<c:forEach items='${code_usedd}' var='c'>  <!-- 드롭다운이름 처리 -->
 							<option ${code_used eq c.code_used ? 'selected' : ''} 
-									value='${c.code_used}'>${c.code_used}
+									value='${c.code_used}' >${c.code_used}
 							</option>
 						</c:forEach>
 					</select>

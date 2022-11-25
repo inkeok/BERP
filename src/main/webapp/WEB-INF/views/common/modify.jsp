@@ -57,73 +57,80 @@ select {
 	width : 120px;
 
 }
+
+.dataTable-selector {
+    width: 8rem;
+    text-align: center;
+ }
+ 
+code_name {
+  	width: 8rem;
+    text-align: center;
+ }
+ 
+ .new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
+
+.bottom {
+margin-bottom : 3rem;
+}
+
 </style>
 </head>
 <body>
-	<h3>사원정보수정</h3>
-	<form method='post' action='common.update'>
-		<%-- <input type='hidden' name='code_value' value='${vo.code_value}'> --%>
-		<table class='w-px800'>
-			<!-- <tr><th class='w-px160'>사번</th> -->
-			<%-- 	<td>${vo.employee_id }</td> --%>
-			<!-- </tr> -->
-			<!-- <tr><th>사원명</th> -->
-			<%-- 	<td><input type='text' name='last_name' value='${vo.last_name }'> --%>
-			<%-- 		<input type='text' name='first_name' value='${vo.first_name }'> --%>
-			<!-- 	</td> -->
-			<!-- </tr> -->
-			<!-- <tr><th>이메일</th> -->
-			<%-- 	<td><input type='text' name='email' value='${vo.email }'></td> --%>
-			<!-- </tr> -->
-			<!-- <tr><th>전화번호</th> -->
-			<%-- 	<td><input type='text' name='phone_number' value='${vo.phone_number }'></td> --%>
-			<!-- </tr> -->
-			<colgroup>
-				<col width= 200px;>
-			</colgroup>
-			<tr>
-				<th>인사코드</th>
-				<td><select name="code_title"
-					onchange='$("#code").val("code_title"); $("form").submit()'>
-						<option value="all">인사코드</option>
+<h3>사원정보수정</h3>
+<form class='bottom' method='get' action='common.update'>
+<table class='w-px600'>
+<tr><th class='w-px160'>인사코드</th>
+	<td>
+		<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title");'>
 						<c:forEach items='${code_titles}' var='c'>
 							<option ${vo.code_title eq c.code_title ? 'selected' : ''}
 								value='${c.code_title}'>${c.code_title}</option>
 						</c:forEach>
-				</select></td>
-			</tr>
-			<tr>
-				<th>문서코드</th>
-				<td><select name="code_value"
-					onchange='$("#code").val("code_value"); $("form").submit()'>
-						<option value="-1">문서코드</option>
+						</select>
+	</td>
+</tr>
+<tr><th>문서코드</th>
+	<td>
+		<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value");'>
 						<c:forEach items='${code_values}' var='v'>
 							<option ${vo.code_value eq v.code_value ? 'selected' : ''}
 								value='${v.code_value}'>${v.code_value}</option>
 						</c:forEach>
-				</select></td>
-			</tr>
-			<tr>
-				<th>고용형태코드</th>
-				<td><select  name="code_used"
-					onchange='$("#code").val("code_used"); $("form").submit()'>
-						<option value="all">고용형태코드</option>
-						<c:forEach items='${code_used}' var='c'>
-							<option ${vo.code_used eq c.code_used ? 'selected' : ''}
-								value='${c.code_used}'>${c.code_used}</option>
+						</select>
+	</td>
+</tr>
+<tr><th>고용형태코드</th>
+	<td>
+		<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used");' >
+						<c:forEach items='${code_used}' var='u'>
+							<option ${vo.code_used eq u.code_used ? 'selected' : ''} 
+									value='${u.code_used}'>${u.code_used}
+							</option>
 						</c:forEach>
-				</select></td>
-			</tr>
-			<tr>
-				<th>근무코드</th>
-				<td><select  style="width :120px;" class="dataTable-selector" name="code_used"
-					onchange='$("#code").val("code_name"); $("form").submit()'>
-						<option value="all">근무코드</option>
-						<c:forEach items='${code_name}' var='c'>
-							<option ${vo.code_name eq c.code_name ? 'selected' : ''}
-								value='${c.code_name}'>${c.code_name}</option>
-						</c:forEach>
-				</select></td>
+					</select>
+	</td>
+</tr>
+<tr><th>근무코드</th>
+	<td>
+		<input type="text" id="code_name" name="code_name" style="width:8rem;text-align: center;"/>
+				</td>
 			</tr>
 			<tr>
 				<th>생성날짜</th>
@@ -135,9 +142,38 @@ select {
 			</tr>
 		</table>
 	</form>
-	<div class='btnSet'>
-		<a class='btn-fill' onclick='$("form").submit()'>저장</a> <a
-			class='btn-empty' href='common.detail?code_value=${vo.code_value}'>취소</a>
+	<div class='center'>
+		<a class='new-btn' id='save' onclick='$("form").submit()'>저장</a> <a
+			class='new-btn' href='common.detail?code_value=${vo.code_value}'>취소</a>
 	</div>
 </body>
+
+<script type="text/javascript">
+var oldVal = '';
+$("#code_name").on("propertychange change keyup paste input", function() {
+    var currentVal = $(this).val();
+    if(currentVal == oldVal) {
+        return;
+    }
+ 
+    oldVal = currentVal;
+    
+// const code_name = document.querySelector('#code_name');
+// document.querySelector('#save').onclick = function() {  
+	
+	$.ajax({
+        url:'common.check_code',
+        data: { code_value:currentVal },
+        success: function(result) {
+           console.log(result);
+           if(result == '1'){
+        	   alert('이미 사용 중인 코드입니다.');
+           }
+        }
+    });//사용중인 코드가 중복이 불가능하게 처리
+// }
+    
+});
+</script>
+
 </html>
