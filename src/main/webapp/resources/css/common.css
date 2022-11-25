@@ -206,10 +206,10 @@ a {
 	width: 1200px
 }
 
-input[type=text] {
-	width: -webkit-fill-available;
-	height: -webkit-fill-available;
-}
+/* input[type=text] { */
+/* 	width: -webkit-fill-available; */
+/* 	height: -webkit-fill-available; */
+/* } */
 
 textarea {
 	width: -webkit-fill-available;

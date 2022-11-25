@@ -71,9 +71,7 @@
 	<div class="gird-wrap">
 		<div class="container">
 			<div class="item item1">
-			<c:if test="${loginInfo}">
-				<span>${loginInfo.name} 님반갑습니다</span>
-				</c:if>
+				<span><strong>${vo.name}</strong> 님 반갑습니다! </span>
 			</div>
 			<div class="item item2">
 				<h5>정보수정</h5>

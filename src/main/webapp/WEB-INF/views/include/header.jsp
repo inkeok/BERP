@@ -70,7 +70,6 @@ body {
 			<div class="frame-center">
 			<c:if test="${empty loginInfo}">
 				<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
-				
 			</c:if>
 
 			<c:if test="${not empty loginInfo}">
