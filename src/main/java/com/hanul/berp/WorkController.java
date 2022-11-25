@@ -218,12 +218,6 @@ public class WorkController {
 		public String andHoliday(String vo) {
 			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
 			
-			System.out.println(dto.getEmployee_id());
-			System.out.println(dto.getDepartment_id());
-			System.out.println(dto.getCompany_cd());
-			System.out.println(dto.getStart_holiday());
-			System.out.println(dto.getEnd_holiday());
-			System.out.println(dto.getWork_code());
 			try {
 				return dao.andHoliday(dto)+"";
 			} catch (Exception e) {
@@ -246,7 +240,7 @@ public class WorkController {
 		@ResponseBody @RequestMapping(value="/andSearch", produces="text/html; charset=utf-8")
 		public String andSearch(int employee_id) {
 			
-			System.out.println("?");
+		
 			
 			return gson.toJson(dao.search(employee_id));
 		}
