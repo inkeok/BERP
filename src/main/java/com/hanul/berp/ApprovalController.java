@@ -2,6 +2,8 @@ package com.hanul.berp;
 
 
 
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -170,6 +172,11 @@ public class ApprovalController {
 	@RequestMapping("/insertLocker.ap")
 	public String insertLocker(Ing_tableVO vo, int employee_id,
 			MultipartFile file, HttpServletRequest request) {
+		
+		if( ! file.isEmpty() ) {
+			vo.setFile_name( file.getOriginalFilename() );
+			vo.setFile_path( fileUtility.fileUpload("berp", file, request) );
+		}
 				
 		dao.insertLocker(vo);
 		return "redirect:lockerList.ap?employee_id="+employee_id;
