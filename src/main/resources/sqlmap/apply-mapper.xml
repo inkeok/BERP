@@ -3,6 +3,17 @@
 
 <mapper namespace="apply">
 
+<!-- 사원 저장처리 후 합격자리스트 삭제 -->
+
+<delete id="delete_pass">
+delete from apply_board where apply_num = #{apply_num}
+
+</delete>
+
+
+
+
+
 <select id="applicant_list" resultType="apply.ApplyVO">
 select a.*, recruit_title,
  decode (apply_check, 'Y', '합격',  

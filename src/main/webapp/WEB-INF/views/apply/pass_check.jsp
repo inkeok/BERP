@@ -186,22 +186,32 @@ a:link, a:visited {
 					<th>지원자번호</th>
 					<th>이름</th>
 					<th>전화번호</th>
-				</tr>
-			</thead>
-			<c:forEach items='${applicants}' var='vo'>
-				<tbody>
-					<tr class="tr-start">
-						<td>${vo.recruit_num}</td>
-						<td>${vo.recruit_title}</td>
-						<td>${vo.apply_num }</td>
-						<td><a
-							href="fillout.apply?recruit_num=${vo.recruit_num }">
-								${vo.apply_name } </a></td>
-						<td>${vo.apply_phone }</td>
-					</tr>
-				</tbody>
-			</c:forEach>
-		</table>
+	
+</tr>
+<c:forEach items='${applicants}' var='vo'>
+<tr>
+<td>${vo.recruit_num}</td>
+<td>${vo.recruit_title}</td>
+	
+	<td>${vo.apply_num }</td>
+	<td style="text-align:left"><a href="register_em.apply?apply_num=${vo.apply_num }">
+	${vo.apply_name }
+	</a>
+	</td>
+	<%-- 
+	<td>
+	 <fmt:formatDate value="${vo.recruit_start}" pattern="yyyy-MM-dd"/>
+	~
+	 <fmt:formatDate value="${vo.recruit_end}" pattern="yyyy-MM-dd"/>
+	
+	</td>
+	 --%>
+ 	<td>${vo.apply_phone }</td>
+	
+	
+</tr>
+</c:forEach>
+</table>
 	</div>
 
 	<script>
