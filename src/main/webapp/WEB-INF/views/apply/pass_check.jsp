@@ -86,7 +86,7 @@ a:link, a:visited { text-decoration: none;  color:inherit; }
 <td>${vo.recruit_title}</td>
 	
 	<td>${vo.apply_num }</td>
-	<td style="text-align:left"><a href="fillout.apply?recruit_num=${vo.recruit_num }">
+	<td style="text-align:left"><a href="register_em.apply?apply_num=${vo.apply_num }">
 	${vo.apply_name }
 	</a>
 	</td>
