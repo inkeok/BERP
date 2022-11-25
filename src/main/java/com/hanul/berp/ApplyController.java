@@ -140,7 +140,7 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "apply/pass_check";
+		return "side/apply/pass_check";
 	}
 	
 	@RequestMapping("/applicantList.apply")
@@ -313,7 +313,7 @@ public class ApplyController {
 		model.addAttribute("code_value", employee_pattern);
 		
 		
-		return "apply/applyList";
+		return "layout/apply/applyList";
 	}
 	/////////////////////////////////////이력서 첨부파일/////////////////////////////////////////////////
 	// 파일업로드
