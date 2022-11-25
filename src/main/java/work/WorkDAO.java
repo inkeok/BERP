@@ -107,9 +107,9 @@ public class WorkDAO {
 		
 		return sql.selectList("work.search",employee_id);
 	}
-	public List<WorkVO> andEndSearch(int employee_id) {
+	public WorkVO andEndSearch(int employee_id) {
 		
-		return sql.selectList("work.andEndSearch", employee_id);
+		return sql.selectOne("work.andEndSearch", employee_id);
 	}
 	
 	public int andHoliday(HolidayVO vo){
