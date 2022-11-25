@@ -50,12 +50,38 @@
 		</tr>
 		<tr><th>첨부파일</th>
 			<td  colspan='3'>
-				<input type="file" id='file' name='file'>
-				<c:if test='${not empty submitListDetail.file_name }'>
+			<label>
+				<input type="file" id='file' name='file' style='display: none'>
+				<span id='fileIcon' class="material-symbols-outlined" style='display: none'>
+				draft
+				</span>
+			</label>
+				<c:if test='${not empty lockerListDetail.file_name }'>
 				<a class='file'>${lockerListDetail.file_name}</a>
 				</c:if>
+				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined">
+				delete
+				</span></a>
+			
 			</td>	
 		</tr>
+<!-- 		<tr><th>첨부파일</th> -->
+<!-- 			<td  colspan='3'> -->
+<!-- 			<label> -->
+<!-- 				<input type="file" id='file' name='file' style='display: none'> -->
+<%-- 				<c:if test="${empty lockerListDetail.file_name }"> --%>
+<!-- 				<button id='btn'>파일첨부</button> -->
+<%-- 				</c:if> --%>
+<!-- 			</label> -->
+<%-- 				<c:if test='${not empty lockerListDetail.file_name }'> --%>
+<%-- 				<a class='file'>${lockerListDetail.file_name}</a> --%>
+<%-- 				</c:if> --%>
+<%-- 				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined"> --%>
+<!-- 				delete -->
+<!-- 				</span></a> -->
+			
+<!-- 			</td>	 -->
+<!-- 		</tr> -->
 	</table>
 </form>
 </div>
@@ -65,6 +91,8 @@
 <a class='btn-empty' id='postBack'>이전으로</a>
 </div>
 <script>
+
+
 
 //서브밋 할 때
 $('#postSubmit').click(function(){
@@ -113,6 +141,22 @@ $('#department_name').change(function(){
 // 	$('#postForm').attr('action', 'post.ap');
 // 	$('#postForm').submit();
 });
+
+
+$('.file').click(function(){
+	$(this).attr('href'
+			, 'downloadLocker.ap?employee_id=${loginInfo.employee_id}&no=${lockerListDetail.no}&url=' + $(location).attr('href'));
+	console.log(this.getAttribute('href'));
+});
+
+//11.24 delete ing..
+$('#deleteFile').click(function(){
+		$('.file').text('');			//선택한 파일명 안보이게
+		$(this).css('display', 'none');	//파일삭제 이미지도 안보이게
+		$('#file').val('');				//선택한 file태그를 초기화
+		$('#fileIcon').css('display', 'block');
+});
+
 
 
 

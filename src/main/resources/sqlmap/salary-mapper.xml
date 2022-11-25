@@ -63,7 +63,15 @@
 	
 		where e.employee_id = #{employee_id}
 	</select>
-
+	<update id="update_salary">
+	update salary set salary=#{salary}, commission_pct=#{commission_pct}
+	where employee_id = #{employee_id}
+	
+	</update>
+	<insert id="insert_bonus">
+	INSERT into bonus (employee_id, bonus, bonus_comment)
+	values (#{employee_id}, #{bonus}, #{bonus_comment})
+	</insert>
 
 
 
@@ -84,14 +92,16 @@
 	
 	<insert id='andInsertBonus'>
 		insert into bonus (employee_id, bonus, bonus_date, bonus_comment)
-		values (#{employee_id}, #{bonus}, #{bonus_date}, #{bonus_commnet})
+		values (#{employee_id}, #{bonus, jdbcType=VARCHAR}, #{bonus_date, jdbcType=VARCHAR}, #{bonus_commnet, jdbcType=VARCHAR})
 	</insert>
 	
 	<select id='andBonusList' resultType="salary.BonusVO">
-		select b.*, e.name, e.employee_pattern c_employee_pattern, e.position c_position, d.department_name
+		select b.*, e.name, e.employee_pattern c_employee_pattern, c.code_name c_position, d.department_name
 		from bonus b join employees e
 		on b.employee_id = e.employee_id join departments d
-		on e.department_id = d.department_id
+		on e.department_id = d.department_id join common_code c
+		on e.position = c.code_value
+		order by bonus_date desc
 	</select>
 	
 	<update id='andCommissionSave'>
@@ -105,5 +115,21 @@
 		set salary = #{salary}
 		where employee_id = #{employee_id}
 	</update>
+	
+	<select id='andMyBonusList' resultType="salary.BonusVO">
+		select *
+		from bonus
+		where employee_id = #{employee_id}
+	</select>
+	
+	<select id='andMySalaryVo' resultType='salary.SalaryVO'>
+		select s.*, e.*, d.*, c.code_name c_position, c2.code_name c_employee_pattern
+		from salary s join employees e
+		on s.employee_id = e.employee_id join departments d
+		on e.department_id = d.department_id join common_code c
+		on e.position = c.code_value join common_code c2
+		on e.employee_pattern = c2.code_value
+		where s.employee_id = #{employee_id}
+	</select>
 
 </mapper>

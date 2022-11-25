@@ -1,6 +1,8 @@
 package work;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,63 +26,80 @@ public class WorkDAO {
 	 * return sql.selectList("work.list"); }
 	 */
 	
-	public WorkVO workInfo(String id) {
+	public WorkVO workInfo(int employee_id) {
 		
-		return sql.selectOne("work.workInfo", id);
+		return sql.selectOne("work.workInfo", employee_id);
 	}
 
 	
-	public int work_end_input(String end_work) {
+	public int work_end_input(String end_work, int employee_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("end_work", end_work);
+		map.put("employee_id",employee_id);
 		
-		
-		return sql.update("work.end_work",end_work);
+		return sql.update("work.end_work",map);
 	}
 	
 	
-	public int work_start_input(String start_work) {
+	public int work_start_input(String start_work, int employee_id, int department_id, String company_cd ) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		return sql.insert("work.start_work");
+		map.put("start_work", start_work);
+		map.put("employee_id", employee_id);
+		map.put("department_id", department_id);
+		map.put("company_cd", company_cd);
+		
+		
+		
+		return sql.insert("work.start_work", map);
 	}
 
-	public EmpVO empInfo(String id) {
+	public EmpVO empInfo(int employee_id) {
 		
-		return sql.selectOne("work.empInfo", id);
+		return sql.selectOne("work.empInfo", employee_id);
 	}
 	
 	public List<WorkResultVO> rList() {
 		
 		return sql.selectList("work.list");
 	}
-	public List<WorkResultVO> workResult() {
+	public List<WorkResultVO> workResult(int employee_id) {
 		
-		return sql.selectList("work.workResult");
+		return sql.selectList("work.workResult", employee_id);
 	}
 	
 	public List<WorkResultVO> rList2() {
 		
 		return sql.selectList("work.list2");
 	}
-	public List<WorkResultVO> holiday_list() {
+	public List<WorkResultVO> holiday_list(int employee_id) {
 		
-		return sql.selectList("work.holiday_list");
+		return sql.selectList("work.holiday_list", employee_id);
 	}
 
 	public List<CommonCodeVO> codeList(){
 		
 		return sql.selectList("work.codeList");
 	}
-	public int holiday_submit(HolidayVO vo){
+	public int holiday_submit(String start_holiday, String end_holiday,int employee_id, int department_id, String company_cd,String work_code ){
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		return sql.insert("work.holiday_submit", vo);
+		map.put("start_holiday", start_holiday);
+		map.put("end_holiday", end_holiday);
+		map.put("employee_id", employee_id);
+		map.put("department_id", department_id);
+		map.put("company_cd", company_cd);
+		map.put("work_code", work_code);
+		return sql.insert("work.holiday_submit", map);
 	}
 	
-	public List<HolidayResultVO> holiday_submit_list(){
+	public List<HolidayResultVO> holiday_submit_list(int employee_id ){
 		
-		return sql.selectList("work.holiday_submit_list");
+		return sql.selectList("work.holiday_submit_list", employee_id);
 	}
-	public List<HolidayVO> holidayList(){
+	public List<HolidayVO> holidayList(int employee_id){
 		
-		return sql.selectList("work.holidayList");
+		return sql.selectList("work.holidayList", employee_id);
 	}
 	
 	public List<HolidayVO> holidayAllList(){
@@ -107,9 +126,9 @@ public class WorkDAO {
 		
 		return sql.selectList("work.search",employee_id);
 	}
-	public List<WorkVO> andEndSearch(int employee_id) {
+	public WorkVO andEndSearch(int employee_id) {
 		
-		return sql.selectList("work.andEndSearch", employee_id);
+		return sql.selectOne("work.andEndSearch", employee_id);
 	}
 	
 	public int andHoliday(HolidayVO vo){
@@ -139,6 +158,7 @@ public class WorkDAO {
 		
 		return sql.selectList("work.andHolidayIndi_List", employee_id);
 	}
+	
 		public int andWork_start_input(WorkVO dto) {
 		
 		return sql.insert("work.andStart_work",dto);

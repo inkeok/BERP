@@ -140,24 +140,19 @@ td button:nth-child(1) {
 	<h2 class="center hrlist">사원별 급여조회</h2>
 	
 	<form method="post" action="list.sa" class="list">
-	<div id='list-top' class='w-px1200'>
-	<ul>
-		<li>
-			<select name='department_id'  onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
-				<option value='-1'>전체 유형</option>
-				<c:forEach items='${departments}' var='c'>
-				<option ${department_name eq c.department_name ? 'selected' : '' } 				
-				value='${c.department_id}' > ${c.department_name }</option>
-				</c:forEach>
-				
-			</select>
-		
-		</li>
-		
-	
-	</ul>
-	
-</div>
+	<div id='list-top' class=''>
+		<ul>
+			<li>
+				<select name='department_id'  onchange='$("form").submit()'> <!-- name줘야 전달가넝 -->
+					<option value='-1'>전체 유형</option>
+					<c:forEach items='${departments}' var='c'>
+					<option ${department_name eq c.department_name ? 'selected' : '' } 				
+						value='${c.department_id}' > ${c.department_name }</option>
+					</c:forEach>
+				</select>
+			</li>
+		</ul>
+	</div>
 		<div class="w-px1600">
 			<table class="table-hover">
 				<colgroup>
@@ -183,15 +178,13 @@ td button:nth-child(1) {
 					<th>업무형태</th>
 					<th>기본급여</th>
 					<th>정보수정</th>
-				
-					
 					
 				</tr>
 				
 			</thead>
 				<c:forEach items="${list}" var="vo">
 			<tbody>
-				<tr class="tr-start" onclick="location.href='modify.sa?id=${vo.employee_id}'">
+				<tr class="tr-start" >
 					<td>${vo.employee_id}</td>
 					<td>${vo.department_name}</td>
 					<td>${vo.name}</td>
@@ -200,8 +193,8 @@ td button:nth-child(1) {
 					<td>${vo.position_name}</td>
 					<td>${vo.employee_pattern_name}</td>
 					<td>$${vo.salary}</td>
-					<td><button class=''>정보수정</button>
-						<button class=>상여금지급</button>
+					<td><button type="button" onclick='location.href="modify.sa?id=${vo.employee_id}"' class=''>정보수정</button>
+						<button type="button" onclick='location.href="bonus.sa?id=${vo.employee_id}"'  class=''>상여금지급</button>
 					</td>
 				</tr>
 			</tbody>

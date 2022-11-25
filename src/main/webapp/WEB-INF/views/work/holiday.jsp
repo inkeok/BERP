@@ -210,6 +210,7 @@ ul li {
 			</tr>
 		</thead>
 		<tbody>
+			
 			<c:forEach items="${holiday_submit_list}" var="hol">
 				<tr>
 					<td><fmt:formatDate value="${hol.holiday_date}"

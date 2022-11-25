@@ -41,6 +41,14 @@ a {
 	cursor: pointer;
 }
 
+.hrlist{
+	text-align : center;
+ 	margin : 1rem 0 ;
+ 	color : #000000;
+ 	font-size : 35px;
+ 	font-family: 'Noto Sans KR' !important;
+}
+
 .sec-font{
 	font-family: 'Nanum Gothic', sans-serif;
 }

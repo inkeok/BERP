@@ -168,7 +168,7 @@ public class RecruitController {
 	@RequestMapping("/list.rec")
 	public String recruitList(Model model
 		, @RequestParam(defaultValue="all") String employee_pattern
-			//, @RequestParam(defaultValue="all") String career
+			
 			) {
 		//사원조회
 		List<RecruitVO> recruit ;

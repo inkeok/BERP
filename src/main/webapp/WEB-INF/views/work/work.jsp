@@ -65,6 +65,7 @@ tbody td:hover:before {
 </style>
 </head>
 <body>
+
 	<a action="work_end_input" method="post" id="input" />
 	<div class="row">
 		<div class="col-12">
@@ -178,7 +179,7 @@ tbody td:hover:before {
 	</div>
 
 	<!--  work_result table 에서 가져온다 -->
-	<table style="width : 1100px;">
+	<table style="width : 1140px;">
 		<thead>
 			<tr>
 				<th scope="col">일자</th>
@@ -260,7 +261,7 @@ tbody td:hover:before {
 				end_work : $('#end_work').val()
 			},
 			success : function(response) {
-				console.log(end_work);
+				console.log($('#end_work').val());
 				if (response)
 					alert('퇴근 되었습니다');
 			}
@@ -274,7 +275,7 @@ tbody td:hover:before {
 				start_work : $('#start_work').val()
 			},
 			success : function(response) {
-				console.log(start_work);
+				console.log($('#start_work').val());
 				if (response) {
 					alert('출근 되었습니다');
 					/* 	if($('#start_work').val() != null ){
