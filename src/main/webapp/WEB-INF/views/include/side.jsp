@@ -43,14 +43,62 @@
 							<div class="side-menu">
 								<a href="#" class="nav__link  nav-start"> 					
 									<ion-icon name="home-outline" class="nav__icon"></ion-icon>
-									 <span class="nav_name">회사정보</span>
+									 <span class="nav_name">홈으로</span>
+								</a>
+								
+							</div>
+						</div>
+					</li>
+				</ul>
+			
+				<ul class="ul-nav">
+					<li class="">
+						<div class="nav__list">
+							<div class="side-menu">
+								<a href="#" class="nav__link nav-start"> 
+									<ion-icon name="file-tray-full-outline" class="nav__icon"></ion-icon> 
+									 <span class="nav_name">전자 결재</span>
 								</a>
 								<ul class="submenu hide">
-									<li><a href="#">submenu01</a></li>
+									<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
+									<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
+									<li	onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
+									<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>임시 보관함</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="ul-nav">
+					<li class="">
+						<div class="nav__list">
+							<div class="side-menu">
+								<a href="list.hr" class="nav__link  nav-start"> 
+									<ion-icon name="person-circle-outline" class="nav__icon"></ion-icon> 
+									 <span class="nav_name">인사관리</span>
+								</a>
+								<!-- <ul class="submenu hide">
+									<li><a href="list.hr">사원조회</a></li>
 									<li><a href="#">submenu02</a></li>
 									<li><a href="#">submenu03</a></li>
 									<li><a href="#">submenu04</a></li>
 									<li><a href="#">submenu05</a></li>
+								</ul> -->
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="ul-nav">
+					<li class="">
+						<div class="nav__list">
+							<div class="side-menu">
+								<a href="#" class="nav__link  nav-start"> 
+									<ion-icon name="server-outline" class="nav__icon"></ion-icon> 
+									 <span class="nav_name">급여관리</span>
+								</a>
+								<ul class="submenu hide">
+									<li><a href="#">나의 급여보기</a></li>
+									<li><a href="list.sa">사원 급여정보</a></li>
 								</ul>
 							</div>
 						</div>
@@ -65,11 +113,9 @@
 									 <span class="nav_name">채용관리</span>
 								</a>
 								<ul class="submenu hide">
-									<li><a href="#">submenu01</a></li>
-									<li><a href="#">submenu02</a></li>
-									<li><a href="#">submenu03</a></li>
-									<li><a href="#">submenu04</a></li>
-									<li><a href="#">submenu05</a></li>
+									<li><a href="applicantList.apply">지원자 확인</a></li>
+									<li><a href="pass_check.apply">합격자 확인</a></li>
+									
 								</ul>
 							</div>
 						</div>
@@ -79,73 +125,10 @@
 					<li class="">
 						<div class="nav__list">
 							<div class="side-menu">
-								<a href="#" class="nav__link nav-start"> 
+								<a href="common.cd" class="nav__link  nav-start"> 
 									<ion-icon name="settings-outline" class="nav__icon"></ion-icon> 
-									 <span class="nav_name">업무관리</span>
+									 <span class="nav_name">공통코드관리</span>
 								</a>
-								<ul class="submenu hide">
-									<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>보관함</li>
-									<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
-									<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
-									<li	onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<ul class="ul-nav">
-					<li class="">
-						<div class="nav__list">
-							<div class="side-menu">
-								<a href="#" class="nav__link  nav-start"> 
-									<ion-icon name="person-circle-outline" class="nav__icon"></ion-icon> 
-									 <span class="nav_name">인사관리</span>
-								</a>
-								<ul class="submenu hide">
-									<li><a href="#">submenu01</a></li>
-									<li><a href="#">submenu02</a></li>
-									<li><a href="#">submenu03</a></li>
-									<li><a href="#">submenu04</a></li>
-									<li><a href="#">submenu05</a></li>
-								</ul>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<ul class="ul-nav">
-					<li class="">
-						<div class="nav__list">
-							<div class="side-menu">
-								<a href="#" class="nav__link  nav-start"> 
-									<ion-icon name="server-outline" class="nav__icon"></ion-icon> 
-									 <span class="nav_name">급여관리</span>
-								</a>
-								<ul class="submenu hide">
-									<li><a href="#">submenu01</a></li>
-									<li><a href="#">submenu02</a></li>
-									<li><a href="#">submenu03</a></li>
-									<li><a href="#">submenu04</a></li>
-									<li><a href="#">submenu05</a></li>
-								</ul>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<ul class="ul-nav">
-					<li class="">
-						<div class="nav__list">
-							<div class="side-menu">
-								<a href="#" class="nav__link  nav-start"> 
-									<ion-icon name="settings-outline" class="nav__icon"></ion-icon> 
-									 <span class="nav_name">코드관리</span>
-								</a>
-								<ul class="submenu hide">
-									<li><a href="#">submenu01</a></li>
-									<li><a href="#">submenu02</a></li>
-									<li><a href="#">submenu03</a></li>
-									<li><a href="#">submenu04</a></li>
-									<li><a href="#">submenu05</a></li>
-								</ul>
 							</div>
 						</div>
 					</li>
