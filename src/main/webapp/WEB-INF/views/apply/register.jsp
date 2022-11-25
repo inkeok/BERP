@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   -->
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
@@ -25,7 +25,7 @@ select{
 }
 
 table {
-	margin-top : 5px;
+	margin-top : 60px;
 	margin-bottom : 20px;
 /* 	border-top-left-radius: 20px; */
 /*     border-top-right-radius: 20px; */
@@ -78,13 +78,13 @@ tbody td:hover:before {
 </style>
 </head>
 <body>
-	<h3 class="center">신규사원등록</h3>
-	<form action="insert_em.apply" method="post" class="w-px1000">
+	<h3 class="center hrlist">합격자 사원등록</h3>
+	<form action="insert_em.apply" method="post" >
 	
 		<table class="">
 		<colgroup>
 			<col width="200px">
-			<col width="450px">
+			<col width="500px">
 			
 		</colgroup>
 			<tr>
@@ -154,7 +154,7 @@ tbody td:hover:before {
 	
 	<div class='center'>
 		<a class='new-btn' id='save'>저장</a>
-		 <a class='new-btn' href='list.hr'>취소</a>
+		 <a class='new-btn' href='pass_check.apply'>취소</a>
 	</div>
 	<script>
 	$('#save').click(function(){

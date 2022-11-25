@@ -71,7 +71,7 @@ public class ApplyController {
 		model.addAttribute("pattern",pattern);
 		
 		
-		return "apply/register";
+		return "side/apply/register";
 	}
 	
 	
@@ -151,7 +151,7 @@ public class ApplyController {
 		model.addAttribute("vo",vo);
 		
 		
-		return "apply/check";
+		return "side/apply/check";
 	}
 	
 	
@@ -205,7 +205,7 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "apply/applicantList";
+		return "side/apply/applicantList";
 	}
 
 	@RequestMapping("/update.apply")
@@ -352,7 +352,7 @@ public class ApplyController {
 		model.addAttribute("code_value", employee_pattern);
 		
 		
-		return "layout/apply/applyList";
+		return "apply/applyList";
 	}
 	/////////////////////////////////////이력서 첨부파일/////////////////////////////////////////////////
 	// 파일업로드
@@ -489,7 +489,7 @@ public class ApplyController {
 		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
 		model.addAttribute("recruit",recruit);
 		
-		return "apply/fillout";
+		return "side/apply/fillout";
 	}
 	
 		 ////////////////////////////////////////////////////
