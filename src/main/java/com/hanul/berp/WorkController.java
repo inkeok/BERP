@@ -2,6 +2,7 @@ package com.hanul.berp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,18 +34,21 @@ public class WorkController {
 	Gson gson = new GsonBuilder()
 	.setDateFormat("yyyy-MM-dd").create();
 
-	//세션처리 필요
+
 	@RequestMapping("/work")
-	public String work_list(String id, Model model) {
+	public String work_list( Model model, HttpSession session ) {
 
 
-		EmpVO vo = dao.empInfo(id);
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
+		
+		vo = dao.empInfo(vo.getEmployee_id());
 		model.addAttribute("vo", vo);
 
-		WorkVO wVo = dao.workInfo(id);
+		WorkVO wVo = dao.workInfo(vo.getEmployee_id());
 		model.addAttribute("wVo", wVo);
+		System.out.println(session.getAttribute("loginInfo"));
 	
-		List<WorkResultVO> workList = dao.workResult();
+		List<WorkResultVO> workList = dao.workResult(vo.getEmployee_id());
 		
 		model.addAttribute("workList",workList); 
 		
@@ -53,18 +57,17 @@ public class WorkController {
 		return "side/work/work";
 	}
 
-	//세션처리 필요
 	// 퇴근 버튼 눌렀을 때 시간 update
 	@ResponseBody
 	@RequestMapping("/work_end_input")
-	public String work_end_input(Model model, String id, String end_work) {
-
-		EmpVO vo = dao.empInfo(id);
-		model.addAttribute("vo", vo);
+	public String work_end_input(Model model,HttpSession session, String end_work) {
+		
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
+		
+		vo = dao.empInfo(vo.getEmployee_id());
 		
 		
-		
-		dao.work_end_input(end_work);
+		dao.work_end_input(end_work, vo.getEmployee_id());
 		
 		
 		
@@ -72,47 +75,41 @@ public class WorkController {
 		return "work";
 	}
 
-	//세션처리 필요
+
 	//출근버튼 눌렀을 때 시간 insert
 	
 	@ResponseBody
 	@RequestMapping("/work_start_input")
-	public String work_start_input(String start_work, Model model, String id, WorkVO wVo)  {
+	public String work_start_input(String start_work,HttpSession session, Model model
+			)  {
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
 		
 		try {
 			
-			dao.work_start_input(start_work);	
+			dao.work_start_input(start_work, vo.getEmployee_id(), vo.getDepartment_id(), vo.getCompany_cd());	
 		} catch (Exception e) {
 			
-			StringBuffer msg = new StringBuffer("<html>");
-			msg.append("<body>");
-			msg.append("<script>");
-			msg.append("alert('이미 출근 되었습니다');");
-			msg.append("</script>");
-			msg.append("</body>");
-			msg.append("</html>");
-			return msg.toString();	
 		}
-		System.out.println("ajax end");
+		
 		
 		return "work";
 	
 	}
 	
-	//세션처리 필요
-	@RequestMapping("/holiday")
-	public String holiday(String id, Model model ) {
-		EmpVO vo = dao.empInfo(id);
-		model.addAttribute("vo", vo);
 
-		WorkVO wVo = dao.workInfo(id);
-		model.addAttribute("wVo", wVo);
+	@RequestMapping("/holiday")
+	public String holiday(String id, Model model, HttpSession session ) {
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
+		vo = dao.empInfo(vo.getEmployee_id());
+		model.addAttribute("vo",vo);
 		
-		List<WorkResultVO> holiday_list = dao.holiday_list();
+		
+		
+		List<WorkResultVO> holiday_list = dao.holiday_list(vo.getEmployee_id());
 		
 		model.addAttribute("holiday_list",holiday_list); 
 		
-		List<HolidayVO> hoList = dao.holidayList();
+		List<HolidayVO> hoList = dao.holidayList(vo.getEmployee_id());
 		
 		model.addAttribute("hoList", hoList);
 		
@@ -120,7 +117,7 @@ public class WorkController {
 		
 		model.addAttribute("codeList", codeList);
 		
-		List<HolidayResultVO> holiday_submit_list = dao.holiday_submit_list();
+		List<HolidayResultVO> holiday_submit_list = dao.holiday_submit_list(vo.getEmployee_id());
 		
 		model.addAttribute("holiday_submit_list",holiday_submit_list);
 		
@@ -132,17 +129,18 @@ public class WorkController {
 	
 	
 	@RequestMapping("/holiday_submit")
-	public String holiday_submit(HolidayVO vo, String start_holiday, String end_holiday, String work_code) {
+	public String holiday_submit(HttpSession session,String start_holiday, String end_holiday, String work_code) {
 		
-		/* dao.holiday_submit(vo); */
+		 EmpVO vo = (EmpVO) session.getAttribute("loginInfo"); vo =
+		  dao.empInfo(vo.getEmployee_id());
+				
 		
 		System.out.println(start_holiday);
 		System.out.println(end_holiday);
 		System.out.println(work_code);
 		System.out.println("ajax submit");
 		
-		
-		dao.holiday_submit(vo);
+		dao.holiday_submit(start_holiday,end_holiday,vo.getEmployee_id(),vo.getDepartment_id(),vo.getCompany_cd(),work_code);
 		
 		
 		return "side/work/holiday";
