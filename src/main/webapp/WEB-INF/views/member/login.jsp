@@ -1,141 +1,284 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
+	rel="stylesheet">
 <style>
-#l-center{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
+* {
+	box-sizing: border-box;
+	font-family: 'Noto Sans KR', sans-serif;
+	border-radius: 5px;
+}
+
+body {
+	background: url(imgs/loginbg.png) no-repeat;
+	background-size: cover;
+}
+
+.login-wrap {
+	margin-top: 14rem;
+	background-color: #EEEFF1;
+	padding: 2rem 1rem;
+	border-radius: 15px;
+	box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.6);
+}
+
+.login-form {
+	text-align: center;
+	border: none;
+}
+
+.text-field {
+	font-size: 14px;
+	padding: 10px;
+	border: none;
+	width: 260px;
+	margin-bottom: 10px;
+}
+
+.submit-btn {
+	font-size: 14px;
+	border: none;
+	padding: 10px;
+	width: 260px;
+	background-color: #1BBC9B;
+	margin-bottom: 30px;
+	color: white;
+}
+
+.links {
 	text-align: center;
 }
-#l-box{
-	border: 1px solid #cfd0d1;
-	width: 500px;
-	height: 300px;
-	margin: 0 auto;
-}
-#l-img{
-	width: 70px;
-	margin-bottom: 30px;
-	cursor: pointer;
-}
-#naver{
-	background: url("imgs/naverlogin.png") no-repeat center;
-	background-size: cover;
-	border-color: #fff;
-}
-#kakao{
-	background: url("imgs/kakaologin.png") no-repeat center;
-	background-size: cover;
-	border-color: #fff;
-}
-#l-center input[type=text], #l-center input[type=password]{
-	width: 250px;
-	height: 35px;
-	padding: 10px;
-	box-sizing: border-box;
-	margin-bottom: 5px;
+
+.links a {
+	font-size: 12px;
+	color: #9B9B9B;
 }
 
-#l-center input[type=button]{
-	width: 250px;
-	height: 35px;
-	padding: 0;
-	box-sizing: border-box;
-	margin-bottom: 5px;
+/* .login-wrap { */
+/* 	width: 1200px; */
+/* 	height: 400px; */
+/* 	position: relative; */
+/* 	top: 48%; */
+/* 	left: 0%; */
+/* } */
+.container {
+	display: grid;
+	grid-template-columns: 430px 330px;
+	grid-template-rows: 250px 50px;
+	align-items: center; . flex { /*Flexbox for containers*/ display : flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
-::placeholder{
-	font-size: 14px;
-}
-#l-center li{
-	width: 400px;
-}
-#login{
-	cursor: pointer;
-	font-size: 20px;
-}
-#findPw{
-	font-size: 17px;
-	font-weight: normal; 
-	cursor: pointer;
+.waves {
+	position: relative;
+	width: 100%;
+	height: 15vh;
+	margin-bottom: -7px; /*Fix for safari gap*/
+	min-height: 100px;
+	max-height: 150px;
 }
 
+.content {
+	position: relative;
+	height: 20vh;
+	text-align: center;
+	background-color: white;
+}
+
+}
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight:300;
+  letter-spacing: 2px;
+  font-size:48px;
+}
+p {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  font-size:14px;
+  color: #333333;
+}
+
+.header {
+  position:relative;
+  text-align:center;
+/*   background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%); */
+  color:white;
+}
+.logo {
+  width:50px;
+  fill:white;
+  padding-right:15px;
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.inner-header {
+  height:65vh;
+  width:100%;
+  margin: 0;
+  padding: 0;
+}
+
+.flex { /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+
+.content {
+  position:relative;
+  height:20vh;
+  text-align:center;
+  background-color: white;
+}
+
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
 </style>
 </head>
 <body>
-<div id='l-center'>
-<a href="<c:url value='/'/>"><img src="imgs/icons/icon-48x48.png" id='l-img'></a>
-	<div id='l-box'>
-		<ul style='margin: 0; padding: 40px'>
-			<li><input type='text' id='employee_id' name='employee_id' placeholder='EMPLOYEE_ID'></li>
-			<li><input type='password' id='pw' name='pw' placeholder='password'></li>
-			<li><input type='button' onclick='login()' id='login' value='login' class='frontBtn-fill'></li>
-			<hr>
-			<li><input type='button' id='naver'></li>
-			<li><input type='button' id='kakao'></li>
-		</ul>
+	<div class="login-wrap">
+		<div class="login-form container ">
+			<div>
+				이미지 구상중 <img src="" alt="" />
+			</div>
+			<div>
+				<form>
+					<input type="text" name="email" class="text-field"
+						placeholder="아이디"> <input type="password" name="password"
+						class="text-field" placeholder="비밀번호"> <input
+						type="submit" value="로그인" class="submit-btn">
+				</form>
+			</div>
+			<div></div>
+			<div class="links">
+				<a href="#">비밀번호를 잊어버리셨나요?</a>
+			</div>
+		</div>
 	</div>
-	<br>
-	<a id='findPw'>find password</a>
-</div>
-<script>
-const employee_id = document.querySelector('#employee_id');
-const pw = document.querySelector('#pw');
-
-$('#pw').keyup(function(e){
-	if( e.keyCode==13 ) login();
-});
-
-function login(){
-	if( emptyCheck() )	{
-		
-		$.ajax({
-			url: 'checkLogin.mem',
-			data: { employee_id:$('#employee_id').val(), pw:$('#pw').val() },
-			success: function( response ){
-				if( response )
-					location = '<c:url value="/"/>';
-				else{
-					alert('사원번호나 비밀번호가 일치하지 않습니다!');
-					$('#employee_id').focus();
-				}
+<div>
+	<div class="header">
+		<div>
+			<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+				viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+				<defs>
+				<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+				</defs>
+				<g class="parallax">
+				<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+				<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+				<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+				<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+				</g>
+			</svg>
+			</div>
+			</div>
 				
-			},error: function(req, text){
-				alert(text+ ':' + req.status);
-			}
+			<div class="content flex">
+	</div>
+</div>
+	<script>
+		const employee_id = document.querySelector('#employee_id');
+		const pw = document.querySelector('#pw');
+
+		$('#pw').keyup(function(e) {
+			if (e.keyCode == 13)
+				login();
 		});
-	}
-}
 
-$('#login').click(function(){
-	login();
-});
+		function login() {
+			if (emptyCheck()) {
 
-function emptyCheck(){
-	var ok = true;
-	$('.chk').each(function(){
-		if( $(this).val()=='' ){
-			var item = $(this).attr('placeholder')
-						? $(this).attr('placeholder') : $(this).attr('title');
-			alert(item + ' 입력하세요!');
-			$(this).focus();
-			ok = false;
-			return ok;			
+				$.ajax({
+					url : 'checkLogin.mem',
+					data : {
+						employee_id : $('#employee_id').val(),
+						pw : $('#pw').val()
+					},
+					success : function(response) {
+						if (response)
+							location = '<c:url value="/"/>';
+						else {
+							alert('사원번호나 비밀번호가 일치하지 않습니다!');
+							$('#employee_id').focus();
+						}
+
+					},
+					error : function(req, text) {
+						alert(text + ':' + req.status);
+					}
+				});
+			}
 		}
-	});
-	return ok;
-}
 
-</script>
+		$('#login').click(function() {
+			login();
+		});
+
+		function emptyCheck() {
+			var ok = true;
+			$('.chk').each(
+					function() {
+						if ($(this).val() == '') {
+							var item = $(this).attr('placeholder') ? $(this)
+									.attr('placeholder') : $(this)
+									.attr('title');
+							alert(item + ' 입력하세요!');
+							$(this).focus();
+							ok = false;
+							return ok;
+						}
+					});
+			return ok;
+		}
+	</script>
 
 </body>
 </html>
