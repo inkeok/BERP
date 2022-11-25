@@ -145,7 +145,7 @@ TO_DATE(#{start_holiday, jdbcType=VARCHAR},'YYYY-MM-DD')+1)
 <![CDATA[
 	INSERT INTO 
 holiday(holiday_date, employee_id, department_id,company_cd,work_code)
- SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , '20120001','10','1000',#{work_code}
+ SELECT TO_DATE(#{start_holiday},'YYYY-MM-DD') + LEVEL - 1 AS dates , #{employee_id},#{department_id},#{company_cd},#{work_code}
    FROM dual 
 CONNECT BY LEVEL <= 
 (TO_DATE(#{end_holiday , jdbcType=VARCHAR},'YYYY-MM-DD')

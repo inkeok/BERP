@@ -7,6 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import emp.CompanyVO;
+import emp.DepartmentVO;
+import emp.EmpVO;
+import emp.PatternVO;
 import recruit.CommonCodeVO;
 import recruit.RecruitVO;
 
@@ -14,6 +18,47 @@ import recruit.RecruitVO;
 public class ApplyDAO {
 
 	@Autowired private SqlSession sql;
+	
+	public void employee_insert(EmpVO vo) {
+		sql.insert("emp.insert", vo);
+		
+	}
+	
+	
+	
+	//사원저장처리
+	public List<PatternVO> pattern() {
+		return sql.selectList("emp.employee_pattern");
+	}
+
+	
+	//직급조회
+	public List<EmpVO> position() {
+		return sql.selectList("emp.position");
+	}
+	
+	//회사코드조회
+	public List<CompanyVO> company() {
+		return sql.selectList("emp.company"); 
+	}
+
+	//사원목록조회
+	public List<EmpVO> employee_list(){
+		return sql.selectList("emp.empList");
+	}
+	
+	//부서목록조회
+	public List<DepartmentVO> departments() {
+		return sql.selectList("emp.departments");
+	}
+	
+	//사원등록 후 삭제
+	public void delete_pass(int apply_num) {
+		sql.delete("apply.delete_pass", apply_num);
+		
+	}
+	
+	
 	
 	public List<ApplyVO> applicant_list() {
 		return sql.selectList("apply.applicant_list");
