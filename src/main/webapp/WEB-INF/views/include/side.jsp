@@ -42,16 +42,20 @@
 					<li class="">
 						<div class="nav__list">
 							<div class="side-menu">
-								<a href="#" class="nav__link  nav-start"> 					
-									<ion-icon name="home-outline" class="nav__icon"></ion-icon>
-									 <span class="nav_name">홈으로</span>
+								<a href="#" class="nav__link  nav-start"> 
+									<ion-icon name="server-outline" class="nav__icon"></ion-icon> 
+									 <span class="nav_name">근태관리</span>
 								</a>
-								
+								<ul class="submenu hide">
+									<li><a href="holiday">휴무관리</a></li>
+									<li><a href="work">출/퇴근관리</a></li>
+									<li><a href="workList">전체사원 근태관리</a></li>
+								</ul>
 							</div>
 						</div>
 					</li>
 				</ul>
-			
+				
 				<ul class="ul-nav">
 					<li class="">
 						<div class="nav__list">
@@ -100,6 +104,7 @@
 								<ul class="submenu hide">
 									<li><a href="#">나의 급여보기</a></li>
 									<li><a href="list.sa">사원 급여정보</a></li>
+									<li><a href="list.sa">사원 급여정보</a></li>
 								</ul>
 							</div>
 						</div>
@@ -135,6 +140,18 @@
 					</li>
 				</ul>
 			</div>
+<!-- 			<ul class="ul-nav"> -->
+<!-- 					<li class=""> -->
+<!-- 						<div class="nav__list"> -->
+<!-- 							<div class="side-menu"> -->
+<!-- 								<a href="" class="nav__link  nav-start"> 					 -->
+<!-- 									<ion-icon name="home-outline" class="nav__icon"></ion-icon> -->
+<!-- 									 <span class="nav_name">홈으로</span> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
 				<a href="/berp" class="nav__link"> 
 					<ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
 	 				<span class="nav_name">Log out</span></a>

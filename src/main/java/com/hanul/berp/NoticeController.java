@@ -259,8 +259,13 @@ public class NoticeController {
 			return gson.toJson(dao.notice_list());
 		}
 		
-		
-		
+		@ResponseBody @RequestMapping(value="/detail_notice_list",produces="text/html; charset=utf-8")
+		public String andDetailNotice(int notice_num) {
+			
+			
+			
+			return dao.notice_read(notice_num)+"";
+		}
 		
 	
 }
