@@ -25,7 +25,8 @@
 <li>
 <input type="password" id="apply_pw" class="chk"  name="apply_pw" placeholder="password">
 </li>
-<li><input type='button' value='확인' id='check'></li>
+<li><a type='button'  id='check'>확인</a></li>
+<li><a type='button'   href='applyList.apply'>취소</a></li>
 
 </ul>
 </div>
