@@ -9,6 +9,22 @@
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 <link href='js/approval.js?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
+.googleIcon{
+	font-size: 16px;
+	vertical-align: baseline;
+	margin-left: 5px;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+/* } */
+/* #file{ */
+/* 	display: none; */
+/* } */
+
 </style>
 </head>
 <body>
@@ -48,19 +64,15 @@
 		<tr><th class='content'>내용</th>
 			<td><textarea id='textarea' name='document_content'>${lockerListDetail.document_content }</textarea></td>
 		</tr>
-		<tr><th>첨부파일</th>
-			<td  colspan='3'>
-			<label>
-				<input type="file" id='file' name='file' style='display: none'>
-				<span id='fileIcon' class="material-symbols-outlined" style='display: none'>
-				draft
-				</span>
-			</label>
+		<tr><th height='47px'>첨부파일</th>
+			<td colspan='3' style='vertical-align: middle'>
+				<input type="file" id='file' name='file' 
+				style='display: none'>
 				<c:if test='${not empty lockerListDetail.file_name }'>
 				<a class='file'>${lockerListDetail.file_name}</a>
 				</c:if>
-				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined">
-				delete
+				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined googleIcon">
+				close
 				</span></a>
 			
 			</td>	
@@ -149,12 +161,12 @@ $('.file').click(function(){
 	console.log(this.getAttribute('href'));
 });
 
-//11.24 delete ing..
+
 $('#deleteFile').click(function(){
-		$('.file').text('');			//선택한 파일명 안보이게
-		$(this).css('display', 'none');	//파일삭제 이미지도 안보이게
-		$('#file').val('');				//선택한 file태그를 초기화
-		$('#fileIcon').css('display', 'block');
+		$('.file').text('');			
+		$(this).css('display', 'none');	
+		$('#file').val('');				
+		$('#file').css('display', 'block');
 });
 
 

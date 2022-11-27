@@ -191,10 +191,10 @@ p {
 			</div>
 			<div>
 				<form>
-					<input type="text" name="email" class="text-field"
-						placeholder="아이디"> <input type="password" name="password"
+					<input type="text" id='employee_id' name="employee_id" class="text-field"
+						placeholder="아이디"> <input type="password" name="pw" id='pw'
 						class="text-field" placeholder="비밀번호"> <input
-						type="submit" value="로그인" class="submit-btn">
+						type="button" onclick='login()' id='login' value="로그인" class="submit-btn">
 				</form>
 			</div>
 			<div></div>
