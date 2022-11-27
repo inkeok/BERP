@@ -79,9 +79,6 @@
 	</td>
 </tr>
 
-
- 
-
 </table>
 <div class='btnSet'>
 	<a class='btn-fill' id='save'>저장</a>

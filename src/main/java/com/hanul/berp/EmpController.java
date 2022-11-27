@@ -67,8 +67,11 @@ public class EmpController {
 	@RequestMapping("/insert.hr")
 	public String insert(EmpVO vo) {
 		// 화면에서 입력한 정보를 DB에 신규저장처리한 후
+		System.out.println(vo.getCompany_cd());
+		
 		dao.employee_insert(vo);
 		// 응답화면 연결
+		
 		return "redirect:list.hr";
 	}
 
@@ -80,11 +83,14 @@ public class EmpController {
 		List<DepartmentVO> departments = dao.departments();
 		List<CompanyVO> company = dao.company();
 		List<EmpVO> position = dao.position();
+		List<PatternVO> pattern = dao.pattern();
 		
 		model.addAttribute("departments", departments);
 		model.addAttribute("company", company);
 		model.addAttribute("emp", emp);
 		model.addAttribute("position", position);
+		model.addAttribute("pattern",pattern);
+		
 		return "side/emp/new";
 	}
 

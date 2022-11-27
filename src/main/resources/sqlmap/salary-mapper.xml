@@ -2,26 +2,76 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="salary">
 
-<select id="empList" resultType="emp.EmpVO">
-	select e.*, d.department_name,
-	c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
-	from employees e left outer join departments d
-	on e.department_id = d.department_id
-	left outer join company c
-	on e.company_cd = c.company_cd
-	left outer join common_code cd
-	on e.position = cd.code_value
-	left outer join common_code ccd
-	on e.employee_pattern = ccd.code_value
-	order by employee_id
+
+<select id="saList" resultType="salary.SalaryVO">
+        select *
+        from salary
 </select>
 
-
-
-
-
-
-
+<select id="empList" resultType="salary.SalEmpVO">
+		select e.*, d.department_name, s.salary, s.commission_pct,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = ccd.code_value 
+		left outer join salary s
+		on e.employee_id = s.employee_id
+		order by e.employee_id
+	</select>
+	<select id="departments" resultType="salary.SalEmpVO">
+		SELECT department_id, department_name
+		FROM departments
+		order by department_id
+	</select>
+<select id="empList_d" resultType="salary.SalEmpVO">
+		select e.*, d.department_name, s.salary, s.commission_pct,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = ccd.code_value left outer join salary s
+		on e.employee_id = s.employee_id
+		where e.department_id = #{department_id}
+		order by e.employee_id
+	</select>
+	<select id="modInfo" resultType="salary.SalEmpVO">
+		select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name
+		employee_pattern_name, s.salary, s.commission_pct 
+		from employees e left outer join departments d
+		on
+		e.department_id = d.department_id
+		left outer join company c
+		on
+		e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position
+		= cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern =
+		cd.code_value left outer join salary s
+		on e.employee_id = s.employee_id
+	
+		where e.employee_id = #{employee_id}
+	</select>
+	<update id="update_salary">
+	update salary set salary=#{salary}, commission_pct=#{commission_pct}
+	where employee_id = #{employee_id}
+	
+	</update>
+	<insert id="insert_bonus">
+	INSERT into bonus (employee_id, bonus, bonus_comment)
+	values (#{employee_id}, #{bonus}, #{bonus_comment})
+	</insert>
 
 
 

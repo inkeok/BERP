@@ -13,6 +13,9 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 <style>
+body{
+width : 1200px;
+}
 input {
 	display: none;
 }
@@ -62,6 +65,7 @@ tbody td:hover:before {
 </style>
 </head>
 <body>
+
 	<a action="work_end_input" method="post" id="input" />
 	<div class="row">
 		<div class="col-12">
@@ -72,12 +76,11 @@ tbody td:hover:before {
 					<i class="bx bx-buildings"></i>
 				</h1>
 
-				<div class="page-title-right">
-					<ol class="breadcrumb m-0">
-						<li class="breadcrumb-item"><a href="work">근태 </a></li>
-						<li class="breadcrumb-item"><a href="holiday"> 휴무관리</a></li>
-					</ol>
-				</div>
+				<ul style="text-align: right;">
+		<li><a href="work">근태</a></li>
+		<li><a href="holiday"> 휴무관리</a></li>
+	</ul>
+
 
 			</div>
 		</div>
@@ -138,7 +141,7 @@ tbody td:hover:before {
 										<i class="bx bx-time-five"></i>
 									</span>
 								</div>
-								<h5 class="font-size-16 mb-0">이번달 근무시간</h5>
+								<h5  class="font-size-16 mb-0">이번달 근무시간</h5>
 							</div>
 							<h5 class="font-size-15">
 								<span class="float-end">31%</span>
@@ -176,7 +179,7 @@ tbody td:hover:before {
 	</div>
 
 	<!--  work_result table 에서 가져온다 -->
-	<table style="width : 1400px;">
+	<table style="width : 1140px;">
 		<thead>
 			<tr>
 				<th scope="col">일자</th>
@@ -187,7 +190,7 @@ tbody td:hover:before {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach begin="1" end="7" items="${workList}" var="woR">
+			<c:forEach begin="0" end="7" items="${workList}" var="woR">
 				<tr>
 					<td><fmt:formatDate value="${woR.work_date}" dateStyle="full"
 							pattern="yyyy년MM월dd일" /></td>
@@ -258,7 +261,7 @@ tbody td:hover:before {
 				end_work : $('#end_work').val()
 			},
 			success : function(response) {
-				console.log(end_work);
+				console.log($('#end_work').val());
 				if (response)
 					alert('퇴근 되었습니다');
 			}
@@ -272,7 +275,7 @@ tbody td:hover:before {
 				start_work : $('#start_work').val()
 			},
 			success : function(response) {
-				console.log(start_work);
+				console.log($('#start_work').val());
 				if (response) {
 					alert('출근 되었습니다');
 					/* 	if($('#start_work').val() != null ){
@@ -287,5 +290,6 @@ tbody td:hover:before {
 			}
 		});
 	}
+	
 </script>
 </html>

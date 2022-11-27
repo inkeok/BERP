@@ -109,12 +109,16 @@ select::-ms-expand {
   box-shadow: 0 3px 25px rgba(255, 255, 255, 0.1);
 }
 
+.bottom {
+margin-bottom : 10rem;
+}
+
 </style>
 </head>
 <body>
 <div class="body-content">
 	<h3>채용공고 리스트</h3>
-	<form method='post' action='list.rec'>
+	<form class='bottom' method='post' action='list.rec'>
 		<div id='list-top' class='w-px1200 '>
 			<select name='employee_pattern' class=''
 					onchange='$("form").submit()'>

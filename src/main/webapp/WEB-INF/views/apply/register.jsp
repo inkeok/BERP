@@ -6,6 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   -->
+ <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src='js/recruit.js?<%=new java.util.Date() %>'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<script src='js/apply_pic.js?<%=new java.util.Date() %>'></script>
+<script src='js/apply.js?<%=new java.util.Date() %>'></script>
+
+
+
 <style>
 h3{
 	margin : 3rem 0;
@@ -15,7 +25,7 @@ select{
 }
 
 table {
-	margin-top : 5px;
+	margin-top : 60px;
 	margin-bottom : 20px;
 /* 	border-top-left-radius: 20px; */
 /*     border-top-right-radius: 20px; */
@@ -68,13 +78,13 @@ tbody td:hover:before {
 </style>
 </head>
 <body>
-	<h3 class="center">신규사원등록</h3>
-	<form action="insert.hr" method="post" class="w-px1000">
+	<h3 class="center hrlist">합격자 사원등록</h3>
+	<form action="insert_em.apply" method="post" >
 	
 		<table class="">
 		<colgroup>
 			<col width="200px">
-			<col width="450px">
+			<col width="500px">
 			
 		</colgroup>
 			<tr>
@@ -82,7 +92,7 @@ tbody td:hover:before {
 				<td><select name="department_id" >
 				<option value="-1">부서선택</option>
 					<c:forEach items="${departments}" var="vo">
-						<option value="${vo.department_id}">${vo.department_id}</option>
+						<option value="${vo.department_id}">${vo.department_name}</option>
 					</c:forEach>
 				</select></td>
 			</tr>
@@ -90,7 +100,7 @@ tbody td:hover:before {
 				<th>회사코드</th>
 				<td><select name="company_cd" style="width:185px">
 				<option value="-1">코드선택</option>
-					<c:forEach items="${emp}" var="vo">
+					<c:forEach items="${company}" var="vo">
 						<option value="${vo.company_cd}">${vo.company_name}</option>
 					</c:forEach>
 				</select></td>
@@ -98,19 +108,19 @@ tbody td:hover:before {
 			<tr>
 				<th class="">사원명</th>
 				<td>
-					<input type="text" name="name" placeholder="성명" style="width:205px; "/>
+					<input type="text" name="name" value="${vo.apply_name }" placeholder="성명" style="width:205px; "/>
 				</td>
 			</tr>
 			<tr>
 				<th class="">이메일</th>
 				<td>
-					<input type="text" name="email" placeholder="이메일" style="width:205px;"/>
+					<input type="text" name="email"  value="${vo.apply_email }" placeholder="이메일" style="width:205px;"/>
 				</td>
 			</tr>
 			<tr>
 				<th class="">전화번호</th>
 				<td>
-					<input type="text" name="phone" placeholder="전화번호" style="width:205px;"/>
+					<input type="text" name="phone"  value="${vo.apply_phone }" placeholder="전화번호" style="width:205px;"/>
 				</td>
 			</tr>
 			<tr>
@@ -139,13 +149,19 @@ tbody td:hover:before {
 				</select></td>
 			</tr>
 		</table>
+		<input type='hidden' name='apply_num' value="${vo.apply_num }">
 	</form>
 	
 	<div class='center'>
-		<a class='new-btn' onclick='$("form").submit()'>저장</a>
-		 <a class='new-btn' href='list.hr'>취소</a>
+		<a class='new-btn' id='save'>저장</a>
+		 <a class='new-btn' href='pass_check.apply'>취소</a>
 	</div>
 	<script>
+	$('#save').click(function(){
+		
+		if( emptyCheck() ) $('form').submit();
+	});
+	
 	</script>
 </body>
 </html>

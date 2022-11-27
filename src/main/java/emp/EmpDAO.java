@@ -13,6 +13,10 @@ public class EmpDAO {
 
 	@Autowired private SqlSession sql;
 	
+	public List<PatternVO> pattern() {
+		return sql.selectList("emp.employee_pattern");
+	}
+	
 	//정보화면창
 	public EmpVO emp_info(int employee_id) {
 		return sql.selectOne("emp.info", employee_id);

@@ -2,7 +2,11 @@ package com.hanul.berp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,22 +34,25 @@ public class WorkController {
 	Gson gson = new GsonBuilder()
 	.setDateFormat("yyyy-MM-dd").create();
 
-	@RequestMapping("/work")
-	public String work_list(String id, Model model) {
 
-		EmpVO vo = dao.empInfo(id);
+	@RequestMapping("/work")
+	public String work_list( Model model, HttpSession session ) {
+
+
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
+		
+		vo = dao.empInfo(vo.getEmployee_id());
 		model.addAttribute("vo", vo);
 
-		WorkVO wVo = dao.workInfo(id);
+		WorkVO wVo = dao.workInfo(vo.getEmployee_id());
 		model.addAttribute("wVo", wVo);
-		
-		List<WorkResultVO> workList = dao.rList();
+		System.out.println(session.getAttribute("loginInfo"));
+	
+		List<WorkResultVO> workList = dao.workResult(vo.getEmployee_id());
 		
 		model.addAttribute("workList",workList); 
 		
-		/*
-		 * WorkVO wVo = dao.workInfo(id); model.addAttribute("wVo",wVo);
-		 */
+	
 
 		return "side/work/work";
 	}
@@ -53,62 +60,68 @@ public class WorkController {
 	// 퇴근 버튼 눌렀을 때 시간 update
 	@ResponseBody
 	@RequestMapping("/work_end_input")
-	public String work_end_input(Model model, String id, String end_work) {
-
-		EmpVO vo = dao.empInfo(id);
-		model.addAttribute("vo", vo);
+	public String work_end_input(Model model,HttpSession session, String end_work) {
+		
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
+		
+		vo = dao.empInfo(vo.getEmployee_id());
 		
 		
+		dao.work_end_input(end_work, vo.getEmployee_id());
 		
-		dao.work_end_input(end_work);
 		
 		
 
 		return "work";
 	}
 
-	
+
 	//출근버튼 눌렀을 때 시간 insert
 	
 	@ResponseBody
 	@RequestMapping("/work_start_input")
-	public String work_start_input(String start_work, Model model, String id, WorkVO wVo)  {
+	public String work_start_input(String start_work,HttpSession session, Model model
+			)  {
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
 		
-		EmpVO vo = dao.empInfo(id);
-		model.addAttribute("vo", vo);
+		try {
+			
+			dao.work_start_input(start_work, vo.getEmployee_id(), vo.getDepartment_id(), vo.getCompany_cd());	
+		} catch (Exception e) {
+			
+		}
 		
 		
-		dao.work_start_input(start_work);			
-
-		System.out.println("ajax end");
-
 		return "work";
 	
-	
 	}
-	@RequestMapping("/holiday")
-	public String holiday(String id, Model model ) {
-		EmpVO vo = dao.empInfo(id);
-		model.addAttribute("vo", vo);
+	
 
-		WorkVO wVo = dao.workInfo(id);
-		model.addAttribute("wVo", wVo);
+	@RequestMapping("/holiday")
+	public String holiday(String id, Model model, HttpSession session ) {
+		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
+		vo = dao.empInfo(vo.getEmployee_id());
+		model.addAttribute("vo",vo);
 		
-		List<WorkResultVO> holiday_list = dao.holiday_list();
+		
+		
+		List<WorkResultVO> holiday_list = dao.holiday_list(vo.getEmployee_id());
 		
 		model.addAttribute("holiday_list",holiday_list); 
+		
+		List<HolidayVO> hoList = dao.holidayList(vo.getEmployee_id());
+		
+		model.addAttribute("hoList", hoList);
 		
 		List<CommonCodeVO> codeList = dao.codeList();
 		
 		model.addAttribute("codeList", codeList);
 		
-		List<HolidayResultVO> holiday_submit_list = dao.holiday_submit_list();
+		List<HolidayResultVO> holiday_submit_list = dao.holiday_submit_list(vo.getEmployee_id());
 		
 		model.addAttribute("holiday_submit_list",holiday_submit_list);
 		
-		List<HolidayVO> hoList = dao.holidayList();
 		
-		model.addAttribute("hoList", hoList);
 		
 		
 		return "side/work/holiday";
@@ -116,29 +129,24 @@ public class WorkController {
 	
 	
 	@RequestMapping("/holiday_submit")
-	public String holiday_submit(HolidayVO vo, String start_holiday, String end_holiday, String work_code) {
+	public String holiday_submit(HttpSession session,String start_holiday, String end_holiday, String work_code) {
 		
-		/* dao.holiday_submit(vo); */
+		 EmpVO vo = (EmpVO) session.getAttribute("loginInfo"); vo =
+		  dao.empInfo(vo.getEmployee_id());
+				
 		
 		System.out.println(start_holiday);
 		System.out.println(end_holiday);
 		System.out.println(work_code);
 		System.out.println("ajax submit");
 		
-		
-		dao.holiday_submit(vo);
+		dao.holiday_submit(start_holiday,end_holiday,vo.getEmployee_id(),vo.getDepartment_id(),vo.getCompany_cd(),work_code);
 		
 		
 		return "side/work/holiday";
 	}
 	
-	@RequestMapping("listWork")
-	public String listWork() {
-		
-		dao.rList();
-		
-		return "side/work/workList";
-	}
+	
 	
 	@RequestMapping("/workList")
 	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id) {
@@ -173,26 +181,50 @@ public class WorkController {
 	
 	 // 퇴근 버튼 눌렀을 때 시간 update
 	 
-	 @ResponseBody
-	 @RequestMapping("/andWork_end_input") 
-	 public String andWork_end_input( String end_work) {
-	
-	 
-	 return dao.work_end_input(end_work)+""; }
+		/*
+		 * @ResponseBody
+		 * 
+		 * @RequestMapping("/andWork_end_input") public String andWork_end_input( String
+		 * end_work) {
+		 * 
+		 * 
+		 * return dao.work_end_input(end_work)+""; }
+		 */
 
 	
 		//출근버튼 눌렀을 때 시간 insert
 		
 		@ResponseBody
 		@RequestMapping("/andWork_start_input")
-		public String andWork_start_input(String start_work)  {
+		public String andWork_start_input(String dto)  {
 	
-			System.out.println(start_work);
-		
-			return dao.work_start_input(start_work)+"";
-		
-		
+			WorkVO vo =  new Gson().fromJson(dto, WorkVO.class);
+			
+			return dao.andWork_start_input(vo)+"";
+	
 		}
+		@ResponseBody
+		@RequestMapping("/andWork_end_input")
+		public String andWork_end_input(String dto)  {
+			
+			WorkVO vo =  new Gson().fromJson(dto, WorkVO.class);
+			System.out.println(vo.getEnd_work());
+			System.out.println(vo.getEmployee_id());
+			
+			return dao.andWork_end_input(vo)+"";
+			
+		}
+		@ResponseBody @RequestMapping(value="/andHoliday", produces="text/html; charset=utf-8")
+		public String andHoliday(String vo) {
+			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
+			
+			try {
+				return dao.andHoliday(dto)+"";
+			} catch (Exception e) {
+				return "1";
+			}
+			
+	}
 
 		
 		@ResponseBody @RequestMapping(value="/andHolidayList", produces="text/html; charset=utf-8")
@@ -206,32 +238,23 @@ public class WorkController {
 			
 		}
 		@ResponseBody @RequestMapping(value="/andSearch", produces="text/html; charset=utf-8")
-		public String andSearch() {
+		public String andSearch(int employee_id) {
 			
+		
 			
-			return gson.toJson(dao.search());
-		}
-		@ResponseBody @RequestMapping(value="/andEndSearch", produces="text/html; charset=utf-8")
-		public String andEndSearch() {
-			
-			
-			return gson.toJson(dao.andEndSearch());
+			return gson.toJson(dao.search(employee_id));
 		}
 		
-		@ResponseBody @RequestMapping(value="/andHoliday", produces="text/html; charset=utf-8")
-		public String andHoliday(String vo) {
-			HolidayVO dto =  new Gson().fromJson(vo, HolidayVO.class);
+		
+		
+		@ResponseBody @RequestMapping(value="/andEndSearch", produces="text/html; charset=utf-8")
+		public String andEndSearch(int employee_id) {
 			
-			System.out.println(dto.getStart_holiday());
-			System.out.println(dto.getEnd_holiday());
-			System.out.println(dto.getWork_code());
-			try {
-				return dao.andHoliday(dto)+"";
-			} catch (Exception e) {
-				return "1";
-			}
 			
-	}
+			return gson.toJson(dao.andEndSearch(employee_id));
+		}
+		
+		
 		
 		
 		@ResponseBody @RequestMapping(value="/andWorkDept", produces="text/html; charset=utf-8")
@@ -265,9 +288,22 @@ public class WorkController {
 		public String andHoliday_List() {
 			
 			
-			
-			
 			return gson.toJson(dao.andHoliday_List());
+			
+		}
+		@ResponseBody @RequestMapping(value="/andHolidayDept_List", produces="text/html; charset=utf-8")
+		public String andHolidayDept_List(int department_id) {
+			
+			
+			return gson.toJson(dao.andHolidayDept_List(department_id));
+			
+		}
+		
+		@ResponseBody @RequestMapping(value="/andHolidayIndi_List", produces="text/html; charset=utf-8")
+		public String andHolidayIndi_List(int employee_id) {
+			List<WorkResultVO> list = dao.andHolidayIndi_List(employee_id);
+			
+			return gson.toJson(list);
 			
 		}
 		
