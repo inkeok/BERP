@@ -77,23 +77,6 @@
 			
 			</td>	
 		</tr>
-<!-- 		<tr><th>첨부파일</th> -->
-<!-- 			<td  colspan='3'> -->
-<!-- 			<label> -->
-<!-- 				<input type="file" id='file' name='file' style='display: none'> -->
-<%-- 				<c:if test="${empty lockerListDetail.file_name }"> --%>
-<!-- 				<button id='btn'>파일첨부</button> -->
-<%-- 				</c:if> --%>
-<!-- 			</label> -->
-<%-- 				<c:if test='${not empty lockerListDetail.file_name }'> --%>
-<%-- 				<a class='file'>${lockerListDetail.file_name}</a> --%>
-<%-- 				</c:if> --%>
-<%-- 				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined"> --%>
-<!-- 				delete -->
-<!-- 				</span></a> -->
-			
-<!-- 			</td>	 -->
-<!-- 		</tr> -->
 	</table>
 </form>
 </div>

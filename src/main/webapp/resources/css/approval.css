@@ -116,7 +116,7 @@ select{
 	height: 25.2px;
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus, select:focus{
 	outline: none;
 }
 
