@@ -5,23 +5,116 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
 
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
  
+<style>
+.center {
+	text-align: center;
+}
 
+.hrlist {
+	margin: 1rem 0;
+	color: #000000;
+	font-size: 38px;
+	font-family: 'Noto Sans KR' !important;
+}
+	table {
+	margin-top : 5px;
+/* 	border-top-left-radius: 20px; */
+/*     border-top-right-radius: 20px; */
+	padding-bottom : 2rem;
+	border-radius : 15px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+	
+td a{
+	color : #323232;
+}
+th, td {
+  padding: 15px;
+  background-color: #fff;
+  color: #000000;
+  
+}
+
+th {
+  text-align: center;
+}
+th {
+  background : #12192c;
+  color : #fff;
+}
+tbody tr:hover, td:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+tbody td {
+  position: relative;
+}
+tbody td:hover:before {
+ 
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
+select {
+	position: relative;
+	/* left: 5%; */
+	width: 180px;
+	padding: .7em 1.9em;
+	font-family: inherit;
+	background: url('imgs/arrow.jfif') no-repeat 95% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+	border: 2px solid #fff[];
+	border-radius: 3px;
+}
+.full {
+	width: calc(100% - 22px)
+}
+
+select::-ms-expand {
+	display: none;
+}
+.btnSet{
+text-align:center;
+	margin-top: 30px;
+}
+</style>
 </head>
 <body>
-<h3>수정화면!!!!!!!!!!!!!!!!</h3>
+<h2 class="center hrlist">채용공고 수정</h2>
 <form method='post' action='update.rec' enctype='multipart/form-data'>
 <input type='hidden' name='recruit_num' value='${vo.recruit_num }'>
-<table class='w-px1000'>
+<table style='width: 1000px'>
 
-<tr><th class='w-px140'>채용유형</th>
+<tr><th style='width: 150px;'>채용유형</th>
 	<td>
 	<select	name='employee_pattern' class='w-px200' >
 		<c:forEach items="${code }" var='c'>
@@ -77,13 +170,13 @@
 
 
 <tr><th class='w-px140'>연봉</th>
-	<td><input type='text' name='salary' class='full chk' value="${vo.salary }"></td>
+	<td><input style='height: 36px; ' type='text' name='salary' class='chk' value="${vo.salary }"></td>
 </tr>
 <tr><th class='w-px140'>제목</th>
-	<td><input type='text' name='recruit_title' class='full chk' value="${vo.recruit_title }"></td>
+	<td><input style='height: 36px; width: 776px;' type='text' name='recruit_title' class='chk' value="${vo.recruit_title }"></td>
 </tr>
-<tr><th>내용</th>
-	<td><textarea name='recruit_content' class='full chk' title='내용'>${vo.recruit_content }</textarea></td>
+<tr><th >내용</th>
+	<td><textarea style='height: 250px' name='recruit_content' class='full chk' title='내용'>${vo.recruit_content }</textarea></td>
 </tr>
 <tr><th>첨부파일</th>
 	<td class='text-left'>
@@ -103,8 +196,8 @@
 <%-- <input type='hidden' name='writer' value='${loginInfo.id}'> --%>
 </form>
 <div class='btnSet'>
-	<a class='btn-fill' id='save'>저장</a>
-	<a class='btn-empty' href='list.rec'>취소</a>
+	<a class='new-btn' id='save'>저장</a>
+	<a class='new-btn' href='list.rec'>취소</a>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
@@ -156,7 +249,7 @@
 		$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
 	});
   if(isImage("${vo.file_name}")) {
-		$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
+		$('#file_name').after('<span id="preview"><img style="width: 800px;" src="${vo.file_path}"</span>' );
 		
 	}
 </script>

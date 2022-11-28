@@ -44,23 +44,7 @@ tbody td:hover:before {
   background-color: rgba(255, 255, 255, 0.2);
   z-index: -1;
 }
-.salary_btn{
-    padding: 1em 1.8em;
-    font-size: 14px;
-    font-weight: 400;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    color: #ffffff;
-    margin-bottom: 10px;
-    background: #12192c;
-    position: relative;
-    left: 4%;
-    border-top-left-radius: 10px;
-}
+
 .new-btn{
   padding: 1em 1.8em;
   font-size: 14px;

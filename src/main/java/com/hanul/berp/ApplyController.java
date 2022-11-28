@@ -27,6 +27,10 @@ import com.google.gson.Gson;
 
 import apply.ApplyDAO;
 import apply.ApplyVO;
+import emp.CompanyVO;
+import emp.DepartmentVO;
+import emp.EmpVO;
+import emp.PatternVO;
 import member.MemberVO;
 import recruit.CommonCodeVO;
 import recruit.RecruitVO;
@@ -35,6 +39,41 @@ import recruit.RecruitVO;
 public class ApplyController {
 
 	@Autowired ApplyDAO dao;
+	
+	//사원 저장처리
+	@RequestMapping("/insert_em.apply")
+	public String insert_em(EmpVO vo, int apply_num) {
+		//저장후 삭제도 추가 
+		dao.employee_insert(vo);
+		dao.delete_pass(apply_num);
+		
+		return "redirect:pass_check.apply";
+	}
+	
+	
+	
+	//사원등록화면
+	@RequestMapping("/register_em.apply")
+	public String register(int apply_num, Model model) {
+		ApplyVO vo = dao.apply_info(apply_num);
+		model.addAttribute("vo",vo);
+		
+		List<EmpVO> emp = dao.employee_list();
+		List<DepartmentVO> departments = dao.departments();
+		List<CompanyVO> company = dao.company();
+		List<EmpVO> position = dao.position();
+		List<PatternVO> pattern = dao.pattern();
+		
+		model.addAttribute("departments", departments);
+		model.addAttribute("company", company);
+		model.addAttribute("emp", emp);
+		model.addAttribute("position", position);
+		model.addAttribute("pattern",pattern);
+		
+		
+		return "side/apply/register";
+	}
+	
 	
 	
 	
@@ -112,7 +151,7 @@ public class ApplyController {
 		model.addAttribute("vo",vo);
 		
 		
-		return "apply/check";
+		return "side/apply/check";
 	}
 	
 	
@@ -140,7 +179,7 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "apply/pass_check";
+		return "side/apply/pass_check";
 	}
 	
 	@RequestMapping("/applicantList.apply")
@@ -166,7 +205,7 @@ public class ApplyController {
 		model.addAttribute("recruit_num", recruit_num);
 		
 		
-		return "apply/applicantList";
+		return "side/apply/applicantList";
 	}
 
 	@RequestMapping("/update.apply")
@@ -237,7 +276,7 @@ public class ApplyController {
 		model.addAttribute("vo",vo);
 		
 		
-		return "apply/modify";
+		return "side/apply/modify";
 	}
 
 	@ResponseBody @RequestMapping("/phone_check")
@@ -268,7 +307,7 @@ public class ApplyController {
 	@RequestMapping("/application.apply")
 	public String application( Model model) {
 				
-		return "side/apply/application_check";
+		return "apply/application_check";
 	}
 	
 	
@@ -288,7 +327,7 @@ public class ApplyController {
 		 
 		 model.addAttribute("vo",vo);
 		  
-	 return "apply/detail"; 
+	 return "side/apply/detail"; 
 	  
 	}
 	 
@@ -313,7 +352,7 @@ public class ApplyController {
 		model.addAttribute("code_value", employee_pattern);
 		
 		
-		return "apply/applyList";
+		return "side/apply/applyList";
 	}
 	/////////////////////////////////////이력서 첨부파일/////////////////////////////////////////////////
 	// 파일업로드
@@ -450,7 +489,7 @@ public class ApplyController {
 		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
 		model.addAttribute("recruit",recruit);
 		
-		return "apply/fillout";
+		return "side/apply/fillout";
 	}
 	
 		 ////////////////////////////////////////////////////
