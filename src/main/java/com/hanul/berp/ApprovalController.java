@@ -20,6 +20,7 @@ import approval.FileUtility;
 import approval.Ing_tableVO;
 import approval.Result_tableVO;
 import emp.EmpDAO;
+import notice.NoticeVO;
 
 @Controller
 public class ApprovalController {
@@ -125,8 +126,11 @@ public class ApprovalController {
 	//상신함 저장
 	@ResponseBody
 	@RequestMapping(value="/insertPost.ap", produces="text/html; charset=utf8")
-	public String insertPost(Ing_tableVO vo, int employee_id, String url, MultipartFile file, HttpServletRequest request,
+	public String insertPost(Ing_tableVO vo, int employee_id, String url, MultipartFile file, 
+			HttpServletRequest request, String file_name,
 			@RequestParam(defaultValue = "-1") int ing_no) {
+		
+		
 		
 		if( ! file.isEmpty() ) {
 			vo.setFile_name( file.getOriginalFilename() );
@@ -134,6 +138,8 @@ public class ApprovalController {
 		}
 		
 		dao.deleteIng(ing_no);
+
+		
 		if(dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('제출했습니다.'); location='")
@@ -149,12 +155,38 @@ public class ApprovalController {
 	//임시보관함 삭제 후 상신함 저장-결재함 저장
 	@ResponseBody
 	@RequestMapping(value="/deleteInsertSubmit.ap", produces="text/html; charset=utf8")
-	public String deleteInsertSubmit(Ing_tableVO vo, int employee_id, String url, 
+	public String deleteInsertSubmit(Ing_tableVO vo, int employee_id, String url, String file_name,
 			int ing_no, MultipartFile file, HttpServletRequest request) {
 			
-		if( ! file.isEmpty() ) {
+//		if( ! file.isEmpty() ) {
+//			vo.setFile_name( file.getOriginalFilename() );
+//			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );
+//		}
+		
+		Ing_tableVO locker = dao.lockerListDetail(vo.getNo(), vo.getEmployee_id());
+		
+		//임시보관함에서 다시 제출한 문서에
+		//첨부파일이 없으면,
+		if( file.isEmpty() ) {
+
+			//파일명이 없는 경우는 사용자가 뷰에서 업로드하지 않겠다고 삭제한 경우
+			if( file_name.isEmpty() ) {
+				fileUtility.deleteFile(vo.getFile_path(), request);
+				
+			}else {
+				//파일명이 있는 경우
+				//원래 첨부파일이 있었고, 그 파일을 그대로 사용하는 경우
+				vo.setFile_name( locker.getFile_name() );
+				vo.setFile_path( locker.getFile_path() );
+			}
+			
+		}else {
+			//첨부파일이 있는 경우
 			vo.setFile_name( file.getOriginalFilename() );
-			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );
+			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );	
+			
+			//원래 첨부파일이 있었다면 물리적파일을 삭제
+			fileUtility.deleteFile(locker.getFile_path(), request);
 		}
 		
 		if(dao.deleteIng(ing_no)==1 && dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
@@ -175,8 +207,10 @@ public class ApprovalController {
 		
 		if( ! file.isEmpty() ) {
 			vo.setFile_name( file.getOriginalFilename() );
-			vo.setFile_path( fileUtility.fileUpload("berp", file, request) );
+			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );
 		}
+		
+		
 				
 		dao.insertLocker(vo);
 		return "redirect:lockerList.ap?employee_id="+employee_id;
@@ -186,9 +220,35 @@ public class ApprovalController {
 	@ResponseBody
 	@RequestMapping(value="/deleteInsertLocker.ap", 
 					produces="text/html; charset=utf8")
-	public String deleteInsertLocker(Ing_tableVO vo, String url, int ing_no, int employee_id, 
+	public String deleteInsertLocker(Ing_tableVO vo, String url, int ing_no, int employee_id, String file_name,
 			int no, MultipartFile file, HttpServletRequest request) {
 		//Ing_tableVO vo = dao.lockerListDetail(no, employee_id);
+		
+		Ing_tableVO locker = dao.lockerListDetail(vo.getNo(), vo.getEmployee_id());
+		
+		//임시보관함에서 다시 제출한 문서에
+		//첨부파일이 없으면,
+		if( file.isEmpty() ) {
+
+			//파일명이 없는 경우는 사용자가 뷰에서 업로드하지 않겠다고 삭제한 경우
+			if( file_name.isEmpty() ) {
+				fileUtility.deleteFile(vo.getFile_path(), request);
+				
+			}else {
+				//파일명이 있는 경우
+				//원래 첨부파일이 있었고, 그 파일을 그대로 사용하는 경우
+				vo.setFile_name( locker.getFile_name() );
+				vo.setFile_path( locker.getFile_path() );
+			}
+			
+		}else {
+			//첨부파일이 있는 경우
+			vo.setFile_name( file.getOriginalFilename() );
+			vo.setFile_path( fileUtility.fileUpload("approval", file, request) );	
+			
+			//원래 첨부파일이 있었다면 물리적파일을 삭제
+			fileUtility.deleteFile(locker.getFile_path(), request);
+		}
 		
 		if(dao.deleteIng(ing_no)==1 && dao.insertLocker(vo)==1) {
 								
