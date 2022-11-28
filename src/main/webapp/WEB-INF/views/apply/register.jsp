@@ -150,6 +150,7 @@ tbody td:hover:before {
 			</tr>
 		</table>
 		<input type='hidden' name='apply_num' value="${vo.apply_num }">
+		
 	</form>
 	
 	<div class='center'>
