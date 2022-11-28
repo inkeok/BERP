@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.CommonDAO;
 import common.CommonVO;
@@ -35,24 +36,31 @@ public class CommonController {
 //		vo.setCode_value("all");
 //		vo.setCode_used("all");
 //		vo.setCode_name("all");
+		
+//		if( code.equals("code_title") ) {
+//			model.addAttribute("code_title", vo.getCode_title());  //선택한 코드
+//		}else if( code.equals("code_value") ) {
+//			model.addAttribute("code_value", vo.getCode_value());  //선택한 코드
+//		}else if( code.equals("code_used") ) {
+//			model.addAttribute("code_used", vo.getCode_used());  //선택한 코드
+//		}else if( code.equals("code_name") ) {
+//			model.addAttribute("code_name", vo.getCode_name());  //선택한 코드
+//		}
+		
 		if( code.equals("code_title") ) {
 			model.addAttribute("code_title", vo.getCode_title());  //선택한 코드
-		}else if( code.equals("code_value") ) {
-			model.addAttribute("code_value", vo.getCode_value());  //선택한 코드
 		}else if( code.equals("code_used") ) {
 			model.addAttribute("code_used", vo.getCode_used());  //선택한 코드
-		}else if( code.equals("code_name") ) {
-			model.addAttribute("code_name", vo.getCode_name());  //선택한 코드
 		}
 		
 		List<CommonVO> code_titles = dao.personal_code(); //인사코드 목록(드랍다운목록)
 		model.addAttribute("code_titles",code_titles);
-		List<CommonVO> code_values = dao.document_code(); //문서코드 목록(드랍다운목록)
-		model.addAttribute("code_values",code_values);
+//		List<CommonVO> code_values = dao.document_code(); //문서코드 목록(드랍다운목록)
+//		model.addAttribute("code_values",code_values);
 		List<CommonVO> code_used = dao.employee_code(); //문서코드 목록(드랍다운목록)
-		model.addAttribute("code_used",code_used);
-		List<CommonVO> code_name = dao.work_code(); //문서코드 목록(드랍다운목록)
-		model.addAttribute("code_name",code_name);
+		model.addAttribute("code_usedd",code_used);
+//		List<CommonVO> code_name = dao.work_code(); //문서코드 목록(드랍다운목록)
+//		model.addAttribute("code_name",code_name);
 		
 		List<CommonVO> commonlist = dao.common_list();
 
@@ -67,7 +75,7 @@ public class CommonController {
 //		if(code_title.equalsIgnoreCase("all")) {
 //			commonlist = dao.Common_list();
 		List<CommonVO> list = null;
-		if( code.isEmpty() ) {
+		if( code.isEmpty() || vo.getCode_title().equals("all")) {
 			list = dao.common_list(); //코드 전체 목록
 		}else {
 //			documentlist = dao.document_list();
@@ -132,6 +140,18 @@ public class CommonController {
 	public String delete(String code_value) {
 		dao.delete(code_value);
 		return "redirect:common.cd";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/common.check_code")
+	public String check_code(String code_value) {
+		System.out.println(code_value);
+		CommonVO code = dao.check_code(code_value);
+		if(code!=null) {
+			return "1";
+		}else {
+			return "0";
+		}
 	}
 	
 }

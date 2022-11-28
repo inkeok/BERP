@@ -57,13 +57,46 @@ select {
 	width : 120px;
 
 }
+
+.dataTable-selector {
+    width: 8rem;
+    text-align: center;
+ }
+ 
+code_name {
+  	width: 8rem;
+    text-align: center;
+ }
+ 
+ .new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
+
+.bottom {
+margin-bottom : 3rem;
+}
+
 </style>
 </head>
 <body>
 <h3>사원정보수정</h3>
-<form method='get' action='common.update'>
+<form class='bottom' method='get' action='common.update'>
 <table class='w-px600'>
-<tr><th>인사코드</th>
+<tr><th class='w-px160'>인사코드</th>
 	<td>
 		<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title");'>
 						<c:forEach items='${code_titles}' var='c'>
@@ -85,7 +118,7 @@ select {
 </tr>
 <tr><th>고용형태코드</th>
 	<td>
-		<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used");'>
+		<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used");' >
 						<c:forEach items='${code_used}' var='u'>
 							<option ${vo.code_used eq u.code_used ? 'selected' : ''} 
 									value='${u.code_used}'>${u.code_used}
@@ -96,7 +129,7 @@ select {
 </tr>
 <tr><th>근무코드</th>
 	<td>
-		<input type="text" id="code_name" name="code_name" />
+		<input type="text" id="code_name" name="code_name" style="width:8rem;text-align: center;"/>
 				</td>
 			</tr>
 			<tr>
@@ -109,9 +142,38 @@ select {
 			</tr>
 		</table>
 	</form>
-	<div class='btnSet'>
-		<a class='btn-fill' id='save' onclick='$("form").submit()'>저장</a> <a
-			class='btn-empty' href='common.detail?code_value=${vo.code_value}'>취소</a>
+	<div class='center'>
+		<a class='new-btn' id='save' onclick='$("form").submit()'>저장</a> <a
+			class='new-btn' href='common.detail?code_value=${vo.code_value}'>취소</a>
 	</div>
 </body>
+
+<script type="text/javascript">
+var oldVal = '';
+$("#code_name").on("propertychange change keyup paste input", function() {
+    var currentVal = $(this).val();
+    if(currentVal == oldVal) {
+        return;
+    }
+ 
+    oldVal = currentVal;
+    
+// const code_name = document.querySelector('#code_name');
+// document.querySelector('#save').onclick = function() {  
+	
+	$.ajax({
+        url:'common.check_code',
+        data: { code_value:currentVal },
+        success: function(result) {
+           console.log(result);
+           if(result == '1'){
+        	   alert('이미 사용 중인 코드입니다.');
+           }
+        }
+    });//사용중인 코드가 중복이 불가능하게 처리
+// }
+    
+});
+</script>
+
 </html>

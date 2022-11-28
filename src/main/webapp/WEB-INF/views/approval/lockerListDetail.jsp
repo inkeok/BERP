@@ -9,6 +9,22 @@
 <link href='css/approval.css?<%=new java.util.Date()%>' rel='stylesheet'>
 <link href='js/approval.js?<%=new java.util.Date()%>' rel='stylesheet'>
 <style>
+.googleIcon{
+	font-size: 16px;
+	vertical-align: baseline;
+	margin-left: 5px;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+/* } */
+/* #file{ */
+/* 	display: none; */
+/* } */
+
 </style>
 </head>
 <body>
@@ -48,12 +64,17 @@
 		<tr><th class='content'>내용</th>
 			<td><textarea id='textarea' name='document_content'>${lockerListDetail.document_content }</textarea></td>
 		</tr>
-		<tr><th>첨부파일</th>
-			<td  colspan='3'>
-				<input type="file" id='file' name='file'>
-				<c:if test='${not empty submitListDetail.file_name }'>
+		<tr><th height='47px'>첨부파일</th>
+			<td colspan='3' style='vertical-align: middle'>
+				<input type="file" id='file' name='file' 
+				style='display: none'>
+				<c:if test='${not empty lockerListDetail.file_name }'>
 				<a class='file'>${lockerListDetail.file_name}</a>
 				</c:if>
+				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined googleIcon">
+				close
+				</span></a>
+			
 			</td>	
 		</tr>
 	</table>
@@ -65,6 +86,8 @@
 <a class='btn-empty' id='postBack'>이전으로</a>
 </div>
 <script>
+
+
 
 //서브밋 할 때
 $('#postSubmit').click(function(){
@@ -113,6 +136,22 @@ $('#department_name').change(function(){
 // 	$('#postForm').attr('action', 'post.ap');
 // 	$('#postForm').submit();
 });
+
+
+$('.file').click(function(){
+	$(this).attr('href'
+			, 'downloadLocker.ap?employee_id=${loginInfo.employee_id}&no=${lockerListDetail.no}&url=' + $(location).attr('href'));
+	console.log(this.getAttribute('href'));
+});
+
+
+$('#deleteFile').click(function(){
+		$('.file').text('');			
+		$(this).css('display', 'none');	
+		$('#file').val('');				
+		$('#file').css('display', 'block');
+});
+
 
 
 

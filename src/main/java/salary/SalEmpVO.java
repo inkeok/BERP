@@ -4,24 +4,45 @@ import java.sql.Date;
 
 public class SalEmpVO {
 	
-	private int employee_id, department_id, salary, commission_pct;
+	private int employee_id, department_id, salary, bonus;
+	private float commission_pct;
 	private String company_cd, name, email, phone, admin, position , hire_year
 	, position_name, employee_pattern, employee_pattern_name, department_name, company_name,
-	c_position, pw;
-	private Date hire_date;
+	c_position, pw, bonus_comment;
+	private Date hire_date, bonus_date;
 	
 	
 	
+	
+	public int getBonus() {
+		return bonus;
+	}
+	public void setBonus(int bonus) {
+		this.bonus = bonus;
+	}
+	public String getBonus_comment() {
+		return bonus_comment;
+	}
+	public void setBonus_comment(String bonus_comment) {
+		this.bonus_comment = bonus_comment;
+	}
+	public Date getBonus_date() {
+		return bonus_date;
+	}
+	public void setBonus_date(Date bonus_date) {
+		this.bonus_date = bonus_date;
+	}
 	public int getSalary() {
 		return salary;
 	}
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
-	public int getCommission_pct() {
+	
+	public float getCommission_pct() {
 		return commission_pct;
 	}
-	public void setCommission_pct(int commission_pct) {
+	public void setCommission_pct(float commission_pct) {
 		this.commission_pct = commission_pct;
 	}
 	public String getPw() {

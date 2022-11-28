@@ -70,13 +70,12 @@ body {
 			<div class="frame-center">
 			<c:if test="${empty loginInfo}">
 				<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
-				
 			</c:if>
 
 			<c:if test="${not empty loginInfo}">
 				<span>${loginInfo.name} 님</span>
 				<button class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
-				<a onclick="location='sideIndex'">사이드로</a>
+				<a onclick="location='profile.pr'">사이드로</a>
 			</c:if>
 			</div>
 		</div>

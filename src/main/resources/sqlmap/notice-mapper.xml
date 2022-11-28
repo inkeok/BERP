@@ -85,4 +85,14 @@ where notice_num=#{notice_num}
 
 </update>
 
+<select id="notice_list" resultType="notice.NoticeVO">
+	select n.*, e.name notice_writer 
+	
+	from notice n left outer join employees e
+	on n.employee_id = e.employee_id
+	
+
+</select>
+
+
 </mapper>

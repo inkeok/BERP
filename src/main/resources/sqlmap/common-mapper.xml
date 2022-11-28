@@ -6,7 +6,6 @@
 	<select id="codelist" resultType="common.CommonVO">
 		select c.* , e.name code_maker_name
 		from common_code c left join employees e
-
 		on c.code_maker = e.employee_id
 		order by code_title
 	</select>
@@ -83,5 +82,14 @@
 	 	delete from common_code
 	 	where code_value = #{code_value}
 	</delete>
+	
+	
+	<!-- 특정 코드 조회 -->
+	<select id='check_code' resultType='common.CommonVO'>
+		select c.* , e.name code_maker_name
+		from common_code c left join employees e
+		on c.code_maker = e.employee_id
+		where c.code_name = #{code_name}
+	</select>
 	
 	</mapper>

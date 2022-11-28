@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import emp.EmpVO;
 import member.MemberDAO;
 
@@ -33,6 +36,8 @@ public class NoticeController {
 
 	@Autowired private MemberDAO member;
 	@Autowired NoticeDAO dao;
+	Gson gson = new GsonBuilder()
+			.setDateFormat("yyyy-MM-dd").create();
 	
 	//게시판 리스트 
 	@RequestMapping("/list.no")
@@ -242,6 +247,24 @@ public class NoticeController {
 				return null;
 			
 			
+		}
+		
+		/////////////////////////안드로이드////////////////////
+		
+		@ResponseBody @RequestMapping(value="/notice_list",produces="text/html; charset=utf-8")
+		public String notice_list() {
+			
+			
+			
+			return gson.toJson(dao.notice_list());
+		}
+		
+		@ResponseBody @RequestMapping(value="/detail_notice_list",produces="text/html; charset=utf-8")
+		public String andDetailNotice(int notice_num) {
+			
+			
+			
+			return dao.notice_read(notice_num)+"";
 		}
 		
 	
