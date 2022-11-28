@@ -21,7 +21,11 @@ body {
 }
 
 .login-wrap {
-	margin-top: 14rem;
+	width : 800px;
+	position : relative ;
+	top : -12%;
+	left : 28%; 
+	margin-top: 15.78rem;
 	background-color: #EEEFF1;
 	padding: 2rem 1rem;
 	border-radius: 15px;
@@ -191,10 +195,9 @@ p {
 			</div>
 			<div>
 				<form>
-					<input type="text" id='employee_id' name="employee_id" class="text-field"
-						placeholder="아이디"> <input type="password" name="pw" id='pw'
-						class="text-field" placeholder="비밀번호"> <input
-						type="button" onclick='login()' id='login' value="로그인" class="submit-btn">
+					<input type='text' id='employee_id' class="text-field" name='employee_id' placeholder='아이디'>
+					 <input type="password"  id='pw' name='pw' class="text-field" placeholder="비밀번호">
+					 <input type="submit" class="submit-btn" onclick='login()'id='login' value='login' >
 				</form>
 			</div>
 			<div></div>
@@ -203,7 +206,7 @@ p {
 			</div>
 		</div>
 	</div>
-<div>
+<div style="width : 1920px;">
 	<div class="header">
 		<div>
 			<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
