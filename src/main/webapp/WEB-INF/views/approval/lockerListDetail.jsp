@@ -116,7 +116,7 @@ $('#postSubmit').click(function(){
 //삭제 버튼 선택 시 
 $('#postCancel').click(function(){
 	if(confirm('삭제하시겠습니까?'))
-	location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}'
+	location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}&no=${lockerListDetail.no}'
 })
 
 //이전으로 버튼 선택 시
