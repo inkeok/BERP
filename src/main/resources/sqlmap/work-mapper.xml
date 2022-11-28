@@ -37,7 +37,7 @@
 
 		where nvl(w.department_id, 0) = #{department_id}
 
-		order by e.employee_id
+		order by e.employee_id asc
 
 	</select>
 

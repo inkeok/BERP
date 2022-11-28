@@ -90,6 +90,7 @@ where notice_num=#{notice_num}
 	
 	from notice n left outer join employees e
 	on n.employee_id = e.employee_id
+	order by notice_date desc
 	
 
 </select>
