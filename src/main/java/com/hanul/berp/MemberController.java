@@ -57,7 +57,7 @@ public class MemberController {
 	public String login(HttpSession session) {
 		session.setAttribute("category", "login");
 		
-		return "/member/login";
+		return "default/member/login";
 	}
 	
 	//check id and pw for login

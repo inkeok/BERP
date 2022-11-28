@@ -2,7 +2,10 @@ package com.hanul.berp;
 
 
 
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
+import approval.And_Ing_tableVO;
 import approval.ApprovalDAO;
 import approval.FileUtility;
 import approval.Ing_tableVO;
@@ -455,5 +461,13 @@ public class ApprovalController {
 		}else
 			return null;
 	}
-	
+			///////////앤드로이ㄷㄷㄷ/////////////
+	@ResponseBody @RequestMapping(value="/andRec.ap", produces="text/html; charset=utf-8")
+	   public String andRec() {
+	      
+	      List<And_Ing_tableVO> list = dao.andRecList();
+	      
+	      return new Gson().toJson(list);
+
+	   }
 }
