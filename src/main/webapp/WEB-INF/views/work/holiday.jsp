@@ -97,25 +97,7 @@ ul li {
 <body>
 	<a action="work_end_input" method="post" id="input" />
 
-	<div class="row">
-		<div class="col-12">
-			<div style="margin: 35px"
-				class="page-title-box d-sm-flex align-items-center justify-content-between">
-
-				<h1 class="mb-sm-0 font-size-20" id="timesm">
-					<i class="bx bx-buildings"></i>
-				</h1>
-
-				<ul style="text-align: right;">
-		<li><a href="work">근태</a></li>
-		<li><a href="holiday"> 휴무관리</a></li>
-	</ul>
-
-
-			</div>
-		</div>
-	</div>
-
+	
 	<!-- end page title -->
 
 	<div class="row mb-4">
