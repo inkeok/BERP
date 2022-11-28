@@ -49,7 +49,11 @@ public class ApprovalController {
 	@RequestMapping(value="/deleteLockerList.ap",
 				produces="text/html; charset=utf8")
 	public String deleteLockerList(int employee_id, String url, 
-								Model model, int ing_no) {
+								Model model, int ing_no, int no, HttpServletRequest req) {
+		
+		Ing_tableVO locker = dao.lockerListDetail(no, employee_id);
+		fileUtility.deleteFile(locker.getFile_path(), req);
+		
 		if(dao.deleteIng(ing_no)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('삭제했습니다.'); location='")
