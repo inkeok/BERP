@@ -203,7 +203,7 @@ public class RecruitController {
 		//model.addAttribute("code_value", career);
 		
 		
-		return "layout/recruit/list";
+		return "empty/recruit/list";
 	}
 	
 	@RequestMapping("/new.rec")

@@ -11,7 +11,6 @@
 	type="text/css" />
 <link href='css/common.css?<%=new java.util.Date()%>' type='text/css'
 	rel='stylesheet'>
-
 <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date()%>'></script>
@@ -26,7 +25,7 @@ table {
 	border-radius : 20px;
 	border-collapse: collapse;
 	overflow: hidden;
-	margin-bottom : 10rem;
+	margin-bottom : 18rem;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 td a{
@@ -109,9 +108,6 @@ select::-ms-expand {
   box-shadow: 0 3px 25px rgba(255, 255, 255, 0.1);
 }
 
-.bottom {
-margin-bottom : 10rem;
-}
 
 </style>
 </head>
