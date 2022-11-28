@@ -276,7 +276,7 @@ public class ApplyController {
 		model.addAttribute("vo",vo);
 		
 		
-		return "apply/modify";
+		return "side/apply/modify";
 	}
 
 	@ResponseBody @RequestMapping("/phone_check")
@@ -307,7 +307,7 @@ public class ApplyController {
 	@RequestMapping("/application.apply")
 	public String application( Model model) {
 				
-		return "side/apply/application_check";
+		return "apply/application_check";
 	}
 	
 	
@@ -327,7 +327,7 @@ public class ApplyController {
 		 
 		 model.addAttribute("vo",vo);
 		  
-	 return "apply/detail"; 
+	 return "side/apply/detail"; 
 	  
 	}
 	 
@@ -352,7 +352,7 @@ public class ApplyController {
 		model.addAttribute("code_value", employee_pattern);
 		
 		
-		return "apply/applyList";
+		return "side/apply/applyList";
 	}
 	/////////////////////////////////////이력서 첨부파일/////////////////////////////////////////////////
 	// 파일업로드
