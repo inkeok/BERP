@@ -116,6 +116,7 @@ public class ApprovalDAO {
 		return sql.selectList("approval.document_check");
 	}
 	
+
 	////////////////////////안드/////////////
 	
 	
@@ -146,6 +147,10 @@ public class ApprovalDAO {
 	public List<Result_tableVO> andApproval_list() {
 		
 		return sql.selectList("approval.andApproval_list");
+
+
+	public List<And_Ing_tableVO> andWriteList(){
+		return sql.selectList("approval.andWriteList");
 	}
 	
 }
