@@ -109,13 +109,14 @@ margin-top: 40px;
 			<tr>
 				<th>지원자번호</th>
 				<td>${vo.apply_num }</td>
-				
 				<td rowspan='3' style="width: 120px; padding:0px; text-align: center;"><span id='pic_name'></span>
+				
 					<span id='preview_pic'></span> <input type="hidden"
 					id='apply_pic_name' value="${vo.apply_pic_name }"> <%-- 
 <span id='pic_name'>${vo.apply_pic_name }</span>
 
  --%></td>
+			
 			</tr>
 
 			<tr>

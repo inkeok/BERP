@@ -44,11 +44,10 @@ public class NoticeController {
 	public String noticeList(Model model, HttpSession session, NoticeListVO search) {
 		//List<NoticeVO> list =dao.notice_list();
 		
-		//로그인처리
-		int id = 20221016;
-		String pw = "0000";
-		EmpVO vo = member.checkLogin(id, pw);
-		session.setAttribute("loginInfo", vo);
+		/*
+		 * //로그인처리 int id = 20221016; String pw = "0000"; EmpVO vo =
+		 * member.checkLogin(id, pw); session.setAttribute("loginInfo", vo);
+		 */
 		
 		//추가부분
 		search = dao.notice_list_search(search);
