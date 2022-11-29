@@ -142,7 +142,6 @@ public class ApprovalController {
 		}
 		
 		dao.deleteIng(ing_no);
-
 		
 		if(dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");

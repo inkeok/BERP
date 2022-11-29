@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import emp.DepartmentVO;
 import emp.EmpDAO;
 import salary.SalEmpVO;
 import emp.EmpVO;
@@ -170,5 +171,9 @@ public class SalaryController {
 		return gson.toJson(myBonusList);
 	}
 	
-	
+	@ResponseBody @RequestMapping(value="/andDepartments.sa", produces="text/html; charset=utf-8")
+	public String departments() {
+		List<DepartmentVO> list = emp_dao.departments();
+		return gson.toJson(list);
+	}
 }
