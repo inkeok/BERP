@@ -10,7 +10,7 @@
 <style>
 
 .pagination{
-    width: 1490px;
+    width: 1484px;
 	background : #12192c;
     justify-content: center;
     border-bottom-left-radius: 20px;
@@ -53,7 +53,8 @@ td a{
 	color : #323232;
 }
 th, td {
-  padding: 15px;
+border-bottom: 1px solid #efefef;
+  padding: 12px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #000000;
 }
@@ -98,11 +99,15 @@ tbody td:hover:before {
   background: #2b32b2;
   box-shadow: 0 3px 25px rgba(48, 37, 223, 0.7);
 }
-
+.emp-wrap{
+    position: relative;
+    left: 5%;
+}
 </style>
 </head>
 <body >
 	<h2 class="center hrlist">사원목록</h2>
+	<div class="emp-wrap">
 	<button class="new-btn" onclick='location="new.hr"'>신규사원등록</button>
 	<form action="list.hr" class="list">
 		<div class="w-px1600">
@@ -158,6 +163,7 @@ tbody td:hover:before {
 		<ul class="pagination">
 		    
 		 	 </ul>
+	</div>
 	</div>
 </body>
 <script>
