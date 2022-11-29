@@ -370,17 +370,24 @@ on e.position = c3.code_value
 </delete>
 
 	<select  id="andCodeList" resultType="approval.Result_tableVO">
-		select * from result_table
-		where document_check = #{document_check}
+		SELECT row_number() over(order by document_date asc) no, 
+r.*, e.name drafter, e2.name approver, c.code_name c_status,
+c2.code_name approver_position, c3.code_name drafter_position from result_table r join employees e 
+on r.employee_id = e.employee_id join employees e2
+on r.approver_id = e2.employee_id join common_code c
+on r.document_check =c.code_value join common_code c2
+on e2.position = c2.code_value join common_code c3 
+on e.position = c3.code_value
+where document_check = #{document_check}
 	</select>
 	
 	
 	<select id="andResult_code" resultType="approval.Result_tableVO">
-	select distinct r.* ,c.code_name c_status
+	select distinct r.document_check ,c.code_name c_status
     from common_code c 
     left outer join result_table r
     on c.code_value = r.document_check
-    where  code_title ='D'
+    where  code_title ='D' 
 	</select>
 
 </mapper>
