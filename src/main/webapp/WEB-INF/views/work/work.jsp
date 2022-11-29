@@ -67,24 +67,7 @@ tbody td:hover:before {
 <body>
 
 	<a action="work_end_input" method="post" id="input" />
-	<div class="row">
-		<div class="col-12">
-			<div style="margin: 35px"
-				class="page-title-box d-sm-flex align-items-center justify-content-between">
-
-				<h1 class="mb-sm-0 font-size-20" id="timesm">
-					<i class="bx bx-buildings"></i>
-				</h1>
-
-				<ul style="text-align: right;">
-		<li><a href="work">근태</a></li>
-		<li><a href="holiday"> 휴무관리</a></li>
-	</ul>
-
-
-			</div>
-		</div>
-	</div>
+	
 	<!-- end page title -->
 
 	<div class="row mb-4">
@@ -144,11 +127,11 @@ tbody td:hover:before {
 								<h5  class="font-size-16 mb-0">이번달 근무시간</h5>
 							</div>
 							<h5 class="font-size-15">
-								<span class="float-end">31%</span>
+								<span class="float-end">91%</span>
 							</h5>
 							<div class="progress animated-progess progress-md">
-								<div class="progress-bar" role="progressbar" style="width: 31%"
-									aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="progress-bar" role="progressbar" style="width: 91%"
+									aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<div class="">
 								<div class="mt-3">
@@ -246,7 +229,10 @@ tbody td:hover:before {
 				new Date().getHours() + ':' + new Date().getMinutes() + ':'
 						+ new Date().getSeconds());
 		$('#input').submit();
+		
 		work_start_input();
+			
+		 
 
 		/* 		if($('#start_work').val()){			
 		 }else {

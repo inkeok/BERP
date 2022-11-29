@@ -461,6 +461,7 @@ public class ApprovalController {
 		}else
 			return null;
 	}
+
 			///////////앤드로이ㄷㄷㄷ/////////////
 	@ResponseBody @RequestMapping(value="/andRec.ap", produces="text/html; charset=utf-8")
 	   public String andRec() {
@@ -470,4 +471,44 @@ public class ApprovalController {
 	      return new Gson().toJson(list);
 
 	   }
+
+	@ResponseBody @RequestMapping(value="/andTempList", produces="text/html; charset=utf-8")
+	public String andTempList() {
+		Gson gson = new Gson();
+		return gson.toJson(dao.andTempList());
+	}
+	@ResponseBody @RequestMapping(value="/andTempSubmit", produces="text/html; charset=utf-8")
+	public String andTempSubmit(int ing_no) {
+		
+		return dao.andTempUpdate(ing_no)+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempDelete", produces="text/html; charset=utf-8")
+	public String andTempDelete(int ing_no) {
+		
+		return dao.andTempDelete(ing_no)+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempModify", produces="text/html; charset=utf-8")
+	public String andTempModify(String vo) {
+		Gson gson = new Gson();
+		Ing_tableVO dto = gson.fromJson(vo,Ing_tableVO.class);
+		
+		
+		return dao.andTempModify(dto.getDocument_title(),dto.getDocument_content(), dto.getIng_no())+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempListOne", produces="text/html; charset=utf-8")
+	public String andTempListOne(String ing_no) {
+				
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andTempListOne(ing_no))+"";
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApproval_list", produces="text/html; charset=utf-8")
+	public String andApproval_list() {
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andApproval_list());
+	}
+	
 }

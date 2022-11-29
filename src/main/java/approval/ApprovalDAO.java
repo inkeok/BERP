@@ -120,6 +120,38 @@ public class ApprovalDAO {
 	public List<And_Ing_tableVO> andRecList() {
 		
 		return sql.selectList("approval.andRecList");
+
+	////////////////////////안드/////////////
+	
+	
+	public List<Ing_tableVO> andTempList(){
+		
+		return sql.selectList("approval.andTempList");
+	}
+	public int andTempUpdate(int ing_no) {
+		
+		return sql.update("approval.andTempUpdate",ing_no);
+	}
+	public int andTempDelete(int ing_no) {
+		
+		return sql.delete("approval.andTempDelete",ing_no);
+	}
+	public int andTempModify(String document_title, String document_content, int ing_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("document_content", document_content);
+		map.put("document_title", document_title);
+		map.put("ing_no",ing_no);
+		return sql.update("approval.andTempModify",map);
+	}
+	public Ing_tableVO andTempListOne(String ing_no) {
+		
+		return sql.selectOne("approval.andTempListOne", ing_no);
+	}
+	
+	public List<Result_tableVO> andApproval_list() {
+		
+		return sql.selectList("approval.andApproval_list");
+
 	}
 	
 }
