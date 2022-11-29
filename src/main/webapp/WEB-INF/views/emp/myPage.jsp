@@ -128,7 +128,7 @@ placeholder="휴대폰">
 </td>
 </tr>
 <tr>
-<th>비번</th>
+<th>비밀번호</th>
 <td>
 <input type='password'  class="chk" name='pw' value="${vo.pw }"
 placeholder="비밀번호">
@@ -136,7 +136,7 @@ placeholder="비밀번호">
 </td>
 </tr>
 <tr>
-<th>비번확인 </th>
+<th>비번밀번호 확인 </th>
 <td>
 <input type='password'  class="chk" name='pw_ck' 
 placeholder="비밀번호">
