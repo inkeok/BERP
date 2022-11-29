@@ -291,7 +291,6 @@
               order by i.ing_no
 	</select>
 
-
 <!-- 안드 -->
 <!-- //////////////////////////////////////////////////////////////// -->
 
@@ -302,6 +301,9 @@
 	where i.document_submit = 'N'
 
 </select>
+
+
+
 
 <select id="andWriteList" resultType="approval.And_Ing_tableVO">
   select i.*, d1.department_name emp_dpmt_name, d2.department_name app_dpmt_name,  e1.name emp_name, e2.name app_name, c.company_name, cd.code_name check_name,
@@ -317,7 +319,6 @@
               on e2.position = cd2.code_value
               order by i.ing_no
 </select>
-
 
 <update id = "andTempUpdate">
 	update ing_table 
