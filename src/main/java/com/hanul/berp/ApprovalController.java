@@ -520,13 +520,26 @@ public class ApprovalController {
 
 
 		@ResponseBody @RequestMapping(value="/andRec.ap", produces="text/html; charset=utf-8")
-	   public String andRec() {
+	   public String andRec(int employee_id) {
 	      
-	      List<And_Ing_tableVO> list = dao.andRecList();
+	      List<And_Ing_tableVO> list = dao.andRecList(employee_id);
 	      
 	      return new Gson().toJson(list);
 
 	   }
 
-	
+		@ResponseBody @RequestMapping(value="/andRecsign.ap", produces="text/html; charset=utf-8")
+		   public String andRecsign() {
+		      
+		      List<And_Ing_tableVO> list = dao.andRecsign();
+		   
+		      return new Gson().toJson(list);
+		   }
+		
+		@ResponseBody @RequestMapping(value="/andRecConfirm.ap", produces="text/html; charset=utf-8")
+		public void andRecConfirm() {
+			
+			dao.andRecConfirm();
+			
+		}
 }
