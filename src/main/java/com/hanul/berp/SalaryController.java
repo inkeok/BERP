@@ -102,6 +102,15 @@ public class SalaryController {
 		return "redirect:list.sa";
 	}
 	
+	@RequestMapping("/mySalary.sa")
+	public String mySalary(int employee_id, Model model) {
+		
+		SalEmpVO vo = dao.mySalary(employee_id);
+		
+		model.addAttribute("mySalary", vo);
+		return "side/salary/salMySalary";
+	}
+	
 	
 	
 	
@@ -118,8 +127,15 @@ public class SalaryController {
 	
 
 	@ResponseBody @RequestMapping(value="/andSalaryList.sa", produces="text/html; charset=utf-8")
-	public String SalaryList() {
-		List<SalaryVO> salaryList = dao.salaryList();
+	public String SalaryList(String department_name) {
+		
+		List<SalaryVO> salaryList;
+		if(department_name.equals("전체")) {
+			salaryList = dao.salaryList();
+		}else {
+			salaryList = dao.salaryList(department_name);
+		}
+		
 		return gson.toJson(salaryList);
 	}
 	
@@ -140,9 +156,21 @@ public class SalaryController {
 	}
 	
 	@ResponseBody @RequestMapping(value="/andBonusList.sa", produces="text/html; charset=utf-8")
-	public String andBonusList() {
-		List<BonusVO> list = dao.andBonusList();
-		return gson.toJson(list);
+	public String andBonusList(String department_name) {
+		
+		
+		List<BonusVO> bonusList;
+		if(department_name.equals("전체")) {
+			bonusList = dao.andBonusList();
+		}else {
+			bonusList = dao.andBonusList(department_name);
+		}
+		
+		
+		
+		
+		
+		return gson.toJson(bonusList);
 	}
 	
 	@ResponseBody @RequestMapping(value="/andCommissionSave.sa", produces="text/html; charset=utf-8")
@@ -174,6 +202,11 @@ public class SalaryController {
 	@ResponseBody @RequestMapping(value="/andDepartments.sa", produces="text/html; charset=utf-8")
 	public String departments() {
 		List<DepartmentVO> list = emp_dao.departments();
+		return gson.toJson(list);
+	}
+	@ResponseBody @RequestMapping(value="/andDepartment_name.sa", produces="text/html; charset=utf-8")
+	public String andDepartment_name() {
+		List<SalaryVO> list = dao.andDepartment_name();
 		return gson.toJson(list);
 	}
 }
