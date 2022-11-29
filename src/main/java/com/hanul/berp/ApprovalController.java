@@ -456,6 +456,8 @@ public class ApprovalController {
 		}else
 			return null;
 	}
+	
+	// ========================================== 안드 ====================================================
 
 	@ResponseBody @RequestMapping(value="/andTempList", produces="text/html; charset=utf-8")
 	public String andTempList() {
