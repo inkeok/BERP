@@ -52,6 +52,7 @@ tbody td:hover:before {
 }
 
 select {
+margin-left: 43px;
   position: relative;
   left : -2%;
   width: 180px;

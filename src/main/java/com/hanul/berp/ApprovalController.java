@@ -489,5 +489,13 @@ public class ApprovalController {
 		return gson.toJson(dao.andTempListOne(ing_no))+"";
 	}
 	
+	@ResponseBody @RequestMapping(value="/andApproval_list", produces="text/html; charset=utf-8")
+	public String andApproval_list() {
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andApproval_list());
+	}
+	
 	
 }

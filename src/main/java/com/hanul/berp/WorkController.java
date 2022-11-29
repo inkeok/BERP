@@ -109,13 +109,14 @@ public class WorkController {
 		
 		model.addAttribute("holiday_list",holiday_list); 
 		
+		List<CommonCodeVO> codeList = dao.codeList();
+		
+		model.addAttribute("codeList", codeList);
+		
 		List<HolidayVO> hoList = dao.holidayList(vo.getEmployee_id());
 		
 		model.addAttribute("hoList", hoList);
 		
-		List<CommonCodeVO> codeList = dao.codeList();
-		
-		model.addAttribute("codeList", codeList);
 		
 		List<HolidayResultVO> holiday_submit_list = dao.holiday_submit_list(vo.getEmployee_id());
 		

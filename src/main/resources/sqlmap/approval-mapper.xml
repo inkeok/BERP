@@ -280,6 +280,17 @@ where ing_no = #{ing_no}
 	where ing_no = #{ing_no}
 
 </select>
+<select id="andApproval_list" resultType="approval.Result_tableVO">
+SELECT row_number() over(order by document_date asc) no, 
+r.*, e.name drafter, e2.name approver, c.code_name c_status,
+c2.code_name approver_position, c3.code_name drafter_position
 
-
+FROM result_table r join employees e
+on r.employee_id = e.employee_id join employees e2
+on r.approver_id = e2.employee_id join common_code c
+on r.document_check = c.code_value join common_code c2
+on e2.position = c2.code_value join common_code c3
+on e.position = c3.code_value
+</select>
+	
 </mapper>

@@ -143,4 +143,9 @@ public class ApprovalDAO {
 		return sql.selectOne("approval.andTempListOne", ing_no);
 	}
 	
+	public List<Result_tableVO> andApproval_list() {
+		
+		return sql.selectList("approval.andApproval_list");
+	}
+	
 }
