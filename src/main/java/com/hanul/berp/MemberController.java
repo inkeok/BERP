@@ -2,6 +2,7 @@ package com.hanul.berp;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,11 +64,15 @@ public class MemberController {
 	//check id and pw for login
 	@ResponseBody
 	@RequestMapping("/checkLogin.mem")
-	public boolean checkLogin(int employee_id, String pw, HttpSession session) {
+	public Object checkLogin(int employee_id, String pw, HttpSession session) {
 		EmpVO vo = dao.checkLogin(employee_id, pw);
+		//System.out.println(vo);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("exist", vo == null ? false : true);
+
 		
 		session.setAttribute("loginInfo", vo);
-		return vo == null ? false : true;
+		return map;
 	}
 	
 	@RequestMapping("/logout.mem")

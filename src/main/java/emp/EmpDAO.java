@@ -52,6 +52,9 @@ public class EmpDAO {
 	public void employee_update(EmpVO vo) {
 		sql.update("emp.update", vo);
 	}
+	public void mypage_update(EmpVO vo) {
+		sql.update("emp.mypage_update", vo);
+	}
 
 	public void employee_delete(int employee_id) {
 		// TODO Auto-generated method stub

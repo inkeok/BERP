@@ -8,6 +8,15 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css"
 	rel="stylesheet">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+
+ <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src='js/recruit.js?<%=new java.util.Date() %>'></script>
+
+<!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+
 <style>
 * {
 	box-sizing: border-box;
@@ -194,10 +203,11 @@ p {
 				이미지 구상중 <img src="" alt="" />
 			</div>
 			<div>
-				<form>
-					<input type='text' id='employee_id' class="text-field" name='employee_id' placeholder='아이디'>
-					 <input type="password"  id='pw' name='pw' class="text-field" placeholder="비밀번호">
-					 <input type="submit" class="submit-btn" onclick='login()'id='login' value='login' >
+				<form method='post' action='checkLogin.mem'>
+					<input type='text' id='employee_id' class="text-field chk" name='employee_id' placeholder='아이디'>
+					 <input type="password"  id='pw' name='pw' class="text-field chk" placeholder="비밀번호">
+					 <!-- <input type="submit" class="submit-btn" id='login' value='login' > -->
+					 <a type='button'  class="submit-btn" id='login'>확인</a>
 				</form>
 			</div>
 			<div></div>
@@ -228,59 +238,39 @@ p {
 	</div>
 </div>
 	<script>
-		const employee_id = document.querySelector('#employee_id');
-		const pw = document.querySelector('#pw');
-
-		$('#pw').keyup(function(e) {
-			if (e.keyCode == 13)
-				login();
-		});
-
-		function login() {
-			if (emptyCheck()) {
-
+	$('#pw').keyup(function(e){
+		if(e.keyCode==13) login();
+	});
+	function login() {
+		
+		if(emptyCheck()) {//empty check가 true일때 실행 < webapp-> resources->js-> common.js
+				
 				$.ajax({
-					url : 'checkLogin.mem',
-					data : {
-						employee_id : $('#employee_id').val(),
-						pw : $('#pw').val()
-					},
-					success : function(response) {
-						if (response)
+					url: 'checkLogin.mem',	//controller
+					data: {employee_id:$('#employee_id').val(), pw:$('#pw').val()},
+					
+					success: function(response){
+						console.log(response);
+						
+						if(response.exist) {
+							
 							location = '<c:url value="/"/>';
-						else {
-							alert('사원번호나 비밀번호가 일치하지 않습니다!');
-							$('#employee_id').focus();
 						}
-
-					},
-					error : function(req, text) {
-						alert(text + ':' + req.status);
+						
+						else{
+							alert('일치하지 않습니다');
+							$('#pw').focus();
+						} 
+					},error: function(req, text){
+						alert(text+':'+req.status);
 					}
-				});
-			}
+					
+				});	
+			}	
 		}
-
-		$('#login').click(function() {
+		$('#login').click(function(){
 			login();
 		});
-
-		function emptyCheck() {
-			var ok = true;
-			$('.chk').each(
-					function() {
-						if ($(this).val() == '') {
-							var item = $(this).attr('placeholder') ? $(this)
-									.attr('placeholder') : $(this)
-									.attr('title');
-							alert(item + ' 입력하세요!');
-							$(this).focus();
-							ok = false;
-							return ok;
-						}
-					});
-			return ok;
-		}
 	</script>
 
 </body>
