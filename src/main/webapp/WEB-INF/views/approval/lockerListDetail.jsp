@@ -67,10 +67,12 @@
 		<tr><th height='47px'>첨부파일</th>
 			<td colspan='3' style='vertical-align: middle'>
 				<input type="file" id='file' name='file' 
-				style='display: none'>
+				style='display:${empty lockerListDetail.file_name ? "block" : "none"}'>
+				
 				<c:if test='${not empty lockerListDetail.file_name }'>
-				<a class='file'>${lockerListDetail.file_name}</a>
+				<a name='file_name' class='file'>${lockerListDetail.file_name}</a>
 				</c:if>
+				<input type='hidden' name='file_name' >
 				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined googleIcon">
 				close
 				</span></a>
@@ -101,6 +103,11 @@ $('#postSubmit').click(function(){
 		alert('결재자를 선택하세요')
 		return;
 	}
+	
+	
+	$('[name=file_name]').val( $('.file').text() );
+	
+	
 	$('#postForm').attr('action', 'deleteInsertSubmit.ap?employee_id=${loginInfo.employee_id}&ing_no=${ing_no}&url=submitList.ap');
 	$('#postForm').submit();
 })
@@ -109,12 +116,13 @@ $('#postSubmit').click(function(){
 //삭제 버튼 선택 시 
 $('#postCancel').click(function(){
 	if(confirm('삭제하시겠습니까?'))
-	location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}'
+	location = 'deleteLockerList.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}&no=${lockerListDetail.no}'
 })
 
 //이전으로 버튼 선택 시
 $('#postBack').click(function(){
 	if(confirm('변경된 내용을 저장할까요?')){
+		$('[name=file_name]').val( $('.file').text() );
 		$('#postForm').attr('action', 'deleteInsertLocker.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}&no=${lockerListDetail.no}');
 		$('#postForm').submit();
 	}else{
