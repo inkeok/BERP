@@ -149,7 +149,7 @@ placeholder="비밀번호">
 </table>
 <div class='margin'>
 	<a class='new-btn' id='save'>저장</a>
-	<a class='new-btn' onclick="history.go(-1)">취소</a>
+	<a class='new-btn' href="<c:url value='/'/>">취소</a>
 </div>
 </form>
 
