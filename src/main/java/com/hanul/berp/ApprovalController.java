@@ -511,9 +511,9 @@ public class ApprovalController {
 
 	//////////////////////////////////////////////////////////////////////
 	@ResponseBody @RequestMapping(value="/andWrite.ap", produces="text/html; charset=utf-8")
-	public String andWrite() {
+	public String andWrite(int employee_id) {
 		
-		List<And_Ing_tableVO> list = dao.andWriteList();
+		List<And_Ing_tableVO> list = dao.andWriteList(employee_id);
 		
 		return new Gson().toJson(list);
 

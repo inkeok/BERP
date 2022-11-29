@@ -317,6 +317,7 @@
               on e2.department_id = d2.department_id left outer join common_code cd1
               on e1.position = cd1.code_value left outer join common_code cd2
               on e2.position = cd2.code_value
+              where i.employee_id = #{employee_id}
               order by i.ing_no
 </select>
 
