@@ -157,8 +157,17 @@ public class ApprovalDAO {
 		return sql.selectList("approval.andWriteList", employee_id);
 
 	}
-	public List<And_Ing_tableVO> andRecList() {
+	public List<And_Ing_tableVO> andRecList(int employee_id) {
 		
-		return sql.selectList("approval.andRecList");
+		return sql.selectList("approval.andRecList",employee_id);
+	}
+
+	public List<And_Ing_tableVO> andRecsign() {
+		return sql.selectList("approval.andRecsign");
+	}
+
+	public void andRecConfirm() {
+		 sql.update("approval.andRecConfirm");
+		 sql.delete("approval.andRecCencel");
 	}
 }

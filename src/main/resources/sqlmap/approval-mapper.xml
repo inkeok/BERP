@@ -277,7 +277,7 @@
 	<!-- 앤드로이ㄷㄷㄷㄷ -->
 
 	<select id="andRecList" resultType="approval.And_Ing_tableVO">
-		 select i.*, d1.department_name emp_dpmt_name, d2.department_name app_dpmt_name,  e1.name emp_name, e2.name app_name, c.company_name, cd.code_name check_name,
+		  select i.*, d1.department_name emp_dpmt_name, d2.department_name app_dpmt_name,  e1.name emp_name, e2.name app_name, c.company_name, cd.code_name check_name,
               cd1.code_name emp_position_name, cd2.code_name app_position_name, e1.position emp_position, e2.position app_position
               from ing_table i left outer join departments d1
               on i.department_id = d1.department_id left outer join employees e1 
@@ -288,6 +288,7 @@
               on e2.department_id = d2.department_id left outer join common_code cd1
               on e1.position = cd1.code_value left outer join common_code cd2
               on e2.position = cd2.code_value
+              where approver_id = #{employee_id}
               order by i.ing_no
 	</select>
 
@@ -301,8 +302,6 @@
 	where i.document_submit = 'N'
 
 </select>
-
-
 
 
 <select id="andWriteList" resultType="approval.And_Ing_tableVO">
@@ -353,5 +352,19 @@ on r.document_check = c.code_value join common_code c2
 on e2.position = c2.code_value join common_code c3
 on e.position = c3.code_value
 </select>
-	
+
+<select id="andRecsign" resultType="approval.And_Ing_tableVO">
+ 	select code_value document_check, code_name check_name
+    from common_code
+    where code_title = 'D'
+</select>
+<update id="andRecConfirm">
+	update result_table set document_check = #{document_check}
+	where document_title = #{document_title}
+</update>
+<delete id="andRecCencel">
+	delete
+	from table
+	where document_title = #{document_title}
+</delete>
 </mapper>
