@@ -116,5 +116,9 @@ public class ApprovalDAO {
 		return sql.selectList("approval.document_check");
 	}
 	
+	//////////////////////////////////////////////////////////////////
+	public List<And_Ing_tableVO> andWriteList(){
+		return sql.selectList("approval.andWriteList");
+	}
 	
 }

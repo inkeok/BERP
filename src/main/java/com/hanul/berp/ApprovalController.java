@@ -3,6 +3,8 @@ package com.hanul.berp;
 
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
+import approval.And_Ing_tableVO;
 import approval.ApprovalDAO;
 import approval.FileUtility;
 import approval.Ing_tableVO;
 import approval.Result_tableVO;
 import emp.EmpDAO;
+import emp.PatternVO;
 import notice.NoticeVO;
 
 @Controller
@@ -456,7 +462,14 @@ public class ApprovalController {
 			return null;
 	}
 	//////////////////////////////////////////////////////////////////////
-	
+	@ResponseBody @RequestMapping(value="/andWrite.ap", produces="text/html; charset=utf-8")
+	public String andWrite() {
+		
+		List<And_Ing_tableVO> list = dao.andWriteList();
+		
+		return new Gson().toJson(list);
+
+	}
 
 	
 	
