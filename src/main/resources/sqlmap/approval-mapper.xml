@@ -250,6 +250,47 @@ select *
 from common_code
 where code_title = 'D'
 </select>
+<!-- 안드 -->
 
+<select id="andTempList" resultType="approval.Ing_tableVO">
+	select i.* , e.name name from ing_table i
+	left outer join  employees e 
+	on e.employee_id = i.employee_id
+	where i.document_submit = 'N'
 
+</select>
+
+<update id = "andTempUpdate">
+	update ing_table 
+	set document_submit = 'Y'
+	where ing_no = #{ing_no}
+</update>
+<delete id="andTempDelete">
+	delete from ing_table 
+	where ing_no = #{ing_no}
+</delete>
+<update id="andTempModify">
+update ing_table
+set document_title = #{document_title}, document_content = #{document_content}, document_date = sysdate
+where ing_no = #{ing_no}
+
+</update>
+<select id="andTempListOne" resultType="approval.Ing_tableVO">
+	select * from ing_table
+	where ing_no = #{ing_no}
+
+</select>
+<select id="andApproval_list" resultType="approval.Result_tableVO">
+SELECT row_number() over(order by document_date asc) no, 
+r.*, e.name drafter, e2.name approver, c.code_name c_status,
+c2.code_name approver_position, c3.code_name drafter_position
+
+FROM result_table r join employees e
+on r.employee_id = e.employee_id join employees e2
+on r.approver_id = e2.employee_id join common_code c
+on r.document_check = c.code_value join common_code c2
+on e2.position = c2.code_value join common_code c3
+on e.position = c3.code_value
+</select>
+	
 </mapper>

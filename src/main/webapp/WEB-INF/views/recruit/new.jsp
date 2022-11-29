@@ -200,7 +200,7 @@ text-align:center;
 	</td>
 </tr>
 </table>
-<input type='hidden' name='writer' value='${loginInfo.id}'>
+<input type='hidden' name='writer' value='${loginInfo.employee_id}'>
 </form>
 <div class='btnSet'>
 	<a class='new-btn' id='save'>저장</a>

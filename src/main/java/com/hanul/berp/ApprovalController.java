@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
 import approval.ApprovalDAO;
 import approval.FileUtility;
 import approval.Ing_tableVO;
@@ -49,7 +51,11 @@ public class ApprovalController {
 	@RequestMapping(value="/deleteLockerList.ap",
 				produces="text/html; charset=utf8")
 	public String deleteLockerList(int employee_id, String url, 
-								Model model, int ing_no) {
+								Model model, int ing_no, int no, HttpServletRequest req) {
+		
+		Ing_tableVO locker = dao.lockerListDetail(no, employee_id);
+		fileUtility.deleteFile(locker.getFile_path(), req);
+		
 		if(dao.deleteIng(ing_no)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
 			msg.append("alert('삭제했습니다.'); location='")
@@ -451,5 +457,45 @@ public class ApprovalController {
 		}else
 			return null;
 	}
+
+	@ResponseBody @RequestMapping(value="/andTempList", produces="text/html; charset=utf-8")
+	public String andTempList() {
+		Gson gson = new Gson();
+		return gson.toJson(dao.andTempList());
+	}
+	@ResponseBody @RequestMapping(value="/andTempSubmit", produces="text/html; charset=utf-8")
+	public String andTempSubmit(int ing_no) {
+		
+		return dao.andTempUpdate(ing_no)+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempDelete", produces="text/html; charset=utf-8")
+	public String andTempDelete(int ing_no) {
+		
+		return dao.andTempDelete(ing_no)+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempModify", produces="text/html; charset=utf-8")
+	public String andTempModify(String vo) {
+		Gson gson = new Gson();
+		Ing_tableVO dto = gson.fromJson(vo,Ing_tableVO.class);
+		
+		
+		return dao.andTempModify(dto.getDocument_title(),dto.getDocument_content(), dto.getIng_no())+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempListOne", produces="text/html; charset=utf-8")
+	public String andTempListOne(String ing_no) {
+				
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andTempListOne(ing_no))+"";
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApproval_list", produces="text/html; charset=utf-8")
+	public String andApproval_list() {
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andApproval_list());
+	}
+	
 	
 }
