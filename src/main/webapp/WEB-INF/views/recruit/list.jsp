@@ -11,7 +11,6 @@
 	type="text/css" />
 <link href='css/common.css?<%=new java.util.Date()%>' type='text/css'
 	rel='stylesheet'>
-
 <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date()%>'></script>
@@ -26,7 +25,7 @@ table {
 	border-radius : 20px;
 	border-collapse: collapse;
 	overflow: hidden;
-	margin-bottom : 10rem;
+	margin-bottom : 18rem;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 td a{
@@ -109,15 +108,12 @@ select::-ms-expand {
   box-shadow: 0 3px 25px rgba(255, 255, 255, 0.1);
 }
 
-.bottom {
-margin-bottom : 10rem;
-}
 
 </style>
 </head>
 <body>
 <div class="body-content">
-	<h3>채용공고 리스트</h3>
+	<h3>채용공고</h3>
 	<form class='bottom' method='post' action='list.rec'>
 		<div id='list-top' class='w-px1200 '>
 			<select name='employee_pattern' class=''
@@ -142,10 +138,11 @@ margin-bottom : 10rem;
 		</ul> --%>
 			
 				<!-- 관리자인 경우만 글쓰기 가능 -->
-				<%-- <c:if test='${loginInfo.admin eq "Y"}'> --%>
-			
-				<%-- </c:if> --%>
+				<c:if test='${loginInfo.admin eq "Y"}'>
 			<a class='writing writing-second' href='new.rec'>글쓰기</a>
+			
+				 </c:if> 
+			<a class='writing writing-second' href='applyList.apply'>지원하기</a>
 		</div>
 	</form>
 

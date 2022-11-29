@@ -177,7 +177,7 @@ ul li {
 
 	<!-- end row -->
 
-	<h5 style="margin-bottom: 2px" class="font-size-16 mb-0">휴가 소진 내역</h5>
+	<h5 style="margin-bottom: 15px; margin-top: 15px" class="font-size-16 ">휴가 소진 내역</h5>
 
 
 
@@ -214,7 +214,7 @@ ul li {
 	</table>
 
 
-	<h5 class="font-size-16 mb-0">휴가 신청 내역</h5>
+	<h5 class="font-size-16" style="margin-bottom: 15px; margin-top: 15px">휴가 신청 내역</h5>
 
 	</div>
 

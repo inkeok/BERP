@@ -189,18 +189,20 @@ td button:nth-child(1) {
 <table class='w-px1000 tb-list'>
 <colgroup>
 	<col width='100px'>
+	<col width='100px'>
 	<col width="400px">
 	<col width='300px'>
 	
 </colgroup>
 <tr><th>유형</th>
+	<th>유형</th>
 	<th>제목</th>
 	<th>접수기간</th>
 	
 </tr>
 <c:forEach items='${recruitList}' var='vo'>
-<tr><td>${vo.code_name}</td>
-	
+<tr><td>${vo.employee_pattern_name}</td>
+	<td>${vo.career_name}</td>
 	
 	<td style="text-align:left"><a href="fillout.apply?recruit_num=${vo.recruit_num }">
 	${vo.recruit_title }

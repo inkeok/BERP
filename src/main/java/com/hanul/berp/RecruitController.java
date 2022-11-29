@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ import com.google.gson.Gson;
 
 import apply.ApplyVO;
 import emp.EmpAndInsertDTO;
+import emp.EmpVO;
+import member.MemberDAO;
 import recruit.CommonCodeVO;
 import recruit.CompanyVO;
 import recruit.RecruitDAO;
@@ -33,6 +36,8 @@ import recruit.RecruitVO;
 
 @Controller
 public class RecruitController {
+	
+	@Autowired private MemberDAO member;
 	@Autowired
 	RecruitDAO dao;
 	
@@ -168,7 +173,7 @@ public class RecruitController {
 	@RequestMapping("/list.rec")
 	public String recruitList(Model model
 		, @RequestParam(defaultValue="all") String employee_pattern
-			
+			,HttpSession session
 			) {
 		//사원조회
 		List<RecruitVO> recruit ;
@@ -178,7 +183,7 @@ public class RecruitController {
 
 		//신입경력 코드목록조회
 		//List<CommonCodeVO> code_career = dao.recruit_career();
-		
+	
 		
 
 		if(employee_pattern.equalsIgnoreCase("all")) {
@@ -203,7 +208,7 @@ public class RecruitController {
 		//model.addAttribute("code_value", career);
 		
 		
-		return "layout/recruit/list";
+		return "empty/recruit/list";
 	}
 	
 	@RequestMapping("/new.rec")

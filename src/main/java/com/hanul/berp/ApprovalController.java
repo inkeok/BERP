@@ -2,7 +2,10 @@ package com.hanul.berp;
 
 
 
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,11 +20,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
+
+import approval.And_Ing_tableVO;
 import approval.ApprovalDAO;
 import approval.FileUtility;
 import approval.Ing_tableVO;
 import approval.Result_tableVO;
 import emp.EmpDAO;
+import emp.PatternVO;
 import notice.NoticeVO;
 
 @Controller
@@ -459,6 +465,11 @@ public class ApprovalController {
 	
 	// ========================================== 안드 ====================================================
 
+
+			///////////앤드로이ㄷㄷㄷ/////////////
+
+
+
 	@ResponseBody @RequestMapping(value="/andTempList", produces="text/html; charset=utf-8")
 	public String andTempList() {
 		Gson gson = new Gson();
@@ -490,5 +501,33 @@ public class ApprovalController {
 		return gson.toJson(dao.andTempListOne(ing_no))+"";
 	}
 	
+	@ResponseBody @RequestMapping(value="/andApproval_list", produces="text/html; charset=utf-8")
+	public String andApproval_list() {
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andApproval_list());
+	}
+
+	//////////////////////////////////////////////////////////////////////
+	@ResponseBody @RequestMapping(value="/andWrite.ap", produces="text/html; charset=utf-8")
+	public String andWrite() {
+		
+		List<And_Ing_tableVO> list = dao.andWriteList();
+		
+		return new Gson().toJson(list);
+
+	}
+
+
+		@ResponseBody @RequestMapping(value="/andRec.ap", produces="text/html; charset=utf-8")
+	   public String andRec() {
+	      
+	      List<And_Ing_tableVO> list = dao.andRecList();
+	      
+	      return new Gson().toJson(list);
+
+	   }
+
 	
 }

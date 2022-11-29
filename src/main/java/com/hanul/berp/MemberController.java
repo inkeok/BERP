@@ -57,7 +57,6 @@ public class MemberController {
 	public String login(HttpSession session) {
 		session.setAttribute("category", "login");
 		
-		
 		return "default/member/login";
 	}
 	
@@ -66,7 +65,7 @@ public class MemberController {
 	@RequestMapping("/checkLogin.mem")
 	public boolean checkLogin(int employee_id, String pw, HttpSession session) {
 		EmpVO vo = dao.checkLogin(employee_id, pw);
-		System.out.println(vo);
+		
 		session.setAttribute("loginInfo", vo);
 		return vo == null ? false : true;
 	}

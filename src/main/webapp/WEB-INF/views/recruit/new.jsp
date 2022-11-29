@@ -8,6 +8,7 @@
 
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
@@ -200,7 +201,7 @@ text-align:center;
 	</td>
 </tr>
 </table>
-<input type='hidden' name='writer' value='${loginInfo.id}'>
+<input type='hidden' name='writer' value='${loginInfo.employee_id}'>
 </form>
 <div class='btnSet'>
 	<a class='new-btn' id='save'>저장</a>

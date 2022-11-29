@@ -1,5 +1,6 @@
 package approval;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -115,7 +116,11 @@ public class ApprovalDAO {
 	public List<Common_codeVO> document_check() {
 		return sql.selectList("approval.document_check");
 	}
+
+
 	
+
+
 	////////////////////////안드/////////////
 	
 	
@@ -143,4 +148,17 @@ public class ApprovalDAO {
 		return sql.selectOne("approval.andTempListOne", ing_no);
 	}
 	
+	public List<Result_tableVO> andApproval_list() {
+		
+		return sql.selectList("approval.andApproval_list");
+	}
+
+	public List<And_Ing_tableVO> andWriteList(){
+		return sql.selectList("approval.andWriteList");
+
+	}
+	public List<And_Ing_tableVO> andRecList() {
+		
+		return sql.selectList("approval.andRecList");
+	}
 }

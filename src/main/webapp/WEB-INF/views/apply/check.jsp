@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
+<%-- <link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>  --%>
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   --%>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
 <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date()%>'></script>
@@ -87,6 +87,11 @@ tbody td:hover:before {
 #save {
 	margin-right: 10px;
 }
+
+#preview_pic img{
+	width:100px;
+}
+
 </style>
 </head>
 <body>
