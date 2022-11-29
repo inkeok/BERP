@@ -6,13 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
+<%-- <link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'> 
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />   --%>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> --%> 
 <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date()%>'></script>
 <script src='js/apply_pic.js?<%=new java.util.Date()%>'></script>
+<script src='js/apply.js?<%=new java.util.Date()%>'></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
@@ -85,6 +86,12 @@ tbody td:hover:before {
 .margin {
 margin-top: 40px;
 }
+
+#preview_pic img{
+	width:100px!important;
+	z-index: 9999;
+}
+
 </style>
 
 </head>
@@ -103,7 +110,7 @@ margin-top: 40px;
 				<th>지원자번호</th>
 				<td>${vo.apply_num }</td>
 				
-				<td rowspan='3' style="width: 120px"><span id='pic_name'></span>
+				<td rowspan='3' style="width: 120px; padding:0px; text-align: center;"><span id='pic_name'></span>
 					<span id='preview_pic'></span> <input type="hidden"
 					id='apply_pic_name' value="${vo.apply_pic_name }"> <%-- 
 <span id='pic_name'>${vo.apply_pic_name }</span>
@@ -166,16 +173,10 @@ margin-top: 40px;
 			}
 		});
 
-		if (isImage("${vo.file_name}")) {
-			$('#file_name').after(
-					'<span id="preview"><img src="${vo.file_path}"</span>');
-
-		}
-		if (isImage("${vo.apply_pic_name}")) {
-			$('#pic_name')
-					.after(
-							'<span id="preview_pic"><img src="${vo.apply_pic_path}"</span>');
-
+		
+		if(isImage("${vo.apply_pic_name}")) {
+			$('#pic_name').after('<span id="preview_pic"><img src="${vo.apply_pic_path}"</span>' );
+			
 		}
 	</script>
 
