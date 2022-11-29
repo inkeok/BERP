@@ -261,7 +261,7 @@ a {
     position: fixed;
     top: 0;
     left: 0;
-    width: var(--nav--width);
+/*     width: var(--nav--width); */
     height: 100vh;
     background-color: var(--bg-color);
     color: var(--white-color);

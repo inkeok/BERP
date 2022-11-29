@@ -13,14 +13,27 @@
 <!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
-a.btn-fill{
-    height: 32px;
-        background: #125;
-   
-    border-radius: 6px;
-    padding: 7px;
-  }
-  
+h3{
+    margin-top: 55px;
+    margin-bottom: 35px;
+    border-bottom: 5px solid #12192c;
+    padding-bottom: 15px;
+}
+.search{
+ padding: 0.5em 1em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+}
 body{
 width : 1200px;
 }
@@ -44,7 +57,8 @@ td a {
 }
 
 th, td {
-	padding: 15px;
+    border-bottom: 1px solid #efefef;
+	padding: 12px;
 	background-color: rgba(255, 255, 255, 0.2);
 	color: #000000;
 }
@@ -70,13 +84,30 @@ tbody td:hover:before {
 	background-color: rgba(255, 255, 255, 0.2);
 	z-index: -1;
 }
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 670%;
+}
 
 </style>
 
 
 </head>
 <body>
-<h3 style="margin-top: 55px; margin-bottom : 35px;">${loginInfo.name } / 공지사항</h3>
+<h3>${loginInfo.name } / 공지사항</h3>
  
 <form method='post' action='list.no'>
 <div id='list-top' class='w-px1200'>
@@ -95,9 +126,11 @@ tbody td:hover:before {
 			</select>
 		
 		</li>
-		<li style="margin-right: 10px; "><input style="height: 32px;"  placeholder="검색어를 입력하세요 !" type='text' value='${search.keyword }' name='keyword' class='w-px300'> </li>
-		<li style="margin-top: 3px; "><a class='btn-fill' onclick='$("form").submit()'>검색</a></li>
-	
+			<li style="margin-right: 3px; "><input style="height: 32px;"  placeholder="검색어를 입력하세요 !" type='text' value='${search.keyword }' name='keyword' class='w-px300'> </li>
+			<li style="margin-top: 4px; "><a class='search' onclick='$("form").submit()'>검색</a></li>
+		<c:if test='${loginInfo.admin eq "Y"}'>
+			<li style="margin-top: 3px;"><a class='new-btn' href='new.no'>글쓰기</a></li>
+		</c:if>
 	</ul>
 	
 </div>
@@ -107,11 +140,9 @@ tbody td:hover:before {
 </form>
 
 
- <ul><!-- 관리자인 경우만 글쓰기 가능 -->
-		<c:if test='${loginInfo.admin eq "Y"}'>
-		<li style="text-align: end;  margin-right: -58px;"><a class='btn-fill' href='new.no'>글쓰기</a></li>
-		</c:if>
-	</ul>
+<!--  <ul>관리자인 경우만 글쓰기 가능 -->
+		
+<!-- 	</ul> -->
 <table class='w-px1200 tb-list'>
 <colgroup>
 	<col width='100px'>
