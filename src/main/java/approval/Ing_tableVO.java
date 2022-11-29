@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Ing_tableVO {
 	
 	private int no, ing_no, employee_id, department_id, approver_id;
-	private String company_cd, file_name, file_path, document_title, 
+	private String company_cd, file_name, file_path, document_title, employee_name, approver_name,
 					document_content, document_check, document_status, document_submit,
 					email, approver, drafter, c_status, c_position, document_comment,  employee_name, approver_name;
 
@@ -14,6 +14,7 @@ public class Ing_tableVO {
 
 	
 	
+
 	
 	public String getEmployee_name() {
 		return employee_name;
@@ -26,6 +27,7 @@ public class Ing_tableVO {
 	}
 	public void setApprover_name(String approver_name) {
 		this.approver_name = approver_name;
+
 
 	}
 	public String getDocument_comment() {

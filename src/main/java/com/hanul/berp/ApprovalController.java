@@ -2,6 +2,7 @@ package com.hanul.berp;
 
 
 
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -464,6 +465,10 @@ public class ApprovalController {
 	}
 
 
+			///////////앤드로이ㄷㄷㄷ/////////////
+
+
+
 	@ResponseBody @RequestMapping(value="/andTempList", produces="text/html; charset=utf-8")
 	public String andTempList() {
 		Gson gson = new Gson();
@@ -513,6 +518,15 @@ public class ApprovalController {
 
 	}
 
-	
+
+		@ResponseBody @RequestMapping(value="/andRec.ap", produces="text/html; charset=utf-8")
+	   public String andRec() {
+	      
+	      List<And_Ing_tableVO> list = dao.andRecList();
+	      
+	      return new Gson().toJson(list);
+
+	   }
+
 	
 }

@@ -57,7 +57,6 @@ public class MemberController {
 	public String login(HttpSession session) {
 		session.setAttribute("category", "login");
 		
-		
 		return "default/member/login";
 	}
 	
