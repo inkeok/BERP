@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import common.CommonDAO;
 import common.CommonVO;
 
@@ -153,5 +155,26 @@ public class CommonController {
 			return "0";
 		}
 	}
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@ResponseBody @RequestMapping(value="/andCodeList.rec", produces="text/html; charset=utf-8")
+	public String andCodeList() {
+		return new Gson().toJson(dao.and_rec_list());
+	}
+	
+	@ResponseBody @RequestMapping(value="/andCodeSpinnerList.rec", produces="text/html; charset=utf-8")
+	public String andApplySpinnerList() {
+		return new Gson().toJson(dao.and_code_spinnerList());
+
+	}
+	
+	
+	  @ResponseBody @RequestMapping(value="/andCodeValueSelect.rec",
+	  produces="text/html; charset=utf-8") public String
+	  andApplyCareerSelect(String title) { return new
+	  Gson().toJson(dao.and_code_spinner_valuelist(title));
+	  
+	 }
+	 
 	
 }
