@@ -115,6 +115,23 @@ text-align:center;
 	margin-top: 30px;
 }
 
+#preview_pic img{
+	width:100px!important;
+	z-index: 9999;
+}
+
+.valid {
+color: green;
+font-size: 14px;
+font-weight: bold;
+}
+
+.invalid {
+color: red;
+font-size: 14px;
+font-weight: bold;
+}
+
 </style>
 </head>
 <body>
@@ -138,16 +155,21 @@ text-align:center;
 
 				<!-- 증사 수정 -->
 				<td rowspan='3' style="width: 250px">
-					<div class='align'>
-						<label> <input type='file' name='pic_name'
+					<!-- <div class='align'> -->
+					<div>
+						<label> 
+						<input type='file' name='pic_name'
 							id='attach-file-pic'>
 						</label> 
-				
-						<span id='apply_pic_name'></span> <span id='preview_pic'></span>
+					</div>
+				<div>
+						<!-- <span id='apply_pic_name'></span>  -->
+						<span id='preview_pic'></span>
+				</div>
 						
 						<a id='delete-file-pic'><i
 							class="font-r fa-solid fa-trash-can"></i></a>
-					</div>
+				<!-- 	</div> -->
 
 
 				</td>
@@ -171,7 +193,7 @@ text-align:center;
 					<div class='align'>
 						<label> <input type='file' name='file' id='attach-file'>
 							<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
-						</label> <span id='file_name'></span> <span id='preview'></span> <a
+						</label> <span id='file_name'></span> <a
 							id='delete-file'><i class="font-r fa-solid fa-trash-can"></i></a>
 					</div>
 				</td>

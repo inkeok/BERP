@@ -88,6 +88,10 @@ tbody td:hover:before {
 .margin {
 margin-top: 40px;
 }
+
+#preview_pic img{
+	width:100px;
+}
 </style>
 </head>
 <body>
@@ -148,7 +152,7 @@ margin-top: 40px;
 			<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
 		</label>
 		<span id='file_name'>${vo.file_name}</span>
-		<span id='preview'></span>
+		
 		<!-- //첨부파일이 있는 경우 삭제 이미지가 보이게 처리 -->
 		<a id='delete-file' style='display:${empty vo.file_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
 		
@@ -169,10 +173,7 @@ $('#save').click(function(){
 	$('[name=file_name]').val( $('#file_name').text() );
 	if( emptyCheck() ) $('form').submit();
 });
-if(isImage("${vo.file_name}")) {
-	$('#file_name').after('<span id="preview"><img src="${vo.file_path}"</span>' );
-	
-}
+
 
 
 if(isImage("${vo.apply_pic_name}")) {

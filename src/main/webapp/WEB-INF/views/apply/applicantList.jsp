@@ -134,7 +134,8 @@ tbody td:hover:before {
 								value='${re.recruit_num}'>
 								${re.recruit_title}</option>
 						</c:forEach>
-				</select> <%-- <c:if test='${loginInfo.admin eq "Y"}'> --%> <a
+				</select>
+				 <%-- <c:if test='${loginInfo.admin eq "Y"}'> --%> <a
 					class='new-btn' style="position: left;" href='pass_check.apply'>합격자
 						리스트</a> <%-- </c:if> --%></li>
 			</ul>
@@ -167,10 +168,13 @@ tbody td:hover:before {
 		</tr>
 		<c:forEach items='${applicants}' var='vo'>
 			<tr>
-				<td>${vo.recruit_num}</td>
-				<td style="text-align: left; padding-left: 20px">${vo.recruit_title}</td>
+				<td><a
+					href="check.apply?apply_num=${vo.apply_num }">${vo.recruit_num}</a></td>
+				<td style="text-align: left; padding-left: 20px"><a
+					href="check.apply?apply_num=${vo.apply_num }">${vo.recruit_title}</a></td>
 
-				<td>${vo.apply_num }</td>
+				<td><a
+					href="check.apply?apply_num=${vo.apply_num }">${vo.apply_num }</a></td>
 				<td ><a
 					href="check.apply?apply_num=${vo.apply_num }"> ${vo.apply_name }
 				</a></td>

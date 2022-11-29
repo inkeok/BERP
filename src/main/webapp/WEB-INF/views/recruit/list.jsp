@@ -117,7 +117,7 @@ margin-bottom : 10rem;
 </head>
 <body>
 <div class="body-content">
-	<h3>채용공고 리스트</h3>
+	<h3>채용공고</h3>
 	<form class='bottom' method='post' action='list.rec'>
 		<div id='list-top' class='w-px1200 '>
 			<select name='employee_pattern' class=''
@@ -142,10 +142,11 @@ margin-bottom : 10rem;
 		</ul> --%>
 			
 				<!-- 관리자인 경우만 글쓰기 가능 -->
-				<%-- <c:if test='${loginInfo.admin eq "Y"}'> --%>
-			
-				<%-- </c:if> --%>
+				<c:if test='${loginInfo.admin eq "Y"}'>
 			<a class='writing writing-second' href='new.rec'>글쓰기</a>
+			
+				 </c:if> 
+			<a class='writing writing-second' href='applyList.apply'>지원하기</a>
 		</div>
 	</form>
 
