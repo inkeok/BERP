@@ -15,16 +15,88 @@ table td {text-align: left;}
 
 </style>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
+
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<style>
+img {
+	width : 50px;
+	height: 50px;
+}
+a{
+	color : white;
+}
+a.btn-fill{
+    height: 32px;
+        background: #125;
+   
+    border-radius: 6px;
+    padding: 5px;
+  }
+  
+body{
+width : 1200px;
+}
+select{
+
+height : 32px;}
+
+table {
+	margin-top: 5px;
+	/* 	border-top-left-radius: 20px; */
+	/* 	border-top-right-radius: 20px; */
+	border-radius: 15px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	margin-bottom: 10rem;
+}
+
+td a {
+	color: #323232;
+}
+
+th, td {
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.2);
+
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+    font-weight: normal;
+}
+
+th {
+	text-align: center;
+}
+
+th {
+	background-color: #12192c;
+	color: #fff;
+}
+
+tbody tr:hover, td:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+tbody td {
+	position: relative;
+}
+
+tbody td:hover:before {
+	background-color: rgba(255, 255, 255, 0.2);
+	z-index: -1;
+}
+
+</style>
+
 </head>
 <body>
 
-<h3>ddd디텔</h3>
+<h3 style="margin-bottom:35px; margin-top:55px;">공지사항 상세보기</h3>
 
 <table class='w-px1200'>
 <colgroup>
@@ -51,15 +123,15 @@ table td {text-align: left;}
 </tr>
 
 <tr><th>내용</th>
-<td colspan='5'>${fn:replace(vo.notice_content,crlf,'<br>' )}</td>
+<td style="height :300px;" colspan='5'>${fn:replace(vo.notice_content,crlf,'<br>' )}</td>
 
 </tr>
 
 <tr><th>첨부파일</th>
-<td colspan='5'>
-<div class='align'>
+<td style="height :100px;" colspan='5'>
+<div style="height: 30px; display:flex; ">
 
-<span id='file_name'>${vo.file_name }</span>
+<span style="height: 30px; display:flex;"  id='file_name'>${vo.file_name }</span>
 <c:if test="${not empty vo.file_name }">
 <a id='download'><i class="font-b fa-solid fa-file-arrow-down"></i></a>
 </c:if>
@@ -68,13 +140,13 @@ table td {text-align: left;}
 </tr>
 
 </table>
-<div class='btnSet'>
-<a href='list.no' class='btn-fill'>목록으로</a>
+<div class='btnSet' style="display:flex; justify-content: center">
+<a    style="margin: 10px;"  href='list.no' class='btn-fill'>목록으로</a>
 
 <!-- 관리자로 로긴 한 경우만 수정ㅅ/삭제 가능 -->
 <c:if test='${loginInfo.admin eq "Y" }'>
-<a class='btn-fill' href='modify.no?notice_num=${vo.notice_num }'>정보수정 </a>
-<a class='btn-fill' id='remove'>정보삭제</a>
+<a style="margin: 10px;" class='btn-fill' href='modify.no?notice_num=${vo.notice_num }'>정보수정 </a>
+<a  style="margin: 10px;" class='btn-fill' id='remove'>정보삭제</a>
 </c:if>
 
 </div>

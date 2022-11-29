@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import emp.EmpVO;
+import work.CommonCodeVO;
 
 @Repository
 public class ApprovalDAO {
@@ -161,4 +162,13 @@ public class ApprovalDAO {
 		
 		return sql.selectList("approval.andRecList");
 	}
+	public List<Result_tableVO> andCodeList(String document_check){
+		
+		return sql.selectList("approval.andCodeList" ,document_check);
+	}
+	public List<CommonCodeVO> andResult_code(){
+		
+		return sql.selectList("approval.andResult_code");
+	}
+	
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import emp.EmpDAO;
 import emp.EmpVO;
+import notice.NoticeDAO;
+import notice.NoticeListVO;
 
 @Controller
 public class ProfileController {
@@ -20,7 +22,7 @@ public class ProfileController {
 	public String Profile(Model model, HttpSession session ) {
 		EmpVO vo = (EmpVO) session.getAttribute("loginInfo");
 		
-		vo = dao.emp_info(vo.getEmployee_id());
+		
 		model.addAttribute("vo", vo);
 		return "side/profile/myProfile";
 	}

@@ -7,27 +7,99 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
+
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<style>
+img {
+	width : 50px;
+	height: 50px;
+}
+a{
+	color : white;
+}
+a.btn-fill{
+    height: 32px;
+        background: #125;
+   
+    border-radius: 6px;
+    padding: 5px;
+  }
+  
+body{
+width : 1200px;
+}
+select{
+
+height : 32px;}
+
+table {
+	width : 1200px;
+	margin-top: 5px;
+	/* 	border-top-left-radius: 20px; */
+	/* 	border-top-right-radius: 20px; */
+	border-radius: 15px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	margin-bottom: 10rem;
+}
+
+td a {
+	color: #323232;
+}
+
+th, td {
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.2);
+
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+    font-weight: normal;
+}
+
+th {
+	text-align: center;
+}
+
+th {
+	background-color: #12192c;
+	color: #fff;
+}
+
+tbody tr:hover, td:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+tbody td {
+	position: relative;
+}
+
+tbody td:hover:before {
+	background-color: rgba(255, 255, 255, 0.2);
+	z-index: -1;
+}
+
+</style>
 </head>
 <body>
-<h3>공지글수정dddddd</h3>
+<h3 style="margin-bottom:35px; margin-top:55px;">공지글수정</h3>
 <form method='post' action='update.no' enctype='multipart/form-data'>
-<table class='w-px1000'>
-<tr><th class='w-px140'>제목</th>
-	<td><input type='text' value='${fn: escapeXml(vo.notice_title)}' name='notice_title' class='full chk' title='제목'></td>
+<table>
+<tr><th class='w-px140' >제목</th>
+	<td style="text-align:left"><input type='text' value='${fn: escapeXml(vo.notice_title)}' name='notice_title' class='full chk' title='제목'></td>
 </tr>
 <tr><th>내용</th>
-	<td><textarea name='notice_content' class='full chk' title='내용'>${vo.notice_content}</textarea></td>
+	<td style="height :300px;"><textarea name='notice_content' class='full chk' title='내용'>${vo.notice_content}</textarea></td>
 </tr>
 <tr><th>첨부파일</th>
-	<td class='text-left'>
-		<div class='align'>
-		<label>
+	<td class='text-left' >
+		<div style="height: 30px; display:flex; ">
+		<label style="height: 30px; display:flex;">
 			<input type='file' name='file' id='attach-file'>
 			<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
 		</label>
@@ -45,9 +117,9 @@
 
 
 </form>
-<div class='btnSet'>
-	<a class='btn-fill' id='save'>저장</a>
-	<a class='btn-empty' href='list.no'>취소</a>
+<div class='btnSet' style="display:flex; justify-content: center">
+	<a  style="margin: 10px;"class='btn-fill' id='save'>저장</a>
+	<a  style="margin: 10px;"class='btn-fill' href='list.no'>취소</a>
 </div>
 <script>
 
