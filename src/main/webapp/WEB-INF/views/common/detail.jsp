@@ -118,6 +118,7 @@ tbody td:hover:before {
 			</table>
 		</div>
 		<div class='center'>
+		
 
 			<a class='new-btn' href='common.modify?code_value=${vo.code_value}'>정보수정</a>
 			<a class='new-btn' onclick="if( confirm('사번[${vo.code_value}] 삭제?') ) href='common.delete?code_value=${vo.code_value}' " >정보삭제</a>
