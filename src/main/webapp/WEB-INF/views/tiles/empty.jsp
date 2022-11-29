@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<tiles:insertAttribute name='header'/>
+<tiles:insertAttribute name='empty'/>
 <tiles:insertAttribute name='container'/>
 <tiles:insertAttribute name='footer'/>
 </body>

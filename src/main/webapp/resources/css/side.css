@@ -6,7 +6,7 @@ li a {
 }
 
 body {
-	background: linear-gradient(90deg, #ffffff, #aaaaaa);
+/* 	background: linear-gradient(90deg, #ffffff, #aaaaaa); */
 	/* 	background: linear-gradient(90deg, #3b5290, #472f58); */
 	position: relative;
 	margin: 0;
@@ -131,9 +131,9 @@ li:before {
 .hide {
 	display: none;
 }
-.l-navbar:hover{
-	width : calc(var(--nav--width) + 9.25rem);
-}
+/* .l-navbar:hover{ */
+/* 	width : calc(var(--nav--width) + 9.25rem); */
+/* } */
 .pagination li{
 	padding: .7rem;
 }

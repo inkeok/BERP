@@ -49,9 +49,7 @@ header{
 	max-width: 100%;
 	padding: 25px 108px;
 }
-body{
-	background: linear-gradient(90deg, #ffffff, #aaaaaa);
-}
+
 </style>
 
 <header>

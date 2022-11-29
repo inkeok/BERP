@@ -42,7 +42,7 @@
 					<li class="">
 						<div class="nav__list">
 							<div class="side-menu">
-								<a href="#" class="nav__link  nav-start"> 
+								<a href="#" class="nav__link  nav-start nav-btn nav-dropdown"> 
 									<ion-icon name="server-outline" class="nav__icon"></ion-icon> 
 									 <span class="nav_name">근태관리</span>
 								</a>
@@ -168,6 +168,27 @@
         	  $(this).next("ul").toggleClass("hide");
         });
     });
+   
+     const button = document.querySelector('.nav-btn');
+
+     button.addEventListener('click', () => {
+       const dropdown = document.querySelector('.nav-dropdown');
+       dropdown.style.display = 'block';
+     });
+
+     button.addEventListener('blur', () => {
+       const dropdown = document.querySelector('.nav-dropdown');
+       dropdown.style.display = '';
+     });
+     
+     button.addEventListener('blur', () => {
+    	  const dropdown = document.querySelector('.nav-dropdown');
+    	  
+    	  // 0.2초 뒤에 실행
+    	  setTimeout(() => {
+    	    dropdown.style.display = '';
+    	  }, 200);
+    	});
 </script>
 </body>
 </html>
