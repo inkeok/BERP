@@ -297,6 +297,8 @@ select *
 from common_code
 where code_title = 'D'
 </select>
+
+
 <!-- 안드 -->
 <!-- //////////////////////////////////////////////////////////////// -->
 
@@ -305,7 +307,7 @@ where code_title = 'D'
 	left outer join  employees e 
 	on e.employee_id = i.employee_id
 	where i.document_submit = 'N'
-
+</select>
 
 
 <select id="andWriteList" resultType="approval.And_Ing_tableVO">
@@ -321,10 +323,6 @@ where code_title = 'D'
               on e1.position = cd1.code_value left outer join common_code cd2
               on e2.position = cd2.code_value
               order by i.ing_no
-</select>
-
-
-
 </select>
 
 <update id = "andTempUpdate">
