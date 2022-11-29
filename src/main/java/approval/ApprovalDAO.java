@@ -168,7 +168,7 @@ public class ApprovalDAO {
 	}
 
 	public void andRecConfirm() {
-		 sql.update("approval.andRecConfirm");
+		 sql.insert("approval.andRecConfirm");
 		 sql.delete("approval.andRecCencel");
 	}
 	public List<Result_tableVO> andCodeList(String document_check){
@@ -179,5 +179,26 @@ public class ApprovalDAO {
 		
 		return sql.selectList("approval.andResult_code");
 	}
+
+	public List<And_Ing_tableVO> andFirstDep() {
+		
+		return sql.selectList("approval.andFirstDep");
+	}
+
+	public List<And_Ing_tableVO> andSecondDep(int department_id) {
+		
+		return sql.selectList("approval.andSecondDep",department_id);
+	}
+
+	public int andNewInsert(And_Ing_tableVO vo1) {
+		sql.insert("approval.andResultInsert", vo1);
+		return sql.insert("approval.andIngInsert", vo1);
+	}
+
+	public int andNewNotInsert(And_Ing_tableVO vo1) {
+		return sql.insert("approval.andIngNotInsert", vo1);
+	}
+
+	
 	
 }

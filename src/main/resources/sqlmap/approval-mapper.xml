@@ -351,6 +351,7 @@ on r.approver_id = e2.employee_id join common_code c
 on r.document_check = c.code_value join common_code c2
 on e2.position = c2.code_value join common_code c3
 on e.position = c3.code_value
+where r.document_check = 'D102' or r.document_check = 'D103'
 </select>
 
 
@@ -359,14 +360,20 @@ on e.position = c3.code_value
     from common_code
     where code_title = 'D'
 </select>
-<update id="andRecConfirm">
-	update result_table set document_check = #{document_check}
-	where document_title = #{document_title}
-</update>
+<insert id="andRecConfirm">
+	insert into result_table (employee_id, department_id, company_cd,
+		document_title, document_content, approver_id,
+		document_submit, document_comment, document_check, file_name, file_path, finish_date)
+		select employee_id, department_id, company_cd, document_title,
+		document_content, approver_id,
+		document_submit, #{document_comment}, #{document_check}, file_name, file_path, sysdate
+		from ing_table
+		where ing_no = #{ing_no}
+</insert>
 <delete id="andRecCencel">
 	delete
-	from table
-	where document_title = #{document_title}
+	from ing_table
+	where ing_no = #{ing_no}
 </delete>
 
 	<select  id="andCodeList" resultType="approval.Result_tableVO">
@@ -382,5 +389,36 @@ on e.position = c3.code_value
     on c.code_value = r.document_check
     where  code_title ='D'
 	</select>
+	<select id="andFirstDep" resultType="approval.And_Ing_tableVO">
+	 select department_id, department_name emp_dpmt_name
+              from departments
+	</select>
+	<select id="andSecondDep" resultType="approval.And_Ing_tableVO">
+	  select c.code_name || ' ' || e.name emp_name, e.employee_id
+              from employees e join common_code c
+              on e.position = c.code_value
+              where e.department_id = #{department_id}
+              order by e.employee_id
+	</select>
+	<insert id="andIngInsert">
+		   insert into ing_table (employee_id, department_id, company_cd,  document_title, document_content,approver_id,document_submit )
+              values (#{employee_id}, #{department_id}, #{company_cd}, #{document_title}, #{document_content}, #{approver_id}, 'Y')
+	</insert>
+	<insert id="andResultInsert">
+	  insert into result_table (employee_id, department_id, company_cd,  document_title, document_content,approver_id,document_submit )
+              values (#{employee_id}, #{department_id}, #{company_cd}, #{document_title}, #{document_content}, #{approver_id}, 'Y')
+	</insert>
+	<insert id="andIngNotInsert">
+		 insert into ing_table (employee_id, department_id, company_cd,
+		document_title, document_content, approver_id,
+		document_submit, file_path, file_name)
+		values (#{employee_id, jdbcType=VARCHAR}, #{department_id,
+		jdbcType=VARCHAR},
+		#{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR},
+		#{document_content, jdbcType=VARCHAR}, #{approver_id,
+		jdbcType=VARCHAR}, 'N',
+		#{file_path, jdbcType=VARCHAR}, #{file_name, jdbcType=VARCHAR})
+		</insert>
+	
 
 </mapper>
