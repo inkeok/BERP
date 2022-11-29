@@ -291,14 +291,6 @@
               order by i.ing_no
 	</select>
 
-<!-- for approvalList's select menu tag -->
-<select id='document_check' resultType='approval.Common_codeVO'>
-select *
-from common_code
-where code_title = 'D'
-</select>
-
-
 <!-- 안드 -->
 <!-- //////////////////////////////////////////////////////////////// -->
 
@@ -307,7 +299,10 @@ where code_title = 'D'
 	left outer join  employees e 
 	on e.employee_id = i.employee_id
 	where i.document_submit = 'N'
+
 </select>
+
+
 
 
 <select id="andWriteList" resultType="approval.And_Ing_tableVO">
@@ -317,7 +312,7 @@ where code_title = 'D'
               on i.department_id = d1.department_id left outer join employees e1 
               on i.employee_id = e1.employee_id left outer join company c
               on i.company_cd = c.company_cd left outer join common_code cd
-              on i.DOCUMENT_CHECK = cd.code_value left outer join employees e2
+              on i.document_check = cd.code_value left outer join employees e2
               on i.approver_id = e2.employee_id left outer join departments d2
               on e2.department_id = d2.department_id left outer join common_code cd1
               on e1.position = cd1.code_value left outer join common_code cd2
