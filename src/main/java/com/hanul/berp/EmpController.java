@@ -26,6 +26,26 @@ import emp.PositionVO;
 @Controller
 public class EmpController {
 	@Autowired EmpDAO dao;
+	//내정보 변경 추가
+	
+	@RequestMapping("/update.mypage")
+	public String update_mypage(int employee_id, Model model, EmpVO vo) {
+		
+		dao.mypage_update(vo);
+		
+		return "redirect:modify.mypage?employee_id="+employee_id;
+	}
+	
+	
+	@RequestMapping("/modify.mypage")
+	public String modify_mypage(int employee_id, Model model) {
+		EmpVO vo = dao.emp_info(employee_id);
+		model.addAttribute("vo", vo);
+		
+		return "emp/myPage";
+	}
+	
+	
 	
 	//사원정보변경 저장
 	@RequestMapping("/update.hr")

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="emp">
 
+	<update id="mypage_update">
+		update employees
+		set 
+		email = #{email}, phone = #{phone}, pw=#{pw}
+		where employee_id =
+		#{employee_id}
+	</update>
 	<update id="update">
 		update employees
 		set department_name =
