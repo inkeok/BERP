@@ -54,13 +54,13 @@ public class NoticeController {
 		model.addAttribute("search", search);
 		
 		//model.addAttribute("list",list);
-		return "notice/list";
+		return "side/notice/list";
 	}
 	
 	@RequestMapping("/new.no")
 	public String newNotice() {
 		
-		return "notice/new";
+		return "side/notice/new";
 	}
 	
 	@RequestMapping("/insert.no")
@@ -82,7 +82,7 @@ public class NoticeController {
 		
 		model.addAttribute("vo",vo);
 		model.addAttribute("crlf", "\r\n");
-		return "notice/detail";
+		return "side/notice/detail";
 	}
 	
 	@RequestMapping("/modify.no")
@@ -91,7 +91,7 @@ public class NoticeController {
 		
 		model.addAttribute("vo", vo);
 		
-		return "notice/modify";
+		return "side/notice/modify";
 	}
 	
 	@RequestMapping("/update.no")

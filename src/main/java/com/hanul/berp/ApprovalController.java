@@ -29,6 +29,7 @@ import approval.Result_tableVO;
 import emp.EmpDAO;
 import emp.PatternVO;
 import notice.NoticeVO;
+import work.CommonCodeVO;
 
 @Controller
 public class ApprovalController {
@@ -528,6 +529,18 @@ public class ApprovalController {
 	      return new Gson().toJson(list);
 
 	   }
+		@ResponseBody @RequestMapping(value="/andCodeList", produces="text/html; charset=utf-8")
+		public String andCodeList(String document_check) {
+				
+			return new Gson().toJson(dao.andCodeList(document_check));
+			
+		}
+		@ResponseBody @RequestMapping(value="/andResult_code", produces="text/html; charset=utf-8")
+		public String andResult_code() {
+				List<CommonCodeVO> list = dao.andResult_code();
+			return new Gson().toJson(list);
+			
+		}
 
 		@ResponseBody @RequestMapping(value="/andRecsign.ap", produces="text/html; charset=utf-8")
 		   public String andRecsign() {

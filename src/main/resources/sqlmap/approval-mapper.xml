@@ -353,6 +353,7 @@ on e2.position = c2.code_value join common_code c3
 on e.position = c3.code_value
 </select>
 
+
 <select id="andRecsign" resultType="approval.And_Ing_tableVO">
  	select code_value document_check, code_name check_name
     from common_code
@@ -367,4 +368,19 @@ on e.position = c3.code_value
 	from table
 	where document_title = #{document_title}
 </delete>
+
+	<select  id="andCodeList" resultType="approval.Result_tableVO">
+		select * from result_table
+		where document_check = #{document_check}
+	</select>
+	
+	
+	<select id="andResult_code" resultType="approval.Result_tableVO">
+	select distinct r.* ,c.code_name c_status
+    from common_code c 
+    left outer join result_table r
+    on c.code_value = r.document_check
+    where  code_title ='D'
+	</select>
+
 </mapper>
