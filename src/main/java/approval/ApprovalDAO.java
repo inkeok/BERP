@@ -167,9 +167,10 @@ public class ApprovalDAO {
 		return sql.selectList("approval.andRecsign");
 	}
 
-	public void andRecConfirm() {
-		 sql.insert("approval.andRecConfirm");
-		 sql.delete("approval.andRecCencel");
+	public int andRecConfirm(And_Ing_tableVO vo_list) {
+		 sql.insert("approval.andRecConfirm", vo_list);
+		 return sql.delete("approval.andRecCencel", vo_list);
+		 
 	}
 	public List<Result_tableVO> andCodeList(String document_check){
 		

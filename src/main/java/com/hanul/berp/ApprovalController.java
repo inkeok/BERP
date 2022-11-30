@@ -551,10 +551,14 @@ public class ApprovalController {
 		   }
 		
 		@ResponseBody @RequestMapping(value="/andRecConfirm.ap", produces="text/html; charset=utf-8")
-		public void andRecConfirm() {
-			
-			dao.andRecConfirm();
-			
+		public String andRecConfirm(String vo) {
+			And_Ing_tableVO vo_list = new Gson().fromJson(vo, And_Ing_tableVO.class);
+			int i = dao.andRecConfirm(vo_list);
+			if(i == 1) {
+			return "1";
+			}else { 
+				return "응안돼";
+			}
 		}
 		@ResponseBody @RequestMapping(value="/andFirstDep.ap", produces="text/html; charset=utf-8")
 		public String andFirstDep() {
