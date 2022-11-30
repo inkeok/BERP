@@ -17,7 +17,17 @@
 .l-navbar:hover body{
 		padding: 2rem 0 0 16rem;
 }
+.mypage{
 
+}
+.logout{
+    column-gap: 0.75rem;
+    padding: 0.65rem;
+    color: var(--white-color);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    transition: .3s;
+}
 </style>
 
 <body id="body-pd">
@@ -38,6 +48,27 @@
 						<a href="/berp" class="nav__logo">YM NetWork</a>
 					</div>
 				</div>
+				<div class="mypage" style="margin-top: 20px;">
+					반갑습니다 ${vo.employee_id} 님
+				</div>
+					<div style="margin-top: 5px; margin-bottom: 30px;">
+						<a href="#" class="logout">개인정보수정</a>
+						<a href="/berp" class="logout"> 
+						<ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+	 				</a>
+	 			</div>
+				<ul class="ul-nav">
+					<li class="">
+						<div class="nav__list">
+							<div class="side-menu">
+								<a href="list.no" class="nav__link  nav-start"> 					
+									<ion-icon name="home-outline" class="nav__icon"></ion-icon>
+									 <span class="nav_name">홈으로</span>
+								</a>
+							</div>
+						</div>
+					</li>
+				</ul>
 				<ul class="ul-nav">
 					<li class="">
 						<div class="nav__list">
@@ -139,21 +170,6 @@
 					</li>
 				</ul>
 			</div>
-<!-- 			<ul class="ul-nav"> -->
-<!-- 					<li class=""> -->
-<!-- 						<div class="nav__list"> -->
-<!-- 							<div class="side-menu"> -->
-<!-- 								<a href="" class="nav__link  nav-start"> 					 -->
-<!-- 									<ion-icon name="home-outline" class="nav__icon"></ion-icon> -->
-<!-- 									 <span class="nav_name">홈으로</span> -->
-<!-- 								</a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-<!-- 				</ul> -->
-				<a href="/berp" class="nav__link"> 
-					<ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-	 				<span class="nav_name">Log out</span></a>
 		</nav>
 	</div>
 	<!-- IONICONS -->
