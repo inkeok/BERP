@@ -97,35 +97,47 @@
 	
 	<!-- 안드의 코드전체조회 -->
 	<select id="andSelect" resultType="common.CommonVO">
-		select c.code_title, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
+		select c.code_comment, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
 		from common_code c left join employees e
 		on c.code_maker = e.employee_id
 		order by code_title
 	</select>
 	
-	<!-- 안드의 코드 인사조회 -->
+	<!-- 안드의 코드 인사이름 조회 -->
 	<select id="andSpinnerList" resultType="common.CommonVO">
-		select distinct code_title
+		select distinct code_comment
 		from common_code 
-		order by code_title
+		order by code_comment
 	</select>
 	
 	<!-- 스피너 선택(value)시 나올 값 -->
 	<select id="andSpinnerValuelist" resultType="common.CommonVO">
-		select c.code_title, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
+		select c.code_comment, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
 		from common_code c left join employees e
 		on c.code_maker = e.employee_id
-        where code_title =#{code_title}
-		order by code_title
+        where code_comment =#{code_comment}
+		order by code_comment
 	</select>
 	
+	<select id="andCodeListOne" resultType="common.CommonVO">
+		select c.code_comment, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
+		from common_code c left join employees e
+		on c.code_maker = e.employee_id
+		where code_value = #{code_value}
+	</select>
+	
+	<update id="andUpdate">
+		update common_code set code_comment = #{code_comment, jdbcType=VARCHAR}
+		, code_used = #{code_used, jdbcType=VARCHAR}, code_name = #{code_name, jdbcType=VARCHAR}, code_maker = #{code_maker}
+		where code_value = #{code_value, jdbcType=VARCHAR}
+	</update>
+	
+<!-- 	update common_code c left join employees e set c.code_comment = #{code_comment}, c.code_value=#{code_value}
+		, c.code_used = #{code_used}, code_birth = sysdate, c.code_name = #{code_name}, e.code_maker_name = #{code_maker_name}
+		on c.code_maker = e.employee_id
+		where code_value = #{code_value} -->
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	</mapper>
+
+
+</mapper>
