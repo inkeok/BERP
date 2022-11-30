@@ -99,7 +99,7 @@ tbody td:hover:before {
 			<tr>
 				<th>회사코드</th>
 				<td><select name="company_cd" style="width:185px">
-				<option value="-1">코드선택</option>
+				<option value="-1">회사선택</option>
 					<c:forEach items="${company}" var="vo">
 						<option value="${vo.company_cd}">${vo.company_name}</option>
 					</c:forEach>
@@ -142,7 +142,7 @@ tbody td:hover:before {
 			<tr>
 				<th>고용형태</th>
 				<td><select name="employee_pattern" style="width:185px">
-				<option value="">고용선택</option>
+				<option value="">고용유형선택</option>
 					<c:forEach items="${pattern}" var="vo">
 						<option value="${vo.employee_pattern}">${vo.employee_pattern_name}</option>
 					</c:forEach>

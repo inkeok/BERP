@@ -159,8 +159,8 @@ tbody td:hover:before {
 </tr>
 <c:forEach items='${search.list}' var='vo'>
 <tr><td>${vo.no}</td>
-	<td>
-	<a href="detail.no?notice_num=${vo.notice_num }">${vo.notice_title}</a>
+	<td style="text-align: left">
+	<a href="detail.no?notice_num=${vo.notice_num }" >${vo.notice_title}</a>
 	</td>
 	<td>${vo.notice_writer}</td>
 	<td>${vo.notice_date}</td>

@@ -190,11 +190,11 @@ a:link, a:visited {
 </tr>
 <c:forEach items='${applicants}' var='vo'>
 <tr>
-<td>${vo.recruit_num}</td>
-<td>${vo.recruit_title}</td>
+<td><a href="register_em.apply?apply_num=${vo.apply_num }">${vo.recruit_num}</a></td>
+<td style="text-align:left"><a href="register_em.apply?apply_num=${vo.apply_num }">${vo.recruit_title}</a></td>
 	
 	<td>${vo.apply_num }</td>
-	<td style="text-align:left"><a href="register_em.apply?apply_num=${vo.apply_num }">
+	<td><a href="register_em.apply?apply_num=${vo.apply_num }">
 	${vo.apply_name }
 	</a>
 	</td>
