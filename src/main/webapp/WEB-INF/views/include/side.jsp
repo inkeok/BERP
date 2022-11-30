@@ -49,7 +49,7 @@
 					</div>
 				</div>
 				<div class="mypage" style="margin-top: 20px;">
-					반갑습니다 ${vo.employee_id} 님
+					반갑습니다 ${loginInfo.name}${loginInfo.position_name} 님
 				</div>
 					<div style="margin-top: 5px; margin-bottom: 30px;">
 						<a href="#" class="logout">개인정보수정</a>

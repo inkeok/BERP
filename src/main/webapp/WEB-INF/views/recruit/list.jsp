@@ -32,6 +32,8 @@ td a{
 	color : #323232;
 }
 th, td {
+
+	border-bottom: 1px solid #efefef;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #000000;
