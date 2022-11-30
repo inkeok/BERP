@@ -42,11 +42,11 @@ a {
 }
 
 .hrlist{
-	text-align : center;
- 	margin : 1rem 0 ;
- 	color : #000000;
- 	font-size : 35px;
- 	font-family: 'Noto Sans KR' !important;
+ 	margin : 1rem 9rem ;
+    font-weight: bold;
+    color: #000000;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
 }
 
 .sec-font{
@@ -261,7 +261,7 @@ a {
     position: fixed;
     top: 0;
     left: 0;
-    width: var(--nav--width);
+/*     width: var(--nav--width); */
     height: 100vh;
     background-color: var(--bg-color);
     color: var(--white-color);
@@ -370,10 +370,10 @@ a {
     transition: .5s;
 }
 .sidebar-logo{
-    margin-top: 5rem;
+    margin-top: 3rem;
     align-items: baseline;
-	display: inline-flex;
-	margin-bottom: 60px;
+    display: inline-flex;
+    margin-bottom: 20px;
 }
 .nav-img{
 	margin-left: 5px;

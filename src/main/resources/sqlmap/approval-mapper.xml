@@ -277,7 +277,7 @@
 	<!-- 앤드로이ㄷㄷㄷㄷ -->
 
 	<select id="andRecList" resultType="approval.And_Ing_tableVO">
-		 select i.*, d1.department_name emp_dpmt_name, d2.department_name app_dpmt_name,  e1.name emp_name, e2.name app_name, c.company_name, cd.code_name check_name,
+		  select i.*, d1.department_name emp_dpmt_name, d2.department_name app_dpmt_name,  e1.name emp_name, e2.name app_name, c.company_name, cd.code_name check_name,
               cd1.code_name emp_position_name, cd2.code_name app_position_name, e1.position emp_position, e2.position app_position
               from ing_table i left outer join departments d1
               on i.department_id = d1.department_id left outer join employees e1 
@@ -288,6 +288,7 @@
               on e2.department_id = d2.department_id left outer join common_code cd1
               on e1.position = cd1.code_value left outer join common_code cd2
               on e2.position = cd2.code_value
+              where approver_id = #{employee_id}
               order by i.ing_no
 	</select>
 
@@ -303,8 +304,6 @@
 </select>
 
 
-
-
 <select id="andWriteList" resultType="approval.And_Ing_tableVO">
   select i.*, d1.department_name emp_dpmt_name, d2.department_name app_dpmt_name,  e1.name emp_name, e2.name app_name, c.company_name, cd.code_name check_name,
               cd1.code_name emp_position_name, cd2.code_name app_position_name, e1.position emp_position, e2.position app_position
@@ -317,6 +316,7 @@
               on e2.department_id = d2.department_id left outer join common_code cd1
               on e1.position = cd1.code_value left outer join common_code cd2
               on e2.position = cd2.code_value
+              where i.employee_id = #{employee_id}
               order by i.ing_no
 </select>
 
@@ -351,6 +351,81 @@ on r.approver_id = e2.employee_id join common_code c
 on r.document_check = c.code_value join common_code c2
 on e2.position = c2.code_value join common_code c3
 on e.position = c3.code_value
+where r.document_check = 'D102' or r.document_check = 'D103'
 </select>
+
+
+<select id="andRecsign" resultType="approval.And_Ing_tableVO">
+ 	select code_value document_check, code_name check_name
+    from common_code
+    where code_title = 'D'
+</select>
+<insert id="andRecConfirm">
+	insert into result_table (employee_id, department_id, company_cd,
+		document_title, document_content, approver_id,
+		document_submit, document_comment, document_check, file_name, file_path, finish_date)
+		select employee_id, department_id, company_cd, document_title,
+		document_content, approver_id,
+		document_submit, #{document_comment}, #{document_check}, file_name, file_path, sysdate
+		from ing_table
+		where ing_no = #{ing_no}
+</insert>
+<delete id="andRecCencel">
+	delete
+	from ing_table
+	where ing_no = #{ing_no}
+</delete>
+
+	<select  id="andCodeList" resultType="approval.Result_tableVO">
+		SELECT row_number() over(order by document_date asc) no, 
+r.*, e.name drafter, e2.name approver, c.code_name c_status,
+c2.code_name approver_position, c3.code_name drafter_position from result_table r join employees e 
+on r.employee_id = e.employee_id join employees e2
+on r.approver_id = e2.employee_id join common_code c
+on r.document_check =c.code_value join common_code c2
+on e2.position = c2.code_value join common_code c3 
+on e.position = c3.code_value
+where document_check = #{document_check}
+	</select>
 	
+	
+	<select id="andResult_code" resultType="approval.Result_tableVO">
+	select distinct r.document_check ,c.code_name c_status
+    from common_code c 
+    left outer join result_table r
+    on c.code_value = r.document_check
+    where  code_title ='D' 
+	</select>
+	<select id="andFirstDep" resultType="approval.And_Ing_tableVO">
+	 select department_id, department_name emp_dpmt_name
+              from departments
+	</select>
+	<select id="andSecondDep" resultType="approval.And_Ing_tableVO">
+	  select c.code_name || ' ' || e.name emp_name, e.employee_id
+              from employees e join common_code c
+              on e.position = c.code_value
+              where e.department_id = #{department_id}
+              order by e.employee_id
+	</select>
+	<insert id="andIngInsert">
+		   insert into ing_table (employee_id, department_id, company_cd,  document_title, document_content,approver_id,document_submit )
+              values (#{employee_id}, #{department_id}, #{company_cd}, #{document_title}, #{document_content}, #{approver_id}, 'Y')
+	</insert>
+	<insert id="andResultInsert">
+	  insert into result_table (employee_id, department_id, company_cd,  document_title, document_content,approver_id,document_submit )
+              values (#{employee_id}, #{department_id}, #{company_cd}, #{document_title}, #{document_content}, #{approver_id}, 'Y')
+	</insert>
+	<insert id="andIngNotInsert">
+		 insert into ing_table (employee_id, department_id, company_cd,
+		document_title, document_content, approver_id,
+		document_submit, file_path, file_name)
+		values (#{employee_id, jdbcType=VARCHAR}, #{department_id,
+		jdbcType=VARCHAR},
+		#{company_cd, jdbcType=VARCHAR}, #{document_title, jdbcType=VARCHAR},
+		#{document_content, jdbcType=VARCHAR}, #{approver_id,
+		jdbcType=VARCHAR}, 'N',
+		#{file_path, jdbcType=VARCHAR}, #{file_name, jdbcType=VARCHAR})
+		</insert>
+	
+
 </mapper>

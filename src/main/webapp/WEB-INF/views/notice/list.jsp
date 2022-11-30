@@ -6,21 +6,113 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<link href='css/recruit.css?<%=new java.util.Date() %>' type='text/css' rel='stylesheet'>
+
  <script src='https://code.jquery.com/jquery-3.6.1.min.js'></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src='js/recruit.js?<%=new java.util.Date() %>'></script>
 <!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<style>
+h3{
+    margin-top: 55px;
+    margin-bottom: 35px;
+    border-bottom: 5px solid #12192c;
+    padding-bottom: 15px;
+}
+.search{
+ padding: 0.5em 1em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+}
+body{
+width : 1200px;
+}
+select{
+
+height : 32px;}
+
+table {
+	margin-top: 5px;
+	/* 	border-top-left-radius: 20px; */
+	/* 	border-top-right-radius: 20px; */
+	border-radius: 15px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	margin-bottom: 10rem;
+}
+
+td a {
+	color: #323232;
+}
+
+th, td {
+    border-bottom: 1px solid #efefef;
+	padding: 12px;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #000000;
+}
+
+th {
+	text-align: center;
+}
+
+th {
+	background-color: #12192c;
+	color: #fff;
+}
+
+tbody tr:hover, td:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+tbody td {
+	position: relative;
+}
+
+tbody td:hover:before {
+	background-color: rgba(255, 255, 255, 0.2);
+	z-index: -1;
+}
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 670%;
+}
+
+</style>
+
 
 </head>
 <body>
-<h3>${loginInfo.name } / 로그인정보</h3>
+<h3>${loginInfo.name } / 공지사항</h3>
  
 <form method='post' action='list.no'>
 <div id='list-top' class='w-px1200'>
-	<ul>
-		<li>
+	<ul style="display: flex">
+		<li style="margin-right: 10px;">
 		
 			<select name='search' class='w-px100'> <!-- name줘야 전달가넝 -->
 				<option value='all' ${search.search eq 'all'? 'selected':'' }>전체</option>
@@ -34,9 +126,11 @@
 			</select>
 		
 		</li>
-		<li><input type='text' value='${search.keyword }' name='keyword' class='w-px300'> </li>
-		<li><a class='btn-fill' onclick='$("form").submit()'>검색</a></li>
-	
+			<li style="margin-right: 3px; "><input style="height: 32px;"  placeholder="검색어를 입력하세요 !" type='text' value='${search.keyword }' name='keyword' class='w-px300'> </li>
+			<li style="margin-top: 4px; "><a class='search' onclick='$("form").submit()'>검색</a></li>
+		<c:if test='${loginInfo.admin eq "Y"}'>
+			<li style="margin-top: 3px;"><a class='new-btn' href='new.no'>글쓰기</a></li>
+		</c:if>
 	</ul>
 	
 </div>
@@ -46,11 +140,9 @@
 </form>
 
 
- <ul><!-- 관리자인 경우만 글쓰기 가능 -->
-		<c:if test='${loginInfo.admin eq "Y"}'>
-		<li><a class='btn-fill' href='new.no'>글쓰기</a></li>
-		</c:if>
-	</ul>
+<!--  <ul>관리자인 경우만 글쓰기 가능 -->
+		
+<!-- 	</ul> -->
 <table class='w-px1200 tb-list'>
 <colgroup>
 	<col width='100px'>

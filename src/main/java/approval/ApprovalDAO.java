@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import emp.EmpVO;
+import work.CommonCodeVO;
 
 @Repository
 public class ApprovalDAO {
@@ -153,12 +154,52 @@ public class ApprovalDAO {
 		return sql.selectList("approval.andApproval_list");
 	}
 
-	public List<And_Ing_tableVO> andWriteList(){
-		return sql.selectList("approval.andWriteList");
+	public List<And_Ing_tableVO> andWriteList(int employee_id){
+		return sql.selectList("approval.andWriteList", employee_id);
 
 	}
-	public List<And_Ing_tableVO> andRecList() {
+	public List<And_Ing_tableVO> andRecList(int employee_id) {
 		
-		return sql.selectList("approval.andRecList");
+		return sql.selectList("approval.andRecList",employee_id);
 	}
+
+	public List<And_Ing_tableVO> andRecsign() {
+		return sql.selectList("approval.andRecsign");
+	}
+
+	public int andRecConfirm(And_Ing_tableVO vo_list) {
+		 sql.insert("approval.andRecConfirm", vo_list);
+		 return sql.delete("approval.andRecCencel", vo_list);
+		 
+	}
+	public List<Result_tableVO> andCodeList(String document_check){
+		
+		return sql.selectList("approval.andCodeList" ,document_check);
+	}
+	public List<CommonCodeVO> andResult_code(){
+		
+		return sql.selectList("approval.andResult_code");
+	}
+
+	public List<And_Ing_tableVO> andFirstDep() {
+		
+		return sql.selectList("approval.andFirstDep");
+	}
+
+	public List<And_Ing_tableVO> andSecondDep(int department_id) {
+		
+		return sql.selectList("approval.andSecondDep",department_id);
+	}
+
+	public int andNewInsert(And_Ing_tableVO vo1) {
+		sql.insert("approval.andResultInsert", vo1);
+		return sql.insert("approval.andIngInsert", vo1);
+	}
+
+	public int andNewNotInsert(And_Ing_tableVO vo1) {
+		return sql.insert("approval.andIngNotInsert", vo1);
+	}
+
+	
+	
 }

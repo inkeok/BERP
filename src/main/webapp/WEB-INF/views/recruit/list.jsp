@@ -32,6 +32,8 @@ td a{
 	color : #323232;
 }
 th, td {
+
+	border-bottom: 1px solid #efefef;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #000000;
@@ -104,7 +106,8 @@ select::-ms-expand {
 }
 
 .writing-second {
-  background: #acacad;
+color : white;
+  background: #12192C;
   box-shadow: 0 3px 25px rgba(255, 255, 255, 0.1);
 }
 
@@ -138,11 +141,15 @@ select::-ms-expand {
 		</ul> --%>
 			
 				<!-- 관리자인 경우만 글쓰기 가능 -->
+				<div style="text-align: end;
+    display: flex;
+    margin-right: -87px;">
 				<c:if test='${loginInfo.admin eq "Y"}'>
-			<a class='writing writing-second' href='new.rec'>글쓰기</a>
+			<a  style = "margin-right :10px"class='writing writing-second' href='new.rec'>글쓰기</a>
 			
 				 </c:if> 
 			<a class='writing writing-second' href='applyList.apply'>지원하기</a>
+			</div>
 		</div>
 	</form>
 

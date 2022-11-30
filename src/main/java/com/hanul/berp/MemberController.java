@@ -66,10 +66,8 @@ public class MemberController {
 	@RequestMapping("/checkLogin.mem")
 	public Object checkLogin(int employee_id, String pw, HttpSession session) {
 		EmpVO vo = dao.checkLogin(employee_id, pw);
-
 		//System.out.println(vo);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
 		map.put("exist", vo == null ? false : true);
 
 		

@@ -49,9 +49,7 @@ header{
 	max-width: 100%;
 	padding: 25px 108px;
 }
-body{
-	background: linear-gradient(90deg, #ffffff, #aaaaaa);
-}
+
 </style>
 
 <header>
@@ -76,7 +74,7 @@ body{
 					<span>${loginInfo.name} 님</span>
 					<button class="button button-second" data-type="circle"
 						onclick='location="logout.mem"'>로그아웃</button>
-					<a onclick="location='profile.pr'">사이드로</a>
+					<a onclick="location='list.no'">사이드로</a>
 				</c:if>
 			</div>
 		</div>
