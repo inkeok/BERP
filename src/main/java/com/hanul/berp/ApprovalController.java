@@ -551,9 +551,39 @@ public class ApprovalController {
 		   }
 		
 		@ResponseBody @RequestMapping(value="/andRecConfirm.ap", produces="text/html; charset=utf-8")
-		public void andRecConfirm() {
+		public String andRecConfirm(String vo) {
+			And_Ing_tableVO vo_list = new Gson().fromJson(vo, And_Ing_tableVO.class);
+			int i = dao.andRecConfirm(vo_list);
+			if(i == 1) {
+			return "1";
+			}else { 
+				return "응안돼";
+			}
+		}
+		@ResponseBody @RequestMapping(value="/andFirstDep.ap", produces="text/html; charset=utf-8")
+		public String andFirstDep() {
+			List<And_Ing_tableVO> list = dao.andFirstDep();
+			return new Gson().toJson(list);
 			
-			dao.andRecConfirm();
+		}
+		@ResponseBody @RequestMapping(value="/andSecondDep.ap", produces="text/html; charset=utf-8")
+		public String andSecondDep(int department_id) {
+			List<And_Ing_tableVO> list = dao.andSecondDep(department_id);
+			return new Gson().toJson(list);
+			
+		}
+		@ResponseBody @RequestMapping(value="/andNewInsert.ap", produces="text/html; charset=utf-8")
+		public int andNewInsert(String vo) {
+			And_Ing_tableVO vo1 = new Gson().fromJson(vo, And_Ing_tableVO.class);
+			
+			return dao.andNewInsert(vo1);
+			
+		}
+		@ResponseBody @RequestMapping(value="/andNewNotInsert.ap", produces="text/html; charset=utf-8")
+		public int andNewNotInsert(String vo) {
+			And_Ing_tableVO vo1 = new Gson().fromJson(vo, And_Ing_tableVO.class);
+			
+			return dao.andNewNotInsert(vo1);
 			
 		}
 }
