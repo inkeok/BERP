@@ -75,7 +75,7 @@ body {
 			<c:if test="${not empty loginInfo}">
 				<span>${loginInfo.name} 님</span>
 				<button class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
-				<a onclick="location='profile.pr'">사이드로</a>
+				<a onclick="location='list.no'">사이드로</a>
 				<a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보변경</a>
 
 			</c:if>
