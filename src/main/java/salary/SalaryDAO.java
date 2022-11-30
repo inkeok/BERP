@@ -35,7 +35,9 @@ public class SalaryDAO {
 	public int insert_bonus(SalEmpVO vo) {
 		return sql.insert("salary.insert_bonus", vo);
 	}
-	
+	public SalEmpVO mySalary(int employee_id) {
+		return sql.selectOne("salary.mySalary", employee_id);
+	}
 	
 	
 	
@@ -46,6 +48,10 @@ public class SalaryDAO {
 		List<SalaryVO> salaryList = sql.selectList("salary.salaryList");
 		return salaryList;
 	}
+	public List<SalaryVO> salaryList(String department_name) {
+		List<SalaryVO> salaryList = sql.selectList("salary.salaryList_department_name", department_name);
+		return salaryList;
+	}
 	
 	public int andInsertBonus(HashMap<String, Object> map) {
 		int res = sql.insert("salary.andInsertBonus", map);
@@ -54,6 +60,10 @@ public class SalaryDAO {
 	
 	public List<BonusVO> andBonusList(){
 		List<BonusVO> bonusList = sql.selectList("salary.andBonusList");
+		return bonusList;
+	}
+	public List<BonusVO> andBonusList(String department_name){
+		List<BonusVO> bonusList = sql.selectList("salary.andBonusList_department_name", department_name);
 		return bonusList;
 	}
 	public int andCommissionSave(int employee_id, int commission_pct){
@@ -80,5 +90,9 @@ public class SalaryDAO {
 	public List<BonusVO> andMyBonusList(int employee_id) {
 		List<BonusVO> list = sql.selectList("salary.andMyBonusList", employee_id);
 		return list;
+	}
+	
+	public List<SalaryVO> andDepartment_name(){
+		return sql.selectList("salary.andDepartment_name");
 	}
 }

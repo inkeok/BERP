@@ -92,4 +92,40 @@
 		where c.code_name = #{code_name}
 	</select>
 	
+	
+	<!-- /////////////////////////////////////////////////////////////// -->
+	
+	<!-- 안드의 코드전체조회 -->
+	<select id="andSelect" resultType="common.CommonVO">
+		select c.code_title, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
+		from common_code c left join employees e
+		on c.code_maker = e.employee_id
+		order by code_title
+	</select>
+	
+	<!-- 안드의 코드 인사조회 -->
+	<select id="andSpinnerList" resultType="common.CommonVO">
+		select distinct code_title
+		from common_code 
+		order by code_title
+	</select>
+	
+	<!-- 스피너 선택(value)시 나올 값 -->
+	<select id="andSpinnerValuelist" resultType="common.CommonVO">
+		select c.code_title, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
+		from common_code c left join employees e
+		on c.code_maker = e.employee_id
+        where code_title =#{code_title}
+		order by code_title
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</mapper>

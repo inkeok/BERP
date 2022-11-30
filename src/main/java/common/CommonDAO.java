@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.google.gson.JsonElement;
+
 @Repository
 public class CommonDAO {
 	@Autowired private SqlSession sql;
@@ -63,6 +65,21 @@ public class CommonDAO {
 	public CommonVO check_code(String code_name) {
 		return sql.selectOne("com.check_code", code_name);
 	}
+	/////////////////////////////////////////////////////////////////////////
+	public List<CommonVO> and_rec_list() {
+		return sql.selectList("com.andSelect");
+	}
+	
+	public List<CommonVO> and_code_spinnerList() {
+		return sql.selectList("com.andSpinnerList");
+	}
+	
+	
+	  public List<CommonVO> and_code_spinner_valuelist(String title) {
+		  return sql.selectList("com.andSpinnerValuelist", title); 
+		  }
+	 
+	
 
 	
 }

@@ -2,7 +2,10 @@ package com.hanul.berp;
 
 
 
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+
+
+import approval.And_Ing_tableVO;
 import approval.ApprovalDAO;
 import approval.FileUtility;
 import approval.Ing_tableVO;
 import approval.Result_tableVO;
 import emp.EmpDAO;
+import emp.PatternVO;
 import notice.NoticeVO;
 
 @Controller
@@ -142,7 +150,6 @@ public class ApprovalController {
 		}
 		
 		dao.deleteIng(ing_no);
-
 		
 		if(dao.insertPost(vo)==1 && dao.insertResult(vo)==1) {
 			StringBuffer msg = new StringBuffer("<script>");
@@ -455,5 +462,72 @@ public class ApprovalController {
 		}else
 			return null;
 	}
+	
+	// ========================================== 안드 ====================================================
+
+
+			///////////앤드로이ㄷㄷㄷ/////////////
+
+
+
+	@ResponseBody @RequestMapping(value="/andTempList", produces="text/html; charset=utf-8")
+	public String andTempList() {
+		Gson gson = new Gson();
+		return gson.toJson(dao.andTempList());
+	}
+	@ResponseBody @RequestMapping(value="/andTempSubmit", produces="text/html; charset=utf-8")
+	public String andTempSubmit(int ing_no) {
+		
+		return dao.andTempUpdate(ing_no)+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempDelete", produces="text/html; charset=utf-8")
+	public String andTempDelete(int ing_no) {
+		
+		return dao.andTempDelete(ing_no)+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempModify", produces="text/html; charset=utf-8")
+	public String andTempModify(String vo) {
+		Gson gson = new Gson();
+		Ing_tableVO dto = gson.fromJson(vo,Ing_tableVO.class);
+		
+		
+		return dao.andTempModify(dto.getDocument_title(),dto.getDocument_content(), dto.getIng_no())+"";
+	}
+	@ResponseBody @RequestMapping(value="/andTempListOne", produces="text/html; charset=utf-8")
+	public String andTempListOne(String ing_no) {
+				
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andTempListOne(ing_no))+"";
+	}
+	
+	@ResponseBody @RequestMapping(value="/andApproval_list", produces="text/html; charset=utf-8")
+	public String andApproval_list() {
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(dao.andApproval_list());
+	}
+
+	//////////////////////////////////////////////////////////////////////
+	@ResponseBody @RequestMapping(value="/andWrite.ap", produces="text/html; charset=utf-8")
+	public String andWrite() {
+		
+		List<And_Ing_tableVO> list = dao.andWriteList();
+		
+		return new Gson().toJson(list);
+
+	}
+
+
+		@ResponseBody @RequestMapping(value="/andRec.ap", produces="text/html; charset=utf-8")
+	   public String andRec() {
+	      
+	      List<And_Ing_tableVO> list = dao.andRecList();
+	      
+	      return new Gson().toJson(list);
+
+	   }
+
 	
 }

@@ -102,8 +102,7 @@
 									 <span class="nav_name">급여관리</span>
 								</a>
 								<ul class="submenu hide">
-									<li><a href="#">나의 급여보기</a></li>
-									<li><a href="list.sa">사원 급여정보</a></li>
+									<li><a href="mySalary.sa?employee_id=${loginInfo.employee_id }">나의 급여보기</a></li>
 									<li><a href="list.sa">사원 급여정보</a></li>
 								</ul>
 							</div>

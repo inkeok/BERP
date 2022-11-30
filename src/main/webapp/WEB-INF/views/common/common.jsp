@@ -98,7 +98,7 @@ td {
 	</thead>   
       	<c:forEach items="${list}" var="vo">
             
-            <tr><td><a href='common.detail?code_value=${vo.code_value}'>${vo.code_title}</a></td>
+            <tr><td><a href='common.detail?code_value=${vo.code_value}'>${vo.code_comment}</a></td>
             	<td>${vo.code_value}</td>
             	<td>${vo.code_used}</td>
             	<td>${vo.code_name}</td>
