@@ -14,7 +14,7 @@
 </head>
 <body>
 <h2>수신함</h2>
-<table id='width85' class="table table-striped table-hover w-px1600">
+<table id='width70' class="">
 
 
 <colgroup>

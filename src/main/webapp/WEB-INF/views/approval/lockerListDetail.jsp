@@ -20,10 +20,13 @@
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
-/* } */
-/* #file{ */
-/* 	display: none; */
-/* } */
+  }
+
+#locker-select{
+	margin-left: 50px;
+	margin-bottom: 10px;
+}
+
 
 </style>
 </head>
@@ -36,24 +39,24 @@
 	<input type='hidden' name='no' value='${lockerListDetail.no}'>
 	<input type='hidden' name='ing_no' value='${lockerListDetail.ing_no}'>
 	
+	<div id='locker-select'>
+		<select id='department_name' name='department_name' style='height: 26px'>
+		<option value='부서'>부서</option>
+		<c:forEach items='${departments}' var='d'>
+		<option ${department_name eq d.department_name ? 'selected' : ''} value='${d.department_name}'>
+		${d.department_name}</option>
+		</c:forEach>	
+		</select>
+		
+		<select id='approver_id' name='approver_id' style='height: 26px'>
+		<option value='-1'>결재자</option>
+		<c:forEach items='${departmentEmployee}' var='de'>
+		<option value='${de.employee_id}'>${de.c_position} ${de.name}</option>
+		</c:forEach> 
+		</select>
+	</div>
 	
-	<select id='department_name' name='department_name' style='height: 26px'>
-	<option value='부서'>부서</option>
-	<c:forEach items='${departments}' var='d'>
-	<option ${department_name eq d.department_name ? 'selected' : ''} value='${d.department_name}'>
-	${d.department_name}</option>
-	</c:forEach>	
-	</select>
-	
-	<select id='approver_id' name='approver_id' style='height: 26px'>
-	<option value='-1'>결재자</option>
-	<c:forEach items='${departmentEmployee}' var='de'>
-	<option value='${de.employee_id}'>${de.c_position} ${de.name}</option>
-	</c:forEach> 
-	</select>
-	
-	
-	<table class='table detail' style='margin-top: 10px'>
+	<table class='apTable detail' style='width: 90%'>
 	<colgroup>
 	<col width='100px'>
 	<col width='100%'>
@@ -65,12 +68,12 @@
 			<td><textarea id='textarea' name='document_content'>${lockerListDetail.document_content }</textarea></td>
 		</tr>
 		<tr><th height='47px'>첨부파일</th>
-			<td colspan='3' style='vertical-align: middle'>
+			<td colspan='3' style='vertical-align: middle' class=''>
 				<input type="file" id='file' name='file' 
 				style='display:${empty lockerListDetail.file_name ? "block" : "none"}'>
 				
 				<c:if test='${not empty lockerListDetail.file_name }'>
-				<a name='file_name' class='file'>${lockerListDetail.file_name}</a>
+				<a name='file_name' class='file file-text'>${lockerListDetail.file_name}</a>
 				</c:if>
 				<input type='hidden' name='file_name' >
 				<a id='deleteFile' style='display:${empty lockerListDetail.file_name ? "none" : "inline"}'><span class="material-symbols-outlined googleIcon">
@@ -83,9 +86,9 @@
 </form>
 </div>
 <div id='btnFix43'>
-<a class='btn-empty' id='postSubmit'>제출</a>
-<a class='btn-empty' id='postCancel'>삭제</a>
-<a class='btn-empty' id='postBack'>이전으로</a>
+<a class='new-btn' id='postSubmit'>제출</a>
+<a class='new-btn' id='postCancel'>삭제</a>
+<a class='new-btn' id='postBack'>이전으로</a>
 </div>
 <script>
 

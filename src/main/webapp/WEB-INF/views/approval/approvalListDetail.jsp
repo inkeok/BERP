@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class='centerFrame'>
-<table class="table detail">
+<table class="apTable detail" style='width: 90%'>
 	<colgroup>
 		<col width='100px'>
 		<col>
@@ -51,7 +51,7 @@
 		<tr><th>첨부파일</th>
 			<td  colspan='3'>
 			<c:if test='${not empty approvalListDetail.file_name }'>
-			<a class='file'>${approvalListDetail.file_name}</a>
+			<a class='file file-text'>${approvalListDetail.file_name}</a>
 			</c:if>
 			</td>	
 		</tr>
@@ -65,7 +65,7 @@
 		
 	</table>
 	</div>
-	<div id='btnFix'><a class='btn-empty' href='approvalList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
+	<div id='btnFix'><a class='new-btn' href='approvalList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
 <script>
 $('.file').click(function(){
 	$(this).attr('href'

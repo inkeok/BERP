@@ -17,7 +17,7 @@
 </head>
 <body>
 <h2>상신함</h2>
-<table id='width85' class="table table-striped table-hover w-px1600">
+<table id='width70' class="">
 
 <colgroup>
 	<col width='50px'>
@@ -41,6 +41,6 @@
 </tr>
 </c:forEach>
 </table>
-<div id='btnFix'><a class='btn-empty' onclick='location="post.ap?employee_id=${employee_id}"'>작성</a></div>
+<div id='btnFix'><a class='new-btn' onclick='location="post.ap?employee_id=${employee_id}"'>작성</a></div>
 </body>
 </html>

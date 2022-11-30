@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class='centerFrame'>
-	<table class='table detail'>
+	<table class='apTable detail' style='width:90%'>
 <colgroup>
 	<col width='100px'>
 	<col>
@@ -35,14 +35,14 @@
 		<tr><th>첨부파일</th>
 			<td  colspan='3'>
 			<c:if test='${not empty submitListDetail.file_name }'>
-			<a class='file'>${submitListDetail.file_name}</a>
+			<a class='file file-text'>${submitListDetail.file_name}</a>
 			</c:if>
 			</td>	
 		</tr>
 		
 	</table>
 	</div>
-	<div id='btnFix48'><a class='btn-empty' href='submitList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
+	<div id='btnFix48'><a class='new-btn' href='submitList.ap?employee_id=${employee_id}'>뒤로가기</a></div>
 
 <script>
 $('.file').click(function(){
