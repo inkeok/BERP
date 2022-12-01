@@ -23,6 +23,7 @@
 	font-family: 'Noto Sans KR' !important;
 }
 	table {
+	width: 1000px;
 	margin-top : 5px;
 /* 	border-top-left-radius: 20px; */
 /*     border-top-right-radius: 20px; */
@@ -34,6 +35,7 @@
 }
 td a{
 	color : #323232;
+	
 }
 th, td {
   padding: 15px;
@@ -80,6 +82,22 @@ tbody td:hover:before {
 .btnSet{
 text-align:center;
 	margin-top: 30px;
+}
+
+body {
+margin: 3rem auto;
+}
+
+table {
+margin: 3rem auto;
+}
+
+.btn {
+text-align: center;
+}
+.btn a{
+margin-right: 3rem;
+text-decoration: none;
 }
 </style>
 </head>
@@ -148,7 +166,7 @@ ${vo.char_recruit_end }
 </div>
 </td>
 </table>
-<div>
+<div class="btn">
 <a href='list.rec' class='new-btn'>목록으로 </a>
 
 <!-- 관리자로 로긴 한 경우만 수정ㅅ/삭제 가능 -->

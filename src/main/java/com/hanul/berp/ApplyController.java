@@ -183,25 +183,44 @@ public class ApplyController {
 	}
 	
 	@RequestMapping("/applicantList.apply")
-	public String applicantList(Model model, @RequestParam(defaultValue="all") String recruit_num) {
+	public String applicantList(Model model
+			, @RequestParam(defaultValue="all") String recruit_num
+			, @RequestParam(defaultValue="all") String apply_check
+			
+			) {
 		
 		//지원자 조회
 		List<ApplyVO> applicants;
 		
 		//채용공고 번호 조회
 		List<apply.RecruitVO> recruit_list = dao.recruit_num();
+		//합불합
+		List<ApplyVO> pass_list = dao.pass();
+		
+		
 		
 		
 		if(recruit_num.equalsIgnoreCase("all")) {
-			//전체 지원자 리스트 조회recruits = 
-			applicants = dao.applicant_list();
-		}else {
+			if(apply_check.equalsIgnoreCase("all")) {
+				//전체 지원자 리스트 조회recruits = 
+				applicants = dao.applicant_list();				
+			}else {
+				applicants = dao.applicant_list_check(apply_check);
+			}
+		}else{
+			if(apply_check.equalsIgnoreCase("all")) {
+				applicants = dao.applicant_list(recruit_num);
+			}else {
+				applicants = dao.applicant_list(recruit_num, apply_check);
+				
+			}
 			//s선택
-			applicants = dao.applicant_list(recruit_num);
+			//applicants = dao.applicant_list(recruit_num);
 		}
 		
 		model.addAttribute("applicants", applicants);
 		model.addAttribute("recruit_list", recruit_list);
+		model.addAttribute("pass_list", pass_list);
 		model.addAttribute("recruit_num", recruit_num);
 		
 		

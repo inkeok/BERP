@@ -107,6 +107,31 @@ select::-ms-expand {
 text-align:center;
 	margin-top: 30px;
 }
+
+#delete-file, #attach-file {
+display:none;
+}
+#delete {
+display:none;
+}
+#delete_end {
+display:none;}
+
+body {
+margin: 3rem auto;
+}
+
+table {
+margin: 3rem auto;
+}
+
+.btn {
+text-align: center;
+}
+.btn a{
+margin-right: 3rem;
+text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -166,13 +191,13 @@ text-align:center;
 	</td>
 </tr>
 <tr><th>채용시작일</th>
-<td><input type="text" id="from" name="recruit_start" readonly>
+<td><input type="text" id="from" class="date" name="recruit_start" readonly>
 <a id='delete'><i class="font-r fa-regular fa-calendar-xmark"></i></a>
 </td>
 </tr>
 <tr><th>채용종료일</th>
-<td><input type="text" id="to" name="recruit_end" readonly>
-<a id='delete'><i class="font-r fa-regular fa-calendar-xmark"></i></a>
+<td><input type="text" id="to" class="date" name="recruit_end" readonly>
+<a id='delete_end'><i class="font-r fa-regular fa-calendar-xmark"></i></a>
 </td>
 </tr>
 
@@ -203,7 +228,7 @@ text-align:center;
 </table>
 <input type='hidden' name='writer' value='${loginInfo.employee_id}'>
 </form>
-<div class='btnSet'>
+<div class='btn'>
 	<a class='new-btn' id='save'>저장</a>
 	<a class='new-btn' href='list.rec'>취소</a>
 </div>
@@ -256,6 +281,18 @@ text-align:center;
   
   $('#save').click(function(){
 	  if( emptyCheck() ) 	$('form').submit(); //빈칸 체크 : if( emptyCheck() ) 
+	});
+  $('.date').change(function(){
+		$(this).next().css('display', 'inline');
+		
+	});
+  $('#delete').click(function(){
+		$(this).siblings('.date').val('');
+		$(this).css('display', 'none');
+	});
+  $('#delete_end').click(function(){
+		$(this).siblings('.date').val('');
+		$(this).css('display', 'none');
 	});
 </script>
 </body>

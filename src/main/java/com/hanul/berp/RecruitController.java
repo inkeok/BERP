@@ -37,7 +37,7 @@ import recruit.RecruitVO;
 @Controller
 public class RecruitController {
 	
-	@Autowired private MemberDAO member;
+	//@Autowired private MemberDAO member;
 	@Autowired
 	RecruitDAO dao;
 	
@@ -209,6 +209,7 @@ public class RecruitController {
 		
 		
 		return "empty/recruit/list";
+		//return "recruit/list";
 	}
 	
 	@RequestMapping("/new.rec")

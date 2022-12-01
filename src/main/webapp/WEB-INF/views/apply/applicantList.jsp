@@ -111,7 +111,7 @@ tbody td:hover:before {
 	margin-bottom: 10px;
 	background: #12192c;
 	position: relative;
-	left: 78%;
+	left: 54%;
 }
 
 .button-second {
@@ -125,8 +125,9 @@ tbody td:hover:before {
 	<form method='post' action='applicantList.apply'>
 		<div id='list-top' class='w-px1200'>
 			<ul>
-				<li><select name='recruit_num' class='w-px100'
-					onchange='$("form").submit()'>
+				<li>
+				<select name='recruit_num' class='w-px100'
+					onchange='$("form").submit()' style="width:300px;">
 						<!-- name줘야 전달가넝 -->
 						<option value='all'>전체 유형</option>
 						<c:forEach items='${recruit_list}' var='re'>
@@ -135,12 +136,28 @@ tbody td:hover:before {
 								${re.recruit_title}</option>
 						</c:forEach>
 				</select>
+				
+	<select name='apply_check' class='w-px100' onchange='$("form").submit()'
+		style="width: 100px;">
+		<!-- name줘야 전달가넝 -->
+		<option value='all'>전체</option>
+		<c:forEach items='${pass_list}' var='pl'>
+			<option ${apply_check eq pl.apply_check ? 'selected' : '' }
+				value='${pl.apply_check}'>
+				${pl.checkPass}</option>
+		</c:forEach>
+	</select>
+				
 				 <%-- <c:if test='${loginInfo.admin eq "Y"}'> --%> <a
 					class='new-btn' style="position: left;" href='pass_check.apply'>합격자
-						리스트</a> <%-- </c:if> --%></li>
+						리스트</a> <%-- </c:if> --%>
+	</li>			
 			</ul>
 		</div>
+		
 	</form>
+	
+
 
 
 	<!-- 테이블시작 -->

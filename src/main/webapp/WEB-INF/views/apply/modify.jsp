@@ -92,6 +92,10 @@ margin-top: 40px;
 #preview_pic img{
 	width:100px;
 }
+
+#delete-file-pic, #attach-file, #delete-file, #attach-file-pic {
+display: none;}
+
 </style>
 </head>
 <body>
@@ -114,20 +118,26 @@ margin-top: 40px;
 
 
 <td rowspan='3' style="width:300px">
-<div class='align'>
-		<label>
-			<input type='file' name='pic_name' id='attach-file-pic'>
+	<div class='align'>
+		<label> 
+						<input type='file' name='pic_name' id='attach-file-pic'>
+							<a><i class="font-b fa-solid fa-file-circle-plus"></i>증명사진 첨부</a>
+						</label> 
+		</div>
 			
-		</label>
 			<br>
-		<span id='pic_file_name'>${vo.apply_pic_name}</span>
+			
+		<span id='pic_name' ></span>
+		
+		
+		<div>
 		
 		<span id='preview_pic'></span>
+		</div>
 	
 		<!-- //첨부파일이 있는 경우 삭제 이미지가 보이게 처리 -->
 		<a id='delete-file-pic' style='display:${empty vo.apply_pic_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
 		
-		</div>
 
 </td>
 <tr>

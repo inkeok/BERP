@@ -16,6 +16,9 @@
 <script src='js/mypage.js?<%=new java.util.Date() %>'></script>
 
 <style>
+body {
+margin-top: 200px;
+}
 form{
 	margin-top: 45px;
 }
@@ -48,6 +51,7 @@ th {
 th {
 	background: #12192c;
 	color: #fff;
+	width: 250px;
 }
 td {
  text-align: left;
@@ -82,7 +86,7 @@ tbody td:hover:before {
 	margin-bottom: 10px;
 	background: #12192c;
 	position: relative;
-	left: 4%;
+	
 	margin-right: 10px;
 }
 .margin {
@@ -99,6 +103,19 @@ font-weight: bold;
 color: red;
 font-size: 14px;
 font-weight: bold;
+}
+
+table {
+width: 800px;
+margin: 0 auto;
+}
+.btn {
+text-align: center;
+margin-top: 60px;
+}
+
+h2 {
+text-align: center;
 }
 
 </style>
@@ -136,9 +153,9 @@ placeholder="비밀번호">
 </td>
 </tr>
 <tr>
-<th>비번밀번호 확인 </th>
+<th>비밀번호 확인 </th>
 <td>
-<input type='password'  class="chk" name='pw_ck' 
+<input type='password'  class="chk" name='pw_ck' id="pw_ck"
 placeholder="비밀번호">
 <div class='valid'>비밀번호 입력하세요</div>
 </td>
@@ -147,33 +164,90 @@ placeholder="비밀번호">
 
 
 </table>
-<div class='margin'>
+<div class='margin btn'>
 	<a class='new-btn' id='save'>저장</a>
-	<a class='new-btn' href="<c:url value='/'/>">취소</a>
+	<a class='new-btn' style="text-decoration: none;"
+	href="<c:url value='/'/>">취소</a>
 </div>
 </form>
 
 <script>
-
-$('#save').click(function(){
-	
-	if( emptyCheck() ) $('form').submit();
+$('#pw_ck').keyup(function(e){
+	if(e.keyCode==13) save();
 });
 
-$('.chk').keyup(function(e){
-	
-	
-		$(this).removeClass('chked');
-		var status = member.tag_status($(this) );
-		$(this).siblings('div').text( status.desc )
-			.removeClass('valid invalid').addClass(status.code);	
-		
 
+$('#save').click(function() {
+	save();
 	
 	
 });
 
+function save() {
+	if ($('[name=email]').val() == '') {
+		alert('name를 입력하세요!');
+		$('[name=email]').focus();
+		return;
+	}
+	if ($('[name=phone]').val() == '') {
+		alert('phone를 입력하세요!');
+		$('[name=phone]').focus();
+		return;
+	}
+	if ($('[name=pw]').val() == '') {
+		alert('비밀번호를 입력하세요!');
+		$('[name=pw]').focus();
+		return;
+	}
+	if ($('[name=pw_ck]').val() == '') {
+		alert('비밀번호를 입력하세요!');
+		$('[name=pw_ck]').focus();
+		return;
+	}
 
+	
+
+	if (tagIsInValid($('[name=pw]')))
+		return;
+	if (tagIsInValid($('[name=pw_ck]')))
+		return;
+	if (tagIsInValid($('[name=email]')))
+		return;
+
+	if (emptyCheck())
+		$('form').submit();
+}
+
+
+function tagIsInValid(tag) {
+	var status = member.tag_status(tag);
+	if (status.code == 'invalid') {
+		alert('정보변경 불가\n' + status.desc);
+		tag.focus();
+		return true;
+		;
+	} else
+		return false;
+
+}
+
+
+
+$('.chk').keyup(
+		function(e) {
+			//아이디 태그에서 enter인 경우는 중복확인 처리 
+			if ($(this).attr('name') == 'phone'
+					&& e.keyCode == 13) {
+				tagIsInValid(tag); 
+			} else {
+				$(this).removeClass('chked');
+				var status = member.tag_status($(this));
+				$(this).siblings('div').text(status.desc).removeClass(
+						'valid invalid').addClass(status.code);
+
+			}
+
+		}); 
 
 </script>
 

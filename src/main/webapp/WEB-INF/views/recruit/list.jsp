@@ -173,7 +173,7 @@ color : white;
 			<tr>
 				<td>${vo.employee_pattern_name}</td>
 				<td>${vo.career_name}</td>
-				<td><a href="detail.rec?recruit_num=${vo.recruit_num }">
+				<td style="text-align: left"><a href="detail.rec?recruit_num=${vo.recruit_num }">
 						${vo.recruit_title } </a></td>
 				<%-- 
 	<td>

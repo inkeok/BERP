@@ -42,7 +42,7 @@ public class EmpController {
 		EmpVO vo = dao.emp_info(employee_id);
 		model.addAttribute("vo", vo);
 		
-		return "emp/myPage";
+		return "side/emp/myPage";
 	}
 	
 	
