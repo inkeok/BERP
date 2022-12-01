@@ -108,8 +108,12 @@ text-align:center;
 	margin-top: 30px;
 }
 
+#delete-file, #attach-file {
+display:none;
+}
 #delete {
-display:none;}
+display:none;
+}
 #delete_end {
 display:none;}
 

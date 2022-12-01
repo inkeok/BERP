@@ -82,6 +82,8 @@ tbody td:hover:before {
 	background-color: rgba(255, 255, 255, 0.2);
 	z-index: -1;
 }
+#delete-file-pic, #attach-file, #delete-file, #attach-file-pic {
+display: none;}
 
 </style>
 </head>

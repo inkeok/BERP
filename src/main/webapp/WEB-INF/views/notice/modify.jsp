@@ -84,6 +84,9 @@ tbody td:hover:before {
 	z-index: -1;
 }
 
+#delete-file-pic, #attach-file, #delete-file, #attach-file-pic {
+display: none;}
+
 </style>
 </head>
 <body>

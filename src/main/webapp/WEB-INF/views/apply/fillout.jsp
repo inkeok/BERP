@@ -132,6 +132,9 @@ font-size: 14px;
 font-weight: bold;
 }
 
+#delete-file-pic, #attach-file, #delete-file, #attach-file-pic {
+display: none;}
+
 </style>
 </head>
 <body>
@@ -159,13 +162,15 @@ font-weight: bold;
 					<!-- <div class='align'> -->
 					<div>
 						<label> 
-						<input type='file' name='pic_name'
-							id='attach-file-pic'>
+						<input type='file' name='pic_name' id='attach-file-pic'>
+							<a><i class="font-b fa-solid fa-file-circle-plus"></i>증명사진 첨부</a>
 						</label> 
 					</div>
 				<div>
-						<!-- <span id='apply_pic_name'></span>  -->
+						
+						
 						<span id='preview_pic'></span>
+				
 				</div>
 						
 						<a id='delete-file-pic'><i
