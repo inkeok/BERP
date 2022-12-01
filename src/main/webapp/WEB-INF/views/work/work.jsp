@@ -216,17 +216,20 @@ tbody td:hover:before {
 	const b = document.querySelector('#end_btn');
 
 	b.onclick = function() {
+		
+		
 		$('#end_work').val(
-				new Date().getHours() + ':' + new Date().getMinutes() + ':'
-						+ new Date().getSeconds());
+				String(new Date().getHours()).padStart(2,'0')+ ':' + String(new Date().getMinutes()).padStart(2,'0')+ ':'
+						+String(new Date().getSeconds()).padStart(2,'0'));
+		
 		$('#input').submit();
 		work_end_input();
 
 	}
 	a.onclick = function() {
 		$('#start_work').val(
-				new Date().getHours() + ':' + new Date().getMinutes() + ':'
-						+ new Date().getSeconds());
+				String(new Date().getHours()).padStart(2,'0')+ ':' + String(new Date().getMinutes()).padStart(2,'0')+ ':'
+				+String(new Date().getSeconds()).padStart(2,'0'));
 		$('#input').submit();
 		
 		work_start_input();

@@ -47,7 +47,7 @@ public class WorkController {
 
 		WorkVO wVo = dao.workInfo(vo.getEmployee_id());
 		model.addAttribute("wVo", wVo);
-		System.out.println(session.getAttribute("loginInfo"));
+
 	
 		List<WorkResultVO> workList = dao.workResult(vo.getEmployee_id());
 		
@@ -142,8 +142,6 @@ public class WorkController {
 		System.out.println(work_code);
 		System.out.println("ajax submit");
 		
-		
-			System.out.println("ㅇ;");
 	
 			dao.holiday_submit(start_holiday,end_holiday,vo.getEmployee_id(),vo.getDepartment_id(),vo.getCompany_cd(),work_code);			
 		
@@ -174,6 +172,7 @@ public class WorkController {
 		List<emp.DepartmentVO> departments = dao.departments();
 		model.addAttribute("departments",departments);
 		model.addAttribute("department_id", department_id);
+		
 		model.addAttribute("workList",workList);
 		model.addAttribute("work_date" , work_date);
 		
@@ -303,7 +302,7 @@ public class WorkController {
 		public String andHolidayIndi_List(int employee_id) {
 			List<WorkResultVO> list = dao.andHolidayIndi_List(employee_id);
 			Gson gson = new GsonBuilder()
-					.setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+					.setDateFormat("yyyy-MM-dd").create();
 			return gson.toJson(list);		
 		}
 		

@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
@@ -84,11 +85,11 @@ ul{
 	
 		 <form method='post' action='workList'>
 			<div id='list-top' style="margin-bottom: 0;">
-				<ul class="select-list">
-					<li><input type="date" name="work_date" id="work_date" pattern="yy/MM/dd"  max="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
+				<ul class="select-list" style="display:flex">
+					<li><input  style="height:48px"type="date" name="work_date" id="work_date" pattern="yy/MM/dd"  max="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
 					value="${work_date }"
 					/></li>
-					<li><select name='department_id' class='w-px200'
+					<li><select style=" height: 48px; margin-left: 10px;" name='department_id' class='w-px200'
 						onchange='$("form").submit()'>
 							<option value='-1'>전체 부서</option>
 							<c:forEach items='${departments}' var='d'>
@@ -126,11 +127,12 @@ ul{
 					<td>${vo.employee_id}</td>
 					<td>${vo.name}</td>
 					<td>${vo.department_name}</td>
+						
 				<c:if test="${empty vo.start_work }">
 					<td>-</td>
 				</c:if>
-				<c:if test ="${not empty vo.start_work}">
-					<td>${vo.start_work}	</td>
+				<c:if test ="${not empty vo.start_work}">				
+					<td>${vo.start_work}</td>
 				</c:if>
 				<c:if test="${empty vo.end_work }">
 					<td>-</td>
