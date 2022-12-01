@@ -18,6 +18,7 @@ $(function(){
 			
 			$('#pic_name').text(''); //선택한 파일명 보이게
 			$('#delete-file-pic').css('display', 'inline'); //삭제버튼 보이게
+			$('.attach-file-pic').css('display', 'inline'); //삭제버튼 보이게
 			$(this).css('display', 'none'); //삭제버튼 보이게
 			
 			//미리보기 태그가 있으면 

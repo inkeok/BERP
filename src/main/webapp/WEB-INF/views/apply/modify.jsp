@@ -90,7 +90,7 @@ margin-top: 40px;
 }
 
 #preview_pic img{
-	width:100px;
+	width:100%;
 }
 
 #delete-file-pic, #attach-file, #delete-file, #attach-file-pic {
@@ -117,11 +117,12 @@ display: none;}
 </td>
 
 
-<td rowspan='3' style="width:300px">
+<td rowspan='3' style="padding:0; margin: 0; width: 150px; border: 1px solid #bbb; text-align: center;">
 	<div class='align'>
 		<label> 
 						<input type='file' name='pic_name' id='attach-file-pic'>
-							<a><i class="font-b fa-solid fa-file-circle-plus"></i>증명사진 첨부</a>
+	<a class='attach-file-pic'><i class="font-b fa-solid fa-file-circle-plus"></i>증명사진 첨부</a>
+						
 						</label> 
 		</div>
 			
