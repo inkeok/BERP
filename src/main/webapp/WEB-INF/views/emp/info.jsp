@@ -6,14 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <style>
-h3{	
-	margin: 3rem 0 !important;
-    padding-bottom: 1rem;
-	border-bottom: 5px solid #12192c;
-	font-weight: 700 !important;
-	color: #727272;
-	font-size : 32px;
-	width: 800px;
+h3{
+	width : 800px;
+	margin : 3rem 0;
+	font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom : 30px; 
+    border-bottom: 2px solid #424242;
 }
 
 .new-btn{
