@@ -9,7 +9,104 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <style>
+
+.pagination{
+    width: 1484px;
+	background : #12192c;
+    justify-content: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.pagination li{
+	margin-right : 14px;
+}
+
+#pagination a {
+
+	display:inline-block;
+	margin-right:10px;
+	cursor:pointer;
+	
+}
+.w-px1600 {
+	width: 1600px;
+}
+.center{
+	text-align: center;
+}
+.hrlist{
+ 	margin : 3rem 0 ;
+ 	color : #000000;
+ 	font-size : 35px;
+ 	font-family: 'Noto Sans KR' !important;
+}
+table {
+	margin-top : 5px;
+	border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+td a{
+	color : #323232;
+}
+th, td {
+border-bottom: 1px solid #efefef;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #000000;
+}
+
+th {
+  text-align: center;
+}
+th {
+  background-color: #12192c;
+  color : #fff;
+}
+tbody tr:hover, td:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+tbody td {
+  position: relative;
+}
+tbody td:hover:before {
+ 
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+.new-btn{
+  padding: 1em 1.8em;
+  font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+	background : #12192c;
+	position: relative;
+	left: 4%;
+}
+
+.button-second {
+  background: #2b32b2;
+  box-shadow: 0 3px 25px rgba(48, 37, 223, 0.7);
+}
+.emp-wrap{
+    position: relative;
+    left: 5%;
+}
+
 
 table {
 	margin-top: 5px;
@@ -19,7 +116,7 @@ table {
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-	margin-bottom: 10rem;
+
 }
 
 td a {
@@ -103,6 +200,7 @@ ul{
 
 	
 	<!--  work_result table 에서 가져온다 -->
+
 	<table style="width: 1400px">
 		<thead>
 			<tr>
@@ -145,7 +243,86 @@ ul{
 			</c:forEach>
 		</tbody>
 	</table>
+		<ul class="pagination" style="width:1400px">
+		    
+		 	 </ul>
 </body>
+<script>
+	function pagination(){
+	var req_num_row=9;
+	var $tr=jQuery('tbody tr');
+	var total_num_row=$tr.length;
+	var num_pages=0;
+	if(total_num_row % req_num_row ==0){
+		num_pages=total_num_row / req_num_row;
+	}
+	if(total_num_row % req_num_row >=1){
+		num_pages=total_num_row / req_num_row;
+		num_pages++;
+		num_pages=Math.floor(num_pages++);
+	}
+
+jQuery('.pagination').append("<li><a class=\"prev\">Previous</a></li>");
+
+	for(var i=1; i<=num_pages; i++){
+		jQuery('.pagination').append("<li><a>"+i+"</a></li>");
+  jQuery('.pagination li:nth-child(2)').addClass("active");
+  jQuery('.pagination a').addClass("pagination-link");
+	}
+
+jQuery('.pagination').append("<li><a class=\"next\">Next</a></li>");
+
+	$tr.each(function(i){
+  jQuery(this).hide();
+  if(i+1 <= req_num_row){
+			$tr.eq(i).show();
+		}
+	});
+
+	jQuery('.pagination a').click('.pagination-link', function(e){
+		e.preventDefault();
+		$tr.hide();
+		var page=jQuery(this).text();
+		var temp=page-1;
+		var start=temp*req_num_row;
+  var current_link = temp;
+  
+  jQuery('.pagination li').removeClass("active");
+		jQuery(this).parent().addClass("active");
+
+		for(var i=0; i< req_num_row; i++){
+			$tr.eq(start+i).show();
+		}
+  
+  if(temp >= 1){
+    jQuery('.pagination li:first-child').removeClass("disabled");
+  }
+  else {
+    jQuery('.pagination li:first-child').addClass("disabled");
+  }
+        
+	});
+
+jQuery('.prev').click(function(e){
+    e.preventDefault();
+    jQuery('.pagination li:first-child').removeClass("active");
+});
+
+jQuery('.next').click(function(e){
+    e.preventDefault();
+    jQuery('.pagination li:last-child').removeClass("active");
+});
+
+}
+
+jQuery('document').ready(function(){
+pagination();
+
+jQuery('.pagination li:first-child').addClass("disabled");
+
+});
+	
+	</script>
 </html>
 
 
