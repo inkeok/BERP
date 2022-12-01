@@ -8,7 +8,14 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 h3{
-	margin : 3rem 0;
+	width : 800px;
+    margin: 3rem 11.1rem;
+	font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom : 30px; 
+    border-bottom: 2px solid #424242;
 }
 
 select, option{
@@ -80,13 +87,13 @@ tbody td:hover:before {
 </style>
 </head>
 <body>
-	<h3 class="center">신규사원등록</h3>
-	<form action="insert.hr" method="post" class="w-px1000">
+	<h3 class="">신규사원등록</h3>
+	<form action="insert.hr" method="post" class="w-px1200">
 	
 		<table class="">
 		<colgroup>
-			<col width="200px">
-			<col width="450px">
+			<col width="300px">
+			<col width="550px">
 			
 		</colgroup>
 			<tr>
