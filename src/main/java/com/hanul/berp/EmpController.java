@@ -46,6 +46,14 @@ public class EmpController {
 	}
 	
 	
+	//사원정보삭제
+	@RequestMapping("/delete.hr")
+	public String delete(int id) {
+		
+		dao.employee_delete(id);
+		
+		return "redirect:list.hr";
+	}
 	
 	//사원정보변경 저장
 	@RequestMapping("/update.hr")
@@ -79,6 +87,9 @@ public class EmpController {
 	public String info(int id, Model model) {
 		EmpVO vo = dao.emp_info(id);
 		model.addAttribute("vo", vo);
+		
+		List<PatternVO> pattern = dao.pattern();
+		model.addAttribute("pattern",pattern);
 		
 		return "side/emp/info";
 	}

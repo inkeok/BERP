@@ -18,7 +18,7 @@
 <input type='hidden' name='employee_id' value='${employee_id }'>
 <input type='hidden' name='url' value='lockerList.ap'>
 
-<table id='width80' class="table table-striped table-hover w-px1600">
+<table id='width70' class="">
 
 <colgroup>
 	<col width='30px'>
@@ -44,7 +44,7 @@
 </table>
 </form>
 
-<div id='btnFix'><a class='btn-empty' id='deleteLockerList'>삭제</a></div>
+<div id='btnFix'><a class='new-btn' id='deleteLockerList'>삭제</a></div>
 </div>
 
 <script>

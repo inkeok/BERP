@@ -17,6 +17,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
+
 body{
 	height: 1000px;
 }
@@ -32,7 +33,6 @@ td a{
 	color : #323232;
 }
 th, td {
-
 	border-bottom: 1px solid #efefef;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);

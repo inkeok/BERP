@@ -10,8 +10,20 @@
 h3{
 	margin : 3rem 0;
 }
-select{
-	width:185px;
+
+select, option{
+  width: 230px;
+  padding: .6em 1.2em;
+  font-family: inherit;
+  background: url('imgs/arrow.jfif') no-repeat 95% 50%; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #999;
+  border-radius: 0px;
+}
+.input{
+  width: 230px;
 }
 
 table {
@@ -88,7 +100,7 @@ tbody td:hover:before {
 			</tr>
 			<tr>
 				<th>회사코드</th>
-				<td><select name="company_cd" style="width:185px">
+				<td><select name="company_cd">
 				<option value="-1">코드선택</option>
 					<c:forEach items="${emp}" var="vo">
 						<option value="${vo.company_cd}">${vo.company_name}</option>
@@ -122,7 +134,7 @@ tbody td:hover:before {
 			</tr>
 			<tr>
 				<th>직급</th>
-				<td><select name="position" style="width:185px">
+				<td><select name="position">
 				<option value="">직급선택</option>
 					<c:forEach items="${position}" var="vo">
 						<option value="${vo.position}">${vo.position_name}</option>
@@ -131,7 +143,7 @@ tbody td:hover:before {
 			</tr>
 			<tr>
 				<th>고용형태</th>
-				<td><select name="employee_pattern" style="width:185px">
+				<td><select name="employee_pattern">
 				<option value="">고용선택</option>
 					<c:forEach items="${pattern}" var="vo">
 						<option value="${vo.employee_pattern}">${vo.employee_pattern_name}</option>
