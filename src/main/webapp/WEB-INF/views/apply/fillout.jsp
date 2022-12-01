@@ -275,34 +275,8 @@ display: none;}
 				$('form').submit();
 		});
 
-		//★★★비번확인
-		$(document)
-				.ready(
-						function() {
-							$("#apply_pw_ck")
-									.keyup(
-											function() {
-												var pass1 = $("#apply_pw")
-														.val();
-												var pass2 = $("#apply_pw_ck")
-														.val();
-
-												if (pass1 == pass2) {
-													$("#passEqual1").hide();
-													$("#passEqual2")
-															.html(
-																	"<span style='color:green'>일치</span>");
-												} else {
-													$("#passEqual1").hide();
-													$("#passEqual2")
-															.html(
-																	"<span style='color:red'>불일치</span>");
-
-												}
-											});
-
-						});
-
+		
+		
 		function tagIsInValid(tag) {
 			var status = member.tag_status(tag);
 			if (status.code == 'invalid') {
