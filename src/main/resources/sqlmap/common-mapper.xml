@@ -7,7 +7,7 @@
 		select c.* , e.name code_maker_name
 		from common_code c left join employees e
 		on c.code_maker = e.employee_id
-		order by code_title
+		order by code_comment
 	</select>
 	
 	<!-- 선택한 코드에 해당하는 목록 가져오기 -->
@@ -16,7 +16,7 @@
 		from common_code c left join employees e
 		on code_maker = e.employee_id
 		<choose>
-			<when test="code == 'code_title'">where ${code} = #{vo.code_title}</when>
+			<when test="code == 'code_comment'">where ${code} = #{vo.code_comment}</when>
 			<when test="code == 'code_value'">where ${code} = #{vo.code_value}</when>
 			<when test="code == 'code_used'">where ${code} = #{vo.code_used}</when>
 			<when test="code == 'code_name'">where ${code} = #{vo.code_name}</when>
@@ -26,9 +26,9 @@
 
 	<!-- 인사코드 드롭다운 -->
 	<select id="personal_code" resultType="common.CommonVO">
-		select distinct code_title 
+		select distinct code_comment 
 		from common_code 
-		order by code_title
+		order by code_comment
 	</select>
 	
 	<!-- 문서코드 드롭다운 -->
@@ -74,7 +74,7 @@
 	<!-- 사원정보 수정저장처리 -->
 	<update id="update">
 		update common_code
-		set code_title = #{code_title}, code_value = #{code_value}, code_used = #{code_used}, code_name = #{code_name}, code_birth = sysdate
+		set code_used = #{code_used}, code_name = #{code_name}, code_birth = sysdate
 		where code_value = #{code_value}
 	</update>
 	
@@ -100,7 +100,7 @@
 		select c.code_comment, c.code_value, c.code_used, c.code_name, c.code_birth, e.name code_maker_name
 		from common_code c left join employees e
 		on c.code_maker = e.employee_id
-		order by code_title
+		order by code_comment
 	</select>
 	
 	<!-- 안드의 코드 인사이름 조회 -->

@@ -32,11 +32,11 @@ td {
        		<div class="dataTable-dropdown">
        			<input type='hidden' name='code' id='code'>
        			<label>
-       				<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title"); $("form").submit()'>
+       				<select class="dataTable-selector" name="code_comment" onchange='$("#code").val("code_comment"); $("form").submit()'>
        				<option class="title" value="all">인사코드</option>
-						<c:forEach items='${code_titles}' var='c'>
-							<option ${code_title eq c.code_title ? 'selected' : ''} 
-									value='${c.code_title}'>${c.code_title}
+						<c:forEach items='${code_commentt}' var='c'>
+							<option ${code_title eq c.code_comment ? 'selected' : ''} 
+									value='${c.code_comment}'>${c.code_comment}
 							</option>
 						</c:forEach>
 					</select>
@@ -77,16 +77,16 @@ td {
 	<thead>
 	    <tr>
 	     <th data-sortable="" style="width: 10%;">
-	    	<span class="dataTable-sorter">인사코드</span>
+	    	<span class="dataTable-sorter">코드유형</span>
 	    </th>
         <th data-sortable="" style="width: 10%;">
-        	<span class="dataTable-sorter">문서코드</span>
+        	<span class="dataTable-sorter">코드번호</span>
        	</th>
      	<th data-sortable="" style="width: 10%;">
-     		<span class="dataTable-sorter">고용형태코드</span>
+     		<span class="dataTable-sorter">승인여부</span>
    		</th>
    		<th data-sortable="" style="width: 10%;">
-     		<span class="dataTable-sorter">근무구분코드</span>
+     		<span class="dataTable-sorter">코드구분</span>
    		</th>
    		<th data-sortable="" style="width: 10%;">
    			<span class="dataTable-sorter">코드생성일</span>

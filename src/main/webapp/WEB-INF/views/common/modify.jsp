@@ -93,22 +93,22 @@ margin-bottom : 3rem;
 </style>
 </head>
 <body>
-<h3>사원정보수정</h3>
+<h3>코드정보수정</h3>
 <form class='bottom' method='get' action='common.update'>
 <table class='w-px600'>
-<tr><th class='w-px160'>인사코드</th>
-	<td>
-		<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title");'>
-						<c:forEach items='${code_titles}' var='c'>
-							<option ${vo.code_title eq c.code_title ? 'selected' : ''}
-								value='${c.code_title}'>${c.code_title}</option>
-						</c:forEach>
-						</select>
+<tr><th class='w-px160'>코드유형</th>
+	<td>${vo.code_comment }
+<!-- 	<td>	<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title");'> -->
+<%-- 						<c:forEach items='${code_titles}' var='c'> --%>
+<%-- 							<option ${vo.code_title eq c.code_title ? 'selected' : ''} --%>
+<%-- 								value='${c.code_title}'>${c.code_title}</option> --%>
+<%-- 						</c:forEach> --%>
+<!-- 						</select> -->
 	</td>
 </tr>
-<tr><th>문서코드</th>
-	<td>
-		<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value");'>
+<tr><th>코드번호</th>
+	<td>${vo.code_value }
+	<td>	<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value");'>
 						<c:forEach items='${code_values}' var='v'>
 							<option ${vo.code_value eq v.code_value ? 'selected' : ''}
 								value='${v.code_value}'>${v.code_value}</option>
@@ -116,7 +116,7 @@ margin-bottom : 3rem;
 						</select>
 	</td>
 </tr>
-<tr><th>고용형태코드</th>
+<tr><th>승인여부</th>
 	<td>
 		<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used");' >
 						<c:forEach items='${code_used}' var='u'>
@@ -127,17 +127,17 @@ margin-bottom : 3rem;
 					</select>
 	</td>
 </tr>
-<tr><th>근무코드</th>
+<tr><th>코드구분</th>
 	<td>
 		<input type="text" id="code_name" name="code_name" style="width:8rem;text-align: center;"/>
 				</td>
 			</tr>
 			<tr>
-				<th>생성날짜</th>
+				<th>코드생성일</th>
 				<td>${vo.code_birth }</td>
 			</tr>
 			<tr>
-				<th>생성인</th>
+				<th>코드생성자</th>
 				<td>${vo.code_maker_name }</td>
 			</tr>
 		</table>
