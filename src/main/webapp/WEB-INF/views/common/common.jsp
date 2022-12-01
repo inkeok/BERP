@@ -17,11 +17,12 @@ body{
 
 table {
 	margin-top : 5px;
-	border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+	border-radius : 10px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	padding: 20px 0;
+	margin-bottom: 8rem;
 }
 td a{
 	color : #323232;
@@ -165,8 +166,7 @@ select, option{
         </table>
         </div><div class="dataTable-bottom"><div class="dataTable-info"></div></div>
         </div>
-<!--     </div> -->
-</div>
+
 </form>
  
 </body>
