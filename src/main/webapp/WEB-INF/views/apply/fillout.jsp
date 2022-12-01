@@ -141,8 +141,9 @@ font-weight: bold;
 		<!-- 
 <form method='post' action='fillout.apply'  enctype='multipart/form-data'>
  -->
-		<h2 class="center hrlist">${recruit.recruit_title}</h2>
+		<h3 class="center hrlist">${recruit.recruit_title} 지원서 작성</h3>
 		<input type='hidden' name='recruit_num' value='${recruit.recruit_num}'>
+		<hr>
 		<table class='w-px1000'>
 			<colgroup>
 				<col width="200px">

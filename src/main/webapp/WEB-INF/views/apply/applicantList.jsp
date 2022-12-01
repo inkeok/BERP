@@ -111,7 +111,7 @@ tbody td:hover:before {
 	margin-bottom: 10px;
 	background: #12192c;
 	position: relative;
-	left: 78%;
+	left: 63%;
 }
 
 .button-second {
@@ -126,7 +126,7 @@ tbody td:hover:before {
 		<div id='list-top' class='w-px1200'>
 			<ul>
 				<li><select name='recruit_num' class='w-px100'
-					onchange='$("form").submit()'>
+					onchange='$("form").submit()' style="width:300px;">
 						<!-- name줘야 전달가넝 -->
 						<option value='all'>전체 유형</option>
 						<c:forEach items='${recruit_list}' var='re'>
