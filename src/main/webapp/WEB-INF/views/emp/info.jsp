@@ -6,17 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <style>
-h3 {
-	text-align: center;
-	margin: 3rem 0;
+h3{	
+	margin: 3rem 0 !important;
+    padding-bottom: 1rem;
+	border-bottom: 5px solid #12192c;
+	font-weight: 700 !important;
+	color: #727272;
+	font-size : 32px;
+	width: 800px;
 }
 
-th {
-	background: none;
-}
 .new-btn{
   padding: 1em 1.8em;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   font-family:'Noto Sans KR', sans-serif;
   border-radius: 4px;
@@ -31,12 +33,55 @@ th {
 	position: relative;
 	left: 4%;
 }
+
+table {
+	margin-top: 10px;
+	border-radius : 20px;
+	border-collapse: collapse;
+	overflow: hidden;
+	margin-bottom : 30px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+td a{
+	color : #323232;
+}
+th, td {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #000000;
+}
+
+th {
+  text-align: center;
+}
+th {
+  background-color: #12192c;
+  color : #fff;
+}
+tbody tr:hover, td:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+tbody td {
+	border-bottom: 1px solid #efefef;
+  	position: relative;
+}
+tbody td:hover:before {
+  
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
 </style>
 </head>
 <body>
-	<h3>사원정보</h3>
-	<div class="w-px600">
-		<table class="table table-striped">
+	<h3 class="fi">사원정보</h3>
+	<div>
+		<table class="w-px1000">
+		<colgroup>
+			<col width="200px"/>
+			<col width="400px"/>
+		</colgroup>
 			<tr>
 				<th class="">사번</th>
 				<td>${vo.employee_id}</td>
@@ -84,5 +129,11 @@ th {
 	<a class='new-btn' onclick="if( confirm('사번[${vo.employee_id}] 삭제?') ) href='delete.hr?id=${vo.employee_id}' " >정보삭제</a>
 	<a class='new-btn' href='list.hr'>사원목록</a>
 </div>
+<script>
+	$(document).ready(function() {
+		$('.fi').fadeIn(3000);
+	});
+
+</script>
 </body>
 </html>
