@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -141,7 +142,12 @@ public class WorkController {
 		System.out.println(work_code);
 		System.out.println("ajax submit");
 		
-		dao.holiday_submit(start_holiday,end_holiday,vo.getEmployee_id(),vo.getDepartment_id(),vo.getCompany_cd(),work_code);
+		
+			System.out.println("ㅇ;");
+	
+			dao.holiday_submit(start_holiday,end_holiday,vo.getEmployee_id(),vo.getDepartment_id(),vo.getCompany_cd(),work_code);			
+		
+		
 		
 		
 		return "side/work/holiday";
@@ -150,24 +156,26 @@ public class WorkController {
 	
 	
 	@RequestMapping("/workList")
-	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id) {
+	public String work_list(Model model, @RequestParam(defaultValue = "-1")  int department_id,
+			String work_date) {
 		
 		List<WorkResultVO> workList = null;
 //		
 		//model.addAttribute("workList",workList);
 	
+		
 		//dao.rList();
 		
-
-		if( department_id == -1 ) {
+		if( department_id == -1) {
 			workList = dao.rList();
 		}else {			
-			workList = dao.department_work(department_id);
+			workList = dao.department_work(department_id, work_date);
 		}
 		List<emp.DepartmentVO> departments = dao.departments();
 		model.addAttribute("departments",departments);
 		model.addAttribute("department_id", department_id);
 		model.addAttribute("workList",workList);
+		model.addAttribute("work_date" , work_date);
 		
 		return "side/work/workList";
 	}
@@ -180,18 +188,6 @@ public class WorkController {
 	return gson.toJson(list); }
 	
 	
-	 // 퇴근 버튼 눌렀을 때 시간 update
-	 
-		/*
-		 * @ResponseBody
-		 * 
-		 * @RequestMapping("/andWork_end_input") public String andWork_end_input( String
-		 * end_work) {
-		 * 
-		 * 
-		 * return dao.work_end_input(end_work)+""; }
-		 */
-
 	
 		//출근버튼 눌렀을 때 시간 insert
 		
@@ -264,13 +260,16 @@ public class WorkController {
 			List<DepartmentVO> list = dao.departments();
 			return gson.toJson(list);
 		}
-		@ResponseBody @RequestMapping(value="/andWorkDeptList", produces="text/html; charset=utf-8")
-		public String andWorkDeptList(int department_id) {
+
+		
+		@ResponseBody @RequestMapping(value="/andWorkDeptList",
+		produces="text/html; charset=utf-8") public String andWorkDeptList(int department_id , String work_date) { 
 			System.out.println(department_id);
-			
-			
-			return gson.toJson(dao.department_work(department_id));
+			System.out.println(work_date);
+		
+		return gson.toJson(dao.department_work(department_id, work_date));
 		}
+		
 		@ResponseBody @RequestMapping(value="/andCode", produces="text/html; charset=utf-8")
 		public String andCode() {
 			
@@ -303,9 +302,9 @@ public class WorkController {
 		@ResponseBody @RequestMapping(value="/andHolidayIndi_List", produces="text/html; charset=utf-8")
 		public String andHolidayIndi_List(int employee_id) {
 			List<WorkResultVO> list = dao.andHolidayIndi_List(employee_id);
-			
-			return gson.toJson(list);
-			
+			Gson gson = new GsonBuilder()
+					.setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+			return gson.toJson(list);		
 		}
 		
 		

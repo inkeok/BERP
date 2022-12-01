@@ -7,7 +7,7 @@ public class Ing_tableVO {
 	private int no, ing_no, employee_id, department_id, approver_id;
 	private String company_cd, file_name, file_path, document_title, 
 					document_content, document_check, document_status, document_submit,
-					email, approver, drafter, c_status, c_position, document_comment,  employee_name, approver_name;
+					email, approver, drafter, c_status, c_position, document_comment,employee_name, approver_name;
 
 	private Date document_date, finish_date;
 	

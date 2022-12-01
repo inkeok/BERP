@@ -152,9 +152,10 @@ ul li {
 			<div style="display: inline-flex;">
 				<input style="width: 130px;  height : 50px; margin: 10px;" id="holiday_start_btn" type="date"
 					min="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
-					class="btn btn-light waves-effect" value="휴가 시작일" /> <input
+					class="btn btn-light waves-effect" value="휴가 시작일" /> 
+					<input
 					style="width: 130px; height : 50px; margin: 10px;" id="holiday_end_btn" type="date"
-					min="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
+					min=""
 					class="btn btn-light waves-effect" value="휴가 종료일" />
 				<!-- </input> -->
 				<div>
@@ -243,35 +244,21 @@ ul li {
 </body>
 
 <script>
-	/* const a = document.querySelector('#holiday_start_btn');
-	const b = document.querySelector('#holiday_end_btn'); */
+	
 	const c = document.querySelector('#holiday_submit_btn');
 
-	/* a.onclick = function() {
-		$('#holiday_start_btn').datepicker({
-			lang:'ko',
-			dateFormat: 'yy-mm-dd',
-			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
-	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
-	        dayNamesMin: ['일','월','화','수','목','금','토'], 
-	        dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
-		});
+	
+	$('[id=holiday_start_btn]').change(function () {
+	   	document.getElementById("holiday_end_btn").setAttribute('min' ,$('[id=holiday_start_btn]').val() )  ;
+	});
 
-	}
-	b.onclick = function() {
-		$('#holiday_end_btn').datepicker({
-			lang:'ko',
-			dateFormat: 'yy-mm-dd',
-			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
-	        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'], 
-	        dayNamesMin: ['일','월','화','수','목','금','토'], 
-	        dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
-			maxDate : new Date();
-		});
-
-	} */
-
+	
 	c.onclick = function() {
+		if($('#holiday_start_btn').val()==""| $('#holiday_end_btn').val()==""){
+			alert('휴가 신청 날짜를 입력하세요');
+			return;
+		}
+		
 
 		$.ajax({
 			url : 'holiday_submit',
@@ -284,6 +271,7 @@ ul li {
 			success : function(response) {
 				console.log(response)
 				alert('휴가 신청되었습니다');
+				location.reload(true);
 			},
 			error : function(req, text) {
 				alert('이미 신청된 휴가일입니다.');

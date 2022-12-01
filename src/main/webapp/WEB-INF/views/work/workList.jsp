@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,10 +80,14 @@ ul{
 </head>
 <body>
 
-	<h2 style="text-align: center;">근무 내역</h2>
-		<form method='post' action='workList'>
+	<h2 style="text-align: center;">전 직원 출퇴근 조회</h2>
+	
+		 <form method='post' action='workList'>
 			<div id='list-top' style="margin-bottom: 0;">
 				<ul class="select-list">
+					<li><input type="date" name="work_date" id="work_date" pattern="yy/MM/dd"  max="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
+					value="${work_date }"
+					/></li>
 					<li><select name='department_id' class='w-px200'
 						onchange='$("form").submit()'>
 							<option value='-1'>전체 부서</option>
@@ -105,28 +111,34 @@ ul{
 				<th scope="col">부서</th>
 				<th scope="col">출근시간</th>
 				<th scope="col">퇴근시간</th>
-				<th scope="col">근무구분코드</th>
+				
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach begin="1" end="15" items='${workList}' var='vo'>
+			<c:forEach begin="0" end="20" items='${workList}' var='vo'>
 				<tr>
-					<td><fmt:formatDate value="${vo.work_date}" dateStyle="full"
-							pattern="yyyy년MM월dd일" /></td>
+				<c:if test="${empty vo.work_date }">
+					<td>-</td>
+				</c:if>
+				<c:if test ="${not empty vo.work_date}">
+					<td>${vo.work_date}	</td>
+				</c:if>
 					<td>${vo.employee_id}</td>
 					<td>${vo.name}</td>
 					<td>${vo.department_name}</td>
-					<c:if test="${not empty vo.start_work }">
-						<td>${vo.start_work}</td>
-						<td>${vo.end_work}</td>
-					</c:if>
-					<c:if test="${empty vo.start_work }">
-						<td>-</td>
-					</c:if>
-					<c:if test="${empty vo.end_work }">
-						<td>-</td>
-					</c:if>
-					<td>${vo.work_status}</td>
+				<c:if test="${empty vo.start_work }">
+					<td>-</td>
+				</c:if>
+				<c:if test ="${not empty vo.start_work}">
+					<td>${vo.start_work}	</td>
+				</c:if>
+				<c:if test="${empty vo.end_work }">
+					<td>-</td>
+				</c:if>
+				<c:if test ="${not empty vo.end_work}">
+					<td>${vo.end_work}	</td>
+				</c:if>
+					
 				</tr>
 			</c:forEach>
 		</tbody>

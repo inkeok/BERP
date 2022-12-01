@@ -296,7 +296,7 @@
 <!-- //////////////////////////////////////////////////////////////// -->
 
 <select id="andTempList" resultType="approval.Ing_tableVO">
-	select i.* , e.name name from ing_table i
+	select i.* , e.name employee_name from ing_table i
 	left outer join  employees e 
 	on e.employee_id = i.employee_id
 	where i.document_submit = 'N'
@@ -351,6 +351,7 @@ on r.approver_id = e2.employee_id join common_code c
 on r.document_check = c.code_value join common_code c2
 on e2.position = c2.code_value join common_code c3
 on e.position = c3.code_value
+where r.document_check = 'D102'  or r.document_check = 'D103'
 </select>
 
 

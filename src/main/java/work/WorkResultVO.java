@@ -5,7 +5,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class WorkResultVO {
-	private String company_cd, excess_date, work_code ,work_status, department_name ,name; 
+	private String company_cd, excess_date, work_code ,work_status, department_name ,name, phone; 
 	public String getDepartment_name() {
 		return department_name;
 	}
@@ -14,8 +14,14 @@ public class WorkResultVO {
 	}
 	private int employee_id, department_id;
 	private String start_work, end_work;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private Date work_date;
+	
+	private String work_date;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getCompany_cd() {
 		return company_cd;
 	}
@@ -70,10 +76,10 @@ public class WorkResultVO {
 	public void setEnd_work(String end_work) {
 		this.end_work = end_work;
 	}
-	public Date getWork_date() {
+	public String getWork_date() {
 		return work_date;
 	}
-	public void setWork_date(Date work_date) {
+	public void setWork_date(String work_date) {
 		this.work_date = work_date;
 	}
 	
