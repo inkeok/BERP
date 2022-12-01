@@ -7,10 +7,9 @@ li a {
 
 body {
 /* 	background: linear-gradient(90deg, #ffffff, #aaaaaa); */
-	/* 	background: linear-gradient(90deg, #3b5290, #472f58); */
+/* 		background: linear-gradient(90deg, #3b5290, #472f58); */
 	position: relative;
-	margin: 0;
-	padding: 2rem 0 0 3.75rem;
+	margin-top: 5rem !important;
 	/*     font-family: var(--body-font); */
 	/*     font-size: var(--normal-font-size); */
 	transition: .5s;
@@ -136,4 +135,8 @@ li:before {
 /* } */
 .pagination li{
 	padding: .7rem;
+}
+
+a:hover {
+	color : #ffffff !important;
 }

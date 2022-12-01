@@ -38,6 +38,7 @@
 	</definition>
 	
 	<definition name='side' template="/WEB-INF/views/tiles/side.jsp">
+		<put-attribute name="sideHeader" value="/WEB-INF/views/include/sideHeader.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/views/include/side.jsp"/>
 	</definition>
 	

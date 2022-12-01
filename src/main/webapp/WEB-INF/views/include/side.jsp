@@ -14,9 +14,6 @@
 	
 <style>
 
-.l-navbar:hover body{
-		padding: 2rem 0 0 16rem;
-}
 .mypage{
 
 }
@@ -52,7 +49,7 @@
 					반갑습니다 ${loginInfo.name}${loginInfo.position_name} 님
 				</div>
 					<div style="margin-top: 5px; margin-bottom: 30px;">
-						<a href="#" class="logout">개인정보수정</a>
+						<a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }" class="logout" >개인정보수정</a>
 						<a href="/berp" class="logout"> 
 						<ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
 	 				</a>
