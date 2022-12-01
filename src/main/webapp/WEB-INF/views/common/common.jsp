@@ -33,10 +33,10 @@ td {
        			<input type='hidden' name='code' id='code'>
        			<label>
        				<select class="dataTable-selector" name="code_comment" onchange='$("#code").val("code_comment"); $("form").submit()'>
-       				<option class="title" value="all">인사코드</option>
-						<c:forEach items='${code_commentt}' var='c'>
-							<option ${code_title eq c.code_comment ? 'selected' : ''} 
-									value='${c.code_comment}'>${c.code_comment}
+       				<option class="title" value="all">코드유형</option>
+						<c:forEach items='${code_commentt}' var='v'>
+							<option ${code_comment eq c.code_comment ? 'selected' : ''} 
+									value='${v.code_comment}'>${v.code_comment}
 							</option>
 						</c:forEach>
 					</select>
@@ -51,7 +51,7 @@ td {
 <!-- 					</select> -->
 					
 					<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
-       				<option value="all">고용형태코드</option>
+       				<option class='title' value="all">승인여부</option>
 						<c:forEach items='${code_usedd}' var='c'>  <!-- 드롭다운이름 처리 -->
 							<option ${code_used eq c.code_used ? 'selected' : ''} 
 									value='${c.code_used}' >${c.code_used}

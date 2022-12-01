@@ -107,7 +107,7 @@ public class CommonController {
 	public String modify(String code_value, Model model) {
 
 		List<CommonVO> code_comment = dao.personal_code(); // 인사코드 목록(드랍다운목록)
-		model.addAttribute("code_comment", code_comment);
+		model.addAttribute("code_comment", code_comment);	
 		List<CommonVO> code_values = dao.document_code(); // 문서코드 목록(드랍다운목록)
 		model.addAttribute("code_values", code_values);
 		List<CommonVO> code_used = dao.employee_code(); // 문서코드 목록(드랍다운목록)

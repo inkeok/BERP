@@ -95,6 +95,7 @@ margin-bottom : 3rem;
 <body>
 <h3>코드정보수정</h3>
 <form class='bottom' method='get' action='common.update'>
+<input type='hidden' name='code_value' value='${vo.code_value}'>
 <table class='w-px600'>
 <tr><th class='w-px160'>코드유형</th>
 	<td>${vo.code_comment }
@@ -108,12 +109,12 @@ margin-bottom : 3rem;
 </tr>
 <tr><th>코드번호</th>
 	<td>${vo.code_value }
-	<td>	<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value");'>
-						<c:forEach items='${code_values}' var='v'>
-							<option ${vo.code_value eq v.code_value ? 'selected' : ''}
-								value='${v.code_value}'>${v.code_value}</option>
-						</c:forEach>
-						</select>
+<!-- 	<td>	<select class="dataTable-selector" name="code_value" onchange='$("#code").val("code_value");'> -->
+<%-- 						<c:forEach items='${code_values}' var='v'> --%>
+<%-- 							<option ${vo.code_value eq v.code_value ? 'selected' : ''} --%>
+<%-- 								value='${v.code_value}'>${v.code_value}</option> --%>
+<%-- 						</c:forEach> --%>
+<!-- 						</select> -->
 	</td>
 </tr>
 <tr><th>승인여부</th>
@@ -129,7 +130,7 @@ margin-bottom : 3rem;
 </tr>
 <tr><th>코드구분</th>
 	<td>
-		<input type="text" id="code_name" name="code_name" style="width:8rem;text-align: center;"/>
+		<input type="text" placeholder="${vo.code_name }" id="code_name" name="code_name" style="width:8rem;text-align: center;"/>
 				</td>
 			</tr>
 			<tr>
