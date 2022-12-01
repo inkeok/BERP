@@ -14,10 +14,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
 h3{
-    margin-top: 55px;
-    margin-bottom: 35px;
-    border-bottom: 5px solid #12192c;
-    padding-bottom: 15px;
+    margin: 2rem 0rem;
+	font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom : 30px; 
+    border-bottom: 2px solid #424242;
 }
 .search{
  padding: 0.5em 1em;

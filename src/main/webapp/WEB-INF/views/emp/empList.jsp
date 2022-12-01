@@ -9,8 +9,13 @@
 
 <style>
 h2{
-	border-bottom: 5px solid #12192c;
-	padding-bottom: 15px;
+    margin: 2rem 9rem;
+	font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom : 30px; 
+    border-bottom: 2px solid #424242;
 }
 .pagination li a{
     font-weight: bold;
@@ -104,11 +109,12 @@ tbody td:hover:before {
 .emp-wrap{
     position: relative;
     left: 5%;
+    top: -4%;
 }
 </style>
 </head>
 <body >
-	<h2 class="hrlist">사원목록</h2>
+	<h2 class="">사원목록</h2>
 	<div class="emp-wrap">
 	<button class="new-btn" onclick='location="new.hr"'>신규사원등록</button>
 	<form action="list.hr" class="list">
