@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.google.gson.JsonElement;
+
 @Repository
 public class EmpDAO {
 
@@ -99,5 +101,10 @@ public class EmpDAO {
 	
 	public int and_emp_insert(EmpAndInsertDTO dto) {
 		return sql.insert("emp.andEmpInsert",dto);
+	}
+
+	public List<EmpCntVO> andNumBer() {
+		
+		return sql.selectList("emp.andEmpCnt");
 	}
 }
