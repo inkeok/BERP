@@ -31,12 +31,6 @@
 	<div class="l-navbar" id="navbar">
 		<nav class="nav">
 			<div>
-<!-- 				<div class="nav__brand"> -->
-<!-- 					<ion-icon name="reorder-three-outline" class="nav__toggle" -->
-<!-- 						id="nav-toggle"></ion-icon> -->
-<!-- 				</div> -->
-
-					 
 				<div class="sidebar-logo">
 					<div class="nav-img">
 						<img src="imgs/icons/icon.png" alt="logo" />
@@ -45,15 +39,7 @@
 						<a href="/berp" class="nav__logo">YM NetWork</a>
 					</div>
 				</div>
-				<div class="mypage" style="margin-top: 20px;">
-					반갑습니다 ${loginInfo.name}${loginInfo.position_name} 님
-				</div>
-					<div style="margin-top: 5px; margin-bottom: 30px;">
-						<a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }" class="logout" >개인정보수정</a>
-						<a href="/berp" class="logout"> 
-						<ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-	 				</a>
-	 			</div>
+					
 				<ul class="ul-nav">
 					<li class="">
 						<div class="nav__list">
@@ -83,7 +69,6 @@
 						</div>
 					</li>
 				</ul>
-				
 				<ul class="ul-nav">
 					<li class="">
 						<div class="nav__list">
