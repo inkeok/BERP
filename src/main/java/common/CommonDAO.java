@@ -1,5 +1,6 @@
 package common;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.google.gson.JsonElement;
+
 
 @Repository
 public class CommonDAO {
@@ -75,10 +77,36 @@ public class CommonDAO {
 	}
 	
 	
-	  public List<CommonVO> and_code_spinner_valuelist(String title) {
-		  return sql.selectList("com.andSpinnerValuelist", title); 
-		  }
+	public List<CommonVO> and_code_spinner_valuelist(String title) {
+		return sql.selectList("com.andSpinnerValuelist", title); 
+	}
 	 
+	/*
+	 * public int and_code_update(CommonVO vo) { return sql.update("com.andUpdate",
+	 * vo); }
+	 */
+	
+
+	  public CommonVO andCodeListOne(String code_value) {
+		  return sql.selectOne("com.andCodeListOne", code_value); 
+	  }
+	  
+		public int andCodeUpdate(String code_comment, String code_value, String code_used, String code_name,
+				int code_maker) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("code_comment", code_comment);
+			map.put("code_value", code_value);
+			map.put("code_used", code_used);
+			map.put("code_name", code_name);
+			map.put("code_maker", code_maker);
+		
+			return sql.update("com.andUpdate", map);
+		}
+	 
+	/*여기까징
+	 * public int customer_delete(String id) { return sql.delete("last.delete", id);
+	 * }
+	 */
 	
 
 	
