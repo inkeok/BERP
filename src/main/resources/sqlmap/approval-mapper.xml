@@ -296,7 +296,7 @@
 <!-- //////////////////////////////////////////////////////////////// -->
 
 <select id="andTempList" resultType="approval.Ing_tableVO">
-	select i.* , e.name name from ing_table i
+	select i.* , e.name employee_name from ing_table i
 	left outer join  employees e 
 	on e.employee_id = i.employee_id
 	where i.document_submit = 'N'

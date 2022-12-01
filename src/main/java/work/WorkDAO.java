@@ -1,5 +1,6 @@
 package work;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,8 +114,11 @@ public class WorkDAO {
 		return sql.selectList("work.departments");
 	}
 	
-	public List<WorkResultVO> department_work(int department_id) {
-		return sql.selectList("work.department_work", department_id);
+	public List<WorkResultVO> department_work(int department_id, String work_date) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("department_id",department_id);
+		map.put("work_date", work_date);
+		return sql.selectList("work.department_work", map);
 	}
 	
 	
