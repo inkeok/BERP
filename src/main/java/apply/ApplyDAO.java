@@ -84,7 +84,7 @@ HashMap<String, String> map = new HashMap<String, String>();
 	}
 	
 	public List<ApplyVO> pass_list(String recruit_num) {
-		return sql.selectList("apply.pass_list_num");
+		return sql.selectList("apply.pass_list_num",recruit_num);
 	}
 	
 	
