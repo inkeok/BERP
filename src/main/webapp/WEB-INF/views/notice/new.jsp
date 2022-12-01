@@ -90,7 +90,7 @@ tbody td:hover:before {
 <form method='post' action='insert.no' enctype='multipart/form-data'>
 <table>
 <tr><th class='w-px140'>제목</th>
-	<td style="text-align:left"><input type='text' name='notice_title' class='full chk' title='제목'></td>
+	<td style="text-align:left"><input type='text' style="width:-webkit-fill-available;"name='notice_title' class='full chk' title='제목'></td>
 </tr>
 <tr style="height: 300px"><th>내용</th>
 	<td><textarea name='notice_content' class='full chk' title='내용'></textarea></td>
