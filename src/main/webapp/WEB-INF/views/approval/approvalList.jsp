@@ -16,7 +16,7 @@
 #resultSelect{
 	position: relative;
 	top: 0;
-	right:-85%;
+	right:-75%;
 }
 </style>
 </head>
@@ -33,18 +33,18 @@
 </c:forEach>
 </select>
 
-<table id='width90' style='margin-top: 10px' 
-class="table table-striped table-hover w-px1600">
+<table id='width70' style='margin-top: 10px' 
+class="">
 
 <colgroup>
 	<col width='80px'>
-	<col width='300px'>
+	<col width='250px'>
 	<col width='150px'>
 	<col width='150px'>
 	<col width='100px'>
 	<col width='150px'>
-	<col width='150px'>
-	<col>
+	<col width='130px'>
+	<col width='200px'>
 </colgroup>
 
 <tr>

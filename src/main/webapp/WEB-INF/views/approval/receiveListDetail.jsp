@@ -30,7 +30,7 @@
 	<input type='hidden' name='approver_id' value='${receiveListDetail.approver_id}'>
 <%-- 	<input type='hidden' name='file' value='${receiveListDetail.file_name}'> --%>
 	
-	<table class='table detail'>
+	<table class='apTable detail' style='width: 90%'>
 		<colgroup>
 			<col width='100px'>
 			<col>
@@ -57,7 +57,7 @@
 		<tr><th>첨부파일</th>
 			<td  colspan='3'>
 			<c:if test='${not empty receiveListDetail.file_name }'>
-			<a class='file'>${receiveListDetail.file_name}</a>
+			<a class='file file-text'>${receiveListDetail.file_name}</a>
 			</c:if>
 			</td>	
 		</tr>
@@ -81,8 +81,8 @@
 	
 </div>
 <div id='btnFix47'>
-	<a class='btn-empty' id='resultInsert'>저장</a>
-	<a class='btn-empty' href='receiveList.ap?employee_id=${loginInfo.employee_id}'>뒤로가기</a>
+	<a class='new-btn' id='resultInsert'>저장</a>
+	<a class='new-btn' href='receiveList.ap?employee_id=${loginInfo.employee_id}'>뒤로가기</a>
 	</div>
 <script>
 document.querySelector('#resultInsert').onclick = function(){
