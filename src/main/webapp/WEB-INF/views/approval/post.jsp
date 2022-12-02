@@ -38,7 +38,7 @@
 	</select>
 	
 	
-	<table class='table' style='margin-top: 10px'>
+	<table class='apTable detail' style='margin-top: 10px'>
 	<colgroup>
 		<col width='100px'>
 		<col>
@@ -60,8 +60,8 @@
 </div>
 
 <div id='btnFix45'>
-<a class='btn-empty' id='postSubmit'>Submit</a>
-<a class='btn-empty' id='postCancel'>Cancel</a>
+<a class='new-btn' id='postSubmit'>Submit</a>
+<a class='new-btn' id='postCancel'>Cancel</a>
 </div>
 <script>
 document.querySelector('#postSubmit').onclick = function(){
