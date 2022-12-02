@@ -222,6 +222,7 @@ public class ApplyController {
 		model.addAttribute("recruit_list", recruit_list);
 		model.addAttribute("pass_list", pass_list);
 		model.addAttribute("recruit_num", recruit_num);
+		model.addAttribute("apply_check", apply_check);
 		
 		
 		return "side/apply/applicantList";
