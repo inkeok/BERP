@@ -1,5 +1,5 @@
 package common;
-import java.sql.Date;
+import java.util.Date;
 
 public class CommonVO {
 	private String code_title/*인사코드*/, code_value/*문서코드*/, code_used/*고용형태코드*/, code_name/*근무코드*/, code_maker_name, code_comment;

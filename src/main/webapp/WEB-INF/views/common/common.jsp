@@ -35,7 +35,7 @@ td {
        				<select class="dataTable-selector" name="code_comment" onchange='$("#code").val("code_comment"); $("form").submit()'>
        				<option class="title" value="all">코드유형</option>
 						<c:forEach items='${code_commentt}' var='v'>
-							<option ${code_comment eq c.code_comment ? 'selected' : ''} 
+							<option ${code_comment eq v.code_comment ? 'selected' : ''} 
 									value='${v.code_comment}'>${v.code_comment}
 							</option>
 						</c:forEach>

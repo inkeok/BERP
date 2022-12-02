@@ -186,29 +186,22 @@ public class CommonController {
 	  return gson.toJson(list);
 	}
 	
-	
 	@ResponseBody
-
 	@RequestMapping(value = "/andCodeModify", produces = "text/html;charset=utf-8")
 	public String update(String vo) {
 		CommonVO dto = new Gson().fromJson(vo, CommonVO.class);
 		System.out.println(dto.getCode_comment());
-		/* Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create(); */
-		return dao.andCodeUpdate(dto.getCode_comment(), dto.getCode_value(), dto.getCode_used(), dto.getCode_name(),
-				dto.getCode_maker()) + "";
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		return gson.toJson(dao.andCodeUpdate(dto.getCode_comment(), dto.getCode_value(), dto.getCode_used(), dto.getCode_name(),
+				dto.getCode_maker()) + "");
 	}
-	  
-	  
-	  
-	
 
-	/*이건 아직//.
-	 * @RequestMapping (value = "/delete.cu", produces = "text/html;charset=utf-8")
-	 * public String delete(String id) {//변수이름 : URL에 담긴 정보 구분
-	 * 
-	 * System.out.println("delete.cu " + id);//2. get방식 dao.customer_delete(id);
-	 * 
-	 * return "aaa"; }
-	 */
+//	@RequestMapping (value = "/delete.cu", produces = "text/html;charset=utf-8")
+//	public String delete(String id) {//변수이름 : URL에 담긴 정보 구분
+//	 
+//	  System.out.println("delete.cu " + id);//2. get방식 dao.customer_delete(id);
+//	
+//	  return "aaa";
+//	}
 
 }

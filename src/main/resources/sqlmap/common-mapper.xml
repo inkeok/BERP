@@ -132,10 +132,10 @@
 		where code_value = #{code_value, jdbcType=VARCHAR}
 	</update>
 	
-<!-- 	update common_code c left join employees e set c.code_comment = #{code_comment}, c.code_value=#{code_value}
-		, c.code_used = #{code_used}, code_birth = sysdate, c.code_name = #{code_name}, e.code_maker_name = #{code_maker_name}
-		on c.code_maker = e.employee_id
-		where code_value = #{code_value} -->
+<!-- 	update common_code c left join employees e set c.code_comment = #{code_comment}, c.code_value=#{code_value} -->
+<!-- 		, c.code_used = #{code_used}, code_birth = sysdate, c.code_name = #{code_name}, e.code_maker_name = #{code_maker_name} -->
+<!-- 		on c.code_maker = e.employee_id -->
+<!-- 		where code_value = #{code_value} -->
 	
 	
 
