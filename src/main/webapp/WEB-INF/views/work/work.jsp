@@ -70,7 +70,7 @@ tbody td:hover:before {
 	
 	<!-- end page title -->
 
-	<div class="row mb-4">
+	<div class="row mb-4" style="margin-top: 34px;">
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
@@ -162,7 +162,7 @@ tbody td:hover:before {
 	</div>
 
 	<!--  work_result table 에서 가져온다 -->
-	<table style="width : 1140px;">
+	<table style="width : 1200px;">
 		<thead>
 			<tr>
 				<th scope="col">일자</th>
