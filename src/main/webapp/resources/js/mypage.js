@@ -59,7 +59,7 @@
 	//비밀번호 관련상태
 	pw_status: function(pw ){
 		//var reg = /[^a-zA-Z0-9]/g, upper=/[A-Z]/g, lower=/[a-z]/g, no=/[0-9]/g;
-		if(pw=='') 					  return this.common.empty;
+		if(pw=='') 					  return this.common.invalid;
 		else if(pw.match(this.space)) return this.common.space;
 		//else if(reg.test(apply_pw))		return this.pw.invalid
 		//else if(apply_pw.length<5)		return this.common.min;

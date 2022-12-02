@@ -175,8 +175,7 @@ tbody td:hover:before {
 		<tbody>
 			<c:forEach begin="0" end="7" items="${workList}" var="woR">
 				<tr>
-					<td><fmt:formatDate value="${woR.work_date}" dateStyle="full"
-							pattern="yyyy년MM월dd일" /></td>
+					<td>${woR.work_date}</td>
 					<c:if test="${not empty woR.start_work }">
 						<td>${woR.start_work}</td>
 						<td>${woR.end_work}</td>
@@ -217,17 +216,20 @@ tbody td:hover:before {
 	const b = document.querySelector('#end_btn');
 
 	b.onclick = function() {
+		
+		
 		$('#end_work').val(
-				new Date().getHours() + ':' + new Date().getMinutes() + ':'
-						+ new Date().getSeconds());
+				String(new Date().getHours()).padStart(2,'0')+ ':' + String(new Date().getMinutes()).padStart(2,'0')+ ':'
+						+String(new Date().getSeconds()).padStart(2,'0'));
+		
 		$('#input').submit();
 		work_end_input();
 
 	}
 	a.onclick = function() {
 		$('#start_work').val(
-				new Date().getHours() + ':' + new Date().getMinutes() + ':'
-						+ new Date().getSeconds());
+				String(new Date().getHours()).padStart(2,'0')+ ':' + String(new Date().getMinutes()).padStart(2,'0')+ ':'
+				+String(new Date().getSeconds()).padStart(2,'0'));
 		$('#input').submit();
 		
 		work_start_input();
@@ -250,6 +252,7 @@ tbody td:hover:before {
 				console.log($('#end_work').val());
 				if (response)
 					alert('퇴근 되었습니다');
+				location.reload(true);
 			}
 		});
 	}
@@ -264,6 +267,7 @@ tbody td:hover:before {
 				console.log($('#start_work').val());
 				if (response) {
 					alert('출근 되었습니다');
+					location.reload(true);
 					/* 	if($('#start_work').val() != null ){
 							alert('이미 출근 되었습니다');
 							

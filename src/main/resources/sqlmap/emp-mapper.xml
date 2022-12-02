@@ -210,6 +210,11 @@
 	  insert into employees (department_id, company_cd, name, email, phone, admin, position, employee_pattern)
         VALUES (#{department_id},#{company_cd , jdbcType=VARCHAR},#{name , jdbcType=VARCHAR},#{email , jdbcType=VARCHAR},#{phone , jdbcType=VARCHAR},#{admin , jdbcType=VARCHAR},#{position , jdbcType=VARCHAR},#{employee_pattern , jdbcType=VARCHAR})
 	</insert>
+	<select id="andEmpCnt" resultType="emp.EmpCntVO">
+	  select COUNT(*) total_dept ,e. department_id , (select COUNT(*) total   from employees)  total_cnt
+     from employees  e 
+     group by e.department_id 
+	</select>
 	
 
 </mapper>

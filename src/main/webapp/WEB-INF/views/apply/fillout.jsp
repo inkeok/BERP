@@ -132,6 +132,9 @@ font-size: 14px;
 font-weight: bold;
 }
 
+#delete-file-pic, #attach-file, #delete-file, #attach-file-pic {
+display: none;}
+
 </style>
 </head>
 <body>
@@ -141,8 +144,9 @@ font-weight: bold;
 		<!-- 
 <form method='post' action='fillout.apply'  enctype='multipart/form-data'>
  -->
-		<h2 class="center hrlist">${recruit.recruit_title}</h2>
+		<h3 class="center hrlist">${recruit.recruit_title} 지원서 작성</h3>
 		<input type='hidden' name='recruit_num' value='${recruit.recruit_num}'>
+		<hr>
 		<table class='w-px1000'>
 			<colgroup>
 				<col width="200px">
@@ -158,13 +162,15 @@ font-weight: bold;
 					<!-- <div class='align'> -->
 					<div>
 						<label> 
-						<input type='file' name='pic_name'
-							id='attach-file-pic'>
+						<input type='file' name='pic_name' id='attach-file-pic'>
+							<a><i class="font-b fa-solid fa-file-circle-plus"></i>증명사진 첨부</a>
 						</label> 
 					</div>
 				<div>
-						<!-- <span id='apply_pic_name'></span>  -->
+						
+						
 						<span id='preview_pic'></span>
+				
 				</div>
 						
 						<a id='delete-file-pic'><i
@@ -269,34 +275,8 @@ font-weight: bold;
 				$('form').submit();
 		});
 
-		//★★★비번확인
-		$(document)
-				.ready(
-						function() {
-							$("#apply_pw_ck")
-									.keyup(
-											function() {
-												var pass1 = $("#apply_pw")
-														.val();
-												var pass2 = $("#apply_pw_ck")
-														.val();
-
-												if (pass1 == pass2) {
-													$("#passEqual1").hide();
-													$("#passEqual2")
-															.html(
-																	"<span style='color:green'>일치</span>");
-												} else {
-													$("#passEqual1").hide();
-													$("#passEqual2")
-															.html(
-																	"<span style='color:red'>불일치</span>");
-
-												}
-											});
-
-						});
-
+		
+		
 		function tagIsInValid(tag) {
 			var status = member.tag_status(tag);
 			if (status.code == 'invalid') {

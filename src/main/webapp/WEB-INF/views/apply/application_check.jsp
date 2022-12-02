@@ -13,22 +13,79 @@
 
 <!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+<style>
+.center {
+	position: absolute;
+	left: 50%; top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+div li {
+margin-bottom: 1rem;
+
+}
+div a {
+margin-bottom: 1rem;
+
+}
+
+input {
+width: 300px;
+height: 39px;
+margin:0px;
+padding:0px;
+}
+
+
+li a {
+
+}
+
+
+.btn {
+margin-top: 1rem;
+ padding: 10px 0;
+background : #12192c;
+	
+		color: #ffffff;
+		font-size: 14px;
+  font-weight: 400;
+  font-family:'Noto Sans KR', sans-serif;
+ 
+	
+}
+</style>
+
 </head>
 <body>
-<h3>지원서 확인하기</h3>
 <form method='post' action='detail.apply'>
-<div>
+<div class="center">
+<h3>지원서 확인하기</h3>
 <ul>
 <li>
-<input type="text" id="apply_phone" class="chk" name="apply_phone" placeholder="phone_number">
+<input type="text" id="apply_phone" class="chk" name="apply_phone" placeholder="  휴대폰번호">
 </li>
 <li>
-<input type="password" id="apply_pw" class="chk"  name="apply_pw" placeholder="password">
+<input type="password" id="apply_pw" class="chk"  name="apply_pw" placeholder="  비밀번호">
 </li>
-<li><a type='button'  id='check'>확인</a></li>
-<li><a type='button'   href='applyList.apply'>취소</a></li>
+<li class='btn'><a type='button' class= "new-btn" id='check'>확인</a></li>
+ <li class='btn'><a type='button' style="color:white" class= "new-btn"  href='applyList.apply'>취소</a></li>
 
-</ul>
+ </ul>
+<!-- 
+
+<div class="btn">
+<a type='button' class='new-btn' id='check'>확인</a>
+<a type='button' class='new-btn' href='applyList.apply'>취소</a>
+</div>
+
+
+ -->
+<!-- 
+ <li><input type='button' class= "new-btn" value='확인' id='login'></li>
+ <li><input type='button' class= "new-btn"  value='취소' onclick='location="applyList.apply"'></li>
+ 
+ -->
 </div>
 </form>
 

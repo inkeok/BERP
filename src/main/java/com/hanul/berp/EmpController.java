@@ -42,7 +42,7 @@ public class EmpController {
 		EmpVO vo = dao.emp_info(employee_id);
 		model.addAttribute("vo", vo);
 		
-		return "emp/myPage";
+		return "side/emp/myPage";
 	}
 	
 	
@@ -228,6 +228,14 @@ public class EmpController {
 		
 		
 		return dao.and_emp_insert(vo)+"";
+
+	}
+	@ResponseBody @RequestMapping(value="/andNumBer.hr", produces="text/html; charset=utf-8")
+	public String andNumBer() {
+	
+		
+		
+		return new Gson().toJson(dao.andNumBer());
 
 	}
 	

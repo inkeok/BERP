@@ -3,6 +3,18 @@
 
 <mapper namespace="apply">
 
+<select id="pass" resultType="apply.ApplyVO">
+select apply_check,
+decode (apply_check, 'Y', '합격',  
+ 'N', '대기중', 
+ '불합격' ) as "checkPass" 
+ from apply_board
+ group by apply_check
+
+</select>
+
+
+
 <!-- 사원 저장처리 후 합격자리스트 삭제 -->
 
 <delete id="delete_pass">
@@ -32,6 +44,28 @@ select a.*, recruit_title,
 from apply_board a, recruit_board r
 where a.recruit_num = r.recruit_num
 and a.recruit_num=#{recruit_num}
+order by apply_num
+</select>
+<select id="applicant_list_num_check" resultType="apply.ApplyVO">
+select a.*, recruit_title,
+ decode (apply_check, 'Y', '합격',  
+ 'N', '대기중', 
+ '불합격' ) as "checkPass" 
+from apply_board a, recruit_board r
+where a.recruit_num = r.recruit_num
+and a.recruit_num=#{recruit_num}
+and a.apply_check=#{apply_check}
+order by apply_num
+</select>
+<select id="applicant_list_check" resultType="apply.ApplyVO">
+select a.*, recruit_title,
+ decode (apply_check, 'Y', '합격',  
+ 'N', '대기중', 
+ '불합격' ) as "checkPass" 
+from apply_board a, recruit_board r
+where a.recruit_num = r.recruit_num
+
+and a.apply_check=#{apply_check}
 order by apply_num
 </select>
 

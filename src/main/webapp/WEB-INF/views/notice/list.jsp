@@ -14,10 +14,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
 h3{
-    margin-top: 55px;
-    margin-bottom: 35px;
-    border-bottom: 5px solid #12192c;
-    padding-bottom: 15px;
+    margin: 2rem 0rem;
+	font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom : 30px; 
+    border-bottom: 2px solid #424242;
 }
 .search{
  padding: 0.5em 1em;
@@ -159,8 +162,8 @@ tbody td:hover:before {
 </tr>
 <c:forEach items='${search.list}' var='vo'>
 <tr><td>${vo.no}</td>
-	<td>
-	<a href="detail.no?notice_num=${vo.notice_num }">${vo.notice_title}</a>
+	<td style="text-align: left">
+	<a href="detail.no?notice_num=${vo.notice_num }" >${vo.notice_title}</a>
 	</td>
 	<td>${vo.notice_writer}</td>
 	<td>${vo.notice_date}</td>

@@ -21,7 +21,7 @@ body {
 	background: #ffffff;
 	display: inline-flex;
 	align-items: baseline;
-	box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .mypage {

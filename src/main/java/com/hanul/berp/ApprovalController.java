@@ -244,7 +244,7 @@ public class ApprovalController {
 
 			//파일명이 없는 경우는 사용자가 뷰에서 업로드하지 않겠다고 삭제한 경우
 			if( file_name.isEmpty() ) {
-				fileUtility.deleteFile(vo.getFile_path(), request);
+				fileUtility.deleteFile(locker.getFile_path(), request);
 				
 			}else {
 				//파일명이 있는 경우

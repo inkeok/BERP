@@ -24,7 +24,7 @@ th {
 }
 
 th, td {
-	border: 1px solid black;
+/* 	border: 1px solid black; */
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -374,7 +374,7 @@ a {
     margin-top: 3rem;
     align-items: baseline;
     display: inline-flex;
-    margin-bottom: 20px;
+    margin-bottom: 5rem;
 }
 .nav-img{
 	margin-left: 5px;

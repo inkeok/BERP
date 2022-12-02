@@ -84,6 +84,9 @@ tbody td:hover:before {
 	z-index: -1;
 }
 
+#delete-file-pic, #attach-file, #delete-file, #attach-file-pic {
+display: none;}
+
 </style>
 </head>
 <body>
@@ -91,7 +94,7 @@ tbody td:hover:before {
 <form method='post' action='update.no' enctype='multipart/form-data'>
 <table>
 <tr><th class='w-px140' >제목</th>
-	<td style="text-align:left"><input type='text' value='${fn: escapeXml(vo.notice_title)}' name='notice_title' class='full chk' title='제목'></td>
+	<td style="text-align:left; "><input type='text' style="width:-webkit-fill-available;"value='${fn: escapeXml(vo.notice_title)}' name='notice_title' class='full chk' title='제목'></td>
 </tr>
 <tr><th>내용</th>
 	<td style="height :300px;"><textarea name='notice_content' class='full chk' title='내용'>${vo.notice_content}</textarea></td>
