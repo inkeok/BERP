@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 <link type='text/css' rel='stylesheet' 
 	href='https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css'>
 <style>
@@ -76,10 +76,9 @@ body {
 
 			<c:if test="${not empty loginInfo}">
 				<span style="font-weight: bold; color :white; align-self: center; margin-right: 10px">${loginInfo.name} 님</span>
+				<a  style="align-self: center; margin-right:10px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
+				<a style="align-self: center; margin-right:30px;color:white;" onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
 				<button style="margin-top: 10px" class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
-				<a onclick="location='list.no'"><i class="fa-solid fa-bars"></i>사이드/</a>
-				<a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i>개인정보 수정</a>
-
 			</c:if>
 			</div>
 		</div>
