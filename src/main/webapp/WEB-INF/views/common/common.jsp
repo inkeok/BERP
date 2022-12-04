@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%-- <%@ page isELIgnored="false" %> --%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,11 +93,11 @@ select, option{
        		<div class="">
        			<input type='hidden' name='code' id='code'>
        			<label>
-       				<select class="dataTable-selector" name="code_title" onchange='$("#code").val("code_title"); $("form").submit()'>
-       				<option class="title" value="all">인사코드</option>
-						<c:forEach items='${code_titles}' var='c'>
-							<option ${code_title eq c.code_title ? 'selected' : ''} 
-									value='${c.code_title}'>${c.code_title}
+       				<select class="dataTable-selector" name="code_comment" onchange='$("#code").val("code_comment"); $("form").submit()'>
+       				<option class="title" value="all">코드유형</option>
+						<c:forEach items='${code_commentt}' var='v'>
+							<option ${code_comment eq v.code_comment ? 'selected' : ''} 
+									value='${v.code_comment}'>${v.code_comment}
 							</option>
 						</c:forEach>
 					</select>
@@ -108,8 +111,10 @@ select, option{
 <%-- 						</c:forEach> --%>
 <!-- 					</select> -->
 					
-					<select class="" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
-       				<option value="all">고용형태코드</option>
+
+					<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
+       				<option class='title' value="all">승인여부</option>
+
 						<c:forEach items='${code_usedd}' var='c'>  <!-- 드롭다운이름 처리 -->
 							<option ${code_used eq c.code_used ? 'selected' : ''} 
 									value='${c.code_used}' >${c.code_used}
@@ -135,16 +140,16 @@ select, option{
 	<thead>
 	    <tr>
 	     <th data-sortable="" style="width: 10%;">
-	    	<span class="dataTable-sorter">인사코드</span>
+	    	<span class="dataTable-sorter">코드유형</span>
 	    </th>
         <th data-sortable="" style="width: 10%;">
-        	<span class="dataTable-sorter">문서코드</span>
+        	<span class="dataTable-sorter">코드번호</span>
        	</th>
      	<th data-sortable="" style="width: 10%;">
-     		<span class="dataTable-sorter">고용형태코드</span>
+     		<span class="dataTable-sorter">승인여부</span>
    		</th>
    		<th data-sortable="" style="width: 10%;">
-     		<span class="dataTable-sorter">근무구분코드</span>
+     		<span class="dataTable-sorter">코드구분</span>
    		</th>
    		<th data-sortable="" style="width: 10%;">
    			<span class="dataTable-sorter">코드생성일</span>
@@ -160,7 +165,11 @@ select, option{
             	<td>${vo.code_value}</td>
             	<td>${vo.code_used}</td>
             	<td>${vo.code_name}</td>
-            	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.code_birth}"/></td>
+            	<td>
+					<fmt:setLocale value="en_US" scope="session"/>
+					<fmt:parseDate value="${vo.code_birth}" var="dateFmt" pattern="E MMM dd HH:mm:ss z yyyy"/>
+            		<fmt:formatDate value="${dateFmt}" pattern="yyyy-MM-dd"/>
+            	</td>
             	<td>${vo.code_maker_name}</td>
            	</tr>
            	</c:forEach>

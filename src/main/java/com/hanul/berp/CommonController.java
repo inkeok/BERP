@@ -50,14 +50,14 @@ public class CommonController {
 //			model.addAttribute("code_name", vo.getCode_name());  //선택한 코드
 //		}
 
-		if (code.equals("code_title")) {
-			model.addAttribute("code_title", vo.getCode_title()); // 선택한 코드
+		if (code.equals("code_comment")) {
+			model.addAttribute("code_comment", vo.getCode_comment()); // 선택한 코드
 		} else if (code.equals("code_used")) {
 			model.addAttribute("code_used", vo.getCode_used()); // 선택한 코드
 		}
 
-		List<CommonVO> code_titles = dao.personal_code(); // 인사코드 목록(드랍다운목록)
-		model.addAttribute("code_titles", code_titles);
+		List<CommonVO> code_comment = dao.personal_code(); // 인사코드 목록(드랍다운목록)
+		model.addAttribute("code_commentt", code_comment);
 //		List<CommonVO> code_values = dao.document_code(); //문서코드 목록(드랍다운목록)
 //		model.addAttribute("code_values",code_values);
 		List<CommonVO> code_used = dao.employee_code(); // 문서코드 목록(드랍다운목록)
@@ -78,7 +78,7 @@ public class CommonController {
 //		if(code_title.equalsIgnoreCase("all")) {
 //			commonlist = dao.Common_list();
 		List<CommonVO> list = null;
-		if (code.isEmpty() || vo.getCode_title().equals("all")) {
+		if (code.isEmpty() || vo.getCode_comment().equals("all")) {
 			list = dao.common_list(); // 코드 전체 목록
 		} else {
 //			documentlist = dao.document_list();
@@ -106,8 +106,8 @@ public class CommonController {
 	@RequestMapping("/common.modify")
 	public String modify(String code_value, Model model) {
 
-		List<CommonVO> code_titles = dao.personal_code(); // 인사코드 목록(드랍다운목록)
-		model.addAttribute("code_titles", code_titles);
+		List<CommonVO> code_comment = dao.personal_code(); // 인사코드 목록(드랍다운목록)
+		model.addAttribute("code_comment", code_comment);	
 		List<CommonVO> code_values = dao.document_code(); // 문서코드 목록(드랍다운목록)
 		model.addAttribute("code_values", code_values);
 		List<CommonVO> code_used = dao.employee_code(); // 문서코드 목록(드랍다운목록)
@@ -186,29 +186,22 @@ public class CommonController {
 	  return gson.toJson(list);
 	}
 	
-	
 	@ResponseBody
-
 	@RequestMapping(value = "/andCodeModify", produces = "text/html;charset=utf-8")
 	public String update(String vo) {
 		CommonVO dto = new Gson().fromJson(vo, CommonVO.class);
 		System.out.println(dto.getCode_comment());
-		/* Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create(); */
-		return dao.andCodeUpdate(dto.getCode_comment(), dto.getCode_value(), dto.getCode_used(), dto.getCode_name(),
-				dto.getCode_maker()) + "";
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		return gson.toJson(dao.andCodeUpdate(dto.getCode_comment(), dto.getCode_value(), dto.getCode_used(), dto.getCode_name(),
+				dto.getCode_maker()) + "");
 	}
-	  
-	  
-	  
-	
 
-	/*이건 아직//.
-	 * @RequestMapping (value = "/delete.cu", produces = "text/html;charset=utf-8")
-	 * public String delete(String id) {//변수이름 : URL에 담긴 정보 구분
-	 * 
-	 * System.out.println("delete.cu " + id);//2. get방식 dao.customer_delete(id);
-	 * 
-	 * return "aaa"; }
-	 */
+//	@RequestMapping (value = "/delete.cu", produces = "text/html;charset=utf-8")
+//	public String delete(String id) {//변수이름 : URL에 담긴 정보 구분
+//	 
+//	  System.out.println("delete.cu " + id);//2. get방식 dao.customer_delete(id);
+//	
+//	  return "aaa";
+//	}
 
 }
