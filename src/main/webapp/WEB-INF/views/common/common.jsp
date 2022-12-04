@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%-- <%@ page isELIgnored="false" %> --%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
-<fmt:parseDate value="${vo.code_birth}" var="dateFmt" pattern="E MMM dd HH:mm:ss z yyyy"/>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,8 +166,10 @@ select, option{
             	<td>${vo.code_used}</td>
             	<td>${vo.code_name}</td>
             	<td>
-<%--             	<fmt:parseDate pattern="E MMM dd HH:mm:ss z yyyy" var="dateFmt" value="${vo.code_birth}"/> --%>
-            	<fmt:formatDate pattern="yyyy-MM-dd" value="${dateFmt}"/></td>
+					<fmt:setLocale value="en_US" scope="session"/>
+					<fmt:parseDate value="${vo.code_birth}" var="dateFmt" pattern="E MMM dd HH:mm:ss z yyyy"/>
+            		<fmt:formatDate value="${dateFmt}" pattern="yyyy-MM-dd"/>
+            	</td>
             	<td>${vo.code_maker_name}</td>
            	</tr>
            	</c:forEach>

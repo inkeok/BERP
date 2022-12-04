@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,7 +110,10 @@ tbody td:hover:before {
 				</tr>
 				<tr>
 					<th>코드생성일</th>
-					<td>${vo.code_birth }</td>
+					<td>
+						<fmt:setLocale value="en_US" scope="session"/>
+						<fmt:parseDate value="${vo.code_birth}" var="dateFmt" pattern="E MMM dd HH:mm:ss z yyyy"/>
+	            		<fmt:formatDate value="${dateFmt}" pattern="yyyy-MM-dd"/></td>
 				</tr>
 				<tr>
 					<th>코드생성자</th>
