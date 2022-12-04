@@ -127,11 +127,11 @@ tbody td:hover:before {
 								<h5  class="font-size-16 mb-0">이번달 근무시간</h5>
 							</div>
 							<h5 class="font-size-15">
-								<span class="float-end">91%</span>
+								<span class="float-end">11%</span>
 							</h5>
 							<div class="progress animated-progess progress-md">
-								<div class="progress-bar" role="progressbar" style="width: 91%"
-									aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="progress-bar" role="progressbar" style="width: 11%"
+									aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<div class="">
 								<div class="mt-3">
@@ -158,7 +158,7 @@ tbody td:hover:before {
 	<!-- end row -->
 
 	<div>
-		<h5 class="font-size-16 mb-0">이번 주 근무</h5>
+		<h5 style="margin:20px "class="font-size-16 mb-0">나의 근무 이력</h5>
 	</div>
 
 	<!--  work_result table 에서 가져온다 -->
@@ -176,16 +176,18 @@ tbody td:hover:before {
 			<c:forEach begin="0" end="7" items="${workList}" var="woR">
 				<tr>
 					<td>${woR.work_date}</td>
-					<c:if test="${not empty woR.start_work }">
-						<td>${woR.start_work}</td>
-						<td>${woR.end_work}</td>
-					</c:if>
 					<c:if test="${empty woR.start_work }">
-						<td>-</td>
-					</c:if>
-					<c:if test="${empty woR.end_work }">
-						<td>-</td>
-					</c:if>
+					<td>-</td>
+				</c:if>
+				<c:if test ="${not empty woR.start_work}">				
+					<td>${woR.start_work}</td>
+				</c:if>
+				<c:if test="${empty woR.end_work }">
+					<td>-</td>
+				</c:if>
+				<c:if test ="${not empty woR.end_work}">
+					<td>${woR.end_work}	</td>
+				</c:if>
 
 					<td>${woR.work_status}</td>
 				</tr>

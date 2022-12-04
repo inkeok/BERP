@@ -69,15 +69,15 @@ body {
 
 		</ul>
 		<div id='nav-sign'>
-			<div style="display: flex; position:absolute; left:60%">
+			<div style="display: flex; position:absolute; left:60%; margin-left: 139px;">
 			<c:if test="${empty loginInfo}">
 				<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
 			</c:if>
 
 			<c:if test="${not empty loginInfo}">
 				<span style="font-weight: bold; color :white; align-self: center; margin-right: 10px">${loginInfo.name} 님</span>
-				<a  style="align-self: center; margin-right:10px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
-				<a style="align-self: center; margin-right:30px;color:white;" onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
+				<a  style="align-self: center; margin-right:20px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
+				<a style="align-self: center; margin-right:30px;color:white; " onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
 				<button style="margin-top: 10px" class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
 			</c:if>
 			</div>
