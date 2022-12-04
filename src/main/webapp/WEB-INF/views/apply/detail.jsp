@@ -88,7 +88,7 @@ margin-top: 40px;
 }
 
 #preview_pic img{
-	width:100px!important;
+	width:100%!important;
 	z-index: 9999;
 }
 
@@ -109,7 +109,7 @@ margin-top: 40px;
 			<tr>
 				<th>지원자번호</th>
 				<td>${vo.apply_num }</td>
-				<td rowspan='3' style="width: 120px; padding:0px; text-align: center;"><span id='pic_name'></span>
+				<td rowspan='3' style="padding:0; margin: 0; width: 150px; border: 1px solid #bbb; text-align: center;"><span id='pic_name'></span>
 				
 					<span id='preview_pic'></span> <input type="hidden"
 					id='apply_pic_name' value="${vo.apply_pic_name }"> <%-- 

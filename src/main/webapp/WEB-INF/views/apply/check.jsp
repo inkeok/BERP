@@ -89,7 +89,7 @@ tbody td:hover:before {
 }
 
 #preview_pic img{
-	width:100px;
+	width:100%;
 }
 
 </style>
@@ -106,7 +106,7 @@ tbody td:hover:before {
 				<th style="width: 230px;">지원자번호</th>
 				<td>${vo.apply_num }</td>
 
-				<td rowspan='3' style="width: 150px; border: 1px solid #bbb; text-align: center;"><span
+				<td rowspan='3' style="padding:0; margin: 0; width: 150px; border: 1px solid #bbb; text-align: center;"><span
 					id='pic_name'></span> <span id='preview_pic'></span> <input
 					type="hidden" id='apply_pic_name' value="${vo.apply_pic_name }">
 					<%-- 

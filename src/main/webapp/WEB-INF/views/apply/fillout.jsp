@@ -116,7 +116,8 @@ text-align:center;
 }
 
 #preview_pic img{
-	width:100px!important;
+	width:100%!important;
+
 	z-index: 9999;
 }
 
@@ -158,7 +159,7 @@ display: none;}
 					placeholder="이름"></td>
 
 				<!-- 증사 수정 -->
-				<td rowspan='3' style="width: 250px">
+				<td rowspan='3' style="padding:0; margin: 0; width: 150px; border: 1px solid #bbb; text-align: center;">
 					<!-- <div class='align'> -->
 					<div>
 						<label> 
