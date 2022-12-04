@@ -117,19 +117,19 @@ tbody td:hover:before {
 			<tr>
 				<th class="">사원명</th>
 				<td>
-					<input type="text" name="name" placeholder="성명" style="width:205px; "/>
+					<input type="text" name="name" placeholder="성명" style="width:229px; "/>
 				</td>
 			</tr>
 			<tr>
 				<th class="">이메일</th>
 				<td>
-					<input type="text" name="email" placeholder="이메일" style="width:205px;"/>
+					<input type="text" name="email" placeholder="이메일" style="width:229px;"/>
 				</td>
 			</tr>
 			<tr>
 				<th class="">전화번호</th>
 				<td>
-					<input type="text" name="phone" placeholder="전화번호" style="width:205px;"/>
+					<input type="text" name="phone" placeholder="전화번호" style="width:229px;"/>
 				</td>
 			</tr>
 			<tr>

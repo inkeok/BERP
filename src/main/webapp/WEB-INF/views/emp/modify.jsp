@@ -8,10 +8,11 @@
 h3{
 	margin: 3rem 0 !important;
     padding-bottom: 1rem;
-	border-bottom: 5px solid #12192c;
+	border-bottom: 2px solid #424242;
 	font-weight: 700 !important;
-	color: #727272;
-	width: 1000px;
+	color: #424242;
+	width: 800px;
+	font-size: 32px !important;
 	
 }
 
@@ -94,7 +95,7 @@ select {
 	<h3>사원정보수정</h3>
 	<form action="update.hr" method="post">
 		<div >
-			<table class="w-px1200">
+			<table class="w-px1000">
 			<colgroup>
 				<col width="200px" />
 				<col width="600px" />

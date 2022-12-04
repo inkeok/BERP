@@ -112,7 +112,7 @@ table {
 	margin-top: 5px;
 /* 	border-top-left-radius: 20px; */
 /* 	border-top-right-radius: 20px; */
-	border-radius : 15px;
+
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
@@ -176,15 +176,15 @@ ul{
 </style>
 <title>Insert title here</title>
 </head>
-<body>
+<body style="width:1200px;">
 
-	<h2 style="text-align: center;">전 직원 출퇴근 조회</h2>
+	<h2 style="text-align: center; margin-top : 35px">전 직원 출퇴근 조회</h2>
 	
 		 <form method='post' action='workList'>
 			<div id='list-top' style="margin-bottom: 0;">
 				<ul class="select-list" style="display:flex">
 					<li><input  style="height:48px"type="date" name="work_date" id="work_date" pattern="yy/MM/dd"  max="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
-					value="${work_date }"
+					value="${work_date}"
 					/></li>
 					<li><select style=" height: 48px; margin-left: 10px;" name='department_id' class='w-px200'
 						onchange='$("form").submit()'>
@@ -214,7 +214,7 @@ ul{
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach begin="0" end="20" items='${workList}' var='vo'>
+			<c:forEach items='${workList}' var='vo'>
 				<tr>
 				<c:if test="${empty vo.work_date }">
 					<td>-</td>

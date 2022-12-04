@@ -100,10 +100,10 @@ ul li {
 	
 	<!-- end page title -->
 
-	<div class="row mb-4">
+	<div class="row mb-4"  style="margin-top: 34px;">
 		<div class="col-lg-12">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body" >
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="d-flex">

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix='c'%>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+<link type='text/css' rel='stylesheet' 
+	href='https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css'>
 <style>
 .header-nav {
 	display: inline-flex;
@@ -67,20 +69,20 @@ body {
 
 		</ul>
 		<div id='nav-sign'>
-			<div class="frame-center">
+			<div style="display: flex; position:absolute; left:60%">
 			<c:if test="${empty loginInfo}">
 				<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
 			</c:if>
 
 			<c:if test="${not empty loginInfo}">
-				<span>${loginInfo.name} 님</span>
-				<button class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
-				<a onclick="location='list.no'">사이드로</a>
-				<a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보변경</a>
-
+				<span style="font-weight: bold; color :white; align-self: center; margin-right: 10px">${loginInfo.name} 님</span>
+				<a  style="align-self: center; margin-right:10px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
+				<a style="align-self: center; margin-right:30px;color:white;" onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
+				<button style="margin-top: 10px" class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
 			</c:if>
 			</div>
 		</div>
 	</div>
 <script src="js/header.js"></script>
+
 </header>
