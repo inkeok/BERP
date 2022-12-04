@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
+<fmt:parseDate value="${vo.code_birth}" var="dateFmt" pattern="E MMM dd HH:mm:ss z yyyy"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,7 +163,9 @@ select, option{
             	<td>${vo.code_value}</td>
             	<td>${vo.code_used}</td>
             	<td>${vo.code_name}</td>
-            	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.code_birth}"/></td>
+            	<td>
+<%--             	<fmt:parseDate pattern="E MMM dd HH:mm:ss z yyyy" var="dateFmt" value="${vo.code_birth}"/> --%>
+            	<fmt:formatDate pattern="yyyy-MM-dd" value="${dateFmt}"/></td>
             	<td>${vo.code_maker_name}</td>
            	</tr>
            	</c:forEach>
