@@ -14,9 +14,6 @@
 	
 <style>
 
-.mypage{
-
-}
 .logout{
     column-gap: 0.75rem;
     padding: 0.65rem;
@@ -159,7 +156,8 @@
 	<!-- JS -->
 	<script src="js/main.js"></script>
 	<script>
-    // html dom 이 다 로딩된 후 실행된다.
+  
+	
      $(document).ready(function(){
         // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
         $(".nav-start").click(function(){
