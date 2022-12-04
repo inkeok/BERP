@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/side.css?<%=new java.util.Date()%>" rel="stylesheet">
 <style>
 body {
 	/*     background: url("imgs/bg/side-bg.jpg") no-repeat; */
 	/* 	background: #0061f2 no-repeat ; */
-	
 }
 
 .headerwrap {
@@ -24,27 +24,27 @@ body {
 	box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-.mypage {
+.noti {
 	position: relative;
-	top: 8%;
-	left: 70%;
+	top: 20%;
+	left: 83%;
 }
 
-.modify {
+.meg {
 	position: relative;
-	top: 8%;
-	left: 72%;
+	top: 21.5%;
+	left: 84.4%;
 }
 
 .modify a {
 	color: #000;
 }
 
-.logout-icon {
+.profile-icon{
 	color: #000;
 	position: relative;
-	top: 14%;
-	left: 77%;
+	top: 21%;
+	left: 90%;
 }
 
 .logout-icon a {
@@ -64,22 +64,74 @@ body {
 <body>
 	<div class="">
 		<div class="headerwrap">
-		<div class="burger">
-			<ion-icon name="reorder-three-outline" class="nav__toggle"
-				id="nav-toggle"></ion-icon>
+<!-- 		<div class="burger"> -->
+<!-- 			<ion-icon name="reorder-three-outline" class="nav__toggle" -->
+<!-- 				id="nav-toggle"></ion-icon> -->
+<!-- 		</div> -->
+		<div>
+			<a class="menu-trigger" href="#">
+			  <span></span>
+			  <span></span>
+			  <span></span>
+			</a>
 		</div>
-			<div class="mypage" style="margin-top: 20px;">반갑습니다
-				${loginInfo.name}${loginInfo.position_name} 님</div>
-			<div class="modify">
-				<a
-					onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"
-					class="">개인정보수정</a>
-			</div>
-			<div class="logout-icon">
-				<a href="/berp" class=""><ion-icon name="log-out-outline"
-						class="icon"></ion-icon></a>
-			</div>
+<!-- 			<div class="mypage" style="margin-top: 20px;">반갑습니다 -->
+<%-- 				${loginInfo.name}${loginInfo.position_name} 님</div> --%>
+<!-- 			<div class="modify"> -->
+<%-- 				<a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }" --%>
+<!-- 					class="">개인정보수정</a> -->
+<!-- 			</div> -->
+		<div class="noti">
+			<a href=""><img style="width: 25px;" src="imgs/icons/noti.png" alt="noti" /></a>
+		</div>
+		<div class="meg">
+			<a href=""><img style="width: 25px;" src="imgs/icons/meg.png" alt="meg" /></a>
+		</div>
+			<ul class="profile-icon nav-start nav-btn nav-dropdown">
+				<li>
+					<a href="#" class=""><img style="width: 40px;" src="imgs/icons/profile-icon.png" alt="profile-icon" /></a>
+					<ul class="hide submenu">
+						<li><a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보수정</a></li>
+						<li><a href="/">로그아웃</a></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
+<script>
+	const menuTrigger = document.querySelector('.menu-trigger');
+	
+	menuTrigger.addEventListener('click', (event) => {
+	  event.currentTarget.classList.toggle('active-1');
+	});
+	
+	 $(document).ready(function(){
+	        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+	        $(".nav-start").click(function(){
+	        	  $(this).next("ul").toggleClass("hide");
+	        });
+	    });
+	   
+	     const button = document.querySelector('.nav-btn');
+
+	     button.addEventListener('click', () => {
+	       const dropdown = document.querySelector('.nav-dropdown');
+	       dropdown.style.display = 'block';
+	     });
+
+	     button.addEventListener('blur', () => {
+	       const dropdown = document.querySelector('.nav-dropdown');
+	       dropdown.style.display = '';
+	     });
+	     
+	     button.addEventListener('blur', () => {
+	    	  const dropdown = document.querySelector('.nav-dropdown');
+	    	  
+	    	  // 0.2초 뒤에 실행
+	    	  setTimeout(() => {
+	    	    dropdown.style.display = '';
+	    	  }, 200);
+	    	});
+</script>
 </body>
 </html>
