@@ -137,6 +137,6 @@ li:before {
 	padding: .7rem;
 }
 
-a:hover {
+.ul-nav a:hover {
 	color : #ffffff !important;
 }
