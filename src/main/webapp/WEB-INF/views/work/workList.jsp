@@ -182,7 +182,7 @@ ul{
 	
 		 <form method='post' action='workList'>
 			<div id='list-top' style="margin-bottom: 0;">
-				<ul class="select-list" style="display:flex">
+				<ul class="select-list" style="display:flex;margin-left : 10px">
 					<li><input  style="height:48px"type="date" name="work_date" id="work_date" pattern="yy/MM/dd"  max="<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>"
 					value="${work_date}"
 					/></li>

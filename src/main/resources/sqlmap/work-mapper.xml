@@ -48,7 +48,7 @@
 
 
 	<select id="list" resultType="work.WorkResultVO">
-	select e.employee_id employee_id , e.name name ,e. phone  phone ,w.start_work start_work,
+	select e.employee_id employee_id ,d.department_id department_id, e.name name ,e. phone  phone ,w.start_work start_work,
         w.end_work  end_work , d.department_name department_name, c.code_name work_status,
         to_char (w.work_date ,'yyyy-MM-dd') work_date
         from employees e left outer join 
