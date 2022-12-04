@@ -98,6 +98,7 @@
 		on e.employee_pattern = c.code_value join common_code c2
 		on e.position = c2.code_value join departments d
 		on e.department_id = d.department_id
+		order by e.employee_id
 
 	</select>
 	<select id="salaryList_department_name" resultType="salary.SalaryVO">
@@ -109,11 +110,12 @@
 		on e.position = c2.code_value join departments d
 		on e.department_id = d.department_id
 		where d.department_name = #{department_name}
+		order by e.employee_id
 	</select>
 	
 	<insert id='andInsertBonus'>
-		insert into bonus (employee_id, bonus, bonus_date, bonus_comment)
-		values (#{employee_id}, #{bonus, jdbcType=VARCHAR}, #{bonus_date, jdbcType=VARCHAR}, #{bonus_comment, jdbcType=VARCHAR})
+		insert into bonus (employee_id, bonus, bonus_comment)
+		values (#{employee_id}, #{bonus}, #{bonus_comment})
 	</insert>
 	
 	<select id='andBonusList' resultType="salary.BonusVO">
@@ -169,6 +171,17 @@
 		SELECT department_name
 		FROM departments
 		order by department_id
+	</select>
+	
+	<select id="andSalaryName" resultType="salary.SalaryVO">
+		select e.employee_id, e.name, c.code_name c_employee_pattern, c2.code_name c_position, 
+		s.salary, s.commission_pct, e.hire_date, d.*
+		from salary s join employees e 
+		on s.employee_id = e.employee_id join common_code c
+		on e.employee_pattern = c.code_value join common_code c2
+		on e.position = c2.code_value join departments d
+		on e.department_id = d.department_id
+		where e.name = #{name}
 	</select>
 
 </mapper>
