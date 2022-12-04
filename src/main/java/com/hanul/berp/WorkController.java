@@ -226,10 +226,10 @@ public class WorkController {
 		@ResponseBody @RequestMapping(value="/andHolidayList", produces="text/html; charset=utf-8")
 		public String andHolidayList()  {
 			
-			Gson gson = new GsonBuilder()
-					.setDateFormat("yyyy-MM-dd").create();
+			Gson gson2 = new GsonBuilder()
+					.setDateFormat("yy년MM월dd일").create();
 			
-			return gson.toJson(dao.holidayAllList());
+			return gson2.toJson(dao.holidayAllList());
 			
 			
 		}
@@ -301,9 +301,9 @@ public class WorkController {
 		@ResponseBody @RequestMapping(value="/andHolidayIndi_List", produces="text/html; charset=utf-8")
 		public String andHolidayIndi_List(int employee_id) {
 			List<WorkResultVO> list = dao.andHolidayIndi_List(employee_id);
-			Gson gson = new GsonBuilder()
-					.setDateFormat("yyyy-MM-dd").create();
-			return gson.toJson(list);		
+			Gson gson2 = new GsonBuilder()
+					.setDateFormat("yy년MM월dd일").create();
+			return gson2.toJson(list);		
 		}
 		
 		
