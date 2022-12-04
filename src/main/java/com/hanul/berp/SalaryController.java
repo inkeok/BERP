@@ -140,19 +140,17 @@ public class SalaryController {
 	}
 	
 	@ResponseBody @RequestMapping(value="/andInsertBonus.sa", produces="text/html; charset=utf-8")
-	public String andInsertBonus(int employee_id, String bonus, String bonus_comment, Date bonus_date) throws ParseException {
+	public String andInsertBonus(String vo){
 		System.out.println("상여");
 		
 //		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 //		Date d_bonus_date = df.parse(bonus_date);
 				
-		HashMap<String, Object> map = new HashMap<>();
-        map.put("bonus" , bonus);
-        map.put("bonus_date" , bonus_date);
-        map.put("bonus_comment", bonus_comment);
-        map.put("employee_id", employee_id);
-        int res = dao.andInsertBonus(map);
-		return gson.toJson(res);
+		BonusVO vo2 = new Gson().fromJson(vo, BonusVO.class);
+		
+		
+     
+		return dao.andInsertBonus(vo2)+"";
 	}
 	
 	@ResponseBody @RequestMapping(value="/andBonusList.sa", produces="text/html; charset=utf-8")
@@ -208,5 +206,13 @@ public class SalaryController {
 	public String andDepartment_name() {
 		List<SalaryVO> list = dao.andDepartment_name();
 		return gson.toJson(list);
+	}
+	
+	@ResponseBody @RequestMapping(value="/andSalaryName.sa", produces="text/html; charset=utf-8")
+	public String andSalaryName(String name) {
+	
+		List<SalaryVO> list = dao.andSalaryName(name);
+		return gson.toJson(list);
+		
 	}
 }
