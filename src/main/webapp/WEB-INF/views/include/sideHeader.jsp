@@ -26,14 +26,14 @@ body {
 
 .noti {
 	position: relative;
-	top: 20%;
-	left: 83%;
+	top: 27%;
+	left: 79%;
 }
 
 .meg {
 	position: relative;
-	top: 21.5%;
-	left: 84.4%;
+	top: 27.5%;
+	left: 80.4%;
 }
 
 .modify a {
@@ -87,17 +87,37 @@ body {
 		<div class="meg">
 			<a href=""><img style="width: 25px;" src="imgs/icons/meg.png" alt="meg" /></a>
 		</div>
-			<ul class="profile-icon nav-start nav-btn nav-dropdown">
-				<li>
-					<a href="#" class=""><img style="width: 40px;" src="imgs/icons/profile-icon.png" alt="profile-icon" /></a>
-					<ul class="hide submenu">
-						<li><a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보수정</a></li>
-						<li><a href="/">로그아웃</a></li>
-					</ul>
-				</li>
-			</ul>
+		
+<!-- 			<ul class="profile-icon nav-start nav-btn nav-dropdown"> -->
+<!-- 				<li> -->
+<!-- 					<a href="#" class=""><img style="width: 40px;" src="imgs/icons/profile-icon.png" alt="profile-icon" /></a> -->
+<!-- 					<ul class="hide submenu"> -->
+<%-- 						<li><a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보수정</a></li> --%>
+<!-- 						<li><a href="/">로그아웃</a></li> -->
+<!-- 					</ul> -->
+<!-- 				</li> -->
+<!-- 			</ul> -->
+		<div class="m-dropdown">
+		  <div class="e-button open">
+		 <div class="">
+		  	 <p style="text-align: center; margin-top: 10px;"> ${loginInfo.name}${loginInfo.position_name}님</p>
+		  </div>
+		    <div class="e-burger">
+		      <span></span>
+		      <span></span>
+		      <span></span>
+		      <span></span>
+		    </div>
+		  </div>
+		  <ul class="e-list hide" >
+		    <li><a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보수정</a></li>
+		    <li><a href="">로그아웃</a></li>
+		  </ul>
 		</div>
+		</div>
+		
 	</div>
+	
 <script>
 	const menuTrigger = document.querySelector('.menu-trigger');
 	
@@ -105,33 +125,23 @@ body {
 	  event.currentTarget.classList.toggle('active-1');
 	});
 	
-	 $(document).ready(function(){
-	        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-	        $(".nav-start").click(function(){
-	        	  $(this).next("ul").toggleClass("hide");
-	        });
-	    });
-	   
-	     const button = document.querySelector('.nav-btn');
+	
+	$(".e-list").slideUp(function() {
+		  $(".e-button").removeClass("open");
+		});
 
-	     button.addEventListener('click', () => {
-	       const dropdown = document.querySelector('.nav-dropdown');
-	       dropdown.style.display = 'block';
-	     });
-
-	     button.addEventListener('blur', () => {
-	       const dropdown = document.querySelector('.nav-dropdown');
-	       dropdown.style.display = '';
-	     });
-	     
-	     button.addEventListener('blur', () => {
-	    	  const dropdown = document.querySelector('.nav-dropdown');
-	    	  
-	    	  // 0.2초 뒤에 실행
-	    	  setTimeout(() => {
-	    	    dropdown.style.display = '';
-	    	  }, 200);
-	    	});
+		$(".e-button").on("click", function() {
+		  if ($(this).hasClass("open")) {
+		    $(".e-list").slideUp(function() {
+		      $(".e-button").removeClass("open");
+		    });
+		  } else {
+		    $(this).addClass("open");
+		    setTimeout(function() {
+		      $(".e-list").stop().slideDown();
+		    }, 200);
+		  }
+		});
 </script>
 </body>
 </html>
