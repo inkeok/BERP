@@ -111,7 +111,7 @@ body {
 		  </div>
 		  <ul class="e-list hide" >
 		    <li><a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보수정</a></li>
-		    <li><a href="">로그아웃</a></li>
+		    <li><a onclick='location="logout.mem"'>로그아웃</a></li>
 		  </ul>
 		</div>
 		</div>
