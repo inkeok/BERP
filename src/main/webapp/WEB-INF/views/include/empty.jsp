@@ -11,7 +11,7 @@
 	align-items: center;
 	margin-bottom: 0.5rem;
 	margin-left: 60px;
-	margin-right: 21em;
+	margin-right: 34em;
 }
 
 #nav {

@@ -16,10 +16,22 @@
 <script src='js/mypage.js?<%=new java.util.Date() %>'></script>
 
 <style>
+h2 {
+	margin: 3rem 0;
+	width : 800px;
+	font-weight: bold;
+	color: #424242;
+	font-size: 32px;
+	font-family: 'Noto Sans KR' !important;
+	padding-bottom: 30px;
+	border-bottom: 2px solid #424242;
+}
+
 body {
 margin-top: 200px;
 }
 form{
+    text-align: center;
 	margin-top: 45px;
 }
 table {
@@ -86,11 +98,11 @@ tbody td:hover:before {
 	margin-bottom: 10px;
 	background: #12192c;
 	position: relative;
-	
 	margin-right: 10px;
 }
+
 .margin {
-margin-top: 40px;
+	margin-top: 10px;
 }
 
 .valid {
@@ -114,14 +126,10 @@ text-align: center;
 margin-top: 60px;
 }
 
-h2 {
-text-align: center;
-}
-
 </style>
 </head>
 <body>
-<h2 class="center hrlist">${loginInfo.name } 님 정보변경 </h2>
+<h2 class="">${loginInfo.name } 님 정보변경 </h2>
 
 <form method='post' action='update.mypage'>
 <input type='hidden' name='employee_id' value='${vo.employee_id}'>

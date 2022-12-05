@@ -100,7 +100,7 @@ body {
 		<div class="m-dropdown">
 		  <div class="e-button open">
 		 <div class="">
-		  	 <p style="text-align: center; margin-top: 10px;"> ${loginInfo.name}${loginInfo.position_name}님</p>
+		  	 <p style="text-align: center; margin-top: 13px;"> ${loginInfo.name}${loginInfo.position_name}님</p>
 		  </div>
 		    <div class="e-burger">
 		      <span></span>

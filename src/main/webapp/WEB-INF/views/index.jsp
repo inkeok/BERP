@@ -378,24 +378,25 @@ left:20%;
   
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
+	
 		$(document).ready(function() {
 			$('span.fi').fadeIn(3000);
 		});
 
 		$(document).ready(function() {
-			$('span.fi2').fadeIn(3000);
+			$('span.fi2').fadeIn(2000);
 		});
 
 		$(document).ready(function() {
-			$('button.fi').fadeIn(3000);
+			$('button.fi').fadeIn(2000);
 		});
 
 		$(document).ready(function() {
-			$('img.sec-image').fadeIn(3000);
+			$('img.sec-image').fadeIn(2000);
 		});
 		
 		$(document).ready(function() {
-			$('.Inquire').fadeIn(3000);
+			$('.Inquire').fadeIn(2000);
 		});
 
 	</script>

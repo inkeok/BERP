@@ -13,7 +13,7 @@
 	align-items: center;
 	margin-bottom: 0.5rem;
 	margin-left: 60px;
-	margin-right : 21em;
+	margin-right : 34em;
 }
 
 #nav {
@@ -61,7 +61,7 @@ body {
 }
 </style>
 <header>
-	<!-- 		로고 -->
+	<!-- 로고 -->
 	<div id="nav">
 		<a class="logo" href='<c:url value="/" />'> <img class="me-4"
 			alt="logo" src="imgs/icons/logo.png"></a>
@@ -77,15 +77,15 @@ body {
 					<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
 				</c:if>
 			</div>
-			<div class="">
+				<div style="display: flex; position:relative; top: 3%;left:-63%;">
 				<c:if test="${not empty loginInfo}">
-					<span style="font-weight: bold; color :white; align-self: center; margin-right: 10px">${loginInfo.name} 님</span>
-					<a  style="align-self: center; margin-right:30px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
+					<span style="font-weight: bold; color :white; align-self: center; margin-right: 20px">${loginInfo.name} 님</span>
+					<a  style="align-self: center; margin-right:20px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
 					<a style="align-self: center; margin-right:40px;color:white; " onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
 					<button style="margin-top: 10px" class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
 				</c:if>
-			</div>
-			</div>
+				</div>
+			
 		</div>
 	</div>
 <script src="js/header.js"></script>

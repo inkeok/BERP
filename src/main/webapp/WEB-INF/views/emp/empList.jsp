@@ -11,6 +11,7 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <style>
+
 h2 {
 	margin: 2rem 9rem;
 	font-weight: bold;
@@ -212,10 +213,9 @@ tbody td:hover:before {
 	</div>
 	<div style="text-align: -webkit-center;">
 		<ul class="pagination">
-
 		</ul>
 	</div>
-	</div>
+	
 </body>
 <script>
 	function pagination() {
@@ -289,6 +289,10 @@ tbody td:hover:before {
 
 		jQuery('.pagination li:first-child').addClass("disabled");
 
+	});
+	
+	$(document).ready(function() {
+		$('body').fadeIn(3000);
 	});
 </script>
 </html>
