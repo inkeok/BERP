@@ -36,7 +36,7 @@
 <c:forEach items='${lockerList}' var='l'>
 <tr>
 	<td><input type="checkbox" class='deleteCheck' name='deleteCheck' value='${l.ing_no}'></td>
-	<td>${l.no}</td>
+	<td id='deleteCheckNo'>${l.no}</td>
 	<td><a onclick='location="lockerListDetail.ap?no=${l.no}&employee_id=${employee_id}&ing_no=${l.ing_no}"'>${l.document_title}</a></td>
 	<td>${l.document_date}</td>
 </tr>
@@ -49,9 +49,17 @@
 
 <script>
 $('#deleteLockerList').click(function(){
+	
+	if($('[type=checkbox]').is(':checked')==false){
+		alert('항목을 선택해 주세요')
+		return;
+	}
+	
 	if(confirm('삭제하시겠습니까?'))
 	$('#form_deleteLocker').submit();
 });
+
+
 </script>
 </body>
 </html>
