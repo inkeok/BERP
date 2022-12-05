@@ -5,6 +5,7 @@
 <link type='text/css' rel='stylesheet' 
 	href='https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css'>
 <style>
+
 .header-nav {
 	display: inline-flex;
 	padding-top: 10px;
