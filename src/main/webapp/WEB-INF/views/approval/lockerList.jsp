@@ -37,7 +37,6 @@ h2 {
 					<col width='300px'>
 					<col width='150px'>
 				</colgroup>
-
 				<tr>
 					<th></th>
 					<th>번호</th>
@@ -57,16 +56,23 @@ h2 {
 			</table>
 		</form>
 
+
 		<div id='btnFix'>
 			<a class='new-btn' id='deleteLockerList'>삭제</a>
 		</div>
 	</div>
 
-	<script>
-		$('#deleteLockerList').click(function() {
-			if (confirm('삭제하시겠습니까?'))
-				$('#form_deleteLocker').submit();
-		});
-	</script>
+<script>
+$('#deleteLockerList').click(function(){
+	
+	if($('[type=checkbox]').is(':checked')==false){
+		alert('항목을 선택해 주세요')
+		return;
+	}
+	
+	if(confirm('삭제하시겠습니까?'))
+	$('#form_deleteLocker').submit();
+});
+</script>
 </body>
 </html>
