@@ -140,7 +140,7 @@ public class SalaryController {
 	}
 	
 	@ResponseBody @RequestMapping(value="/andInsertBonus.sa", produces="text/html; charset=utf-8")
-	public String andInsertBonus(int employee_id, String bonus, String bonus_comment, Date bonus_date) throws ParseException {
+	public String andInsertBonus(int employee_id, String bonus, String bonus_comment, String bonus_date) throws ParseException {
 		System.out.println("상여");
 		
 //		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
