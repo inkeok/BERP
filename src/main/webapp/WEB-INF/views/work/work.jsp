@@ -13,6 +13,16 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 <style>
+h2 {
+    width: 1200px;
+    margin: 3rem 0;
+	font-weight: bold;
+	color: #424242;
+	font-size: 32px;
+	font-family: 'Noto Sans KR' !important;
+	padding-bottom: 30px;
+	border-bottom: 2px solid #424242;
+}
 body{
 width : 1200px;
 }
@@ -69,132 +79,134 @@ tbody td:hover:before {
 	<a action="work_end_input" method="post" id="input" />
 	
 	<!-- end page title -->
-
-	<div class="row mb-4" style="margin-top: 34px;">
-		<div class="col-lg-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="d-flex">
-								<div class="flex-grow-1 align-self-center">
-									<div class="text-muted">
-										<p class="mb-2" id="times"></p>
-										<h5 class="mb-1">${vo.name}</h5>
-										<p class="mb-0">${vo.employee_id}/${vo.position_name}</p>
+	<h2>출/퇴근 관리</h2>
+	
+	<div style="width :113%">
+		<div class="row mb-4" style="margin-top: 34px;">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="d-flex">
+									<div class="flex-grow-1 align-self-center">
+										<div class="text-muted">
+											<p class="mb-2" id="times"></p>
+											<h5 class="mb-1">${vo.name}</h5>
+											<p class="mb-0">${vo.employee_id}/${vo.position_name}</p>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="col-lg-4 align-self-center">
-							<div class="text-lg-center mt-4 mt-lg-0">
-								<div class="row">
-									<div class="col-4">
-										<div></div>
+		
+							<div class="col-lg-4 align-self-center">
+								<div class="text-lg-center mt-4 mt-lg-0">
+									<div class="row">
+										<div class="col-4">
+											<div></div>
+										</div>
+										<div class="col-4">
+											<div></div>
+										</div>
 									</div>
-									<div class="col-4">
-										<div></div>
-									</div>
 								</div>
+							</div>
+		
+							<div class="col-lg-4 d-none d-lg-block">
+								<div class="clearfix mt-4 mt-lg-0"></div>
 							</div>
 						</div>
-
-						<div class="col-lg-4 d-none d-lg-block">
-							<div class="clearfix mt-4 mt-lg-0"></div>
-						</div>
-					</div>
-					<!-- end row -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end row -->
-
-	<div class="row mb-4">
-		<div class="">
-			<div class="row">
-				<div class="">
-					<div class="card">
-						<div class="card-body">
-							<div class="d-flex align-items-center mb-3">
-								<div class="avatar-xs me-3">
-									<span
-										class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
-										<i class="bx bx-time-five"></i>
-									</span>
-								</div>
-								<h5  class="font-size-16 mb-0">이번달 근무시간</h5>
-							</div>
-							<h5 class="font-size-15">
-								<span class="float-end">11%</span>
-							</h5>
-							<div class="progress animated-progess progress-md">
-								<div class="progress-bar" role="progressbar" style="width: 11%"
-									aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-							<div class="">
-								<div class="mt-3">
-									<a id="start_btn" type="button"
-										class="btn btn-light waves-effect ">출근하기</a> <input
-										name="start_work" id="start_work">${wVo.start_work}
-
-								</div>
-								<div class="mt-2">
-									<a id="end_btn" type="button"
-										class="btn btn-light waves-effect">퇴근하기</a> <input
-										name="end_work" id="end_work">${wVo.end_work}
-								</div>
-							</div>
-
-						</div>
+						<!-- end row -->
 					</div>
 				</div>
 			</div>
-
 		</div>
-
-	</div>
-	<!-- end row -->
-
-	<div>
-		<h5 style="margin:20px "class="font-size-16 mb-0">나의 근무 이력</h5>
-	</div>
-
-	<!--  work_result table 에서 가져온다 -->
-	<table style="width : 1200px;">
-		<thead>
-			<tr>
-				<th scope="col">일자</th>
-				<th scope="col">출근 시간</th>
-				<th scope="col">퇴근 시간</th>
-
-				<th scope="col">근무 형태</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach begin="0" end="7" items="${workList}" var="woR">
+		<!-- end row -->
+		
+		<div class="row mb-4">
+			<div class="">
+				<div class="row">
+					<div class="">
+						<div class="card">
+							<div class="card-body">
+								<div class="d-flex align-items-center mb-3">
+									<div class="avatar-xs me-3">
+										<span
+											class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
+											<i class="bx bx-time-five"></i>
+										</span>
+									</div>
+									<h5  class="font-size-16 mb-0">이번달 근무시간</h5>
+								</div>
+								<h5 class="font-size-15">
+									<span class="float-end">11%</span>
+								</h5>
+								<div class="progress animated-progess progress-md">
+									<div class="progress-bar" role="progressbar" style="width: 11%"
+										aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+								<div class="">
+									<div class="mt-3">
+										<a id="start_btn" type="button"
+											class="btn btn-light waves-effect ">출근하기</a> <input
+											name="start_work" id="start_work">${wVo.start_work}
+		
+									</div>
+									<div class="mt-2">
+										<a id="end_btn" type="button"
+											class="btn btn-light waves-effect">퇴근하기</a> <input
+											name="end_work" id="end_work">${wVo.end_work}
+									</div>
+								</div>
+		
+							</div>
+						</div>
+					</div>
+				</div>
+		
+			</div>
+		
+		</div>
+		<!-- end row -->
+		
+		<div>
+			<h5 style="margin:20px "class="font-size-16 mb-0">나의 근무 이력</h5>
+		</div>
+		
+		<!--  work_result table 에서 가져온다 -->
+		<table style="width: 1350px;">
+			<thead>
 				<tr>
-					<td>${woR.work_date}</td>
-					<c:if test="${empty woR.start_work }">
-					<td>-</td>
-				</c:if>
-				<c:if test ="${not empty woR.start_work}">				
-					<td>${woR.start_work}</td>
-				</c:if>
-				<c:if test="${empty woR.end_work }">
-					<td>-</td>
-				</c:if>
-				<c:if test ="${not empty woR.end_work}">
-					<td>${woR.end_work}	</td>
-				</c:if>
-
-					<td>${woR.work_status}</td>
+					<th scope="col">일자</th>
+					<th scope="col">출근 시간</th>
+					<th scope="col">퇴근 시간</th>
+		
+					<th scope="col">근무 형태</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
+			</thead>
+			<tbody>
+				<c:forEach begin="0" end="7" items="${workList}" var="woR">
+					<tr>
+						<td>${woR.work_date}</td>
+						<c:if test="${empty woR.start_work }">
+						<td>-</td>
+					</c:if>
+					<c:if test ="${not empty woR.start_work}">				
+						<td>${woR.start_work}</td>
+					</c:if>
+					<c:if test="${empty woR.end_work }">
+						<td>-</td>
+					</c:if>
+					<c:if test ="${not empty woR.end_work}">
+						<td>${woR.end_work}	</td>
+					</c:if>
+		
+						<td>${woR.work_status}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div>
 </body>
 <!-- <script type="text/javascript">
 	$(document).ready(function() {
