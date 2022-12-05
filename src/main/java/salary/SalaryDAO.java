@@ -53,9 +53,9 @@ public class SalaryDAO {
 		return salaryList;
 	}
 	
-	public int andInsertBonus(BonusVO vo) {
+	public int andInsertBonus(HashMap<String, Object> map) {
 		 
-		return sql.insert("salary.andInsertBonus", vo);
+		return sql.insert("salary.andInsertBonus", map);
 	}
 	
 	public List<BonusVO> andBonusList(){
