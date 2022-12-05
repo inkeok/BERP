@@ -64,7 +64,7 @@ header{
 			<li><a href="list.rec">채용공고</a></li>
 		</ul>
 		<div id='nav-sign'>
-			<div style="display: flex; position: absolute;">
+			<div style="left: 69%;display: flex; position: absolute;">
 				<c:if test="${empty loginInfo}">
 					<button class="button button-second" data-type="circle"
 						onclick='location="login.mem"'>로그인</button>

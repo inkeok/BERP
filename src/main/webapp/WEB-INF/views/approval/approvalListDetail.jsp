@@ -17,7 +17,7 @@
 <table class="apTable detail" style='width: 90%'>
 	<colgroup>
 		<col width='100px'>
-		<col>
+		<col width='1000px'>
 	</colgroup>
 	
 		<tr>
