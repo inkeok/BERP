@@ -61,7 +61,6 @@ h2 {
 			<a class='new-btn' id='deleteLockerList'>삭제</a>
 		</div>
 	</div>
-
 <script>
 $('#deleteLockerList').click(function(){
 	
