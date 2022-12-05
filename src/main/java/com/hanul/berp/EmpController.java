@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -22,6 +23,7 @@ import emp.EmpDAO;
 import emp.EmpVO;
 import emp.PatternVO;
 import emp.PositionVO;
+import salary.SalEmpVO;
 
 @Controller
 public class EmpController {
@@ -127,12 +129,26 @@ public class EmpController {
 
 	// 사원목록
 	@RequestMapping("/list.hr")
-	public String list(Model model, HttpSession session) {
+	public String list(Model model, HttpSession session, @RequestParam(defaultValue = "-1")  int department_id) {
 
-		List<EmpVO> empList = dao.employee_list();
-
+		
+		List<EmpVO> empList = null;
+		
+		
+		if( department_id == -1) {
+			empList = dao.employee_list();
+		}else {			
+			empList = dao.employee_list_s(department_id);
+		}
+		
+		List<DepartmentVO> departments = dao.departments();
+		model.addAttribute("department_id", department_id);
 		model.addAttribute("list", empList);
-
+		
+		model.addAttribute("departments", departments);
+		
+		
+		
 		return "side/emp/empList";
 	}
 	

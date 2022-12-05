@@ -39,6 +39,12 @@
 .header-nav>li>a:hover {
 	color: #6ca6fa;
 }
+.login{
+	display: flex;
+	position:absolute;
+	top: 4%;
+	left:60%;
+    margin-left: 139px;}
 
 #nav-top>li {
 	margin-left: 50px;
@@ -54,7 +60,6 @@ body {
 	height: 800px;
 }
 </style>
-
 <header>
 	<!-- 		로고 -->
 	<div id="nav">
@@ -65,21 +70,21 @@ body {
 			<li><a href="javascript:window.scrollBy( 0, 4430 );">서비스영역</a></li>
 			<li><a href="javascript:window.scrollBy( 0, 5430 );">프로세서</a></li>
 			<li><a href="list.rec">채용공고</a></li>
-
-
 		</ul>
 		<div id='nav-sign'>
-			<div style="display: flex; position:absolute; left:60%; margin-left: 139px;">
-			<c:if test="${empty loginInfo}">
-				<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
-			</c:if>
-
-			<c:if test="${not empty loginInfo}">
-				<span style="font-weight: bold; color :white; align-self: center; margin-right: 10px">${loginInfo.name} 님</span>
-				<a  style="align-self: center; margin-right:20px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
-				<a style="align-self: center; margin-right:30px;color:white; " onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
-				<button style="margin-top: 10px" class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
-			</c:if>
+			<div class="login">
+				<c:if test="${empty loginInfo}">
+					<button class="button button-second" data-type="circle" onclick='location="login.mem"'>로그인</button>
+				</c:if>
+			</div>
+			<div class="">
+				<c:if test="${not empty loginInfo}">
+					<span style="font-weight: bold; color :white; align-self: center; margin-right: 10px">${loginInfo.name} 님</span>
+					<a  style="align-self: center; margin-right:30px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
+					<a style="align-self: center; margin-right:40px;color:white; " onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
+					<button style="margin-top: 10px" class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
+				</c:if>
+			</div>
 			</div>
 		</div>
 	</div>
