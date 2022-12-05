@@ -26,6 +26,42 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
+ul{
+	margin : 0 !important;
+	padding: 0 !important;
+}
+
+h2 {
+    margin-left: 20.5rem;
+    margin-top: 3rem;
+    width: 600px;
+    font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #424242;
+}
+
+select {
+	margin-top : 1rem;
+	position: relative;
+	left: -1.4%;
+	width: 180px;
+	padding: .5em 1.4em;
+	font-family: inherit;
+	background: url('imgs/arrow.jfif') no-repeat 95% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+	border: 2px solid #fff[];
+	border-radius: 3px;
+}
+
+select::-ms-expand {
+	display: none;
+}
 .pagination {
 	width: 1490px;
 	background: #12192c;
@@ -61,8 +97,7 @@
 }
 
 table {
-	margin-top: 5px;
-
+	margin-top: 10px;
 	border-radius: 15px;
 	border-collapse: collapse;
 	overflow: hidden;
@@ -101,25 +136,6 @@ tbody td:hover:before {
 	background-color: rgba(255, 255, 255, 0.2);
 	z-index: -1;
 }
-
-.new-btn {
-	padding: 1em 1.8em;
-	font-size: 14px;
-	font-weight: 400;
-	font-family: 'Noto Sans KR', sans-serif;
-	border-radius: 4px;
-	cursor: pointer;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	border: none;
-	color: #ffffff;
-	margin-bottom: 10px;
-	background: #12192c;
-	position: relative;
-	left: 4%;
-}
-
 .button-second {
 	background: #2b32b2;
 	box-shadow: 0 3px 25px rgba(48, 37, 223, 0.7);
@@ -146,11 +162,11 @@ a {
 a:link, a:visited {
 	text-decoration: none;
 	color: inherit;
-} */
+}
 </style>
 </head>
 <body>
-	<h2 class="center hrlist">합격자리스트</h2>
+	<h2>합격자리스트</h2>
 
 	<form method='post' action='pass_check.apply' class='list'>
 		<div id='list-top' class='w-px1200'>

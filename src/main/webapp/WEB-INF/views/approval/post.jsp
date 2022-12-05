@@ -12,6 +12,29 @@
 #postForm{
 	margin: 10px 0;
 }
+
+select {
+	margin-left: -1px;
+    position: relative;
+    left: 1%;
+    width: 180px;
+    padding: 0.5em 1.4em;
+	font-family: inherit;
+	background: url('imgs/arrow.jfif') no-repeat 95% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: 1px solid #999;
+	border-radius: 0px;
+}
+
+select::-ms-expand {
+	display: none;
+}
+[type=text] {
+    width: 100%;
+    height: 31.2px !important;
+}
 </style>
 </head>
 <body>
@@ -48,7 +71,7 @@
 			<td><input type='text' id='document_title' name='document_title' value='${document_title}'></td>
 		</tr>
 		<tr><th class='content'>내용</th>
-			<td><textarea id='textarea' name='document_content'>${document_content}</textarea></td>
+			<td><textarea id='textarea' name='document_content' style="height: 400px;">${document_content}</textarea></td>
 		</tr>
 		<tr><th>첨부파일</th>
 			<td style='text-align: left'>

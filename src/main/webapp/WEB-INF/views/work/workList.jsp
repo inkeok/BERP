@@ -11,6 +11,15 @@
 <meta charset="UTF-8">
 
 <style>
+h2{
+    margin: 3rem 0;
+	font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom : 30px; 
+    border-bottom: 2px solid #424242;
+}
 
 .pagination{
     width: 1484px;
@@ -178,7 +187,7 @@ ul{
 </head>
 <body style="width:1200px;">
 
-	<h2 style="text-align: center; margin-top : 35px">전 직원 출퇴근 조회</h2>
+	<h2>전 직원 출퇴근 조회</h2>
 	
 		 <form method='post' action='workList'>
 			<div id='list-top' style="margin-bottom: 0;">

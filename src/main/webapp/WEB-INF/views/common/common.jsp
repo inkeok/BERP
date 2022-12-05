@@ -58,8 +58,8 @@ tbody td:hover:before {
 }
 
 h3{	
-	width : 800px;
-	margin : 3rem 0;
+	width: 800px;
+    margin-top: 3rem;
 	font-weight: bold;
     color: #424242;
     font-size: 32px;
@@ -69,8 +69,9 @@ h3{
 }
 
 select, option{
+  margin-tpo : 10px;
   width: 230px;
-  padding: .6em 1.2em;
+  padding: .5em 1.2em;
   font-family: inherit;
   background: url('imgs/arrow.jfif') no-repeat 95% 50%; 
   -webkit-appearance: none;
