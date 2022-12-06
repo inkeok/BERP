@@ -65,8 +65,7 @@ public class EmpDAO {
 	}
 
 	public void employee_delete(int employee_id) {
-		// TODO Auto-generated method stub
-		
+		sql.delete("emp.delete", employee_id);
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////

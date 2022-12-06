@@ -12,6 +12,7 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <style>
+
 .ul-nav {
 	margin-bottom: 0 !important;
 }
@@ -165,10 +166,10 @@
 	
 	$(document).ready(function() {
 	    $(".menubar").click(function() {
-	        $(this).children(".submenu").stop().slideDown(600);
+	        $(this).children(".submenu").stop().slideDown(500);
 	    });
 	    $(".menubar").mouseleave(function() {
-	        $(this).children(".submenu").stop().slideUp(600);
+	        $(this).children(".submenu").stop().slideUp(300);
 	    });
 	});
 	

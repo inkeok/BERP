@@ -101,7 +101,7 @@ tbody td:hover:before {
 				<td><select name="department_id" >
 				<option value="-1">부서선택</option>
 					<c:forEach items="${departments}" var="vo">
-						<option value="${vo.department_id}">${vo.department_id}</option>
+						<option value="${vo.department_id}">${vo.department_name}</option>
 					</c:forEach>
 				</select></td>
 			</tr>
@@ -109,7 +109,7 @@ tbody td:hover:before {
 				<th>회사코드</th>
 				<td><select name="company_cd">
 				<option value="-1">코드선택</option>
-					<c:forEach items="${emp}" var="vo">
+					<c:forEach begin="1" end="1" items="${emp}" var="vo">
 						<option value="${vo.company_cd}">${vo.company_name}</option>
 					</c:forEach>
 				</select></td>
