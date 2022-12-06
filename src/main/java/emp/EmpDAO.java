@@ -107,4 +107,9 @@ public class EmpDAO {
 		
 		return sql.selectList("emp.andEmpCnt");
 	}
+
+	public int and_emp_delete(int employee_id) {
+		
+		return sql.delete("emp.andDeleteEmployee", employee_id);
+	}
 }
