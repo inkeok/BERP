@@ -65,7 +65,7 @@ tbody td:hover:before {
 </style>
 </head>
 <body>
-	<h2 class="center hrlist">사원목록</h2>
+	<h2 class="center hrlist">${emp.name}님의 급여 조회</h2>
 	
 	<form action="insertCommission.sa" method="post">
 	<input type='hidden' name='employee_id' value="${emp.employee_id }">
