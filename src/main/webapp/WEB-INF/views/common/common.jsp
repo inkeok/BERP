@@ -18,7 +18,7 @@ body{
 }
 
 table {
-	margin-top : 5px;
+	margin : 1rem 0!important;
 	border-radius : 10px;
 	border-collapse: collapse;
 	overflow: hidden;
@@ -67,7 +67,6 @@ h3{
 }
 
 select, option{
-  margin-tpo : 10px;
   width: 230px;
   padding: .5em 1.2em;
   font-family: inherit;
@@ -86,7 +85,7 @@ select, option{
 
 <!-- 		<div class="card mb-4"> -->
 	<h3 class="">코드관리</h3>
-   <div class="">
+   <div class=""style="margin-top:2rem;">
        <div class="">
        	<div class="">
        		<div class="">
