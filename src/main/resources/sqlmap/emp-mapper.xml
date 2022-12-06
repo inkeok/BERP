@@ -230,6 +230,8 @@
      from employees  e 
      group by e.department_id 
 	</select>
-	
+	<delete id="andDeleteEmployee">
+		delete from employees where employee_id = #{employee_id}
+	</delete>
 
 </mapper>

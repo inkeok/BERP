@@ -113,6 +113,7 @@ public class EmpDAO {
 		return sql.selectList("emp.andEmpCnt");
 	}
 
+
 	public List<SalEmpVO> select() {
 		
 		return sql.selectList("salary.empList");
@@ -121,5 +122,11 @@ public class EmpDAO {
 	
 	public List<SalEmpVO> select_d(int department_id){
 		return sql.selectList("salary.empList_d", department_id);
+
+	}
+	public int and_emp_delete(int employee_id) {
+		
+		return sql.delete("emp.andDeleteEmployee", employee_id);
+
 	}
 }
