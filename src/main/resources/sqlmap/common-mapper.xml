@@ -16,12 +16,25 @@
 		from common_code c left join employees e
 		on code_maker = e.employee_id
 		<choose>
+			<when test="vo.code_comment == 'all' and vo.code_used != 'all'">
+			where code_used = #{vo.code_used}
+			</when>
+			<when test="vo.code_comment != 'all' and vo.code_used == 'all'">
+			where code_comment = #{vo.code_comment}			
+			</when>
+			<when test="vo.code_comment != 'all' and vo.code_used != 'all'">
+			where code_comment = #{vo.code_comment} and code_used = #{vo.code_used}
+			</when>
+		</choose>
+		<!--  
+		<choose>
 			<when test="code == 'code_comment'">where ${code} = #{vo.code_comment}</when>
 			<when test="code == 'code_value'">where ${code} = #{vo.code_value}</when>
 			<when test="code == 'code_used'">where ${code} = #{vo.code_used}</when>
 			<when test="code == 'code_name'">where ${code} = #{vo.code_name}</when>
 		</choose>
-		order by ${code}
+		-->
+		order by code_comment
 	</select>
 
 	<!-- 인사코드 드롭다운 -->
