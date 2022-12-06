@@ -2,7 +2,7 @@
 
 li a {
 	color: #ffffff;
-	font-size: 14px;
+	font-size: 13px;
 }
 
 body {
@@ -116,11 +116,10 @@ li:before {
 	border-radius : 10px;
 }
 .submenu > li {
-	padding : 0.65rem;
-	text-align : left;
-	line-height: 30px;
-	background: #0c5df4;
-	color : #fff;
+    padding: 0.75rem;
+    text-align: left;
+    background:  rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgb(54 54 54 / 20%);
 }
 
 .submenu > li > a{
@@ -418,9 +417,7 @@ li:before {
   animation-name:slide_down;
   animation-duration:.7s;
 }
-.submenu > li{
-	border-bottom : 1px solid #bbb7e1;
-}
+
 .submenu > li:nth-child(1){
 	
 	border-top-left-radius: 10px;

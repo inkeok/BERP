@@ -69,7 +69,7 @@ body {
 <!-- 				id="nav-toggle"></ion-icon> -->
 <!-- 		</div> -->
 		<div>
-			<a class="menu-trigger" href="#">
+			<a id="navbar" class="menu-trigger nav__brand" href="#">
 			  <span></span>
 			  <span></span>
 			  <span></span>
@@ -117,8 +117,10 @@ body {
 		</div>
 		
 	</div>
+	<script src="js/main.js"></script>
 	
 <script>
+
 	const menuTrigger = document.querySelector('.menu-trigger');
 	
 	menuTrigger.addEventListener('click', (event) => {
