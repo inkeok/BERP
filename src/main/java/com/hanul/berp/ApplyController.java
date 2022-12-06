@@ -296,7 +296,7 @@ public class ApplyController {
 		model.addAttribute("vo",vo);
 		
 		
-		return "side/apply/modify";
+		return "empty/apply/modify";
 	}
 
 	@ResponseBody @RequestMapping("/phone_check")
@@ -347,7 +347,7 @@ public class ApplyController {
 		 
 		 model.addAttribute("vo",vo);
 		  
-	 return "side/apply/detail"; 
+	 return "empty/apply/detail"; 
 	  
 	}
 	 
@@ -372,7 +372,7 @@ public class ApplyController {
 		model.addAttribute("code_value", employee_pattern);
 		
 		
-		return "side/apply/applyList";
+		return "empty/apply/applyList";
 	}
 	/////////////////////////////////////이력서 첨부파일/////////////////////////////////////////////////
 	// 파일업로드
@@ -509,7 +509,7 @@ public class ApplyController {
 		apply.RecruitVO recruit = dao.recruit_info(recruit_num);
 		model.addAttribute("recruit",recruit);
 		
-		return "side/apply/fillout";
+		return "empty/apply/fillout";
 	}
 	
 		 ////////////////////////////////////////////////////

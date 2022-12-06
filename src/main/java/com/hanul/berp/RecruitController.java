@@ -224,7 +224,7 @@ public class RecruitController {
 		model.addAttribute("company", company);		
 		model.addAttribute("recruitList", recruit);
 		
-		return "recruit/new";
+		return "empty/recruit/new";
 	}
 	
 	@RequestMapping("/insert.rec")

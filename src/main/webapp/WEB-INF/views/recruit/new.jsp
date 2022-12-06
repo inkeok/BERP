@@ -18,6 +18,9 @@
 .center {
 	text-align: center;
 }
+footer{
+	top: 30%
+}
 
 .hrlist {
 	margin: 1rem 0;
@@ -228,7 +231,7 @@ text-decoration: none;
 </table>
 <input type='hidden' name='writer' value='${loginInfo.employee_id}'>
 </form>
-<div class='btn'>
+<div class='btn' style='width: 1880px'>
 	<a class='new-btn' id='save'>저장</a>
 	<a class='new-btn' href='list.rec'>취소</a>
 </div>
