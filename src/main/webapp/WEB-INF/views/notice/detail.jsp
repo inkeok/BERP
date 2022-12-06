@@ -22,10 +22,10 @@ table td {text-align: left;}
 <!-- ★jquery선언문 jquery.com -> blog들가서 긁어옴-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
-img {
-	width : 50px;
-	height: 50px;
-}
+/* img { */
+/* 	width : 50px; */
+/* 	height: 50px; */
+/* } */
 a{
 	color : white;
 }

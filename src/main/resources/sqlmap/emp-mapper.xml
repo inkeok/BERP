@@ -15,11 +15,10 @@
 	</update>
 	<update id="update">
 		update employees
-		set department_name =
-		#{department_name}, company_name = #{company_name}, name = #{name}
+		set department_id =
+		#{department_id}, company_cd = #{company_cd}, name = #{name}
 		,
-		email = #{email}, phone = #{phone}, admin = #{admin}
-		, position =
+		email = #{email}, phone = #{phone}, position =
 		#{position}, employee_pattern = #{employee_pattern}
 		where employee_id =
 		#{employee_id}

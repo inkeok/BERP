@@ -50,12 +50,13 @@ public class EmpController {
 	
 	//사원정보삭제
 	@RequestMapping("/delete.hr")
-	public String delete(int id) {
+	public String delete(int id, int no) {
 		
 		dao.employee_delete(id);
 		
-		return "redirect:list.hr";
+		return "redirect:list.hr?no="+no;
 	}
+	
 	
 	//사원정보변경 저장
 	@RequestMapping("/update.hr")
@@ -73,7 +74,7 @@ public class EmpController {
 		List<DepartmentVO> departments = dao.departments();
 		List<CompanyVO> company = dao.company();
 		List<EmpVO> position = dao.position();
-		
+		List<PatternVO> pattern = dao.pattern();
 		EmpVO vo = dao.emp_info(id);
 		
 		model.addAttribute("vo", vo);
@@ -81,18 +82,20 @@ public class EmpController {
 		model.addAttribute("departments", departments);
 		model.addAttribute("company", company);
 		model.addAttribute("position", position);
+		model.addAttribute("pattern", pattern);
+		
 		return "side/emp/modify";
 	}
 	
 	//사원정보화면
 	@RequestMapping("/info.hr")
-	public String info(int id, Model model) {
+	public String info(int id, Model model, int no) {
 		EmpVO vo = dao.emp_info(id);
 		model.addAttribute("vo", vo);
 		
 		List<PatternVO> pattern = dao.pattern();
 		model.addAttribute("pattern",pattern);
-		
+		model.addAttribute("no",no);
 		return "side/emp/info";
 	}
 	
@@ -129,12 +132,9 @@ public class EmpController {
 
 	// 사원목록
 	@RequestMapping("/list.hr")
-	public String list(Model model, HttpSession session, @RequestParam(defaultValue = "-1")  int department_id) {
+	public String list(Model model, HttpSession session, @RequestParam(defaultValue = "-1")  int department_id, @RequestParam(defaultValue = "-1") int no) {
 
-		
 		List<EmpVO> empList = null;
-		
-		
 		if( department_id == -1) {
 			empList = dao.employee_list();
 		}else {			
@@ -146,9 +146,8 @@ public class EmpController {
 		model.addAttribute("list", empList);
 		
 		model.addAttribute("departments", departments);
-		
-		
-		
+		model.addAttribute("no", no);
+
 		return "side/emp/empList";
 	}
 	

@@ -194,7 +194,7 @@ tbody td:hover:before {
 			</thead>
 			<c:forEach items="${list}" var="vo">
 				<tbody class="">
-					<tr class="" onClick="location.href='info.hr?id=${vo.employee_id}'">
+					<tr class="" onClick="info(${vo.employee_id})">
 						<td>${vo.employee_id}</td>
 						<td>${vo.department_name}</td>
 						<td>${vo.company_name}</td>
@@ -218,8 +218,13 @@ tbody td:hover:before {
 	
 </body>
 <script>
+
+	function info(id) {
+		location.href='info.hr?id='+ id +'&no=' + $('.pagination li.active a').text();
+	}
+
 	function pagination() {
-		var req_num_row = 9;
+		var req_num_row = 10;
 		var $tr = jQuery('tbody tr');
 		var total_num_row = $tr.length;
 		var num_pages = 0;
@@ -233,9 +238,8 @@ tbody td:hover:before {
 		}
 
 		jQuery('.pagination').append("<li><a class=\"prev\">Previous</a></li>");
-
 		for (var i = 1; i <= num_pages; i++) {
-			jQuery('.pagination').append("<li><a>" + i + "</a></li>");
+			jQuery('.pagination').append("<li><a data-page = "+ i +">" + i + "</a></li>");
 			jQuery('.pagination li:nth-child(2)').addClass("active");
 			jQuery('.pagination a').addClass("pagination-link");
 		}
@@ -248,7 +252,7 @@ tbody td:hover:before {
 				$tr.eq(i).show();
 			}
 		});
-
+		//페이지 클릭 이벤트
 		jQuery('.pagination a').click('.pagination-link', function(e) {
 			e.preventDefault();
 			$tr.hide();
@@ -286,7 +290,10 @@ tbody td:hover:before {
 
 	jQuery('document').ready(function() {
 		pagination();
-
+		if(${no != -1 }){
+		console.log('asd', $('.pagination li.active a').data('page'));
+		 $('[data-page=${no}]').trigger('click');
+		}
 		jQuery('.pagination li:first-child').addClass("disabled");
 
 	});
