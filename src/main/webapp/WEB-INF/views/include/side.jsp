@@ -24,6 +24,9 @@
     margin-bottom: 1rem;
     transition: .3s;
 }
+.submenu ion-icon{
+	margin-top : 3px;
+}
 </style>
 
 <body id="body-pd">
@@ -60,10 +63,10 @@
 									 <span class="nav_name">근태관리</span>
 								</a>
 								<ul class="submenu hide">
-									<li><a href="holiday">휴무관리</a></li>
-									<li><a href="work">출/퇴근관리</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a href="holiday">휴무관리</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a href="work">출/퇴근관리</a></li>
 									<c:if test="${loginInfo.admin eq 'Y' }">
-									<li><a href="workList">전체사원 근태관리</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a href="workList">전체사원 근태관리</a></li>
 									</c:if>
 								</ul>
 							</div>
@@ -79,10 +82,10 @@
 									 <span class="nav_name">전자 결재</span>
 								</a>
 								<ul class="submenu hide">
-									<li onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</li>
-									<li onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</li>
-									<li	onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</li>
-									<li onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>임시 보관함</li>
+									<li><ion-icon name="chevron-forward-outline" class="sub-arrows"></ion-icon><a onclick='location="receiveList.ap?employee_id=${loginInfo.employee_id}"'>수신함</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a onclick='location="submitList.ap?employee_id=${loginInfo.employee_id}"'>상신함</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a onclick='location="approvalList.ap?employee_id=${loginInfo.employee_id}"'>결재함</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a onclick='location="lockerList.ap?employee_id=${loginInfo.employee_id}"'>임시 보관함</a></li>
 								</ul>
 							</div>
 						</div>
@@ -116,9 +119,9 @@
 									 <span class="nav_name">급여관리</span>
 								</a>
 								<ul class="submenu hide sub-A">
-									<li><a href="mySalary.sa?employee_id=${loginInfo.employee_id }">나의 급여보기</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a href="mySalary.sa?employee_id=${loginInfo.employee_id }">나의 급여보기</a></li>
 									<c:if test ="${loginInfo.admin eq 'Y' }">
-									<li><a href="list.sa">사원 급여정보</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a href="list.sa">사원 급여정보</a></li>
 									</c:if>
 								</ul>
 							</div>
@@ -134,8 +137,8 @@
 									 <span class="nav_name">채용관리</span>
 								</a>
 								<ul class="submenu hide">
-									<li><a href="applicantList.apply">지원자 확인</a></li>
-									<li><a href="pass_check.apply">합격자 확인</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a href="applicantList.apply">지원자 확인</a></li>
+									<li><ion-icon name="chevron-forward-outline"></ion-icon><a href="pass_check.apply">합격자 확인</a></li>
 									
 								</ul>
 							</div>
@@ -146,7 +149,7 @@
 					<li class="">
 						<div class="nav__list">
 							<div class="side-menu">
-								<a href="common.cd" class="nav__link  nav-start"> 
+								<a href="common.cd" class="nav__link nav-start"> 
 									<ion-icon name="settings-outline" class="nav__icon"></ion-icon> 
 									 <span class="nav_name">공통코드관리</span>
 								</a>

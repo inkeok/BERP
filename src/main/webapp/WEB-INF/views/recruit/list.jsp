@@ -61,7 +61,7 @@ h3{
 	margin-top : 5rem;
 	margin-bottom : 3rem;
 	text-align: center;
-	color : #fff;
+	color : #000;
 }
 .body-content{
     height: auto;
@@ -71,7 +71,7 @@ h3{
 
 select {
   position: relative;
-  left : 30%;
+  left : 31%;
   width: 180px;
   padding: .7em 1.9em;
   font-family: inherit;
@@ -89,7 +89,7 @@ select::-ms-expand {
 
 .writing {
   position : relative;
-  right: -104%;
+  right: -95%;
   padding: 1em 2em;
   font-size: 14px;
   font-weight: 400;
@@ -140,15 +140,10 @@ color : white;
 		</ul> --%>
 			
 				<!-- 관리자인 경우만 글쓰기 가능 -->
-				<div style="text-align: end;
-    display: flex;
-    margin-right: -87px;">
 				<c:if test='${loginInfo.admin eq "Y"}'>
-			<a  style = "margin-right :10px"class='writing writing-second' href='new.rec'>글쓰기</a>
-			
+					<a  style = "margin-right :1px"class='writing writing-second' href='new.rec'>글쓰기</a>
 				 </c:if> 
-			<a class='writing writing-second' href='applyList.apply'>지원하기</a>
-			</div>
+					<a class='writing writing-second' href='applyList.apply'>지원하기</a>
 		</div>
 	</form>
 

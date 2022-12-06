@@ -23,9 +23,6 @@ h2 {
 }
 
 select {
-	position: fixed;
-	top: 22.8%;
-	left: 23.6%;
 	width: 180px;
 	padding: 0.6em 1.4em;
 	font-family: inherit;
@@ -117,22 +114,22 @@ tbody td:hover:before {
 }
 
 .new-btn {
-	padding: 1em 1.8em;
-	font-size: 14px;
-	font-weight: 400;
-	font-family: 'Noto Sans KR', sans-serif;
-	border-radius: 4px;
-	cursor: pointer;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	border: none;
-	color: #ffffff;
-	margin-bottom: 10px;
-	background: #12192c;
-	position: relative;
-	left: 4%;
-	margin-top: 30px;
+	margin-left: 60px;
+    padding: 1em 1.8em;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    color: #ffffff;
+    margin-bottom: 10px;
+    background: #12192c;
+    /* position: relative; */
+    left: 4%;
 }
 
 .button-second {
@@ -143,25 +140,26 @@ tbody td:hover:before {
 .emp-wrap {
 	position: relative;
 	left: 5%;
-	top: -4%;
+	top: 1%;
 }
 </style>
 </head>
 <body>
 	<h2 class="">사원목록</h2>
 	<div class="emp-wrap">
-		<button class="new-btn" onclick='location="new.hr"'>신규사원등록</button>
+		
 		<form action="list.hr" class="list" method="get">
 			<div class="w-px1600">
-				<ul>
-					<li><select name='department_id' onchange='$("form").submit()'>
+				<div>
+					<a class="new-btn" onclick='location="new.hr"'>신규사원등록</a>
+					<select name='department_id' onchange='$("form").submit()'>
 							<option value='-1'>전체 부서</option>
 							<c:forEach items='${departments}' var='c'>
 								<option ${department_id eq c.department_id ? 'selected' : ''}
 									value='${c.department_id}'>${c.department_name}</option>
 							</c:forEach>
-					</select></li>
-				</ul>
+					</select>
+				</div>
 		</form>
 
 		<table class="table-hover">
