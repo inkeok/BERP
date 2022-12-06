@@ -173,5 +173,11 @@ public class WorkDAO {
 		}
 
 
+		public WorkVO findToday(int employee_id) {
+			
+			return sql.selectOne("findToday", employee_id);
+		}
+
+
 		
 }
