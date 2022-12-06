@@ -15,7 +15,9 @@
 .center {
 	text-align: center;
 }
-
+footer{
+	top:10%
+}
 .hrlist {
 	margin: 1rem 0;
 	color: #000000;
@@ -166,12 +168,12 @@ ${vo.char_recruit_end }
 </div>
 </td>
 </table>
-<div class="btn">
+<div class="btn" style='width: 1880px;'>
 <a href='list.rec' class='new-btn'>목록으로 </a>
 
 <!-- 관리자로 로긴 한 경우만 수정ㅅ/삭제 가능 -->
 <%-- <c:if test='${loginInfo.admin eq "Y" }'> --%>
-<a class='new-btn' href='modify.rec?recruit_num=${vo.recruit_num }'>정보수정 </a>
+<%-- <a class='new-btn' href='modify.rec?recruit_num=${vo.recruit_num }'>정보수정 </a> --%>
 <a class='new-btn' id='remove'>정보삭제</a>
 
 

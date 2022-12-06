@@ -17,6 +17,9 @@
 .center {
 	text-align: center;
 }
+footer {
+	top: 10%
+}
 
 .hrlist {
 	margin: 1rem 0;
@@ -184,11 +187,11 @@ text-align:center;
 		<label>
 			<input type='file' name='file' id='attach-file'>
 			<a><i class="font-b fa-solid fa-file-circle-plus"></i></a>
+			<a id='delete-file' style='display:${empty vo.file_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
 		</label>
 		<span id='file_name'>${vo.file_name}</span>
 		<span id='preview'></span>
-		<a id='delete-file' style='display:${empty vo.file_name ? "none" : "inline"}'><i class="font-r fa-solid fa-trash-can"></i></a>
-		</div>
+	</div>
 	</td>
 </tr>
 </table>
