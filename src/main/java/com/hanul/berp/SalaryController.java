@@ -36,16 +36,17 @@ public class SalaryController {
 	
 	@RequestMapping("list.sa")
 	public String hrList(Model model, HttpSession session, @RequestParam(defaultValue = "-1") int department_id) {
-		List<SalEmpVO> workList = null;
 		
+		List<SalEmpVO> workList = null;		
 		if( department_id == -1 ) {
 			workList = dao.employee_list();
-		}else {			
+		}else {
 			workList = dao.employee_list_d(department_id);
 		}
 		//List<SalEmpVO> empList = dao.employee_list();
 		List<SalEmpVO> departments = dao.departments();
 		
+		model.addAttribute("department_id", department_id);
 		model.addAttribute("list", workList);
 		model.addAttribute("departments", departments);
 		
