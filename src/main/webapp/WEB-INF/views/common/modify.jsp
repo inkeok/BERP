@@ -118,7 +118,7 @@ margin-bottom : 3rem;
 <!-- 						</select> -->
 	</td>
 </tr>
-<tr><th>승인여부</th>
+<tr><th>사용여부</th>
 	<td>
 		<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used");' >
 						<c:forEach items='${code_used}' var='u'>

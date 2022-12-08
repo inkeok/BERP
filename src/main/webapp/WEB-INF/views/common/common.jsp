@@ -113,7 +113,7 @@ select, option{
 					
 
 					<select class="dataTable-selector" name="code_used" onchange='$("#code").val("code_used"); $("form").submit()'>
-       				<option class='title' value="all">승인여부</option>
+       				<option class='title' value="all">사용여부</option>
 
 						<c:forEach items='${code_usedd}' var='c'>  <!-- 드롭다운이름 처리 -->
 							<option ${code_used eq c.code_used ? 'selected' : ''} 
@@ -146,7 +146,7 @@ select, option{
         	<span class="dataTable-sorter">코드번호</span>
        	</th>
      	<th data-sortable="" style="width: 10%;">
-     		<span class="dataTable-sorter">승인여부</span>
+     		<span class="dataTable-sorter">사용여부</span>
    		</th>
    		<th data-sortable="" style="width: 10%;">
      		<span class="dataTable-sorter">코드구분</span>

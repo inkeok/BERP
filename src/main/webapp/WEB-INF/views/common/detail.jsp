@@ -101,7 +101,7 @@ tbody td:hover:before {
 					<td>${vo.code_value }</td>
 				</tr>
 				<tr>
-					<th>승인여부</th>
+					<th>사용여부</th>
 					<td>${vo.code_used }</td>
 				</tr>
 				<tr>
