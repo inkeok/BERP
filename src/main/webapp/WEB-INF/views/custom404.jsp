@@ -5,15 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-body, html{
-	width: 1000px; 
-}
-</style>
+<title>에러 페이지</title>
 </head>
 <body>
-	<img style ="width : 1000px" src="imgs/404error.jpg" alt="error" />
-	
+	<a href="<c:url value='/' />"><img style ="width:2000px" src="imgs/404error.jpg" alt="error" /></a>	
 </body>
 </html>
