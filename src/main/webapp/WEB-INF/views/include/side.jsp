@@ -91,25 +91,27 @@
 						</div>
 					</li>
 				</ul>
-				<ul class="ul-nav">
-					<li class="">
-						<div class="nav__list">
-							<div class="side-menu">
-								<a href="list.hr" class="nav__link  nav-start"> 
-									<ion-icon name="person-circle-outline" class="nav__icon"></ion-icon> 
-									 <span class="nav_name">인사관리</span>
-								</a>
-								<!-- <ul class="submenu hide">
-									<li><a href="list.hr">사원조회</a></li>
-									<li><a href="#">submenu02</a></li>
-									<li><a href="#">submenu03</a></li>
-									<li><a href="#">submenu04</a></li>
-									<li><a href="#">submenu05</a></li>
-								</ul> -->
+				<c:if test="${loginInfo.admin eq 'Y' }">
+					<ul class="ul-nav">
+						<li class="">
+							<div class="nav__list">
+								<div class="side-menu">
+									<a href="list.hr" class="nav__link  nav-start"> 
+										<ion-icon name="person-circle-outline" class="nav__icon"></ion-icon> 
+										 <span class="nav_name">인사관리</span>
+									</a>
+									<!-- <ul class="submenu hide">
+										<li><a href="list.hr">사원조회</a></li>
+										<li><a href="#">submenu02</a></li>
+										<li><a href="#">submenu03</a></li>
+										<li><a href="#">submenu04</a></li>
+										<li><a href="#">submenu05</a></li>
+									</ul> -->
+								</div>
 							</div>
-						</div>
-					</li>
-				</ul>
+						</li>
+					</ul>
+				</c:if>
 				<ul class="ul-nav">
 					<li class="">
 						<div class="nav__list">
@@ -128,6 +130,7 @@
 						</div>
 					</li>
 				</ul>
+				<c:if test="${loginInfo.admin eq 'Y' }">
 				<ul class="ul-nav">
 					<li class="">
 						<div class="nav__list">
@@ -145,6 +148,8 @@
 						</div>
 					</li>
 				</ul>
+				</c:if>
+				<c:if test="${loginInfo.admin eq 'Y' }">
 				<ul class="ul-nav">
 					<li class="">
 						<div class="nav__list">
@@ -157,6 +162,7 @@
 						</div>
 					</li>
 				</ul>
+				</c:if>
 			</div>
 		</nav>
 	</div>
