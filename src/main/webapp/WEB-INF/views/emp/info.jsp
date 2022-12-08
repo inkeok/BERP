@@ -127,7 +127,7 @@ tbody td:hover:before {
 	</div>
 	<div class='center'>
 	<a class='new-btn' href='modify.hr?id=${vo.employee_id}'>정보수정</a>
-	<a class='new-btn' onclick="if( confirm('사번을[${vo.employee_id}] 삭제하시겠습니까?') ) href='delete.hr?id=${vo.employee_id}&no=${no}' " >정보삭제</a>
+	<a class='new-btn' onclick="if( confirm('사번을[${vo.employee_id}] 삭제하시겠습니까?') ) href='delete.hr?id=${vo.employee_id}' " >정보삭제</a>
 	<a class='new-btn' href='list.hr'>사원목록</a>
 </div>
 <script>

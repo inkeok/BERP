@@ -151,8 +151,7 @@ left:20%;
 				앱/웹 개발을 연구합니다
 			</span>
 			<div class="Inquire">
-				<button class="button button-second" data-type="circle" 
-				onclick='location="login.mem"'>문의하기</button>
+				<button class="button button-second" data-type="circle" >문의하기</button>
 			</div>
 			
 			<img class="sec-image" src="imgs/icons/logo.png" alt="bodyimage" />
