@@ -134,14 +134,14 @@ select {
 			<tr>
 				<th class="">전화번호</th>
 				<td>
-					<input class="input" type="text" name="phone" placeholder="전화번호" />
+					<input class="input" type="text" name="phone" value="${vo.phone}" />
 				</td>
 			</tr>
 			<tr>
 				<th class="">관리자</th>
 				<td>
-					<label style="margin-right: 20px;"><input type="radio" name="gender" value="y">Y</label>
-					<label><input type="radio" name="gender" value="n" checked>N</label>
+					<label style="margin-right: 20px;"><input type="radio" name="gender" value="Y">Y</label>
+					<label><input type="radio" name="gender" value="N" checked>N</label>
 				</td>
 			</tr>
 			<tr>
