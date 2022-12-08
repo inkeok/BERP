@@ -244,6 +244,9 @@ w.DEPARTMENT_ID,w. EMPLOYEE_ID, w.COMPANY_CD, w.START_WORK, w.END_WORK, w.WORK_C
 		where w.employee_id = #{employee_id}
 		order by work_date desc
 	</select>
-	
+
+<select id="findToday" resultType="work.WorkVO">
+	Select * from work where employee_id = #{employee_id}
+	</select>
 
 </mapper>
