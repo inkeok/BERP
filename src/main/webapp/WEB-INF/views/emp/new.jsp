@@ -136,8 +136,8 @@ tbody td:hover:before {
 			<tr>
 				<th class="">관리자</th>
 				<td>
-					<label><input type="radio" name="admin" value="y">Y</label>
-					<label><input type="radio" name="admin" value="n" checked>N</label>
+					<label><input type="radio" name="admin" value="Y">Y</label>
+					<label><input type="radio" name="admin" value="N" checked>N</label>
 				</td>
 			</tr>
 			<tr>
