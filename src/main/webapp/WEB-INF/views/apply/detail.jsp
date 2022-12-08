@@ -23,11 +23,14 @@ table {
 	/*     border-top-right-radius: 20px; */
 	padding-bottom: 2rem;
 	border-radius: 15px;
-	border-collapse: collapse;
+/* 	border-collapse: collapse; */
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
-
+h3{
+	text-align: center;
+	margin-bottom: 50px;
+}
 td a {
 	color: #323232;
 }
@@ -46,6 +49,9 @@ th {
 th {
 	background: #12192c;
 	color: #fff;
+}
+footer{
+	top:50%
 }
 td {
  text-align: left;
@@ -149,7 +155,7 @@ margin-top: 40px;
 			</tr>
 
 		</table>
-		<div class='margin'>
+		<div class='margin' style="text-align: center;">
 			<a class='new-btn' href='modify.apply?apply_num=${vo.apply_num }'>지원서 수정 </a>
 			<a class='new-btn' id='remove'>지원서 삭제</a>
 			<a class='new-btn' href='applyList.apply'>목록으로</a>

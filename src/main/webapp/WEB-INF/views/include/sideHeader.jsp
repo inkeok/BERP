@@ -69,7 +69,7 @@ body {
 <!-- 				id="nav-toggle"></ion-icon> -->
 <!-- 		</div> -->
 		<div>
-			<a class="menu-trigger" href="#">
+			<a id="navbar" class="menu-trigger nav__brand" href="#">
 			  <span></span>
 			  <span></span>
 			  <span></span>
@@ -100,7 +100,7 @@ body {
 		<div class="m-dropdown">
 		  <div class="e-button open">
 		 <div class="">
-		  	 <p style="text-align: center; margin-top: 10px;"> ${loginInfo.name}${loginInfo.position_name}님</p>
+		  	 <p style="text-align: center; margin-top: 13px;"> ${loginInfo.name}${loginInfo.position_name}님</p>
 		  </div>
 		    <div class="e-burger">
 		      <span></span>
@@ -111,14 +111,16 @@ body {
 		  </div>
 		  <ul class="e-list hide" >
 		    <li><a onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }">개인정보수정</a></li>
-		    <li><a href="">로그아웃</a></li>
+		    <li><a onclick='location="logout.mem"'>로그아웃</a></li>
 		  </ul>
 		</div>
 		</div>
 		
 	</div>
+	<script src="js/main.js"></script>
 	
 <script>
+
 	const menuTrigger = document.querySelector('.menu-trigger');
 	
 	menuTrigger.addEventListener('click', (event) => {

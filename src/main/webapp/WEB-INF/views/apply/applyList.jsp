@@ -122,7 +122,7 @@ text-align:center;
 
 select {
 	position: relative;
-	left: 2%;
+ 	left: 45%;
 	width: 180px;
 	padding: .7em 1.9em;
 	font-family: inherit;
@@ -152,6 +152,9 @@ td button {
 	border: none;
 	color: #ffffff;
 	background: #63666c;
+}
+footer{
+	top:50%
 }
 
 td button:nth-child(1) {

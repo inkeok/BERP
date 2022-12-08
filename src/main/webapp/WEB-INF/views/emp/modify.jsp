@@ -94,6 +94,7 @@ select {
 <body>
 	<h3>사원정보수정</h3>
 	<form action="update.hr" method="post">
+	<input type="hidden" name="employee_id" value="${vo.employee_id}" />
 		<div >
 			<table class="w-px1000">
 			<colgroup>
@@ -107,18 +108,16 @@ select {
 				<tr>
 					<th>부서명</th>
 				<td><select name="department_id">
-				<option value="">${vo.department_name}</option>
 					<c:forEach items="${departments}" var="d">
-						<option value="">${d.department_name}</option>
+						<option value="${d.department_id}" ${vo.department_id == d.department_id ? 'selected' : ''}>${d.department_name}</option>
 					</c:forEach>
 				</select></td>
 				</tr>
 				<tr>
 					<th>회사코드</th>
-					<td><select name="company">
-					<option value="">${vo.company_name}</option>
+					<td><select name="company_cd">
 						<c:forEach items="${company}" var="c">
-							<option value="">${c.company_name}</option>
+							<option value="${c.company_cd}" ${vo.company_cd == c.company_cd ? 'selected' : ''}>${c.company_name}</option>
 						</c:forEach>
 				</select></td>
 				</tr>
@@ -135,14 +134,14 @@ select {
 			<tr>
 				<th class="">전화번호</th>
 				<td>
-					<input class="input" type="text" name="phone" placeholder="전화번호" />
+					<input class="input" type="text" name="phone" value="${vo.phone}" />
 				</td>
 			</tr>
 			<tr>
 				<th class="">관리자</th>
 				<td>
-					<label style="margin-right: 20px;"><input type="radio" name="gender" value="y">Y</label>
-					<label><input type="radio" name="gender" value="n" checked>N</label>
+					<label style="margin-right: 20px;"><input type="radio" name="gender" value="Y">Y</label>
+					<label><input type="radio" name="gender" value="N" checked>N</label>
 				</td>
 			</tr>
 			<tr>
@@ -150,16 +149,15 @@ select {
 				<td><select name="position">
 				<option value="">${vo.position_name}</option>
 					<c:forEach items="${position}" var="p">
-						<option value="">${p.position_name}</option>
+						<option value="${p.position}" ${vo.position == p.position ? 'selected' : ''}>${p.position_name}</option>
 					</c:forEach>
 				</select></td>
 			</tr>
 			<tr>
 				<th>고용형태</th>
 				<td><select name="employee_pattern">
-				<option value="">${vo.employee_pattern}</option>
-					<c:forEach items="${employee_pattern}" var="emp">
-					<option value="${vo.employee_pattern}">${vo.employee_pattern_name}</option>
+					<c:forEach items="${pattern}" var="emp">
+					<option value="${emp.employee_pattern}" ${vo.employee_pattern == emp.employee_pattern ? 'selected' : ''}>${emp.employee_pattern_name}</option>
 					</c:forEach>
 				</select></td>
 			</tr>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -22,6 +23,7 @@ import emp.EmpDAO;
 import emp.EmpVO;
 import emp.PatternVO;
 import emp.PositionVO;
+import salary.SalEmpVO;
 
 @Controller
 public class EmpController {
@@ -55,6 +57,7 @@ public class EmpController {
 		return "redirect:list.hr";
 	}
 	
+	
 	//사원정보변경 저장
 	@RequestMapping("/update.hr")
 	public String update(EmpVO vo) {
@@ -71,7 +74,7 @@ public class EmpController {
 		List<DepartmentVO> departments = dao.departments();
 		List<CompanyVO> company = dao.company();
 		List<EmpVO> position = dao.position();
-		
+		List<PatternVO> pattern = dao.pattern();
 		EmpVO vo = dao.emp_info(id);
 		
 		model.addAttribute("vo", vo);
@@ -79,6 +82,8 @@ public class EmpController {
 		model.addAttribute("departments", departments);
 		model.addAttribute("company", company);
 		model.addAttribute("position", position);
+		model.addAttribute("pattern", pattern);
+		
 		return "side/emp/modify";
 	}
 	
@@ -87,10 +92,8 @@ public class EmpController {
 	public String info(int id, Model model) {
 		EmpVO vo = dao.emp_info(id);
 		model.addAttribute("vo", vo);
-		
 		List<PatternVO> pattern = dao.pattern();
 		model.addAttribute("pattern",pattern);
-		
 		return "side/emp/info";
 	}
 	
@@ -127,11 +130,21 @@ public class EmpController {
 
 	// 사원목록
 	@RequestMapping("/list.hr")
-	public String list(Model model, HttpSession session) {
+	public String list(Model model, HttpSession session, @RequestParam(defaultValue = "-1")  int department_id, @RequestParam(defaultValue = "-1") int no) {
 
-		List<EmpVO> empList = dao.employee_list();
-
+		List<EmpVO> empList = null;
+		if( department_id == -1) {
+			empList = dao.employee_list();
+		}else {			
+			empList = dao.employee_list_s(department_id);
+		}
+		
+		List<DepartmentVO> departments = dao.departments();
+		model.addAttribute("department_id", department_id);
 		model.addAttribute("list", empList);
+		
+		model.addAttribute("departments", departments);
+		model.addAttribute("no", no);
 
 		return "side/emp/empList";
 	}
@@ -229,6 +242,14 @@ public class EmpController {
 		
 		return dao.and_emp_insert(vo)+"";
 
+	}
+	@ResponseBody @RequestMapping(value="/andDeleteEmployee.hr", produces="text/html; charset=utf-8")
+	public String andInsertEmployee(int employee_id) {
+		
+		
+		
+		return dao.and_emp_delete(employee_id)+"";
+		
 	}
 	@ResponseBody @RequestMapping(value="/andNumBer.hr", produces="text/html; charset=utf-8")
 	public String andNumBer() {

@@ -7,10 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <style>
-	table {
+
+h2 {
+	margin-top : 3rem;
+	position: fixed;
+    left: 32%;
+    top: 8%;
+    width: 500px;
+	font-weight: bold;
+	color: #424242;
+	font-size: 32px;
+	font-family: 'Noto Sans KR' !important;
+	padding-bottom: 30px;
+	border-bottom: 2px solid #424242;
+}
+table {
 	margin-top : 5px;
-/* 	border-top-left-radius: 20px; */
-/*     border-top-right-radius: 20px; */
 	padding-bottom : 2rem;
 	border-radius : 15px;
 	border-collapse: collapse;
@@ -45,34 +57,17 @@ tbody td:hover:before {
   z-index: -1;
 }
 
-.new-btn{
-  padding: 1em 1.8em;
-  font-size: 14px;
-  font-weight: 400;
-  font-family:'Noto Sans KR', sans-serif;
-  border-radius: 4px;
-  cursor: pointer;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border: none;
-  color: #ffffff;
-  margin-bottom: 10px;
-	background : #12192c;
-	position: relative;
-	left: 4%;
-}
 
 .centerTable{
 	position: fixed;
 	left: 50%;
-	top: 40%;
+	top: 43%;
 	transform: translate(-50%, -50%);
 }
 </style>
 </head>
 <body>
-	<h2 class="center hrlist">나의 급여</h2>
+	<h2 style="text-align: left;">나의 급여</h2>
 	
 			<table class="centerTable">
 				<colgroup>

@@ -11,7 +11,7 @@
 	align-items: center;
 	margin-bottom: 0.5rem;
 	margin-left: 60px;
-	margin-right: 21em;
+	margin-right: 34em;
 }
 
 #nav {
@@ -64,17 +64,17 @@ header{
 			<li><a href="list.rec">채용공고</a></li>
 		</ul>
 		<div id='nav-sign'>
-			<div class="frame-center">
+			<div style="left: 69%;display: flex; position: absolute;">
 				<c:if test="${empty loginInfo}">
 					<button class="button button-second" data-type="circle"
 						onclick='location="login.mem"'>로그인</button>
 				</c:if>
 
 				<c:if test="${not empty loginInfo}">
-					<span>${loginInfo.name} 님</span>
-					<button class="button button-second" data-type="circle"
+					<span style="color: white; font-weight: bold; align-self: center; margin-right: 10px">${loginInfo.name} 님</span>
+					<a style="align-self: center; margin-right:30px;color:white; " onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
+					<button  style="margin: 0;"class="button button-second" data-type="circle"
 						onclick='location="logout.mem"'>로그아웃</button>
-					<a onclick="location='list.no'">사이드로</a>
 				</c:if>
 			</div>
 		</div>

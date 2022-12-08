@@ -32,7 +32,7 @@ body {
 .login-wrap {
 	width : 800px;
 	position : relative ;
-	top : -12%;
+	top :-3%;
 	left : 28%; 
 	margin-top: 15.78rem;
 	background-color: #EEEFF1;
@@ -80,6 +80,7 @@ body {
 /* 	top: 48%; */
 /* 	left: 0%; */
 /* } */
+
 .container {
 	display: grid;
 	grid-template-columns: 430px 330px;
@@ -159,7 +160,7 @@ p {
 
 .content {
   position:relative;
-  height:20vh;
+  height:19.9vh;
   text-align:center;
   background-color: white;
 }
@@ -200,7 +201,7 @@ p {
 	<div class="login-wrap">
 		<div class="login-form container ">
 			<div>
-				이미지 구상중 <img src="" alt="" />
+				<img style="margin-top:45px; filter: invert(30%);" src="imgs/icons/logo.png" alt="logo" />
 			</div>
 			<div>
 				<form method='post' action='checkLogin.mem'>

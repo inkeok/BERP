@@ -110,6 +110,9 @@ tbody td:hover:before {
 	position: relative;
 	left: 4%;
 }
+footer{
+top:50%
+}
 .btnSet{
 text-align:center;
 	margin-top: 30px;

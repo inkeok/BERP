@@ -156,7 +156,7 @@ public class RecruitController {
 		model.addAttribute("career", career);
 		model.addAttribute("company", company);	
 		
-		return "recruit/modify";
+		return "empty/recruit/modify";
 	}
 	
 	@RequestMapping("/detail.rec")
@@ -167,7 +167,7 @@ public class RecruitController {
 		model.addAttribute("com", dao.recruit_info_company(recruit_num));
 		model.addAttribute("vo", dao.recruit_info(recruit_num));
 		
-		return "recruit/detail";
+		return "empty/recruit/detail";
 	}
 
 	@RequestMapping("/list.rec")
@@ -224,7 +224,7 @@ public class RecruitController {
 		model.addAttribute("company", company);		
 		model.addAttribute("recruitList", recruit);
 		
-		return "recruit/new";
+		return "empty/recruit/new";
 	}
 	
 	@RequestMapping("/insert.rec")

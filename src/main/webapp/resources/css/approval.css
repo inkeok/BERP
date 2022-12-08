@@ -3,10 +3,6 @@
 /* 	display: flex; */
 /* 	justify-content: center; */
 /* } */
-h1, h2, h3{
-	text-align: center;
-	margin-bottom: 20px;
-}
 
 .apTable{
 	width: 1000px;
@@ -88,9 +84,9 @@ h1, h2, h3{
 }
 
 .centerFrame {
-	position: fixed;
-	left: 50%;
-	top: 40%;
+    position: fixed;
+    left: 51%;
+    top: 49%;
 	transform: translate(-50%, -50%);
 }
 
@@ -102,10 +98,10 @@ h1, h2, h3{
 	vertical-align: middle;
 }
 
-select{
-	width: 150px;
-	height: 25.2px;
-}
+/* select{ */
+/* 	width: 150px; */
+/* 	height: 25.2px; */
+/* } */
 
 .t-l{
 	text-align: left;

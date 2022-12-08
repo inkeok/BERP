@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.google.gson.JsonElement;
 
+import salary.SalEmpVO;
+
 @Repository
 public class EmpDAO {
 
@@ -39,6 +41,10 @@ public class EmpDAO {
 		return sql.selectList("emp.empList");
 	}
 	
+	public List<EmpVO> employee_list_s(int department_id){
+		return sql.selectList("emp.empSelect", department_id);
+	}
+	
 	//부서목록조회
 	public List<DepartmentVO> departments() {
 		return sql.selectList("emp.departments");
@@ -59,8 +65,7 @@ public class EmpDAO {
 	}
 
 	public void employee_delete(int employee_id) {
-		// TODO Auto-generated method stub
-		
+		sql.delete("emp.delete", employee_id);
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,5 +111,22 @@ public class EmpDAO {
 	public List<EmpCntVO> andNumBer() {
 		
 		return sql.selectList("emp.andEmpCnt");
+	}
+
+
+	public List<SalEmpVO> select() {
+		
+		return sql.selectList("salary.empList");
+		
+	}
+	
+	public List<SalEmpVO> select_d(int department_id){
+		return sql.selectList("salary.empList_d", department_id);
+
+	}
+	public int and_emp_delete(int employee_id) {
+		
+		return sql.delete("emp.andDeleteEmployee", employee_id);
+
 	}
 }

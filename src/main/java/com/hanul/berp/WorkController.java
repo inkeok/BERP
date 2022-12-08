@@ -305,6 +305,17 @@ public class WorkController {
 					.setDateFormat("yy년MM월dd일").create();
 			return gson2.toJson(list);		
 		}
+		@ResponseBody @RequestMapping(value="/findToday", produces="text/html; charset=utf-8")
+		public String findToday(int employee_id) {
+			WorkVO list = dao.findToday(employee_id);
+			
+			if(list.equals("")) {
+				return "1";
+			}
+			
+			
+			return gson.toJson(list);		
+		}
 		
 		
 }

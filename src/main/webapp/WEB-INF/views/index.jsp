@@ -151,8 +151,7 @@ left:20%;
 				앱/웹 개발을 연구합니다
 			</span>
 			<div class="Inquire">
-				<button class="button button-second" data-type="circle" 
-				onclick='location="login.mem"'>문의하기</button>
+				<button class="button button-second" data-type="circle" >문의하기</button>
 			</div>
 			
 			<img class="sec-image" src="imgs/icons/logo.png" alt="bodyimage" />
@@ -378,24 +377,25 @@ left:20%;
   
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
+	
 		$(document).ready(function() {
 			$('span.fi').fadeIn(3000);
 		});
 
 		$(document).ready(function() {
-			$('span.fi2').fadeIn(3000);
+			$('span.fi2').fadeIn(2000);
 		});
 
 		$(document).ready(function() {
-			$('button.fi').fadeIn(3000);
+			$('button.fi').fadeIn(2000);
 		});
 
 		$(document).ready(function() {
-			$('img.sec-image').fadeIn(3000);
+			$('img.sec-image').fadeIn(2000);
 		});
 		
 		$(document).ready(function() {
-			$('.Inquire').fadeIn(3000);
+			$('.Inquire').fadeIn(2000);
 		});
 
 	</script>

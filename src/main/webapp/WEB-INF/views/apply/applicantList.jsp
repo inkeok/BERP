@@ -22,6 +22,41 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 <style>
+
+
+h2 {
+    margin-left: 10.5rem;
+    margin-top: 3rem;
+    width: 1000px;
+    font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #424242;
+}
+
+select {
+
+    margin-top: 2rem;
+	position: relative;
+	left: .5%;
+	width: 180px;
+	padding: .5em 1.4em;
+	font-family: inherit;
+	background: url('imgs/arrow.jfif') no-repeat 95% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+	border: 2px solid #fff[];
+	border-radius: 3px;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
 .pagination {
 	width: 1490px;
 	background: #12192c;
@@ -41,23 +76,9 @@
 	cursor: pointer;
 }
 
-.w-px1600 {
-	width: 1600px;
-}
-
-.center {
-	text-align: center;
-}
-
-.hrlist {
-	margin: 1rem 0;
-	color: #000000;
-	font-size: 35px;
-	font-family: 'Noto Sans KR' !important;
-}
 
 table {
-	margin-top: 25px;
+	margin-top: 15px;
 	border-radius: 15px;
 	border-collapse: collapse;
 	overflow: hidden;
@@ -69,7 +90,7 @@ td a {
 }
 
 th, td {
-	padding: 15px;
+	padding: 11px;
 	background-color: rgba(255, 255, 255, 0.2);
 	color: #000000;
 }
@@ -111,7 +132,7 @@ tbody td:hover:before {
 	margin-bottom: 10px;
 	background: #12192c;
 	position: relative;
-	left: 54%;
+	left: 62%;
 }
 
 .button-second {
@@ -121,103 +142,105 @@ tbody td:hover:before {
 </style>
 </head>
 <body>
-	<h2 class="center hrlist">지원자 조회</h2>
-	<form method='post' action='applicantList.apply'>
-		<div id='list-top' class='w-px1200'>
-			<ul>
-				<li>
-				<select name='recruit_num' class='w-px100'
-					onchange='$("form").submit()' style="width:300px;">
-						<!-- name줘야 전달가넝 -->
-						<option value='all'>전체 유형</option>
-						<c:forEach items='${recruit_list}' var='re'>
-							<option ${recruit_num eq re.recruit_num ? 'selected' : '' }
-								value='${re.recruit_num}'>
-								${re.recruit_title}</option>
-						</c:forEach>
-				</select>
-				
-	<select name='apply_check' class='w-px100' onchange='$("form").submit()'
-		style="width: 100px;">
-		<!-- name줘야 전달가넝 -->
-		<option value='all'>전체</option>
-		<c:forEach items='${pass_list}' var='pl'>
-			<option ${apply_check eq pl.apply_check ? 'selected' : '' }
-				value='${pl.apply_check}'>
-				${pl.checkPass}</option>
-		</c:forEach>
-	</select>
-				
-				 <%-- <c:if test='${loginInfo.admin eq "Y"}'> --%> <a
-					class='new-btn' style="position: left;" href='pass_check.apply'>합격자
-						리스트</a> <%-- </c:if> --%>
-	</li>			
-			</ul>
-		</div>
+	<h2>지원자 조회</h2>
+	<div style="margin-left: 10rem;">
+		<form method='post' action='applicantList.apply' >
+			<div id='list-top' class=''>
+				<ul>
+					<li>
+					<select name='recruit_num' class='w-px100'
+						onchange='$("form").submit()' style="width:300px;">
+							<!-- name줘야 전달가넝 -->
+							<option value='all'>전체 유형</option>
+							<c:forEach items='${recruit_list}' var='re'>
+								<option ${recruit_num eq re.recruit_num ? 'selected' : '' }
+									value='${re.recruit_num}'>
+									${re.recruit_title}</option>
+							</c:forEach>
+					</select>
+					
+		<select name='apply_check' class='w-px100' onchange='$("form").submit()'
+			style="width: 100px;">
+			<!-- name줘야 전달가넝 -->
+			<option value='all'>전체</option>
+			<c:forEach items='${pass_list}' var='pl'>
+				<option ${apply_check eq pl.apply_check ? 'selected' : '' }
+					value='${pl.apply_check}'>
+					${pl.checkPass}</option>
+			</c:forEach>
+		</select>
+					
+					 <%-- <c:if test='${loginInfo.admin eq "Y"}'> --%> <a
+						class='new-btn' style="position: left;" href='pass_check.apply'>합격자
+							리스트</a> <%-- </c:if> --%>
+		</li>			
+				</ul>
+			</div>
+			
+		</form>
 		
-	</form>
-	
-
-
-
-	<!-- 테이블시작 -->
-	<table class='w-px1200 tb-list'>
-		<colgroup>
-			<col width='100px'>
-			<col width='300px'>
-			<col width='100px'>
-			<col width='100px'>
-			<col width='150px'>
-			<col width='70px'>
-
-		</colgroup>
-		<tr>
-
-			<th>유형</th>
-			<th>공고</th>
-			<th>지원자번호</th>
-			<th>이름</th>
-
-			<th>전화번호</th>
-			<th>check</th>
-
-
-		</tr>
-		<c:forEach items='${applicants}' var='vo'>
+		
+		
+		
+		<!-- 테이블시작 -->
+		<table style="width:1500px;">
+			<colgroup>
+				<col width='100px'>
+				<col width='300px'>
+				<col width='100px'>
+				<col width='100px'>
+				<col width='150px'>
+				<col width='70px'>
+		
+			</colgroup>
 			<tr>
-				<td><a
-					href="check.apply?apply_num=${vo.apply_num }">${vo.recruit_num}</a></td>
-				<td style="text-align: left; padding-left: 20px"><a
-					href="check.apply?apply_num=${vo.apply_num }">${vo.recruit_title}</a></td>
-
-				<td><a
-					href="check.apply?apply_num=${vo.apply_num }">${vo.apply_num }</a></td>
-				<td ><a
-					href="check.apply?apply_num=${vo.apply_num }"> ${vo.apply_name }
-				</a></td>
-				<%-- 
-	<td>
-	 <fmt:formatDate value="${vo.recruit_start}" pattern="yyyy-MM-dd"/>
-	~
-	 <fmt:formatDate value="${vo.recruit_end}" pattern="yyyy-MM-dd"/>
-	
-	</td>
-	 --%>
-				<td>${vo.apply_phone }</td>
-				<td>${vo.checkPass }</td>
-
-
-				<%-- <c:forEach items='${applicants}' var='vo'> --%>
-
-				<%-- </c:forEach>  --%>
-
-
-
-
-
+		
+				<th>유형</th>
+				<th>공고</th>
+				<th>지원자번호</th>
+				<th>이름</th>
+		
+				<th>전화번호</th>
+				<th>check</th>
+		
+		
 			</tr>
-		</c:forEach>
-	</table>
+			<c:forEach items='${applicants}' var='vo'>
+				<tr>
+					<td><a
+						href="check.apply?apply_num=${vo.apply_num }">${vo.recruit_num}</a></td>
+					<td style="text-align: left; padding-left: 20px"><a
+						href="check.apply?apply_num=${vo.apply_num }">${vo.recruit_title}</a></td>
+		
+					<td><a
+						href="check.apply?apply_num=${vo.apply_num }">${vo.apply_num }</a></td>
+					<td ><a
+						href="check.apply?apply_num=${vo.apply_num }"> ${vo.apply_name }
+					</a></td>
+					<%-- 
+		<td>
+		 <fmt:formatDate value="${vo.recruit_start}" pattern="yyyy-MM-dd"/>
+		~
+		 <fmt:formatDate value="${vo.recruit_end}" pattern="yyyy-MM-dd"/>
+		
+		</td>
+		 --%>
+					<td>${vo.apply_phone }</td>
+					<td>${vo.checkPass }</td>
+		
+		
+					<%-- <c:forEach items='${applicants}' var='vo'> --%>
+		
+					<%-- </c:forEach>  --%>
+		
+		
+		
+		
+		
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 
 
 	<script>

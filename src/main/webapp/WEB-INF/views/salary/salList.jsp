@@ -12,12 +12,24 @@
 	crossorigin="anonymous">
 
 <style>
+
+h2 {
+    margin-left: 12rem;
+    margin-top: 2.5rem;
+    width: 1200px;
+    font-weight: bold;
+    color: #424242;
+    font-size: 32px;
+    font-family: 'Noto Sans KR' !important;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #424242;
+}
 .pagination {
-	width: 1101px;
+	width: 1501px;
 	background: #12192c;
 	justify-content: center;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -31,25 +43,11 @@
 	cursor: pointer;
 }
 
-.w-px1600 {
-	width: 1600px;
-}
-
-.center {
-	text-align: center;
-}
-
-.hrlist {
-	margin: 1rem 0;
-	color: #000000;
-	font-size: 38px;
-	font-family: 'Noto Sans KR' !important;
-}
-
 table {
+    width: 1500px;
 	margin-top: 5px;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
@@ -60,7 +58,7 @@ td a {
 }
 
 th, td {
-	padding: 15px;
+	padding: 10px;
 	background-color: rgba(255, 255, 255, 0.2);
 	color: #000000;
 }
@@ -87,24 +85,6 @@ tbody td:hover:before {
 	z-index: -1;
 }
 
-.new-btn {
-	padding: 1em 1.8em;
-	font-size: 14px;
-	font-weight: 400;
-	font-family: 'Noto Sans KR', sans-serif;
-	border-radius: 4px;
-	cursor: pointer;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	border: none;
-	color: #ffffff;
-	margin-bottom: 10px;
-	background: #12192c;
-	position: relative;
-	left: 4%;
-}
-
 .button-second {
 	background: #2b32b2;
 	box-shadow: 0 3px 25px rgba(48, 37, 223, 0.7);
@@ -112,9 +92,9 @@ tbody td:hover:before {
 
 select {
 	position: relative;
-	left: 22%;
+	left: 0.6%%;
 	width: 180px;
-	padding: .7em 1.9em;
+	padding: .5em 1.4em;
 	font-family: inherit;
 	background: url('imgs/arrow.jfif') no-repeat 95% 50%;
 	-webkit-appearance: none;
@@ -150,83 +130,85 @@ td button:nth-child(1) {
 </style>
 </head>
 <body>
-	<h2 class="center hrlist">사원별 급여조회</h2>
-
-	<form method="post" action="list.sa" class="list">
-
-		<div id='list-top' class='w-px1200'>
-			<ul>
-				<li><select name='department_id' onchange='$("form").submit()'>
-						<!-- name줘야 전달가넝 -->
-						<option value='-1'>전체 유형</option>
-						<c:forEach items='${departments}' var='c'>
-							<option
-								${department_name eq c.department_name ? 'selected' : '' }
-								value='${c.department_id}'>${c.department_name }</option>
-						</c:forEach>
-
-				</select></li>
+	<h2 class="">사원별 급여조회</h2>
 
 
-			</ul>
-
-		</div>
-		<div class="w-px1600">
-			<table class="table-hover">
-				<colgroup>
-					<col width="140px" />
-					<col width="100px" />
-					<col width="100px" />
-					<col width="80px" />
-					<col width="130px" />
-					<col width="100px" />
-					<col width="100px" />
-					<col width="100px" />
-					<col width="250px" />
-
-				</colgroup>
-
-				<thead>
-					<tr>
-						<th>사번</th>
-						<th>부서명</th>
-						<th>사원명</th>
-						<th>관리자</th>
-						<th>입사일자</th>
-						<th>직급</th>
-						<th>업무형태</th>
-						<th>기본급여</th>
-						<th>정보수정</th>
-					</tr>
-
-				</thead>
-				<c:forEach items="${list}" var="vo">
-					<tbody>
-						<tr class="tr-start">
-							<td>${vo.employee_id}</td>
-							<td>${vo.department_name}</td>
-							<td>${vo.name}</td>
-							<td>${vo.admin}</td>
-							<td>${vo.hire_date}</td>
-							<td>${vo.position_name}</td>
-							<td>${vo.employee_pattern_name}</td>
-							<td>$${vo.salary}</td>
-							<td><button type="button"
-									onclick='location.href="modify.sa?id=${vo.employee_id}"'
-									class=''>정보수정</button>
-								<button type="button"
-									onclick='location.href="bonus.sa?id=${vo.employee_id}"'
-									class=''>상여금지급</button></td>
+	<div style="margin-top: 2rem; margin-left: 12rem;">
+		<form method="post" action="list.sa" class="list">
+			<div id='list-top' class=''>
+				<ul>
+					<li><select name='department_id' onchange='$("form").submit()'>
+							<!-- name줘야 전달가넝 -->
+							<option value='-1'>전체 유형</option>
+							<c:forEach items='${departments}' var='c'>
+								<option
+									${department_name eq c.department_name ? 'selected' : '' }
+									value='${c.department_id}'>${c.department_name }</option>
+							</c:forEach>
+		
+					</select></li>
+		
+		
+				</ul>
+		
+			</div>
+			<div>
+				<table class="table-hover">
+					<colgroup>
+						<col width="140px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="80px" />
+						<col width="130px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="250px" />
+		
+					</colgroup>
+		
+					<thead>
+						<tr>
+							<th>사번</th>
+							<th>부서명</th>
+							<th>사원명</th>
+							<th>관리자</th>
+							<th>입사일자</th>
+							<th>직급</th>
+							<th>업무형태</th>
+							<th>기본급여</th>
+							<th>정보수정</th>
 						</tr>
-					</tbody>
-				</c:forEach>
-			</table>
+		
+					</thead>
+					<c:forEach items="${list}" var="vo">
+						<tbody>
+							<tr class="tr-start">
+								<td>${vo.employee_id}</td>
+								<td>${vo.department_name}</td>
+								<td>${vo.name}</td>
+								<td>${vo.admin}</td>
+								<td>${vo.hire_date}</td>
+								<td>${vo.position_name}</td>
+								<td>${vo.employee_pattern_name}</td>
+								<td>$${vo.salary}</td>
+								<td><button type="button"
+										onclick='location.href="modify.sa?id=${vo.employee_id}"'
+										class=''>정보수정</button>
+									<button type="button"
+										onclick='location.href="bonus.sa?id=${vo.employee_id}"'
+										class=''>상여금지급</button></td>
+							</tr>
+						</tbody>
+					</c:forEach>
+				</table>
+			</div>
+		</form>
+		<div style="text-align: -webkit-center;">
+			<ul class="pagination">
+		
+			</ul>
 		</div>
-	</form>
-	<div style="text-align: -webkit-center;">
-		<ul class="pagination">
-
-		</ul>
 	</div>
 </body>
 <script>

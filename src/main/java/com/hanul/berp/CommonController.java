@@ -50,11 +50,13 @@ public class CommonController {
 //			model.addAttribute("code_name", vo.getCode_name());  //선택한 코드
 //		}
 
-		if (code.equals("code_comment")) {
+		if(vo.getCode_used()==null ) vo.setCode_used("all"); 
+		if(vo.getCode_comment()==null ) vo.setCode_comment("all"); 
+//		if (code.equals("code_comment")) {
 			model.addAttribute("code_comment", vo.getCode_comment()); // 선택한 코드
-		} else if (code.equals("code_used")) {
+//		} else if (code.equals("code_used")) {
 			model.addAttribute("code_used", vo.getCode_used()); // 선택한 코드
-		}
+//		}
 
 		List<CommonVO> code_comment = dao.personal_code(); // 인사코드 목록(드랍다운목록)
 		model.addAttribute("code_commentt", code_comment);
@@ -78,14 +80,15 @@ public class CommonController {
 //		if(code_title.equalsIgnoreCase("all")) {
 //			commonlist = dao.Common_list();
 		List<CommonVO> list = null;
-		if (code.isEmpty() || vo.getCode_comment().equals("all")) {
+		if (vo.getCode_used().equals("all") && vo.getCode_comment().equals("all")) {
 			list = dao.common_list(); // 코드 전체 목록
 		} else {
 //			documentlist = dao.document_list();
 			list = dao.common_list(vo, code); // 선택한 코드 전체 목록
 		}
+		
 
-		model.addAttribute("list", commonlist);
+//		model.addAttribute("list", commonlist);
 //		model.addAttribute("code_title", documentlist);
 
 		model.addAttribute("list", list);

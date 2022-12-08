@@ -17,7 +17,16 @@
 	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Insert title here</title>
 <style>
-
+h2 {
+    width: 1200px;
+    margin: 3rem 0;
+	font-weight: bold;
+	color: #424242;
+	font-size: 32px;
+	font-family: 'Noto Sans KR' !important;
+	padding-bottom: 30px;
+	border-bottom: 2px solid #424242;
+}
 select::-ms-expand {
   display: none;
 }
@@ -59,7 +68,7 @@ td a {
 }
 
 th, td {
-	padding: 15px;
+	padding: 14px !important;
 	background-color: rgba(255, 255, 255, 0.2);
 	color: #000000;
 }
@@ -100,6 +109,8 @@ ul li {
 	
 	<!-- end page title -->
 
+	<h2>휴무관리</h2>
+	<div style="width: 113%;">
 	<div class="row mb-4"  style="margin-top: 34px;">
 		<div class="col-lg-12">
 			<div class="card">
@@ -183,7 +194,7 @@ ul li {
 
 
 	<!--  work_result table 에서 가져온다 -->
-	<table class="table table-sm">
+	<table class="table">
 		<thead style="background: #12192C;">
 			<tr>
 				<th scope="col">휴가일자</th>
@@ -217,7 +228,6 @@ ul li {
 
 	<h5 class="font-size-16" style="margin: 15px;">휴가 신청 내역</h5>
 
-	</div>
 
 	<!--  work_result table 에서 가져온다 -->
 	<table class="table table-sm">
@@ -240,9 +250,8 @@ ul li {
 			</c:forEach>
 		</tbody>
 	</table>
-
+</div>
 </body>
-
 <script>
 	
 	const c = document.querySelector('#holiday_submit_btn');

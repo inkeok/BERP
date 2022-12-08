@@ -39,6 +39,9 @@ th, td {
 	background-color: rgba(255, 255, 255, 0.2);
 	color: #000000;
 }
+footer{
+	top:50%
+}
 
 th {
 	text-align: center;
@@ -172,7 +175,7 @@ display: none;}
 </tr>
 
 </table>
-<div class='margin'>
+<div class='margin' style='text-align: center;'>
 	<a class='new-btn' id='save'>저장</a>
 	<a class='new-btn' onclick="history.go(-1)">취소</a>
 </div>

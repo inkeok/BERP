@@ -15,11 +15,10 @@
 	</update>
 	<update id="update">
 		update employees
-		set department_name =
-		#{department_name}, company_name = #{company_name}, name = #{name}
+		set department_id =
+		#{department_id}, company_cd = #{company_cd}, name = #{name}
 		,
-		email = #{email}, phone = #{phone}, admin = #{admin}
-		, position =
+		email = #{email}, phone = #{phone}, position =
 		#{position}, employee_pattern = #{employee_pattern}
 		where employee_id =
 		#{employee_id}
@@ -101,6 +100,22 @@
 		on e.employee_pattern = ccd.code_value
 		order by employee_id
 	</select>
+	
+	<select id="empSelect" resultType="emp.EmpVO">
+		select e.*, d.department_name,
+		c.company_name, cd.code_name position_name, ccd.code_name employee_pattern_name
+		from employees e left outer join departments d
+		on e.department_id = d.department_id
+		left outer join company c
+		on e.company_cd = c.company_cd
+		left outer join common_code cd
+		on e.position = cd.code_value
+		left outer join common_code ccd
+		on e.employee_pattern = ccd.code_value
+		where nvl(e.department_id, 0) = #{department_id}
+		order by employee_id
+	</select>
+	
 <!-- 	안드용 -->
 	<select id="andempList" resultType="emp.EmpVO">
 		select e.*, d.department_name,
@@ -215,6 +230,8 @@
      from employees  e 
      group by e.department_id 
 	</select>
-	
+	<delete id="andDeleteEmployee">
+		delete from employees where employee_id = #{employee_id}
+	</delete>
 
 </mapper>

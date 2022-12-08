@@ -192,7 +192,7 @@ order by recruit_num desc
 </select>
 <select id="andApplyCheckSelectList" resultType="recruit.AndApplyVO">
 select r.RECRUIT_NUM, r.RECRUIT_START, r.RECRUIT_END, r.EMPLOYEE_PATTERN, r.RECRUIT_TITLE, r.RECRUIT_CONTENT, r.SALARY, r.CAREER, r.COMPANY ,
-a.APPLY_EMAIL, a.APPLY_NUM, a.APPLY_NAME, a.FILE_NAME, a.FILE_PATH,a.APPLY_DATE,a.APPLY_PW, a.APPLY_PHONE, a.APPLY_CHECK, 
+a.APPLY_EMAIL, a.APPLY_NUM, a.APPLY_NAME, a.FILE_NAME, a.FILE_PATH,a.APPLY_DATE,a.APPLY_PW, a.APPLY_PHONE, a.APPLY_CHECK, a.APPLY_PIC_NAME, a.APPLY_PIC_PATH,
 c.code_name employee_pattern_name , cd.code_name career_name
 from recruit_board r left outer join apply_board a
 on r.recruit_num = a.recruit_num left outer join
@@ -205,7 +205,7 @@ where a.apply_check = 'N'
 </select>
 <select id="andApplyCheckSelectOne" resultType="recruit.AndApplyVO">
 select r.RECRUIT_NUM, r.RECRUIT_START, r.RECRUIT_END, r.EMPLOYEE_PATTERN, r.RECRUIT_TITLE, r.RECRUIT_CONTENT, r.SALARY, r.CAREER, r.COMPANY ,
-a.APPLY_EMAIL, a.APPLY_NUM, a.APPLY_NAME, a.FILE_NAME, a.FILE_PATH,a.APPLY_DATE,a.APPLY_PW, a.APPLY_PHONE, a.APPLY_CHECK, 
+a.APPLY_EMAIL, a.APPLY_NUM, a.APPLY_NAME, a.FILE_NAME, a.FILE_PATH,a.APPLY_DATE,a.APPLY_PW, a.APPLY_PHONE, a.APPLY_CHECK, a.APPLY_PIC_NAME, a.APPLY_PIC_PATH,
 c.code_name employee_pattern_name , cd.code_name career_name
 from recruit_board r left outer join apply_board a
 on r.recruit_num = a.recruit_num left outer join

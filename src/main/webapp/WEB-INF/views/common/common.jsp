@@ -3,8 +3,6 @@
 	<%-- <%@ page isELIgnored="false" %> --%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +18,7 @@ body{
 }
 
 table {
-	margin-top : 5px;
+	margin : 1rem 0!important;
 	border-radius : 10px;
 	border-collapse: collapse;
 	overflow: hidden;
@@ -58,8 +56,8 @@ tbody td:hover:before {
 }
 
 h3{	
-	width : 800px;
-	margin : 3rem 0;
+	width: 800px;
+    margin-top: 3rem;
 	font-weight: bold;
     color: #424242;
     font-size: 32px;
@@ -70,7 +68,7 @@ h3{
 
 select, option{
   width: 230px;
-  padding: .6em 1.2em;
+  padding: .5em 1.2em;
   font-family: inherit;
   background: url('imgs/arrow.jfif') no-repeat 95% 50%; 
   -webkit-appearance: none;
@@ -87,7 +85,7 @@ select, option{
 
 <!-- 		<div class="card mb-4"> -->
 	<h3 class="">코드관리</h3>
-   <div class="">
+   <div class=""style="margin-top:2rem;">
        <div class="">
        	<div class="">
        		<div class="">

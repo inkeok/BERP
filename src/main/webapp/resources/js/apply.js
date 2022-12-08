@@ -89,7 +89,7 @@
 	//공통사용 상태값
 	common: {
 		empty: {code:'invalid', desc:'입력하세요'}
-		,space: {code:'invalid', desc: '공백없이 입력해'}
+		,space: {code:'invalid', desc: '공백없이 입력하세요'}
 		,max: {code:'invalid', desc: '최대 10자 이하'}
 		,min: {code:'invalid', desc: '최소 5자 이상'}
 		
