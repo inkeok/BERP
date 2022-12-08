@@ -82,12 +82,11 @@ body {
 <!-- 					class="">개인정보수정</a> -->
 <!-- 			</div> -->
 		<div class="noti">
-			<a href=""><img style="width: 25px;" src="imgs/icons/noti.png" alt="noti" /></a>
+			<a href="list.no"><img style="width: 25px;" src="imgs/icons/noti.png" alt="noti" /></a>
 		</div>
 		<div class="meg">
-			<a href=""><img style="width: 25px;" src="imgs/icons/meg.png" alt="meg" /></a>
+			<a href="receiveList.ap?employee_id=${loginInfo.employee_id }"><img style="width: 25px;" src="imgs/icons/meg.png" alt="meg" /></a>
 		</div>
-		
 <!-- 			<ul class="profile-icon nav-start nav-btn nav-dropdown"> -->
 <!-- 				<li> -->
 <!-- 					<a href="#" class=""><img style="width: 40px;" src="imgs/icons/profile-icon.png" alt="profile-icon" /></a> -->

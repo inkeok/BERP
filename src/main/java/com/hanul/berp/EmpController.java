@@ -140,9 +140,9 @@ public class EmpController {
 		}
 		
 		List<DepartmentVO> departments = dao.departments();
-		model.addAttribute("department_id", department_id);
-		model.addAttribute("list", empList);
 		
+		model.addAttribute("department_id", department_id);
+		model.addAttribute("list", empList);	
 		model.addAttribute("departments", departments);
 		model.addAttribute("no", no);
 
