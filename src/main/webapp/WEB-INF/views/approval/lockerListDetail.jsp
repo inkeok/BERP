@@ -26,7 +26,9 @@
 	margin-left: 50px;
 	margin-bottom: 10px;
 }
-
+select{
+	width: 150px;
+}
 
 </style>
 </head>
@@ -125,6 +127,12 @@ $('#postCancel').click(function(){
 //이전으로 버튼 선택 시
 $('#postBack').click(function(){
 	if(confirm('변경된 내용을 저장할까요?')){
+		
+		if($('#document_title').val()==0){
+			alert('제목을 입력해주세요');
+			return;
+		}
+		
 		$('[name=file_name]').val( $('.file').text() );
 		$('#postForm').attr('action', 'deleteInsertLocker.ap?employee_id=${loginInfo.employee_id}&url=lockerList.ap&ing_no=${lockerListDetail.ing_no}&no=${lockerListDetail.no}');
 		$('#postForm').submit();
