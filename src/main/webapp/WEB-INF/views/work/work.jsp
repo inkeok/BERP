@@ -139,11 +139,11 @@ tbody td:hover:before {
 									<h5  class="font-size-16 mb-0">이번달 근무시간</h5>
 								</div>
 								<h5 class="font-size-15">
-									<span class="float-end">11%</span>
+									<span class="float-end">31%</span>
 								</h5>
 								<div class="progress animated-progess progress-md">
-									<div class="progress-bar" role="progressbar" style="width: 11%"
-										aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+									<div class="progress-bar" role="progressbar" style="width: 31%"
+										aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
 								<div class="">
 									<div class="mt-3">

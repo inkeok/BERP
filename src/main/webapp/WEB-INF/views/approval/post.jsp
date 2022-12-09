@@ -103,6 +103,12 @@ document.querySelector('#postSubmit').onclick = function(){
 
 //취소 버튼 선택 시 
 $('#postCancel').click(function(){
+	if($('#document_title').val()==0){
+		alert('제목을 입력해주세요');
+		return;
+	}
+		
+	
 	if(confirm('임시보관함에 저장할까요?')){
 		$('#postForm').attr('action', 'insertLocker.ap?employee_id=${loginInfo.employee_id}');
 		$('#postForm').submit();
