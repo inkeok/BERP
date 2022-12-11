@@ -60,6 +60,10 @@
 			<th>처리결과</th>
 			<td>${approvalListDetail.c_status}</td>
 		</tr>
+		<tr>
+			<th>비고</th>
+			<td>${approvalListDetail.document_comment}</td>
+		</tr>
 		
 		
 		
