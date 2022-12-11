@@ -81,7 +81,7 @@ body {
 				<div style="display: flex; position:relative; top: 3%;left:-63%;">
 				<c:if test="${not empty loginInfo}">
 					<span style="font-weight: bold; color :white; align-self: center; margin-right: 20px">${loginInfo.name} 님</span>
-					<a  style="align-self: center; margin-right:20px; color:white;" onclick="location='modify.mypage?employee_id='+${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
+					<a  style="align-self: center; margin-right:20px; color:white;" onclick="location='modify.mypage?employee_id='${loginInfo.employee_id }"><i class="fa-solid fa-user-tie"></i></a>
 					<a style="align-self: center; margin-right:40px;color:white; " onclick="location='list.no'"><i class="fa-solid fa-bars"></i></a>
 					<button style="margin-top: 10px" class="button button-second" data-type="circle" onclick='location="logout.mem"'>로그아웃</button>
 				</c:if>
